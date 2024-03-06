@@ -21,8 +21,8 @@
         }
 
         .card-header {
-            background-color: #007bff;
-            color: #fff;
+            background-color: white;
+            color: black;
 
             border-radius: 15px 15px 0 0;
         }
@@ -53,24 +53,17 @@
             background-color: #0056b3;
             color: #fff;
         }
-
     </style>
 </head>
 
 <body>
-    <div class="d-flex flex-row justify-content-end mr-2" style="margin-top:10px;">
-    <a href="welcomeadmin.php" class="btn btn-back"><i class="fa fa-home"></i> Back to Home</a>
-    </div>
-   
-
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-
-                    <div class="card-header text-center">
-                        <h4 class="mb-0">Borrow History</h4>
-
+                    <div class="card-header d-flex justify-content-between align-items-end bg-light">
+                        <h2>Borrow History</h2>
+                        <a href="welcomeadmin.php" class="btn btn-primary"><i class="fa fa-home"></i> Back to Home</a>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -95,9 +88,9 @@
                                 // Check if the query was successful
                                 if ($result && mysqli_num_rows($result) > 0) {
                                     // Display borrow history information in a table
-                                    echo '<table class="table table-bordered table-striped">
+                                    echo '<table class="table table-bordered table-striped table-hover">
 
-                                            <thead class="thead-dark">
+                                            <thead class="bg-primary text-light">
 
                                                 <tr>
                                                     <th class="text-center">Borrow ID</th>
@@ -143,5 +136,5 @@
         </div>
     </div>
 </body>
-</html>
 
+</html>

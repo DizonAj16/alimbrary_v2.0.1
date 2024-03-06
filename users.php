@@ -13,6 +13,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +26,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         body {
             background-color: #f8f9fa;
         }
+
         .card-user {
             margin-bottom: 20px;
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
-       .card-user .card-header {
+
+        .card-user .card-header {
             background-color: #007bff;
             color: #fff;
             border-bottom: none;
@@ -39,31 +42,44 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
 
         .card-user .card-body {
+            display: flex;
+            align-items: center;
             padding: 20px;
         }
 
-        .card-user .card-body h5 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: white;
+        .card-user .icon {
+            font-size: 50px;
+            margin-right: 20px;
+            color: #fff; /* Icon color is set to white */
         }
+
+        .card-user .card-body h5,
         .card-user .card-body p {
-            font-size: 14px;
-            margin-bottom: 5px;
-            color: white;
+            color: #fff; /* Text color is set to white */
+            margin: 0;
+        }
+        .card-body h5{
+            font-size: 16px;
+        }
+        p{
+            font-size: 15px;
         }
         .bg-admin {
             background-color: #007bff;
         }
+
         .bg-user {
             background-color: #28a745;
         }
+
         .text-admin {
             color: #007bff;
         }
+
         .text-user {
             color: #28a745;
         }
+
         .btn-back {
             background-color: #007bff;
             color: #fff;
@@ -78,68 +94,68 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
     </style>
 </head>
+
 <body>
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header text-center">
-                    <h4>Users Dashboard</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <?php
-                        // Query to retrieve users information
-                        $sql = "SELECT id, username, created_at, user_type FROM users";
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-end">
+                        <h3 class="text-center text-dark">Users Dashboard</h3>
+                        <a href="welcomeadmin.php" class="btn btn-primary text-light"><i class="fa fa-home"></i> Back to Home</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <?php
+                            // Query to retrieve users information
+                            $sql = "SELECT id, username, created_at, user_type FROM users";
 
-                        // Execute the query
-                        $result = mysqli_query($conn, $sql);
+                            // Execute the query
+                            $result = mysqli_query($conn, $sql);
 
-                        // Check if the query was successful
-                        if ($result) {
-                            // Check if there are any rows returned
-                            if (mysqli_num_rows($result) > 0) {
-                                // Fetch rows and display data
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
-                                    echo '<div class="col-md-6">
-                                            <div class="card '.$cardColorClass.' card-user">
+                            // Check if the query was successful
+                            if ($result) {
+                                // Check if there are any rows returned
+                                if (mysqli_num_rows($result) > 0) {
+                                    // Fetch rows and display data
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
+                                        $iconClass = $row['user_type'] === 'admin' ? 'fa fa-user-circle' : 'fa fa-user';
+                                        echo '<div class="col-md-4">
+                                            <div class="card ' . $cardColorClass . ' card-user">
                                                 <div class="card-body">
-                                                    <h5 class="card-title"><i class="fa fa-user"></i> '.$row['username'].'</h5>
-                                                    <p class="card-text"><i class="fa fa-id-badge"></i> User ID: '.$row['id'].'</p>
-                                                    <p class="card-text"><i class="fa fa-clock-o"></i> Joined: '.$row['created_at'].'</p>
-                                                    <p class="card-text"><i class="fa fa-user-circle-o"></i> '.ucfirst($row['user_type']).'</p>
+                                                    <div class="icon"><i class="' . $iconClass . '"></i></div>
+                                                    <div>
+                                                        <h5><i class="fa fa-user"></i> ' . $row['username'] . '</h5>
+                                                        <p><i class="fa fa-id-badge"></i> User ID: ' . $row['id'] . '</p>
+                                                        <p><i class="fa fa-clock-o"></i> Joined: ' . $row['created_at'] . '</p>
+                                                        <p><i class="' . $iconClass . '"></i> ' . ucfirst($row['user_type']) . '</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>';
+                                    }
+                                } else {
+                                    // No users found
+                                    echo '<p class="text-center text-light">No users available.</p>';
                                 }
+                                // Free result set
+                                mysqli_free_result($result);
                             } else {
-                                // No users found
-                                echo '<p class="text-center">No users available.</p>';
+                                // Query execution failed
+                                echo '<p class="text-center text-light">Error: ' . mysqli_error($conn) . '</p>';
                             }
-                            // Free result set
-                            mysqli_free_result($result);
-                        } else {
-                            // Query execution failed
-                            echo '<p class="text-center">Error: ' . mysqli_error($conn) . '</p>';
-                        }
 
-                        // Close the connection
-                        mysqli_close($conn);
-                        ?>
-
+                            // Close the connection
+                            mysqli_close($conn);
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-8">
-            <a href="welcomeadmin.php" class="btn btn-back"><i class="fa fa-home"></i> Back to Home</a>
-        </div>
-    </div>
-</div>
 
 </body>
-</html>
 
+</html>

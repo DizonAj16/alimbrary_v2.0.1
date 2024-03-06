@@ -5,10 +5,47 @@
     <title>Borrowed Books</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
 
+        .container {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-primary, .btn-danger {
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container">
         <?php
         // Start session
         session_start();
@@ -55,10 +92,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="table-responsive">
-
-                            <table class="table table-striped table-hover border-dark">
+                            <table class="table table-striped table-hover">
                                 <thead>
-
                                     <tr>
                                         <th>Borrow ID</th>
                                         <th>Book Title</th>
@@ -80,16 +115,12 @@
                                         echo "<td>" . $return_date . "</td>";
                                         echo "<td>";
                                         // Add the Return Book button with a link to return.php
-
-                                        echo "<a href='return.php' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
+                                        echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         echo "</td>";
                                         echo "</tr>";
-                                        $_SESSION['idbuk'] = $borrow_id;
                                     }
-                                    if(isset($_GET['prompt']) && $_GET['prompt'] === "success"){
-                                        echo "<p style='color:red;' >Book Succesfully Delete...</p>";
-
-                                    }
+                                    
+                                    
                                     ?>
                                 </tbody>
                             </table>
@@ -104,7 +135,6 @@
                 echo "<p class='lead'>You haven't borrowed any books yet or all borrowed books are returned.</p>";
                 echo "<a href='userwelcome.php' class='btn btn-primary'><i class='fa fa-home'></i> Back to Home</a>";
                 echo "</div>";
-
             }
 
             // Close statement

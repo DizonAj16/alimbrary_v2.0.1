@@ -291,7 +291,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_array($result)) {
                         echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">';
-                        echo '<div class="card h-100 border-primary rounded shadow">';
+                        echo '<div class="card h-100 border-primary shadow rounded-3">';
                         echo '<div class="d-flex justify-content-center align-items-center mt-2" style="height: 240px;">';
 
                         // Display the image if image path exists
