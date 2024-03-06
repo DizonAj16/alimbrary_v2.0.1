@@ -98,7 +98,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         .book-image {
             max-width: 100%;
             /* Make the image responsive within its container */
-            height: 100%;
+            height: 93%;
             margin-bottom: 20px;
             border-radius: 10px;
         }
