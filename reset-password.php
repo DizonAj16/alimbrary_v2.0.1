@@ -80,40 +80,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Reset Password</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font: 14px sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .wrapper {
+            width: 360px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .wrapper h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .btn-link {
+            width: 100%;
+            text-align: center;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="bg-img">
-        <div class="content">
-            <header>Reset Password</header>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                <div class="field">
-                    <span class="fa fa-lock"></span>
-                    <input type="password" class="form-control pass-key" name="new_password" required placeholder="New Password">
-                </div>
-                <div class="field space">
-                    <span class="fa fa-lock"></span>
-                    <input type="password" class="form-control pass-key" name="confirm_password" required placeholder="Confirm Password">
-                </div>
-                <div class="pass">
-                  <a href="">  </a>
-               </div>
-                <div class="field">
-                    <input type="submit" value="Submit">
-                </div>
-            </form>
-            <?php if (!empty($new_password_err) || !empty($confirm_password_err)) : ?>
-               <div class="error">
-                   <?php echo $new_password_err; ?>
-                   <?php echo $confirm_password_err; ?>
-               </div>
-            <?php endif; ?>
-            <div class="signup">
-                <a href="<?php echo $cancel_link; ?>" class="btn btn-link">Cancel</a>
+    <div class="wrapper">
+        <h2>Reset Password</h2>
+        <p>Please fill out this form to reset your password.</p>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group">
+                <label>New Password</label>
+                <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
+                <span class="invalid-feedback"><?php echo $new_password_err; ?></span>
             </div>
-        </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
+                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                
+                <a class="btn btn-link" href="<?php echo $cancel_link; ?>">Cancel</a>
+            </div>
+        </form>
+
+
+
     </div>
 </body>
 

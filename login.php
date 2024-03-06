@@ -96,9 +96,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    <head>
         <meta charset="utf-8">
         <title>Login</title>      
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
         <link rel="stylesheet" href="style.css">
+        <style>
+            /* Add CSS for responsiveness */
+            @media only screen and (max-width: 480px) {
+                .content {
+                    width: 80%;
+                }
+                .field {
+                    margin-bottom: 20px;
+                }
+            }
+        </style>
    </head>
    <body>
       <div class="bg-img">

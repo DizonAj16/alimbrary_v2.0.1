@@ -21,8 +21,9 @@
         }
 
         .card-header {
-            background-color: white;
-            color: black;
+            background-color: #007bff;
+            color: #fff;
+
             border-radius: 15px 15px 0 0;
         }
 
@@ -38,19 +39,38 @@
         .table td {
             vertical-align: middle;
         }
+
+
+        .btn-back {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
     </style>
 </head>
 
 <body>
-
+    <div class="d-flex flex-row justify-content-end mr-2" style="margin-top:10px;">
+    <a href="welcomeadmin.php" class="btn btn-back"><i class="fa fa-home"></i> Back to Home</a>
+    </div>
+   
 
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-end">
-                        <h2 class="header-title">Borrow History</h2>
-                            <a href="welcomeadmin.php" class="btn btn-primary"><i class="fa fa-home"></i> Back to Home</a>
+
+                    <div class="card-header text-center">
+                        <h4 class="mb-0">Borrow History</h4>
+
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -76,7 +96,9 @@
                                 if ($result && mysqli_num_rows($result) > 0) {
                                     // Display borrow history information in a table
                                     echo '<table class="table table-bordered table-striped">
-                                            <thead class="bg-primary text-light">
+
+                                            <thead class="thead-dark">
+
                                                 <tr>
                                                     <th class="text-center">Borrow ID</th>
                                                     <th class="text-center">User ID</th>
@@ -121,5 +143,5 @@
         </div>
     </div>
 </body>
-
 </html>
+
