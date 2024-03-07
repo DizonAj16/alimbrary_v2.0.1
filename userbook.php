@@ -174,6 +174,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         label {
             font-weight: bold;
         }
+        .card:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+        }
     </style>
 
     <script>
@@ -215,7 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row">
             <?php
             // Include config file
-            require_once "config.php";
+            require_once "config.php"; 
 
             // Attempt select query execution
             $sql = "SELECT * FROM books";
@@ -223,8 +228,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_array($result)) {
                         echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">';
-                        echo '<div class="card h-100 border-primary rounded shadow">';
-                        echo '<div class="d-flex justify-content-center align-items-center mt-2" style="height: 240px;">';
+                        echo '<div class="card h-100 border-primary rounded-3">';
+                        echo '<div class="d-flex justify-content-center align-items-center mt-2" style="height: 200px;">';
 
                         // Display the image if image path exists
                         if (!empty($row['image_path'])) {
@@ -235,21 +240,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '</div>';
 
                         echo '<div class="card-body">';
-                        echo '<h5 class="card-title text-center" style="height: 50px; item">' . $row['title'] . '</h5>';
-                        echo '<p class="card-text text-center">Author: ' . $row['author'] . '</p>';
-                        echo '<p class="card-text text-center">ISBN: ' . $row['isbn'] . '</p>';
-                        echo '<p class="card-text text-center">Publication Year: ' . $row['pub_year'] . '</p>';
-                        echo '<p class="card-text text-center">Genre: ' . $row['genre'] . '</p>';
-                        // Check availability and apply appropriate styling
-                        $availability = $row['availability'];
-                        $badgeClass = ($availability == 'Available') ? 'badge-warning' : 'badge-danger';
-                        echo '<p class="card-text text-center">Availability: <span class="badge ' . $badgeClass . ' text-light">' . $availability . '</span></p>';
+                        echo '<h5 class="card-title text-center" style="height: 50px; overflow: hidden; text-overflow: ellipsis;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
+                        echo '<p class="card-text text-center">';
+                        echo 'Availability: <span class="badge ' . (($row['availability'] == 'Available') ? 'badge-warning' : 'badge-danger') . ' text-light">' . $row['availability'] . '</span>';
+                        echo '</p>';
                         echo '</div>';
 
-                        // Move the links to the bottom of the card
                         echo '<div class="card-footer rounded-bottom d-flex justify-content-center">';
-                        echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info rounded-circle mr-2" title="View Book" data-toggle="tooltip"><span class="fa fa-eye fa-lg"></span></a>';
-                        echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-secondary rounded-circle mr-2" title="Borrow book" data-toggle="tooltip"><span class="fa fa-hand-rock-o fa-lg"></span></a>';
+                        echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-circle mr-2" title="View Book" data-toggle="tooltip"><span class="fa fa-eye fa-lg"></span></a>';
+                        echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-danger rounded-circle text-light" title="Update Book" data-toggle="tooltip"><span class="fa fa-hand-rock-o fa-lg"></span></a>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
@@ -267,12 +266,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo '</div>';
             }
 
-                    // Close connection
-                    mysqli_close($conn);
-                    ?>
-                </div>
-            </div>
+            // Close connection
+            mysqli_close($conn);
+            ?>
+
         </div>
+    </div>
+    </div>
     </div>
 
 
@@ -280,33 +280,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fa fa-arrow-up"></i></button>
 
     <script>
-    $(document).ready(function() {
-        $("#searchButton").click(function() {
-            var searchText = $("#searchInput").val().trim().toLowerCase(); // Remove leading and trailing spaces
-            $(".card").each(function() {
-                var title = $(this).find(".card-title").text().toLowerCase();
-                var author = $(this).find(".card-text").eq(0).text().toLowerCase();
-                var isbn = $(this).find(".card-text").eq(1).text().toLowerCase();
-                var pubYear = $(this).find(".card-text").eq(2).text().toLowerCase();
-                var genre = $(this).find(".card-text").eq(3).text().toLowerCase();
-                var availability = $(this).find(".badge").text().toLowerCase(); // Get availability text
+        $(document).ready(function() {
+            $("#searchButton").click(function() {
+                var searchText = $("#searchInput").val().trim().toLowerCase(); // Remove leading and trailing spaces
+                $(".card").each(function() {
+                    var title = $(this).find(".card-title").text().toLowerCase();
+                    var author = $(this).find(".card-text").eq(0).text().toLowerCase();
+                    var isbn = $(this).find(".card-text").eq(1).text().toLowerCase();
+                    var pubYear = $(this).find(".card-text").eq(2).text().toLowerCase();
+                    var genre = $(this).find(".card-text").eq(3).text().toLowerCase();
+                    var availability = $(this).find(".badge").text().toLowerCase(); // Get availability text
 
-                if (title.indexOf(searchText) === -1 && author.indexOf(searchText) === -1 && isbn.indexOf(searchText) === -1 && pubYear.indexOf(searchText) === -1 && genre.indexOf(searchText) === -1 && availability.indexOf(searchText) === -1) {
-                    $(this).parent('.col-lg-3').hide(); // Hide the entire column
-                } else {
-                    $(this).parent('.col-lg-3').show(); // Show the entire column
-                }
+                    if (title.indexOf(searchText) === -1 && author.indexOf(searchText) === -1 && isbn.indexOf(searchText) === -1 && pubYear.indexOf(searchText) === -1 && genre.indexOf(searchText) === -1 && availability.indexOf(searchText) === -1) {
+                        $(this).parent('.col-lg-3').hide(); // Hide the entire column
+                    } else {
+                        $(this).parent('.col-lg-3').show(); // Show the entire column
+                    }
+                });
+            });
+
+            // Refresh button click event
+            $("#refreshButton").click(function() {
+                location.reload(); // Reload the page
             });
         });
+    </script>
 
-        // Refresh button click event
-        $("#refreshButton").click(function() {
-            location.reload(); // Reload the page
-        });
-    });
-</script>
-
-<script>
+    <script>
         $(document).ready(function() {
             // Show or hide the button based on scroll position
             $(window).scroll(function() {
