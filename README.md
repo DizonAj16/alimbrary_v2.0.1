@@ -1,7 +1,7 @@
 # Alimbrary v2
-### Not so stable version
-### commit hanggang mamatay
-### beware of bugs
+Not so stable version 
+commit hanggang mamatay
+beware of bugs
 
 ### admin:
 username: admin
