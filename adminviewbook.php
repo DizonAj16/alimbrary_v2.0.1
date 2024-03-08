@@ -14,7 +14,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 require_once "config.php";
 
 // Initialize variables
-$book_id = $title = $author = $isbn = $pub_year = $genre = $image_path = $availability = "";
+$book_id = $title = $author = $isbn = $pub_year = $genre = $image_path = $availability = $description = "";
 
 // Check if book_id parameter is provided in the URL
 if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
@@ -44,6 +44,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                 $genre = $row["genre"];
                 $image_path = $row["image_path"];
                 $availability = $row["availability"];
+                $description = $row["description"];
             } else {
                 // URL doesn't contain a valid book_id parameter, redirect to the error page
                 header("location: error.php");
@@ -83,24 +84,66 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
-        .card {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            max-width: 600px;
-            /* Adjust this value for a smaller card */
-            width: 100%;
-            /* Make the card take the full width of the container */
-            margin-left: auto;
-            margin-right: auto;
+        body {
+            background-color: #f8f9fa;
         }
 
-        /* Adjust styles for image */
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+        }
+
         .book-image {
             max-width: 100%;
-            /* Make the image responsive within its container */
-            height: 93%;
+            height: 365px;
             margin-bottom: 20px;
             border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .table th,
+        .table td {
+            border: none;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .btn-back {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+
+        .description {
+            padding-top: 20px;
         }
     </style>
     <script>
@@ -112,9 +155,9 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
 
 <body>
     <div class="container">
-        <div class="card">
+        <div class="card mb-5">
             <div class="card-header">
-                <h2 class="text-center">Book Details</h2>
+                <h2>Book Details</h2>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -132,6 +175,10 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                                     <tr>
                                         <th>Title</th>
                                         <td><?php echo htmlspecialchars($title); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td class="description"><?php echo htmlspecialchars($description); ?></td>
                                     </tr>
                                     <tr>
                                         <th>Author</th>
@@ -153,6 +200,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                                         <th>Availability</th>
                                         <td><?php echo htmlspecialchars($availability); ?></td>
                                     </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -161,8 +209,8 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             </div>
             <div class="card-footer">
                 <a href="adminbooks.php" class="text-light">
-                    <button class="btn btn-secondary btn-md disabled" data-toggle="tooltip" data-placement="top" title="Back to Books">
-                        <i class="fa fa-arrow-left"></i>
+                    <button class="btn btn-back btn-md" data-toggle="tooltip" data-placement="top" title="Back to Books">
+                        <i class="fa fa-arrow-left"></i> Back to Books
                     </button>
                 </a>
             </div>

@@ -5,19 +5,20 @@ require_once "config.php";
 // Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
+// Check if the user is logged in, if not then redirect him to the login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+    <title>Users Dashboard</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Include Font Awesome -->
@@ -58,12 +59,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             color: #fff; /* Text color is set to white */
             margin: 0;
         }
-        .card-body h5{
-            font-size: 16px;
-        }
-        p{
-            font-size: 15px;
-        }
+
         .bg-admin {
             background-color: #007bff;
         }
@@ -92,6 +88,28 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             background-color: #0056b3;
             color: #fff;
         }
+
+        /* Additional styles for improved aesthetics */
+        .container {
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        h3 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #343a40;
+        }
+
+        p.text-light {
+            color: #fff;
+        }
     </style>
 </head>
 
@@ -101,7 +119,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-end">
-                        <h3 class="text-center text-dark">Users Dashboard</h3>
+                        <h3 class="text-center">Users Dashboard</h3>
                         <a href="welcomeadmin.php" class="btn btn-primary text-light"><i class="fa fa-home"></i> Back to Home</a>
                     </div>
                     <div class="card-body">
@@ -155,7 +173,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

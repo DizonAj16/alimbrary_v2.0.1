@@ -14,13 +14,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 require_once "config.php";
 
 // Initialize variables
-$title = $author = $isbn = $pub_year = $genre = $availability = "";
-$title_err = $author_err = $isbn_err = $pub_year_err = $genre_err = $image_err = "";
+$title = $author = $isbn = $pub_year = $genre = $availability = $description = "";
+$title_err = $author_err = $isbn_err = $pub_year_err = $genre_err = $image_err = $description_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate and retrieve form data
     $title = trim($_POST["title"]);
+    $description = trim($_POST["description"]);
     $author = trim($_POST["author"]);
     $isbn = trim($_POST["isbn"]);
     $pub_year = trim($_POST["pub_year"]);
@@ -80,28 +81,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_stmt_close($stmt_check_isbn);
 
     // Check input errors before inserting into database
-    if (empty($title_err) && empty($author_err) && empty($isbn_err) && empty($pub_year_err) && empty($genre_err) && empty($image_err)) {
+    if (empty($title_err) && empty($author_err) && empty($isbn_err) && empty($pub_year_err) && empty($genre_err) && empty($image_err) && empty($description_err)) {
         // Check if any of the required fields are empty
-        if (empty($title) || empty($author) || empty($isbn) || empty($pub_year) || empty($genre) || empty($image_path)) {
+        if (empty($title) || empty($author) || empty($isbn) || empty($pub_year) || empty($genre) || empty($image_path) || empty($description)) {
             // Redirect to landing page or any other appropriate action
             header("location: adminbooks.php");
             exit();
         }
 
         // Prepare an insert statement
-        $sql = "INSERT INTO books (title, author, isbn, pub_year, genre, image_path, availability) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO books (title, author, description, isbn, pub_year, genre, image_path, availability) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         if ($stmt = mysqli_prepare($conn, $sql)) {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssssss", $param_title, $param_author, $param_isbn, $param_pub_year, $param_genre, $param_image_path, $param_availability);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $param_title, $param_description, $param_author, $param_isbn, $param_pub_year, $param_genre, $param_image_path, $param_availability);
 
             // Set parameters
             $param_title = $title;
+            $param_description = $description;
             $param_author = $author;
             $param_isbn = $isbn;
             $param_pub_year = $pub_year;
             $param_genre = $genre;
             $param_image_path = $image_path;
-            $param_availability = $availability; // New parameter for availability
+            $param_availability = $availability;
+
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
@@ -241,6 +244,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span class="invalid-feedback"><?php echo $title_err; ?></span>
                         </div>
                         <div class="form-group">
+                            <label>Description</label>
+                            <textarea name="description" class="form-control <?php echo (!empty($description_err)) ? 'is-invalid' : ''; ?>"><?php echo $description; ?></textarea>
+                            <span class="invalid-feedback"><?php echo $description_err; ?></span>
+                        </div>
+
+                        <div class="form-group">
                             <label>Author</label>
                             <input type="text" name="author" class="form-control <?php echo (!empty($author_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $author; ?>">
                             <span class="invalid-feedback"><?php echo $author_err; ?></span>
@@ -251,7 +260,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <span class="invalid-feedback"><?php echo $isbn_err; ?></span>
                         </div>
                         <div class="form-group">
-                            <label>Publication Year</label>
+                            <label>Year published</label>
                             <input type="text" name="pub_year" class="form-control <?php echo (!empty($pub_year_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $pub_year; ?>">
                             <span class="invalid-feedback"><?php echo $pub_year_err; ?></span>
                         </div>

@@ -64,7 +64,8 @@
                                 FROM borrowed_books
                                 JOIN books ON borrowed_books.book_id = books.book_id
                                 JOIN users ON borrowed_books.user_id = users.id
-                                WHERE borrowed_books.user_id = ? AND borrowed_books.borrow_id NOT IN (SELECT return_history.borrow_id FROM return_history WHERE status = 'returned')";
+                                WHERE borrowed_books.user_id = ? AND borrowed_books.borrow_id NOT IN (SELECT return_history.borrow_id FROM return_history WHERE status = 'returned')
+                                ORDER BY borrowed_books.borrow_id DESC";
 
         if ($stmt = mysqli_prepare($conn, $borrowed_books_sql)) {
             // Bind variables to the prepared statement as parameters
@@ -97,7 +98,6 @@
                                     <tr>
                                         <th>Borrow ID</th>
                                         <th>Book Title</th>
-                                        <th>Borrower</th>
                                         <th>Borrow Date</th>
                                         <th>Return Date</th>
                                         <th>Actions</th>
@@ -110,7 +110,6 @@
                                         echo "<tr>";
                                         echo "<td>" . $borrow_id . "</td>";
                                         echo "<td>" . $book_title . "</td>";
-                                        echo "<td>" . $username . "</td>";
                                         echo "<td>" . $borrow_date . "</td>";
                                         echo "<td>" . $return_date . "</td>";
                                         echo "<td>";

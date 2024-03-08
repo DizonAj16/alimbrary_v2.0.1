@@ -94,7 +94,6 @@
 
                                                 <tr>
                                                     <th class="text-center">Borrow ID</th>
-                                                    <th class="text-center">User ID</th>
                                                     <th class="text-center">Username</th>
                                                     <th class="text-center">Book Title</th>
                                                     <th class="text-center">Borrow Date</th>
@@ -107,7 +106,6 @@
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         echo '<tr>
                                                 <td class="text-center">' . $row['borrow_id'] . '</td>
-                                                <td class="text-center">' . $row['id'] . '</td>
                                                 <td>' . $row['username'] . '</td>
                                                 <td>' . $row['title'] . '</td>
                                                 <td class="text-center">' . $row['borrow_date'] . '</td>

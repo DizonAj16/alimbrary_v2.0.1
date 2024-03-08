@@ -247,8 +247,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '</div>';
 
                         echo '<div class="card-footer rounded-bottom d-flex justify-content-center">';
-                        echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-circle mr-2" title="View Book" data-toggle="tooltip"><span class="fa fa-eye fa-lg"></span></a>';
-                        echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-danger rounded-circle text-light" title="Update Book" data-toggle="tooltip"><span class="fa fa-hand-rock-o fa-lg"></span></a>';
+                        echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-circle mr-2" title="View Details" data-toggle="tooltip"><span class="fa fa-eye fa-lg"></span></a>';
+                        echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-danger rounded-circle text-light" title="Borrow Book" data-toggle="tooltip"><span class="fa fa-hand-rock-o fa-lg"></span></a>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';

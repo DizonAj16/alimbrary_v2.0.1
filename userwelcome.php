@@ -40,7 +40,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
       <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
       <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
     </div>
-    
+
     <!-- The slideshow/carousel -->
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -99,7 +99,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
           </li>
           <li class="nav-item">
             <a class="nav-link text-light" href="borrowedbooks.php"><i class="fa fa-list fa-lg"></i> Borrowed Books</a>
-        </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light" href="userreturnhistory.php"><i class="fa fa-undo fa-lg"></i> Returned Books</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
