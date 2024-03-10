@@ -97,7 +97,7 @@
                                                     <th class="text-center">Username</th>
                                                     <th class="text-center">Book Title</th>
                                                     <th class="text-center">Borrow Date</th>
-                                                    <th class="text-center">Return Date</th>
+                                                    <th class="text-center">Return Until</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';

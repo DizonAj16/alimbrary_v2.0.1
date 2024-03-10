@@ -12,10 +12,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 require_once "config.php";
 
 // Define SQL query to fetch return history data
-$return_history_sql = "SELECT return_history.return_id, users.username, books.title, return_history.returned_date_time 
+$return_history_sql = "SELECT return_history.return_id, borrowed_books.borrow_date, users.username, books.title, return_history.returned_date_time 
                         FROM return_history
                         JOIN users ON return_history.user_id = users.id
                         JOIN books ON return_history.book_id = books.book_id
+                        JOIN borrowed_books ON return_history.borrow_id = borrowed_books.borrow_id
                         ORDER BY return_history.returned_date_time DESC";
 
 // Execute the query
@@ -93,6 +94,7 @@ $result = mysqli_query($conn, $return_history_sql);
                     <th>Return ID</th>
                     <th>User</th>
                     <th>Title</th>
+                    <th>Date Borrowed</th>
                     <th>Date Returned</th>
                 </tr>
             </thead>
@@ -104,6 +106,7 @@ $result = mysqli_query($conn, $return_history_sql);
                     echo "<td>" . $row['return_id'] . "</td>";
                     echo "<td>" . $row['username'] . "</td>";
                     echo "<td>" . $row['title'] . "</td>";
+                    echo "<td>" . $row['borrow_date'] . "</td>";
                     echo "<td>" . $row['returned_date_time'] . "</td>";
                     echo "</tr>";
                 }

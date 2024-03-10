@@ -1,55 +1,3 @@
-<?php
-// Initialize the session
-session_start();
-
-// Check if the user is logged in, if not then redirect him to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
-    exit;
-}
-?>
-
-<?php
-// Process delete operation after confirmation
-if(isset($_POST["book_id"]) && !empty($_POST["book_id"])){
-    // Include config file
-    require_once "config.php";
-    
-    // Prepare a delete statement
-    $sql = "DELETE FROM books WHERE book_id = ?";
-    
-    if($stmt = mysqli_prepare($conn, $sql)){
-        // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "i", $param_id);
-        
-        // Set parameters
-        $param_id = trim($_POST["book_id"]);
-        
-        // Attempt to execute the prepared statement
-        if(mysqli_stmt_execute($stmt)){
-            // Records deleted successfully. Redirect to landing page
-            header("location: adminbooks.php");
-            exit();
-        } else{
-            echo "Oops! Something went wrong. Please try again later.";
-        }
-    }
-     
-    // Close statement
-    mysqli_stmt_close($stmt);
-    
-    // Close connection
-    mysqli_close($conn);
-} else{
-    // Check existence of id parameter
-    if(empty(trim($_GET["book_id"]))){
-        // URL doesn't contain id parameter. Redirect to error page
-        header("location: error.php");
-        exit();
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,11 +8,14 @@ if(isset($_POST["book_id"]) && !empty($_POST["book_id"])){
         .wrapper{
             width: 600px;
             margin: 0 auto;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+            padding: 20px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper mt-5">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -72,10 +23,10 @@ if(isset($_POST["book_id"]) && !empty($_POST["book_id"])){
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
                             <input type="hidden" name="book_id" value="<?php echo trim($_GET["book_id"]); ?>"/>
-                            <p>Are you sure you want to delete this book record?</p>
+                            <p>Hey there! Are you sure you want to delete this book record?</p>
                             <p>
-                                <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="adminbooks.php" class="btn btn-secondary">No</a>
+                                <input type="submit" value="Yep, delete it" class="btn btn-danger">
+                                <a href="adminbooks.php" class="btn btn-secondary">Nope, keep it</a>
                             </p>
                         </div>
                     </form>

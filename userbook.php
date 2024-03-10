@@ -242,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title text-center" style="height: 50px; overflow: hidden; text-overflow: ellipsis;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
                         echo '<p class="card-text text-center">';
-                        echo 'Availability: <span class="badge ' . (($row['availability'] == 'Available') ? 'badge-warning' : 'badge-danger') . ' text-light">' . $row['availability'] . '</span>';
+                        echo 'Availability: <span class="badge ' . (($row['availability'] == 'Available') ? 'badge-success' : 'badge-danger') . ' text-light">' . $row['availability'] . '</span>';
                         echo '</p>';
                         echo '</div>';
 
