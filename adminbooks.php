@@ -3,10 +3,10 @@
 session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
     header("location: login.php");
     exit;
-}
+}   
 ?>
 
 <?php
@@ -142,7 +142,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             top: 0;
             left: 0;
             right: 0;
-            background-color: #fff;
             /* Adjust background color as needed */
             z-index: 1000;
             /* Ensure the header is above other content */
@@ -193,15 +192,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div class="header-container bg-light">
+    <div class="header-container" style="background: linear-gradient(#87CEEB, #1E90FF); color: white;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-3 clearfix">
                         <h2 class="pull-left">Books</h2>
-                        <a href="welcomeadmin.php" class="text-light">
-                            <button class="btn btn-outline-dark btn-md pull-right disabled" data-toggle="tooltip" data-placement="top" title="Back to Home">
-                                <i class="fa fa-arrow-left" style="color: black;"></i>
+                        <a href="welcomeadmin.php">
+                            <button class="btn btn-outline-primary text-light btn-md pull-right" data-toggle="tooltip" data-placement="top" title="Back to Home">
+                                <i class="fa fa-home"></i>
                             </button>
                         </a>
 
@@ -213,7 +212,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <i class="fa fa-refresh"></i>
                         </button>
 
-                        <button class="btn btn-outline-info btn-md pull-right mr-2" type="button" id="searchButton" data-toggle="tooltip" data-placement="top" title="Search">
+                        <button class="btn btn-outline-primary text-light btn-md pull-right mr-2" type="button" id="searchButton" data-toggle="tooltip" data-placement="top" title="Search">
                             <i class="fa fa-search"></i>
                         </button>
                         <input type="text" id="searchInput" class="form-control form-control-md pull-right mr-2" placeholder="Search books" style="width:200px;">

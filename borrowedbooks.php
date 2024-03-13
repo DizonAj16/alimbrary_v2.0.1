@@ -99,7 +99,7 @@
                                         <th>Borrow ID</th>
                                         <th>Book Title</th>
                                         <th>Borrow Date</th>
-                                        <th>Return Date</th>
+                                        <th>Borrow Until</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
