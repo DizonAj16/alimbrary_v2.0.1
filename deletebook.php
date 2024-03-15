@@ -1,88 +1,61 @@
 <?php
-// Initialize the session
-session_start();
+// Include config file
+require_once "config.php";
 
-// Check if the user is logged in, if not then redirect him to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
-    header("location: login.php");
-    exit;
-}
-?>
-
-<?php
-// Process delete operation after confirmation
+// Check if the book_id parameter is set
 if(isset($_POST["book_id"]) && !empty($_POST["book_id"])){
-    // Include config file
-    require_once "config.php";
-    
-    // Prepare a delete statement
-    $sql = "DELETE FROM books WHERE book_id = ?";
-    
-    if($stmt = mysqli_prepare($conn, $sql)){
+    // Delete related records in return_history table
+    $sql_delete_return = "DELETE FROM return_history WHERE borrow_id IN (SELECT borrow_id FROM borrowed_books WHERE book_id = ?)";
+    if($stmt_delete_return = mysqli_prepare($conn, $sql_delete_return)){
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "i", $param_id);
-        
-        // Set parameters
-        $param_id = trim($_POST["book_id"]);
+        mysqli_stmt_bind_param($stmt_delete_return, "i", $_POST["book_id"]);
         
         // Attempt to execute the prepared statement
-        if(mysqli_stmt_execute($stmt)){
-            // Records deleted successfully. Redirect to landing page
-            header("location: adminbooks.php");
-            exit();
+        if(mysqli_stmt_execute($stmt_delete_return)){
+            // Deletion successful, now delete related records in borrowed_books table
+            $sql_delete_borrowed = "DELETE FROM borrowed_books WHERE book_id = ?";
+            if($stmt_delete_borrowed = mysqli_prepare($conn, $sql_delete_borrowed)){
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt_delete_borrowed, "i", $_POST["book_id"]);
+                
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt_delete_borrowed)){
+                    // Deletion successful, now delete the book
+                    $sql_delete_book = "DELETE FROM books WHERE book_id = ?";
+                    if($stmt_delete_book = mysqli_prepare($conn, $sql_delete_book)){
+                        // Bind variables to the prepared statement as parameters
+                        mysqli_stmt_bind_param($stmt_delete_book, "i", $_POST["book_id"]);
+                        
+                        // Attempt to execute the prepared statement
+                        if(mysqli_stmt_execute($stmt_delete_book)){
+                            // Book deletion successful
+                            echo "Book deleted successfully.";
+                            exit();
+                        } else{
+                            // Error during book deletion
+                            echo "Oops! Something went wrong while deleting the book.";
+                        }
+                    }
+                    // Close statement
+                    mysqli_stmt_close($stmt_delete_book);
+                } else{
+                    // Error during deletion of related records in borrowed_books table
+                    echo "Oops! Something went wrong while deleting related records in borrowed_books table.";
+                }
+            }
+            // Close statement
+            mysqli_stmt_close($stmt_delete_borrowed);
         } else{
-            echo "Oops! Something went wrong. Please try again later.";
+            // Error during deletion of related records in return_history table
+            echo "Oops! Something went wrong while deleting related records in return_history table.";
         }
     }
-     
     // Close statement
-    mysqli_stmt_close($stmt);
-    
-    // Close connection
-    mysqli_close($conn);
-} else{
-    // Check existence of book_id parameter
-    if(empty(trim($_GET["book_id"]))){
-        // URL doesn't contain id parameter. Redirect to error page
-        header("location: error.php");
-        exit();
-    }
+    mysqli_stmt_close($stmt_delete_return);
 }
+
+// Close connection
+mysqli_close($conn);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Delete Record</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .wrapper{
-            width: 600px;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="mt-5 mb-3">Delete Record</h2>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                        <div class="alert alert-danger">
-                            <input type="hidden" name="book_id" value="<?php echo trim($_GET["book_id"]); ?>"
-                            >
-                            <p>Are you sure you want to delete this employee record?</p>
-                            <p>
-                                <input type="submit" value="Yes" class="btn btn-danger">
-                                <a href="adminbooks.php" class="btn btn-secondary">No</a>
-                            </p>
-                        </div>
-                    </form>
-                </div>
-            </div>        
-        </div>
-    </div>
-</body>
-</html>
+

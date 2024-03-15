@@ -15,13 +15,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrow History</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="navstyle.css">
+    <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
         }
 
@@ -65,48 +67,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
         } 
-        nav {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .navbar {
-            background: linear-gradient(#87CEEB, #1E90FF);
-            border-bottom: 2px solid #007bff;
-            border-radius: 10px 10px 10px 10px;
-        }
-
-        .navbar-toggler {
-            border-color: #fff;
-        }
-
-        .navbar-nav .nav-link {
-            color: #fff;
-            padding: 10px 15px;
-            transition: 0.3s;
-        }
-
-        .navbar-nav .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 5px;
-        }
-
-        .navbar-nav .active {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
-
-        .dropdown-menu {
-            border: 1px solid #007bff;
-            border-radius: 5px;
-        }
-
-        .dropdown-item {
-            color: #007bff;
-        }
-
-        .dropdown-item:hover {
-            background-color: rgba(0, 123, 255, 0.1);
-        }
     </style>
 </head>
 
@@ -150,7 +110,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                         <a class="nav-link" href="users.php"><i class="fa fa-user-circle fa-lg"></i> Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="borrowers.php"><i class="fa fa-users fa-lg"></i> Borrow History</a>
+                        <a class="nav-link active" aria-current="page" href="borrowhistory.php"><i class="fa fa-users fa-lg"></i> Borrow History</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="returnhistory.php"><i class="fa fa-address-book fa-lg"></i> Return History</a>
@@ -182,7 +142,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                 <h3 class="fw-bold">Borrow History</h3>
             </div>
             <div class="card-body">
-                <table class="table table-bordered mb-0">
+                <div class="table-responsive">
+                <table class="table table-bordered table-responsive mb-0">
                     <thead>
                         <tr>
                             <th>Borrow ID</th>
@@ -239,11 +200,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                         ?>
                     </tbody>
                 </table>
+                </div>
+                
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
 </body>
 
 </html>
