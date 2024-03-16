@@ -172,16 +172,15 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                                     <tr>
                                         <th>Title</th>
                                         <td><?php echo htmlspecialchars($title); ?></td>
-                                    </tr>
-                                    
+                                    </tr> 
                                     <tr>
                                         <th>Author</th>
-                                        <td class="description"><?php echo htmlspecialchars($description); ?></td>
-                                       
+                                        <td><?php echo htmlspecialchars($author); ?></td>
+                                         
                                     </tr>
                                     <tr>
                                         <th>Description</th>
-                                        <td><?php echo htmlspecialchars($author); ?></td>
+                                        <td class="description"><?php echo htmlspecialchars($description); ?></td>
                                     </tr>
                                     <tr>
                                         <th>ISBN</th>
