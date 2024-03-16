@@ -1,7 +1,6 @@
 # Alimbrary v2
 Not so stable version 
-commit hanggang mamatay
-beware of bugs
+Developmental stage
 
 ### admin:
 username: admin
