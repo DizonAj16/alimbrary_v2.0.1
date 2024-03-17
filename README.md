@@ -1,14 +1,11 @@
 # Alimbrary v2
-Not so stable version
+**Developmental stage**  
+_Not so stable version_
 
-Developmental stage
+### Admin Credentials:
+- Username: admin
+- Password: 123456
 
-### admin:
-username: admin
-
-password: 123456
-
-### sample user:
-username: user01
-
-password: 123456
+### Sample User Credentials:
+- Username: user01
+- Password: 123456
