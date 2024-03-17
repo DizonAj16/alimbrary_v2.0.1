@@ -40,11 +40,6 @@ require_once "config.php";
             padding: 20px;
         }
 
-        .card-user .icon {
-            font-size: 50px;
-            margin-right: 20px;
-        }
-
         .card-user .card-title {
             font-size: 18px;
             font-weight: bold;
@@ -64,6 +59,14 @@ require_once "config.php";
         .bg-user {
             background-color: #28a745;
             color: #fff;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -121,11 +124,15 @@ require_once "config.php";
                             <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                            <li><a class="dropdown-item" href="reset-password.php">Reset Password</a></li>
+                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
                         </ul>
                     </li>
                 </div>
@@ -137,7 +144,7 @@ require_once "config.php";
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <?php
             // Query to retrieve users information
-            $sql = "SELECT id, username, created_at, user_type FROM users";
+            $sql = "SELECT id, username, created_at, user_type, image FROM users";
 
             // Execute the query
             $result = mysqli_query($conn, $sql);
@@ -149,12 +156,15 @@ require_once "config.php";
                     // Fetch rows and display data
                     while ($row = mysqli_fetch_assoc($result)) {
                         $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
-                        $iconClass = $row['user_type'] === 'admin' ? 'fas fa-user-circle' : 'fas fa-user';
             ?>
                         <div class="col">
                             <div class="card <?php echo $cardColorClass; ?> card-user shadow">
                                 <div class="card-body d-flex align-items-center">
-                                    <div class="icon"><i class="<?php echo $iconClass; ?>"></i></div>
+                                    <?php if (!empty($row['image'])) : ?>
+                                        <img src="<?php echo $row['image']; ?>" class="profile-image" alt="Profile Image">
+                                    <?php else : ?>
+                                        <div class="icon"><i class="<?php echo $iconClass; ?>"></i></div>
+                                    <?php endif; ?>
                                     <div>
                                         <h5 class="card-title"><i class="fas fa-user"></i> <?php echo $row['username']; ?></h5>
                                         <p class="card-text"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>

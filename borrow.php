@@ -85,10 +85,9 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrow Book</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Include Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fa-css/all.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script defer src="js/bootstrap.bundle.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -123,16 +122,16 @@ mysqli_close($conn);
                     </div>
                     <div class="card-body">
                         <form id="borrowForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?book_id=' . $book_id; ?>" method="post">
-                            <div class="form-group">
-                                <label for="borrow_date">Borrow Date:</label>
+                            <div class="form-group mb-2">
+                                <label for="borrow_date" class="mb-2">Borrow Date:</label>
                                 <input type="date" id="borrow_date" name="borrow_date" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
                             </div>
-                            <div class="form-group">
-                                <label for="return_date">Return Date:</label>
+                            <div class="form-group mb-2">
+                                <label for="return_date" class="mb-2">Return Date:</label>
                                 <input type="date" id="return_date" name="return_date" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal">Borrow</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Borrow</button>
                                 <a href="userbook.php" class="btn btn-secondary">Cancel</a>
                             </div>
                         </form>
@@ -148,25 +147,19 @@ mysqli_close($conn);
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     Are you sure you want to borrow this book?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                     <button type="button" class="btn btn-primary" onclick="document.getElementById('borrowForm').submit();">Yes</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Include Bootstrap JS and Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
 

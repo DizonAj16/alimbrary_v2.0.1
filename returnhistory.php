@@ -67,6 +67,7 @@ $result = mysqli_query($conn, $return_history_sql);
             width: 100%;
             border-collapse: collapse;
         }
+
         .table th,
         .table td {
             padding: 15px;
@@ -139,11 +140,15 @@ $result = mysqli_query($conn, $return_history_sql);
                             <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                            <li><a class="dropdown-item" href="reset-password.php">Reset Password</a></li>
+                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
                         </ul>
                     </li>
                 </div>
@@ -158,38 +163,38 @@ $result = mysqli_query($conn, $return_history_sql);
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                <table class="table table-bordered mb-0">
-                    <thead>
-                        <tr>
-                            <th>Return ID</th>
-                            <th>User</th>
-                            <th>Book Title</th>
-                            <th>Date Borrowed</th>
-                            <th>Date Returned</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        // Loop through each row in the result set
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<tr>";
-                            echo "<td>" . $row['return_id'] . "</td>";
-                            echo "<td>" . $row['username'] . "</td>";
-                            echo "<td>" . $row['title'] . "</td>";
-                            echo "<td>" . $row['borrow_date'] . "</td>";
-                            echo "<td>" . $row['returned_date_time'] . "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                    <table class="table table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th>Return ID</th>
+                                <th>User</th>
+                                <th>Book Title</th>
+                                <th>Date Borrowed</th>
+                                <th>Date Returned</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Loop through each row in the result set
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['return_id'] . "</td>";
+                                echo "<td>" . $row['username'] . "</td>";
+                                echo "<td class='fw-bold'>" . $row['title'] . "</td>";
+                                echo "<td>" . $row['borrow_date'] . "</td>";
+                                echo "<td>" . $row['returned_date_time'] . "</td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
-                
+
             </div>
         </div>
     </div>
 
-    
+
 </body>
 
 </html>

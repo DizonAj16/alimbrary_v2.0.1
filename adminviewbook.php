@@ -187,7 +187,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                                         <td><?php echo htmlspecialchars($isbn); ?></td>
                                     </tr>
                                     <tr>
-                                        <th>Publication Year</th>
+                                        <th>Year published</th>
                                         <td><?php echo htmlspecialchars($pub_year); ?></td>
                                     </tr>
                                     <tr>

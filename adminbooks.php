@@ -93,12 +93,12 @@
             $sql = "INSERT INTO books (title, author, description, isbn, pub_year, genre, image_path, availability) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             if ($stmt = mysqli_prepare($conn, $sql)) {
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "ssssssss", $param_title, $param_description, $param_author, $param_isbn, $param_pub_year, $param_genre, $param_image_path, $param_availability);
+                mysqli_stmt_bind_param($stmt, "ssssssss", $param_title, $param_author, $param_description, $param_isbn, $param_pub_year, $param_genre, $param_image_path, $param_availability);
 
                 // Set parameters
                 $param_title = $title;
-                $param_description = $description;
                 $param_author = $author;
+                $param_description = $description;
                 $param_isbn = $isbn;
                 $param_pub_year = $pub_year;
                 $param_genre = $genre;
@@ -131,12 +131,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Books section</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-
         <link rel="stylesheet" href="navstyle.css">
         <link rel="stylesheet" href="titlestyle.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="fa-css/all.css">
-
         <script defer src="js/bootstrap.bundle.min.js"></script>
         <style>
             body {
@@ -235,11 +233,15 @@
                                 <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                <li><a class="dropdown-item" href="reset-password.php">Reset Password</a></li>
+                                <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                                <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
                             </ul>
                         </li>
                     </div>
@@ -292,14 +294,14 @@
                                         <div class="invalid-feedback"><?php echo $title_err; ?></div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="description" class="form-label">Description</label>
-                                        <textarea name="description" class="form-control <?php echo (!empty($description_err)) ? 'is-invalid' : ''; ?>"><?php echo $description; ?></textarea>
-                                        <div class="invalid-feedback"><?php echo $description_err; ?></div>
-                                    </div>
-                                    <div class="mb-3">
                                         <label for="author" class="form-label">Author</label>
                                         <input type="text" name="author" class="form-control <?php echo (!empty($author_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $author; ?>">
                                         <div class="invalid-feedback"><?php echo $author_err; ?></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Description</label>
+                                        <textarea name="description" class="form-control <?php echo (!empty($description_err)) ? 'is-invalid' : ''; ?>"><?php echo $description; ?></textarea>
+                                        <div class="invalid-feedback"><?php echo $description_err; ?></div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="isbn" class="form-label">ISBN</label>
@@ -390,12 +392,13 @@
                             echo '<div class="card-body">';
                             echo '<h5 class="card-title text-center mb-3 fw-bold" style="height: 50px; overflow: hidden; text-overflow: ellipsis; font-size: 18px;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
                             echo '<p class="card-text text-center mb-3" style="font-size: 16px;">';
-                            echo 'Availability: <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light">' . $row['availability'] . '</span>';
+                            echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light">' . $row['availability'] . '</span>';
                             echo '</p>';
                             echo '<div class="d-flex justify-content-center">';
-                            echo '<a href="adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-circle me-2" title="View Book" data-bs-toggle="tooltip"><span class="fa fa-eye fa-lg"></span></a>';
+                            echo '<a href="adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-circle me-2" title="View Book" data-bs-toggle="tooltip"><i class="fas fa-book-open"></i></a>';
                             echo '<a href="updatebook.php?book_id=' . $row['book_id'] . '" class="btn btn-info text-light rounded-circle me-2" title="Update Book" data-bs-toggle="tooltip"><span class="fa fa-pencil fa-lg"></span></a>';
-                            echo '<a href="#" class="btn btn-danger rounded-circle delete-btn" data-book-id="' . $row['book_id'] . '" title="Delete Book" data-bs-toggle="modal" data-bs-target="#deleteModal"><span class="fa fa-trash fa-lg"></span></a>';
+                            echo '<a href="#" class="btn btn-danger rounded-circle delete-btn" data-book-id="' . $row['book_id'] . '" title="Delete Book" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i>
+                            </a>';
                             echo '</div>';
                             echo '</div>';
                             echo '</div>';
@@ -426,11 +429,6 @@
 
 
         <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fa fa-arrow-up"></i></button>
-
-
-
-       
-        <script src="js/bootstrap.bundle.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -439,7 +437,7 @@
                 });
             });
         </script>
-       
+
         <script src="jquery/jquery-3.5.1.min.js"></script>
         <script>
             $(document).ready(function() {

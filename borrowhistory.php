@@ -66,7 +66,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
-        } 
+        }
     </style>
 </head>
 
@@ -124,11 +124,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                             <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                            <li><a class="dropdown-item" href="reset-password.php">Reset Password</a></li>
+                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
+                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
                         </ul>
                     </li>
                 </div>
@@ -143,70 +147,70 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                <table class="table table-bordered table-responsive mb-0">
-                    <thead>
-                        <tr>
-                            <th>Borrow ID</th>
-                            <th>Username</th>
-                            <th>Book Title</th>
-                            <th>Borrow Date</th>
-                            <th>Return Until</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        // Include config file
-                        require_once "config.php";
+                    <table class="table table-bordered table-responsive mb-0">
+                        <thead>
+                            <tr>
+                                <th>Borrow ID</th>
+                                <th>Username</th>
+                                <th>Book Title</th>
+                                <th>Borrow Date</th>
+                                <th>Return Until</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            // Include config file
+                            require_once "config.php";
 
-                        // Function to show borrow history
-                        function showBorrowHistory($conn)
-                        {
-                            // Query to retrieve all borrow history information with book title
-                            $sql = "SELECT borrowed_books.borrow_id, borrowed_books.borrow_date, borrowed_books.return_date, users.id, users.username, books.title 
+                            // Function to show borrow history
+                            function showBorrowHistory($conn)
+                            {
+                                // Query to retrieve all borrow history information with book title
+                                $sql = "SELECT borrowed_books.borrow_id, borrowed_books.borrow_date, borrowed_books.return_date, users.id, users.username, books.title 
                                     FROM borrowed_books 
                                     INNER JOIN users ON borrowed_books.user_id = users.id
                                     INNER JOIN books ON borrowed_books.book_id = books.book_id
                                     LEFT JOIN return_history ON borrowed_books.borrow_id = return_history.borrow_id
                                     ORDER BY borrowed_books.borrow_id DESC";
 
-                            // Execute the query
-                            $result = mysqli_query($conn, $sql);
+                                // Execute the query
+                                $result = mysqli_query($conn, $sql);
 
-                            // Check if the query was successful
-                            if ($result && mysqli_num_rows($result) > 0) {
-                                // Display borrow history information in a table
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo '<tr>
+                                // Check if the query was successful
+                                if ($result && mysqli_num_rows($result) > 0) {
+                                    // Display borrow history information in a table
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo '<tr>
                                             <td>' . $row['borrow_id'] . '</td>
                                             <td>' . $row['username'] . '</td>
-                                            <td>' . $row['title'] . '</td>
+                                            <td class="fw-bold">' . $row['title'] . '</td>
                                             <td>' . $row['borrow_date'] . '</td>
                                             <td>' . ($row['return_date'] ? $row['return_date'] : 'Not returned') . '</td>
                                         </tr>';
+                                    }
+                                } else {
+                                    // No borrow history found
+                                    echo '<tr><td colspan="5" class="text-center">No borrow history available.</td></tr>';
                                 }
-                            } else {
-                                // No borrow history found
-                                echo '<tr><td colspan="5" class="text-center">No borrow history available.</td></tr>';
+                                // Free result set
+                                mysqli_free_result($result);
                             }
-                            // Free result set
-                            mysqli_free_result($result);
-                        }
 
-                        // Call the function to display borrow history
-                        showBorrowHistory($conn);
+                            // Call the function to display borrow history
+                            showBorrowHistory($conn);
 
-                        // Close the connection
-                        mysqli_close($conn);
-                        ?>
-                    </tbody>
-                </table>
+                            // Close the connection
+                            mysqli_close($conn);
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
-                
+
             </div>
         </div>
     </div>
 
-    
+
 </body>
 
 </html>

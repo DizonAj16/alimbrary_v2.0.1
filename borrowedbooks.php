@@ -1,38 +1,48 @@
+<?php
+// Start session
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrowed Books</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="titlestyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="navstyle.css">
+    <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
             background-color: #f8f9fa;
         }
 
-        .container {
+        #con {
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 8px;
-            margin-top: 50px;
+            margin-top: 85px;
         }
 
-        h2 {
+        .float-start {
             color: black;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #dee2e6;
-            padding: 10px;
-            text-align: center;
+        
+        th,
+        td {
+                border: 1px solid #dee2e6;
+                padding: 10px;
+                text-align: start;
         }
 
         th {
@@ -40,23 +50,81 @@
             color: #fff;
         }
 
-        .btn-primary, .btn-danger {
+        .btn-primary,
+        .btn-danger {
             margin: 5px;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+        <div class="container-fluid">
+            <div class="title rounded-3 p-1">
+                <span class="letter-a">A</span>
+                <span class="letter-l">l</span>
+                <span class="letter-i">i</span>
+                <span class="letter-m">m</span>
+                <span class="letter-b">b</span>
+                <span class="letter-r">r</span>
+                <span class="letter-a">a</span>
+                <span class="letter-r">r</span>
+                <span class="letter-y">y</span>
+                <img src="Images/icons8-book-50.png" alt="" style="margin-left: 5px;">
+            </div>
+
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-info-circle fa-lg"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-book fa-lg"></i> Returned Books</a>
+                    </li>
+                </ul>
+
+                <!-- Dropdown -->
+                <div class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" id="con">  
         <?php
-        // Start session
-        session_start();
-
-        // Check if the user is logged in
-        if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-            header("location: login.php");
-            exit;
-        }
-
         // Include config file
         require_once "config.php";
 
@@ -84,17 +152,13 @@
                 mysqli_stmt_bind_result($stmt, $borrow_id, $book_title, $username, $borrow_date, $return_date);
 
                 // Start displaying borrowed books
-                ?>
+        ?>
                 <h2 class="float-start">Borrowed Books</h2>
-                <div class="float-end">
-                    <button class="btn btn-success text-light fw-bold"><i class="fa fa-user"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?></button>
-                    <a href="userwelcome.php" class="btn btn-primary"><i class="fa fa-home"></i> Back to Home</a>
-                </div>
                 <div class="clearfix"></div>
                 <div class="row">
                     <div class="col">
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>Borrow ID</th>
@@ -110,7 +174,7 @@
                                     while (mysqli_stmt_fetch($stmt)) {
                                         echo "<tr>";
                                         echo "<td>" . $borrow_id . "</td>";
-                                        echo "<td>" . $book_title . "</td>";
+                                        echo "<td class='fw-bold'>" . $book_title . "</td>";
                                         echo "<td>" . $borrow_date . "</td>";
                                         echo "<td>" . $return_date . "</td>";
                                         echo "<td>";
@@ -119,21 +183,20 @@
                                         echo "</td>";
                                         echo "</tr>";
                                     }
-                                    
-                                    
+
+
                                     ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <?php
+        <?php
             } else {
                 // Display message if there are no borrowed books or all books are returned
-                echo "<div class='container mt-5'>";
+                echo "<div class='container mt-5 bg-danger text-light'>";
                 echo "<h2>No Borrowed Books</h2>";
                 echo "<p class='lead'>You haven't borrowed any books yet or all borrowed books are returned.</p>";
-                echo "<a href='userwelcome.php' class='btn btn-primary'><i class='fa fa-home'></i> Back to Home</a>";
                 echo "</div>";
             }
 
@@ -146,4 +209,5 @@
         ?>
     </div>
 </body>
+
 </html>
