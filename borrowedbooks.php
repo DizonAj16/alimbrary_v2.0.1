@@ -194,7 +194,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         <?php
             } else {
                 // Display message if there are no borrowed books or all books are returned
-                echo "<div class='container mt-5 bg-danger text-light'>";
+                echo "<div class='container mt-5 bg-danger text-light p-4 rounded-3'>";
                 echo "<h2>No Borrowed Books</h2>";
                 echo "<p class='lead'>You haven't borrowed any books yet or all borrowed books are returned.</p>";
                 echo "</div>";
