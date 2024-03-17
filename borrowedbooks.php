@@ -165,6 +165,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         <th>Book Title</th>
                                         <th>Borrow Date</th>
                                         <th>Borrow Until</th>
+                                        <th>Days Left</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -177,8 +178,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         echo "<td class='fw-bold'>" . $book_title . "</td>";
                                         echo "<td>" . $borrow_date . "</td>";
                                         echo "<td>" . $return_date . "</td>";
+                                        
+                                        $today = date('Y-m-d');
+                                        $diff = strtotime($return_date) - strtotime($today);
+                                        $days_left = floor($diff / (60 * 60 * 24));
+
+                                        echo "<td>" . $days_left . "</td>"; 
                                         echo "<td>";
-                                        // Add the Return Book button with a link to return.php
+                                       
                                         echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         echo "</td>";
                                         echo "</tr>";

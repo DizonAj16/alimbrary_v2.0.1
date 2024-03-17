@@ -50,6 +50,17 @@ require_once "config.php";
             font-size: 14px;
             margin-bottom: 5px;
         }
+
+        .bg-admin {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .bg-user {
+            background-color: #28a745;
+            color: #fff;
+        }
+
         .profile-image {
             width: 100px;
             height: 100px;

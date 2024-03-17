@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2024 at 06:27 PM
+-- Generation Time: Mar 17, 2024 at 04:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,11 +45,11 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_year`, `genre`, `availability`, `image_path`) VALUES
 (17, 'Harry Potter and the Sorcerer\'s stone', 'The story follows a young wizard, Harry Potter, who discovers his magical heritage on his eleventh birthday.', 'J.K. Rowling', '978-0590353427', 1997, 'Fantasy', 'Not Available', 0x75706c6f6164732f6861727279706f747465722e6a7067),
-(21, 'The Catcher in the rye', 'the story is narrated by Holden Caulfield, a disenchanted and rebellious teenager who has been expelled from an elite boarding school.', 'J.D. Salinger', '978-0316769488', 1978, 'Fiction, Coming-of-Age', 'Not Available', 0x75706c6f6164732f636174636865722d696e2d7468652d7279652d636f7665722d696d6167652d36383278313032342e6a706567),
-(22, 'The Lord of the Rings', 'The epic tale unfolds in the fictional world of Middle-earth, where various races, including hobbits, elves, dwarves, men, and wizards, become embroiled in the quest to destroy the One Ring, a powerful and malevolent artifact created by the dark lord Sauron', 'J.R.R. Tolkien', '978-0544003415', 1954, 'Fantasy', 'Not Available', 0x75706c6f6164732f7468652d6c6f72642d6f662d7468652d72696e67732d626f6f6b2d636f7665722e6a7067),
-(23, 'Pride and Prejudice', 'The story is set in early 19th-century England and revolves around the life of Elizabeth Bennet, one of five sisters from the respectable Bennet family. The novel explores themes of love, class, and societal expectations.', 'Jane Austen', '978-0141439518', 1813, 'Fiction, Classic, Romance', 'Not Available', 0x75706c6f6164732f70726964652d616e642d7072656a75646963652d37312e6a7067),
+(21, 'The Catcher in the rye', 'The story is narrated by Holden Caulfield, a disenchanted and rebellious teenager who has been expelled from an elite boarding school.', 'J.D. Salinger', '978-0316769488', 1978, 'Fiction, Coming-of-Age', 'Not Available', 0x75706c6f6164732f636174636865722d696e2d7468652d7279652d636f7665722d696d6167652d36383278313032342e6a706567),
+(22, 'The Lord of the Rings', 'The epic tale unfolds in the fictional world of Middle-earth, where various races, including hobbits, elves, dwarves, men, and wizards, become embroiled in the quest to destroy the One Ring, a powerful and malevolent artifact created by the dark lord Sauron', 'J.R.R. Tolkien', '978-0544003415', 1954, 'Fantasy', 'Available', 0x75706c6f6164732f7468652d6c6f72642d6f662d7468652d72696e67732d626f6f6b2d636f7665722e6a7067),
+(23, 'Pride and Prejudice', 'The story is set in early 19th-century England and revolves around the life of Elizabeth Bennet, one of five sisters from the respectable Bennet family. The novel explores themes of love, class, and societal expectations.', 'Jane Austen', '978-0141439518', 1813, 'Fiction, Classic, Romance', 'Available', 0x75706c6f6164732f70726964652d616e642d7072656a75646963652d37312e6a7067),
 (24, 'The Hobbit', 'is a captivating fantasy adventure that follows Bilbo Baggins, a reluctant hobbit hero, on a quest to reclaim a dwarf kingdom. Filled with magical creatures, epic battles, and the discovery of inner courage, it\'s a timeless tale of bravery and friendship in the enchanting world of Middle-earth.', 'J.R.R. Tolkien', '978-0547928227', 1937, 'Fantasy', 'Available', 0x75706c6f6164732f74686520686f626269742e6a7067),
-(25, 'The Hunger Games', 'Set in a future society, the story follows Katniss Everdeen as she navigates a televised fight to the death, representing her district in a brutal annual event called the Hunger Games. The narrative explores themes of survival, rebellion, and the consequences of a power-hungry government.', 'Suzanne Collins', '978-0439023481', 2008, 'Young Adult, Dystopian', 'Not Available', 0x75706c6f6164732f7468652068756e6765722067616d65732e6a7067),
+(25, 'The Hunger Games', 'Set in a future society, the story follows Katniss Everdeen as she navigates a televised fight to the death, representing her district in a brutal annual event called the Hunger Games. The narrative explores themes of survival, rebellion, and the consequences of a power-hungry government.', 'Suzanne Collins', '978-0439023481', 2008, 'Young Adult, Dystopian', 'Available', 0x75706c6f6164732f7468652068756e6765722067616d65732e6a7067),
 (26, 'The Da Vinci Code', 'The story revolves around Harvard symbologist Robert Langdon as he investigates a murder at the Louvre Museum in Paris. Filled with hidden codes, symbols, and historical secrets, the novel takes readers on a thrilling journey through art, history, and religious intrigue.', 'Dan Brown', '978-0307474278', 2003, 'Mystery, Thriller', 'Available', 0x75706c6f6164732f7468652d64612d76696e63692d636f64652e6a7067),
 (33, 'A Game of Thrones', 'The story unfolds in the fictional continents of Westeros and Essos, where noble families vie for control of the Iron Throne and the Seven Kingdoms. Filled with political intrigue, power struggles, and unexpected twists, the book introduces readers to a vast and immersive world with memorable characters and a gripping narrative.', 'George R.R. Martin', '978-895152732', 1996, 'Fantasy', 'Available', 0x75706c6f6164732f676f742e6a7067),
 (34, 'The Chronicles of Narnia', 'The series follows the adventures of children who are magically transported to the world of Narnia, where they encounter talking animals, mythical creatures, and epic battles between good and evil.', 'C.S. Lewis', '978-566884303', 1950, 'Fantasy, Children\'s', 'Available', 0x75706c6f6164732f6e61726e69612e6a7067),
@@ -57,16 +57,18 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (36, 'El Filibusterismo', 'The title translates to \"The Subversive\" or \"The Filibustering\" in English. This novel delves deeper into the issues of social injustice, corruption, and abuse of power during the Spanish colonial era in the Philippines.', 'Jose Rizal', '978-985906966', 1891, 'Fiction, Classic', 'Available', 0x75706c6f6164732f656c2066696c692e6a7067),
 (39, 'Naruto Volume 1: Uzumaki Naruto', 'The story follows Naruto Uzumaki, a young ninja with dreams of becoming the strongest ninja and earning the title of Hokage, the leader of his village.', 'Masashi Kishimoto', '978-865252755', 2003, 'Shonen, Action, Adventure', 'Available', 0x75706c6f6164732f6e617275746f2d766f6c2d312e6a7067),
 (40, 'One Piece Volume 1: Romance Dawn', 'marks the beginning of an epic adventure created by Eiichiro Oda. The story follows Monkey D. Luffy, a young and ambitious pirate with the dream of finding the legendary treasure known as One Piece and becoming the Pirate King.', 'Eiichiro Oda', '978-750763248', 2003, 'Shonen, Action, Adventure', 'Available', 0x75706c6f6164732f6f702d726f6d616e63652d6461776e2e6a7067),
-(41, 'Attack on Titan Volume 1: The Fall of Shiganshina', 'In a world besieged by giant humanoid creatures known as Titans, humanity seeks refuge within enormous walled cities. Eren Yeager, the protagonist, witnesses the sudden breach of the outer wall, leading to catastrophic consequences.', 'Hajime Isayama', '978-781830480', 2012, 'Shonen, Dark Fantasy, Action', 'Not Available', 0x75706c6f6164732f5368696e67656b695f6e6f5f4b796f6a696e5f6d616e67615f766f6c756d655f312e6a7067),
+(41, 'Attack on Titan Volume 1: The Fall of Shiganshina', 'In a world besieged by giant humanoid creatures known as Titans, humanity seeks refuge within enormous walled cities. Eren Yeager, the protagonist, witnesses the sudden breach of the outer wall, leading to catastrophic consequences.', 'Hajime Isayama', '978-781830480', 2012, 'Shonen, Dark Fantasy, Action', 'Available', 0x75706c6f6164732f5368696e67656b695f6e6f5f4b796f6a696e5f6d616e67615f766f6c756d655f312e6a7067),
 (42, 'Death Note Volume 1: Boredom', 'introduces readers to the enthralling world of Light Yagami, a highly intelligent high school student who discovers a mysterious notebook with deadly powers.', 'Tsugumi Ohba', '978-327638769', 2005, 'Shonen, Psychological Thriller, Mystery', 'Available', 0x75706c6f6164732f64656174686e6f74652e6a7067),
 (43, 'Fullmetal Alchemist Volume 1: The Land of Sand', 'After a failed alchemical experiment to bring their deceased mother back to life, Edward loses his left leg, and Alphonse loses his entire body. In a desperate attempt to save his brother, Edward sacrifices his right arm to bind Alphonse\'s soul to a suit of armor.', 'Hiromu Arakawa', '978-692597068', 2005, 'Shonen, Adventure, Fantasy', 'Available', 0x75706c6f6164732f666d612e6a7067),
 (44, 'Dragon Ball Volume 1', 'The story follows Goku, a young and naive boy with a monkey\'s tail, as he sets out on a journey to find the Dragon Balls, powerful orbs that can grant any wish.', 'Akira Toriyama', '978-977272956', 2003, 'Shonen, Action, Adventure', 'Available', 0x75706c6f6164732f647261676f6e2d62616c6c2d766f6c2d312d736a2d65646974696f6e2e6a7067),
 (45, 'My Hero Academia Volume 1: Izuku Midoriya: Origin', 'The story unfolds in a world where individuals possess superpowers known as \"Quirks,\" and it follows the journey of Izuku Midoriya, a Quirkless boy with aspirations of becoming a hero.', 'Kohei Horikoshi', '978-424553775', 2015, 'Shonen, Superhero, Action', 'Available', 0x75706c6f6164732f6d68612076312e6a7067),
 (46, 'Demon Slayer: Kimetsu no Yaiba Volume 1: Cruelty', 'The story follows Tanjiro Kamado, a young boy whose life takes a tragic turn when his family is slaughtered by demons, and his sister Nezuko is turned into one.', 'Koyoharu Gotouge', '978-653106549', 2018, 'Shonen, Action, Dark Fantasy', 'Available', 0x75706c6f6164732f64656d6f6e2d736c617965722d6b696d657473752d6e6f2d79616962612d766f6c2d312e6a7067),
 (48, 'Haikyu!! Volume 1: Hinata and Kageyama', 'The story revolves around Shoyo Hinata, a determined and vertically challenged athlete inspired by a legendary player known as the \"Little Giant.\" Despite facing challenges due to his height, Hinata joins the Karasuno High School volleyball team with unwavering enthusiasm.', 'Haruichi Furudate', '978-4088806948', 2012, 'Shonen, Sports, Volleyball', 'Available', 0x75706c6f6164732f6861696b79752e6a7067),
-(49, 'Black Clover Volume 1: The Boy\'s Vow', 'The story takes an exciting turn when Asta receives a unique grimoire that grants him an anti-magic sword. Alongside his childhood friend Yuno, who is exceptionally talented in magic, Asta embarks on a journey to fulfill his dream.', 'Yūki Tabata', '978-574544535', 2015, 'Shonen, Fantasy, Magic', 'Not Available', 0x75706c6f6164732f626c61636b636c6f7665722e6a7067),
-(76, 'It', 'A terrifying entity preys on the children of Derry, Maine, resurfacing every 27 years.', 'Stephen King', '978-134703224', 1986, 'Supernatural Horror', 'Not Available', 0x75706c6f6164732f49745f2831393836295f66726f6e745f636f7665722c5f66697273745f65646974696f6e2e6a7067),
-(79, 'The Shining', 'A psychological horror novel about a writer who takes his family to an isolated hotel for the winter, where supernatural forces begin to take hold.', 'Stephen King', '978-845126051', 1977, 'Horror Psychological Thriller', 'Not Available', 0x75706c6f6164732f746865207368696e696e672e6a7067);
+(49, 'Black Clover Volume 1: The Boy\'s Vow', 'The story takes an exciting turn when Asta receives a unique grimoire that grants him an anti-magic sword. Alongside his childhood friend Yuno, who is exceptionally talented in magic, Asta embarks on a journey to fulfill his dream.', 'Yūki Tabata', '978-574544535', 2015, 'Shonen, Fantasy, Magic', 'Available', 0x75706c6f6164732f626c61636b636c6f7665722e6a7067),
+(76, 'It', 'A terrifying entity preys on the children of Derry, Maine, resurfacing every 27 years.', 'Stephen King', '978-134703224', 1986, 'Supernatural Horror', 'Available', 0x75706c6f6164732f49745f2831393836295f66726f6e745f636f7665722c5f66697273745f65646974696f6e2e6a7067),
+(79, 'The Shining', 'A psychological horror novel about a writer who takes his family to an isolated hotel for the winter, where supernatural forces begin to take hold.', 'Stephen King', '978-845126051', 1978, 'Horror Psychological Thriller', 'Available', 0x75706c6f6164732f746865207368696e696e672e6a7067),
+(80, 'Batman: The Killing Joke', '\"The Killing Joke\" explores the complex relationship between Batman and his arch-nemesis, the Joker. The story delves into the Joker\'s origin, presenting him as a failed comedian who turns to crime after a series of tragic events.', 'Alan Moore', '978-751350093', 1988, 'Superhero, Psychological thriller', 'Not Available', 0x75706c6f6164732f6261746d616e2e6a7067),
+(81, 'The Great Gatsby', '\"The Great Gatsby\" is a novel set in the 1920s, depicting the Jazz Age and the Roaring Twenties in America. It follows the story of Jay Gatsby, a wealthy and mysterious man, and his pursuit of the American Dream. The book explores themes of love, wealth, decadence, and the emptiness of the pursuit of material success.', 'F. Scott Fitzgerald', '978-598445512', 1925, 'Fiction, Classic Literature', 'Not Available', 0x75706c6f6164732f5468655f47726561745f4761747362795f436f7665725f313932355f5265746f75636865642e6a7067);
 
 -- --------------------------------------------------------
 
@@ -179,7 +181,37 @@ INSERT INTO `borrowed_books` (`borrow_id`, `user_id`, `book_id`, `borrow_date`, 
 (127, 22, 23, '2024-03-16', '2024-03-30'),
 (128, 21, 23, '2024-03-16', '2024-04-30'),
 (129, 21, 41, '2024-03-16', '2024-07-18'),
-(130, 23, 25, '2024-03-16', '2024-03-30');
+(130, 23, 25, '2024-03-16', '2024-03-30'),
+(131, 20, 26, '2024-03-16', '2024-03-30'),
+(132, 20, 33, '2024-03-16', '2024-07-20'),
+(133, 20, 35, '2024-03-16', '2024-03-30'),
+(134, 19, 45, '2024-03-16', '2024-03-30'),
+(135, 19, 24, '2024-03-17', '2024-11-30'),
+(136, 19, 48, '2024-03-17', '2024-03-30'),
+(137, 21, 39, '2024-03-17', '2025-02-28'),
+(138, 19, 17, '2024-03-17', '2024-03-30'),
+(139, 19, 21, '2024-03-17', '2024-03-30'),
+(140, 20, 80, '2024-03-17', '2024-05-17'),
+(141, 19, 79, '2024-03-17', '2024-03-30'),
+(142, 19, 76, '2024-03-17', '2024-03-30'),
+(143, 20, 23, '2024-03-17', '2027-02-17'),
+(144, 19, 76, '2024-03-17', '2024-03-30'),
+(145, 19, 79, '2024-03-17', '2024-03-30'),
+(146, 19, 81, '2024-03-17', '2024-03-29'),
+(147, 19, 79, '2024-03-17', '2024-03-30'),
+(148, 19, 81, '2024-03-17', '2024-03-30'),
+(149, 19, 81, '2024-03-17', '2024-03-28'),
+(150, 19, 76, '2024-03-17', '2024-03-30'),
+(151, 19, 79, '2024-03-17', '2024-03-30'),
+(152, 19, 81, '2024-03-17', '2024-03-30'),
+(153, 19, 79, '2024-03-17', '2024-10-26'),
+(154, 21, 49, '2024-03-17', '2024-03-30'),
+(155, 21, 17, '2024-03-17', '2024-03-30'),
+(156, 19, 81, '2024-03-17', '2024-07-27'),
+(157, 23, 80, '2024-03-17', '2024-03-30'),
+(158, 23, 81, '2024-03-17', '2024-04-30'),
+(159, 23, 17, '2024-03-17', '2024-03-30'),
+(160, 23, 21, '2024-03-17', '2024-03-19');
 
 -- --------------------------------------------------------
 
@@ -284,7 +316,42 @@ INSERT INTO `return_history` (`return_id`, `borrow_id`, `user_id`, `book_id`, `r
 (109, 112, 21, 39, '2024-03-15 05:55:42', 'returned'),
 (110, 111, 21, 48, '2024-03-15 05:55:44', 'returned'),
 (111, 110, 21, 45, '2024-03-15 05:55:46', 'returned'),
-(114, 127, 22, 23, '2024-03-16 16:01:29', 'returned');
+(114, 127, 22, 23, '2024-03-16 16:01:29', 'returned'),
+(115, 135, 19, 24, '2024-03-17 02:57:12', 'returned'),
+(116, 124, 19, 22, '2024-03-17 03:02:04', 'returned'),
+(117, 137, 21, 39, '2024-03-17 03:05:04', 'returned'),
+(118, 129, 21, 41, '2024-03-17 03:05:07', 'returned'),
+(119, 128, 21, 23, '2024-03-17 03:05:09', 'returned'),
+(120, 133, 20, 35, '2024-03-17 03:05:40', 'returned'),
+(121, 132, 20, 33, '2024-03-17 03:05:41', 'returned'),
+(122, 131, 20, 26, '2024-03-17 03:05:43', 'returned'),
+(123, 123, 20, 21, '2024-03-17 03:05:45', 'returned'),
+(124, 130, 23, 25, '2024-03-17 03:06:05', 'returned'),
+(125, 126, 22, 79, '2024-03-17 03:06:21', 'returned'),
+(126, 125, 22, 49, '2024-03-17 03:06:27', 'returned'),
+(127, 122, 22, 76, '2024-03-17 03:06:29', 'returned'),
+(128, 121, 22, 17, '2024-03-17 03:06:30', 'returned'),
+(129, 136, 19, 48, '2024-03-17 03:06:54', 'returned'),
+(130, 134, 19, 45, '2024-03-17 03:06:56', 'returned'),
+(131, 142, 19, 76, '2024-03-17 11:17:48', 'returned'),
+(132, 139, 19, 21, '2024-03-17 11:19:14', 'returned'),
+(133, 141, 19, 79, '2024-03-17 11:23:28', 'returned'),
+(134, 145, 19, 79, '2024-03-17 11:26:10', 'returned'),
+(135, 144, 19, 76, '2024-03-17 11:26:29', 'returned'),
+(136, 146, 19, 81, '2024-03-17 11:27:37', 'returned'),
+(137, 138, 19, 17, '2024-03-17 11:27:58', 'returned'),
+(138, 147, 19, 79, '2024-03-17 11:30:24', 'returned'),
+(139, 148, 19, 81, '2024-03-17 11:32:01', 'returned'),
+(140, 149, 19, 81, '2024-03-17 11:32:42', 'returned'),
+(141, 150, 19, 76, '2024-03-17 11:34:11', 'returned'),
+(142, 151, 19, 79, '2024-03-17 11:36:15', 'returned'),
+(143, 153, 19, 79, '2024-03-17 11:41:08', 'returned'),
+(144, 155, 21, 17, '2024-03-17 11:58:24', 'returned'),
+(145, 154, 21, 49, '2024-03-17 11:59:24', 'returned'),
+(146, 143, 20, 23, '2024-03-17 11:59:40', 'returned'),
+(147, 140, 20, 80, '2024-03-17 11:59:46', 'returned'),
+(148, 152, 19, 81, '2024-03-17 12:00:13', 'returned'),
+(149, 156, 19, 81, '2024-03-17 14:38:34', 'returned');
 
 -- --------------------------------------------------------
 
@@ -295,6 +362,11 @@ INSERT INTO `return_history` (`return_id`, `borrow_id`, `user_id`, `book_id`, `r
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `full_name` varchar(255) NOT NULL,
+  `occupation` varchar(100) NOT NULL,
+  `contact_num` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `user_type` varchar(255) NOT NULL,
@@ -305,13 +377,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `created_at`, `user_type`, `image`) VALUES
-(14, 'admin', '$2y$10$hx7IQKH9AedGbB9t7NASMeAEEdwUM3auxfpFUm5w5l1epjKmH5pqa', '2024-02-19 00:01:30', 'admin', 0x496d616765732f61646d696e20696d6167652e6a7067),
-(19, 'user01', '$2y$10$ZcIJAaijt7fsOM94WOQ7VO9iuOlngdHeeSmbdt7zPbiLIjlopukOS', '2024-02-29 17:32:35', 'user', 0x496d616765732f637279696e672d637279696e672d6d656d652e706e67),
-(20, 'arjec', '$2y$10$UaJqQA3MwCIwPAVoET82iuT4L/bXTvpO20GqnlqjYodqh3LlQzc96', '2024-03-04 23:12:13', 'user', 0x496d616765732f6d696b652e676966),
-(21, 'alim', '$2y$10$hJTfIblmbU9nWO4wWhkiS.TW.oJtns.Y5M.imeF7BlSmDamIqsfgG', '2024-03-05 03:36:45', 'user', 0x496d616765732f666c61742c373530782c3037352c662d7061642c37353078313030302c6638663866382e6a7067),
-(22, 'luffy', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c756666792e6a7067),
-(23, 'johndoe69', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f3531327835313262622e6a7067);
+INSERT INTO `users` (`id`, `username`, `email`, `full_name`, `occupation`, `contact_num`, `address`, `password`, `created_at`, `user_type`, `image`) VALUES
+(14, 'admin', '', 'N/A', 'N/A', 'N/A', 'N/A', '$2y$10$hx7IQKH9AedGbB9t7NASMeAEEdwUM3auxfpFUm5w5l1epjKmH5pqa', '2024-02-19 00:01:30', 'admin', 0x496d616765732f61646d696e20696d6167652e6a7067),
+(19, 'user01', '', '', '', '0', '', '$2y$10$ZcIJAaijt7fsOM94WOQ7VO9iuOlngdHeeSmbdt7zPbiLIjlopukOS', '2024-02-29 17:32:35', 'user', 0x496d616765732f393133313532392e706e67),
+(20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'Student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$UaJqQA3MwCIwPAVoET82iuT4L/bXTvpO20GqnlqjYodqh3LlQzc96', '2024-03-04 23:12:13', 'user', 0x496d616765732f6d696b652e676966),
+(21, 'alim', '', 'Al-khazri Sali Alim', '', '09123321456', '', '$2y$10$hJTfIblmbU9nWO4wWhkiS.TW.oJtns.Y5M.imeF7BlSmDamIqsfgG', '2024-03-05 03:36:45', 'user', 0x496d616765732f666c61742c373530782c3037352c662d7061642c37353078313030302c6638663866382e6a7067),
+(22, 'luffy', '', '', '', '0', '', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c756666792e6a7067),
+(23, 'johndoe69', '', '', '', '0', '', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f3531327835313262622e6a7067);
 
 --
 -- Indexes for dumped tables
@@ -355,19 +427,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 
 --
 -- AUTO_INCREMENT for table `return_history`
 --
 ALTER TABLE `return_history`
-  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT for table `users`

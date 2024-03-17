@@ -12,11 +12,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$username = $user_type = $created_at = $image = "";
+$id = $username = $user_type = $created_at = $image = $fullName = $email = $occupation = $address = $contactNum = $daysJoined = "";
 $username_err = $user_type_err = $created_at_err = "";
 
 // Prepare a select statement
-$sql = "SELECT username, user_type, created_at, image FROM users WHERE id = ?";
+$sql = "SELECT id, username, full_name, email, occupation, address, contact_num, user_type, created_at, image FROM users WHERE id = ?";
 
 if ($stmt = mysqli_prepare($conn, $sql)) {
     // Bind variables to the prepared statement as parameters
@@ -30,12 +30,16 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
         // Store result
         mysqli_stmt_store_result($stmt);
 
-        // Check if username exists, if yes then verify password
+        // Check if username exists
         if (mysqli_stmt_num_rows($stmt) == 1) {
             // Bind result variables
-            mysqli_stmt_bind_result($stmt, $username, $user_type, $created_at, $image);
+            mysqli_stmt_bind_result($stmt, $id, $username, $fullName, $email, $occupation, $address, $contactNum, $user_type, $created_at, $image);
             if (mysqli_stmt_fetch($stmt)) {
-                // Information retrieved, no action needed
+                // Calculate days joined
+                $dateJoined = new DateTime($created_at);
+                $dateNow = new DateTime();
+                $interval = $dateJoined->diff($dateNow);
+                $daysJoined = $interval->format('%a');
             }
         } else {
             // No rows found, something went wrong
@@ -76,62 +80,20 @@ mysqli_close($conn);
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
         }
 
-        h2 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .profile-image {
-            text-align: center;
-            margin-top: 20px;
-            position: relative;
-        }
-
-        .profile-image img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid #3498db;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
+        .profile-info,
+        .profile-image,
         .file-upload {
-            margin-left: 150px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .file-upload input[type="file"] {
-            display: none;
-        }
-
-        .file-upload label {
-            display: inline-block;
-            color: green;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-
-        .file-upload input[type="submit"] {
-            display: inline-block;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .file-upload input[type="submit"]:hover {
-            background-color: #2b85b8;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .profile-info {
@@ -156,6 +118,28 @@ mysqli_close($conn);
             color: #333;
         }
 
+        .file-upload {
+            text-align: center;
+        }
+
+        .profile-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #3498db;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 0 auto;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label[for="image"] {
+            cursor: pointer;
+        }
+
         a.btn-secondary {
             display: block;
             width: 100%;
@@ -174,14 +158,6 @@ mysqli_close($conn);
             background-color: #2b85b8;
         }
     </style>
-    <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                    return new bootstrap.Tooltip(tooltipTriggerEl)
-                });
-            });
-        </script>
 </head>
 
 <body>
@@ -205,21 +181,50 @@ mysqli_close($conn);
         </div>
         <div class="profile-info">
             <div class="info-row">
+                <div class="info-label">ID:</div>
+                <div class="info-value"><?php echo $id; ?></div>
+            </div>
+            <div class="info-row">
                 <div class="info-label">Username:</div>
                 <div class="info-value"><?php echo $username; ?></div>
             </div>
+            <div class="info-row">
+                <div class="info-label">Full Name:</div>
+                <div class="info-value"><?php echo $fullName; ?></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Email:</div>
+                <div class="info-value"><?php echo $email; ?></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Occupation:</div>
+                <div class="info-value"><?php echo $occupation; ?></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Address:</div>
+                <div class="info-value"><?php echo $address; ?></div>
+            </div>
+            <div class="info-row">
+                <div class="info-label">Contact Number:</div>
+                <div class="info-value"><?php echo $contactNum; ?></div>
+            </div>
+
             <div class="info-row">
                 <div class="info-label">User Type:</div>
                 <div class="info-value"><?php echo $user_type; ?></div>
             </div>
             <div class="info-row">
-                <div class="info-label">Joined:</div>
+                <div class="info-label">Date created:</div>
                 <div class="info-value"><?php echo $created_at; ?></div>
             </div>
+            <div class="info-row">
+                <div class="info-label">Joined </div>
+                <div class="info-value"><?php echo $daysJoined; ?> days ago</div>
+            </div>
+            <a class="btn btn-link text-info" href="updateinfo.php">Update User Info</a>
         </div>
         <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'welcomeadmin.php' : 'userwelcome.php'; ?>" class="btn btn-secondary">Back</a>
     </div>
-    
 </body>
 
 </html>
