@@ -256,7 +256,7 @@
                     <div class="col-md-12">
                         <div class="mt-3 clearfix">
                             <h2 class="float-start">Books</h2>
-                            <button type="button" class="btn btn-success btn-md float-end me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book">
+                            <button type="button" class="btn btn-success btn-md float-end me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Add New Book">
                                 <i class="fa fa-plus-circle text-light"></i>
                             </button>
 
@@ -267,7 +267,7 @@
                             <button class="btn btn-dark text-light btn-md float-end me-2" type="button" id="searchButton" data-bs-toggle="tooltip" data-bs-title="Search">
                                 <i class="fa fa-search"></i>
                             </button>
-                            <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search books" style="width:100px;" autocomplete="off">
+                            <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title" style="width:100px;" autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -373,7 +373,9 @@
                 require_once "config.php";
 
                 // Attempt select query execution
-                $sql = "SELECT * FROM books";
+                $sql = "SELECT * FROM books
+                        ORDER BY book_id DESC
+                ";
                 if ($result = mysqli_query($conn, $sql)) {
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
@@ -424,6 +426,9 @@
             </div>
         </div>
 
+        <div class="col no-results rounded-3 p-3" style="display: none;">
+            <div class="alert alert-danger fw-bold text-danger" role="alert">No results found.</div>
+        </div>
 
 
 
@@ -443,20 +448,23 @@
             $(document).ready(function() {
                 $("#searchButton").click(function() {
                     var searchText = $("#searchInput").val().trim().toLowerCase(); // Remove leading and trailing spaces
+                    var found = false; // Flag to track if any results are found
                     $(".card").each(function() {
                         var title = $(this).find(".card-title").text().toLowerCase();
-                        var author = $(this).find(".card-text").eq(0).text().toLowerCase();
-                        var isbn = $(this).find(".card-text").eq(1).text().toLowerCase();
-                        var pubYear = $(this).find(".card-text").eq(2).text().toLowerCase();
-                        var genre = $(this).find(".card-text").eq(3).text().toLowerCase();
-                        var availability = $(this).find(".badge").text().toLowerCase(); // Get availability text
 
-                        if (title.indexOf(searchText) === -1 && author.indexOf(searchText) === -1 && isbn.indexOf(searchText) === -1 && pubYear.indexOf(searchText) === -1 && genre.indexOf(searchText) === -1 && availability.indexOf(searchText) === -1) {
+                        if (title.indexOf(searchText) === -1) {
                             $(this).parent('.col-lg-3').hide(); // Hide the entire column
                         } else {
                             $(this).parent('.col-lg-3').show(); // Show the entire column
+                            found = true; // Set flag to true if at least one result is found
                         }
                     });
+                    // Display message if no results are found
+                    if (!found) {
+                        $(".no-results").show();
+                    } else {
+                        $(".no-results").hide();
+                    }
                 });
 
                 // Refresh button click event
@@ -465,6 +473,7 @@
                 });
             });
         </script>
+
 
         <script>
             $(document).ready(function() {

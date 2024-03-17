@@ -89,13 +89,12 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .card {
             max-width: 90%;
-            margin: auto;
-            border-radius: 15px;
+
         }
 
         .card-header {
@@ -103,7 +102,6 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             color: #fff;
             text-align: center;
             padding: 20px;
-            border-radius: 15px 15px 0 0;
         }
 
         .book-image {
@@ -123,10 +121,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         }
 
         .card-footer {
-            background-color: #f8f9fa;
             text-align: center;
-            padding: 20px;
-            border-radius: 10px 10px 15px 15px;
         }
 
         .btn-back {
