@@ -32,7 +32,8 @@
             gap: 10px;
         }
 
-        .btn-success, .btn-secondary {
+        .btn-success,
+        .btn-secondary {
             width: 100px;
         }
     </style>
@@ -42,8 +43,8 @@
     <div class="container mt-5">
         <h2>Return Confirmation</h2>
         <p>Are you sure you want to return this book?</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST"> <!-- Changed method to POST -->
-            <input type="hidden" name="borrow_id" value="<?php echo isset($_GET['borrow_id']) ? $_GET['borrow_id'] : ''; ?>">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+            <input type="hidden" name="borrow_id" value="<?php echo isset($_POST['borrow_id']) ? $_POST['borrow_id'] : (isset($_GET['borrow_id']) ? $_GET['borrow_id'] : ''); ?>">
             <button type="submit" name="confirm_return" class="btn btn-success">Confirm</button>
             <a href="borrowedbooks.php" class="btn btn-secondary">Cancel</a>
         </form>
@@ -87,25 +88,29 @@
 
                             // Attempt to execute the prepared statement
                             if (mysqli_stmt_execute($stmt2)) {
-                                // Redirect to the borrowed books page
-                                header("location: borrowedbooks.php?prompt=success");
-                                exit();
+                                echo "<script>alert('Book returned successfully...');</script>";
+                                echo '<script>
+                                    setTimeout(function() {
+                                        window.location.href = "userreturnhistory.php?prompt=success";
+                                    }, 1000); // Delay in milliseconds (2 seconds)
+                                </script>';
+                                exit; // Stop further execution
                             } else {
-                                echo "Oops! Something went wrong. Please try again later.";
+                                echo '<div class="alert alert-danger" role="alert">Oops! Something went wrong. Please try again later.</div>';
                             }
 
                             // Close statement
                             mysqli_stmt_close($stmt2);
                         }
                     } else {
-                        echo "Oops! Something went wrong. Please try again later.";
+                        echo '<div class="alert alert-danger" role="alert">Oops! Something went wrong. Please try again later.</div>';
                     }
 
                     // Close statement
                     mysqli_stmt_close($stmt);
                 }
             } else {
-                echo "Invalid borrow_id.";
+                echo '<div class="alert alert-danger" role="alert">Invalid borrow_id.</div>';
             }
         }
 

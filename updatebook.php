@@ -79,8 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                // Redirect to the landing page
-                header("location: adminbooks.php");
+                echo "<script>alert('Book updated successfully...');</script>";
+                echo '<script>
+                    setTimeout(function() {
+                        window.location.href = "adminbooks.php";
+                    }, 1000); // Delay in milliseconds (2 seconds)
+                </script>';
                 exit();
             } else {
                 echo "Oops! Something went wrong. Please try again later.";

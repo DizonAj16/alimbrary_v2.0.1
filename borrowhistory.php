@@ -147,7 +147,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-responsive mb-0">
+                    <table class="table table-bordered table-responsive table-hover mb-0">
                         <thead>
                             <tr>
                                 <th>Borrow ID</th>

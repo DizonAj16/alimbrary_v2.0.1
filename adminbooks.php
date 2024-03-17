@@ -108,9 +108,12 @@
 
                 // Attempt to execute the prepared statement
                 if (mysqli_stmt_execute($stmt)) {
-                    // Redirect to landing page
-                    header("location: adminbooks.php");
-                    exit();
+                    echo "<script>alert('Book created successfully...');</script>";
+                    echo '<script>
+                    setTimeout(function() {
+                    window.location.href = "adminbooks.php";
+                        }, 1000); // Delay in milliseconds (2 seconds)
+        </script>';
                 } else {
                     echo "Oops! Something went wrong. Please try again later.";
                 }
@@ -519,7 +522,6 @@
                             // Reload the page after successful deletion
                             location.reload();
                             alert('Book Deleted Successfully...')
-
                         },
                         error: function() {
                             alert("Error deleting book.");

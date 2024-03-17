@@ -163,7 +163,7 @@ $result = mysqli_query($conn, $return_history_sql);
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0">
+                    <table class="table table-bordered table-hover mb-0">
                         <thead>
                             <tr>
                                 <th>Return ID</th>

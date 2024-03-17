@@ -71,7 +71,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_commit($conn);
 
         // Redirect to the books page
-        header("location: userbook.php");
+        echo "<script>alert('Book borrowed successfully...');</script>";
+        echo '<script>
+            setTimeout(function() {
+                window.location.href = "borrowedbooks.php?prompt=success";
+            }, 1000); // Delay in milliseconds (2 seconds)
+        </script>';
         exit;
     }
 }
