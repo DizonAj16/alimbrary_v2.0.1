@@ -74,30 +74,42 @@ mysqli_close($conn);
             background-color: #f8f9fa;
             margin: 0;
             padding: 0;
+            color: #333;
         }
 
         .container {
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(to bottom, rgba(135, 206, 235, 0.8), transparent);
             border-radius: 8px;
+            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .profile-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #3498db;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
+            display: block;
+            margin: 0 auto;
         }
 
         .profile-info,
-        .profile-image,
-        .file-upload {
-            background-color: rgba(255, 255, 255, 0.8);
+        .profile-image {
+            background-color: rgba(255, 255, 255, 0.3);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-info {
-            margin-bottom: 20px;
         }
 
         .info-row {
@@ -110,14 +122,22 @@ mysqli_close($conn);
             width: 30%;
             color: #555;
             font-weight: bold;
+            text-align: left;
+            /* Adjusted text alignment */
+            margin-top: 5px;
+            /* Added margin to the top */
         }
 
         .info-value {
             float: left;
             width: 70%;
             color: #333;
+            font-weight: normal;
+            text-align: left;
+            /* Adjusted text alignment */
+            margin-top: 5px;
+            /* Added margin to the top */
         }
-
         .file-upload {
             text-align: center;
         }
@@ -157,12 +177,23 @@ mysqli_close($conn);
         a.btn-secondary:hover {
             background-color: #2b85b8;
         }
+
+        @media (max-width: 767px) {
+
+            .info-label,
+            .info-value {
+                width: 100%;
+                float: none;
+                text-align: center;
+                /* Center align on smaller screens */
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2>My Profile</h2>
+        <h2 class="fw-bold text-primary">My Profile</h2>
         <div class="profile-image">
             <?php
             if (!empty($image)) {
@@ -171,14 +202,15 @@ mysqli_close($conn);
                 echo '<img src="default.jpg" alt="Profile Image">';
             }
             ?>
+            <div class="file-upload mt-2">
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <input type="file" name="image" id="image" accept="image/*">
+                    <label for="image" data-bs-toggle="tooltip" data-bs-title="Upload image"><i class="fas fa-plus-circle fa-lg text-success" style="font-size: 30px;"></i></label>
+                    <input type="submit" class="btn btn-link" value="Submit">
+                </form>
+            </div>
         </div>
-        <div class="file-upload">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                <input type="file" name="image" id="image" accept="image/*">
-                <label for="image" data-bs-toggle="tooltip" data-bs-title="Upload image"><i class="fas fa-plus-circle fa-lg" style="font-size: 30px;"></i></label>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
+
         <div class="profile-info">
             <div class="info-row">
                 <div class="info-label">ID:</div>
@@ -225,6 +257,16 @@ mysqli_close($conn);
         </div>
         <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'welcomeadmin.php' : 'userwelcome.php'; ?>" class="btn btn-secondary">Back</a>
     </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        });
+    </script>
 </body>
 
 </html>

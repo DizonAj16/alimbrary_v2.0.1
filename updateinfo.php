@@ -158,7 +158,7 @@ mysqli_close($conn);
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <input type="submit" class="btn btn-primary" value="Update">
-                <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'welcomeadmin.php' : 'userwelcome.php'; ?>" class="btn btn-secondary">Cancel</a>
+                <a href="myprofile.php">Cancel</a>
             </div>
         </form>
     </div>

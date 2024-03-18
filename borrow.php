@@ -3,7 +3,7 @@
 session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "user") {
     header("location: login.php");
     exit;
 }
@@ -20,11 +20,11 @@ if (!isset($_GET["book_id"])) {
 $book_id = $_GET["book_id"];
 
 // Check if the book is available
-$sql = "SELECT availability FROM books WHERE book_id = ?";
+$sql = "SELECT title, availability FROM books WHERE book_id = ?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $book_id);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $availability);
+mysqli_stmt_bind_result($stmt, $book_title, $availability); // Corrected variable name here
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 
@@ -84,18 +84,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the connection
 mysqli_close($conn);
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrow Book</title>
-    <link rel="stylesheet" href="fa-css/all.css">
+    <link rel="stylesheet" href="fa-css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script defer src="js/bootstrap.bundle.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: Montserrat, sans-serif;
         }
 
         .container {
@@ -110,10 +114,76 @@ mysqli_close($conn);
             background-color: #007bff;
             color: #fff;
             font-weight: bold;
+            font-size: 24px;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
         }
 
-        .btn-primary, .btn-secondary {
-            margin-right: 10px;
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        .modal-content {
+            border-radius: 12px;
+        }
+
+        .modal-header {
+            border-radius: 12px 12px 0 0;
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 15px;
+        }
+
+        .modal-body, .modal-footer {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+
+        .modal-footer .btn-primary, .modal-footer .btn-secondary {
+            width: 100px;
+        }
+
+        /* Highlighting Book Title */
+        .book-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -126,13 +196,14 @@ mysqli_close($conn);
                         Borrow Book
                     </div>
                     <div class="card-body">
+                        <h5 class="card-title book-title">Book title: <?php echo $book_title; ?></h5> <!-- Added book-title class -->
                         <form id="borrowForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?book_id=' . $book_id; ?>" method="post">
                             <div class="form-group mb-2">
-                                <label for="borrow_date" class="mb-2">Borrow Date:</label>
+                                <label for="borrow_date" class="form-label mb-2">Borrow Date:</label>
                                 <input type="date" id="borrow_date" name="borrow_date" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
                             </div>
                             <div class="form-group mb-2">
-                                <label for="return_date" class="mb-2">Return Date:</label>
+                                <label for="return_date" class="form-label mb-2">Return Date:</label>
                                 <input type="date" id="return_date" name="return_date" class="form-control" required>
                             </div>
                             <div class="form-group">
@@ -164,7 +235,8 @@ mysqli_close($conn);
             </div>
         </div>
     </div>
+
+    <script src="jquery/jquery3.5.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-

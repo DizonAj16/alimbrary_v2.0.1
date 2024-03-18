@@ -3,12 +3,26 @@
 session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "user") {
     header("location: login.php");
     exit;
 }
 ?>
 
+<?php
+// Include config file
+require_once "config.php";
+
+// Fetch user's profile image path from the database
+$user_id = $_SESSION["id"];
+$sql = "SELECT image FROM users WHERE id = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $profile_image);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +40,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         /* Fixed position for the header container */
@@ -112,14 +126,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             position: absolute;
             top: 0;
             left: 0;
-            transition: filter 0.5s ease;
-            /* Change transition property */
+            transition: transform 0.5s ease, filter 0.5s ease;
+            /* Add transition for smooth animation */
         }
 
         .card1:hover img {
-            filter: blur(5px);
-            /* Apply blur effect on hover */
+            transform: scale(1.1);
+            /* Apply zoom effect on hover */
         }
+
 
         .card1 .info {
             position: absolute;
@@ -150,14 +165,18 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             font-size: 25px;
             text-align: center;
             font-weight: bold;
-            background-color: blue;
-            color: white;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: blue;
             border-radius: 10px;
             padding: 5px;
         }
 
         .badge-lg {
             font-size: 1rem;
+        }
+
+        .btn {
+            font-size: 15px;
         }
     </style>
 
@@ -168,17 +187,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
         <div class="container-fluid">
-            <div class="title rounded-3 p-1">
-                <span class="letter-a">A</span>
-                <span class="letter-l">l</span>
-                <span class="letter-i">i</span>
-                <span class="letter-m">m</span>
-                <span class="letter-b">b</span>
-                <span class="letter-r">r</span>
-                <span class="letter-a">a</span>
-                <span class="letter-r">r</span>
-                <span class="letter-y">y</span>
-                <img src="Images/icons8-book-50.png" alt="" style="margin-left: 5px;">
+            <div class="title p-1">
+                <img src="Images/logo.png" alt="" style="height:50px;">
             </div>
 
             <!-- Toggle Button -->
@@ -211,7 +221,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                             <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>

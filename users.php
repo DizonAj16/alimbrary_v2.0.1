@@ -11,6 +11,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 require_once "config.php";
 ?>
 
+<?php
+// Include config file
+require_once "config.php";
+
+// Fetch user's profile image path from the database
+$user_id = $_SESSION["id"];
+$sql = "SELECT image FROM users WHERE id = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $profile_image);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,9 +41,21 @@ require_once "config.php";
     <link rel="stylesheet" href="navstyle.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
+        body {
+            background: white;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            font-size: 16px;
+        }
+
         .card-user {
             border-radius: 15px;
             transition: transform 0.3s ease;
+            padding: 15px;
+            margin-bottom: 30px;
+            max-width: 350px;
+            max-height: 380px;
+            overflow: hidden;
         }
 
         .card-user:hover {
@@ -41,58 +68,58 @@ require_once "config.php";
         }
 
         .card-user .card-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             margin-bottom: 5px;
+            color: #333;
         }
 
         .card-user .card-text {
-            font-size: 14px;
+            font-size: 16px;
             margin-bottom: 5px;
+            color: #555;
         }
 
         .bg-admin {
-            background-color: #007bff;
-            color: #fff;
+            background: linear-gradient(to bottom, rgba(135, 206, 235, 0.5), transparent);
+            color: blue;
+            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
         }
 
         .bg-user {
-            background-color: #28a745;
-            color: #fff;
+            background: linear-gradient(to bottom, rgba(0, 255, 0, 0.5), transparent);
+            color: blue;
+            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
         }
 
         .profile-image {
-            width: 100px;
-            height: 100px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             object-fit: cover;
             margin-right: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .card-columns {
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+            }
         }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-
         <div class="container-fluid">
-            <div class="title rounded-3 p-1">
-                <span class="letter-a">A</span>
-                <span class="letter-l">l</span>
-                <span class="letter-i">i</span>
-                <span class="letter-m">m</span>
-                <span class="letter-b">b</span>
-                <span class="letter-r">r</span>
-                <span class="letter-a">a</span>
-                <span class="letter-r">r</span>
-                <span class="letter-y">y</span>
-                <img src="Images/icons8-book-50.png" alt="" style="margin-left: 5px;">
+            <div class="title p-1">
+                <img src="Images/logo.png" alt="" style="height:50px;">
             </div>
-
             <!-- Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -116,12 +143,19 @@ require_once "config.php";
                         <a class="nav-link" href="returnhistory.php"><i class="fa fa-address-book fa-lg"></i> Return History</a>
                     </li>
                 </ul>
-
                 <!-- Dropdown -->
                 <div class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                             <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
@@ -139,62 +173,59 @@ require_once "config.php";
             </div>
         </div>
     </nav>
+    </div>
+    </div>
+    </nav>
+
 
     <div class="container" style="margin-top: 100px;">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <?php
-            // Query to retrieve users information
-            $sql = "SELECT id, username, created_at, user_type, image FROM users";
-
-            // Execute the query
-            $result = mysqli_query($conn, $sql);
-
-            // Check if the query was successful
-            if ($result) {
-                // Check if there are any rows returned
-                if (mysqli_num_rows($result) > 0) {
-                    // Fetch rows and display data
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
-            ?>
-                        <div class="col">
-                            <div class="card <?php echo $cardColorClass; ?> card-user shadow">
-                                <div class="card-body d-flex align-items-center">
+        <div class="row justify-content-center">
+            <div class="card-columns">
+                <?php
+                // Query to retrieve users information
+                $sql = "SELECT id, username, created_at, user_type, image FROM users";
+                // Execute the query
+                $result = mysqli_query($conn, $sql);
+                // Check if the query was successful
+                if ($result) {
+                    // Check if there are any rows returned
+                    if (mysqli_num_rows($result) > 0) {
+                        // Fetch rows and display data
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
+                ?>
+                            <div class="card <?php echo $cardColorClass; ?> card-user">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center">
                                     <?php if (!empty($row['image'])) : ?>
-                                        <img src="<?php echo $row['image']; ?>" class="profile-image" alt="Profile Image">
-                                    <?php else : ?>
-                                        <div class="icon"><i class="<?php echo $iconClass; ?>"></i></div>
+                                        <img src="<?php echo $row['image']; ?>" class="card-img-top profile-image mb-2" alt="Profile Image">
                                     <?php endif; ?>
                                     <div>
-                                        <h5 class="card-title"><i class="fas fa-user"></i> <?php echo $row['username']; ?></h5>
+                                        <h5 class="card-title text-center"> <?php echo $row['username']; ?></h5>
                                         <p class="card-text"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
                                         <p class="card-text"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
                                         <p class="card-text"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-            <?php
+                <?php
+                        }
+                    } else {
+                        // No users found
+                        echo '<div class="alert alert-danger" role="alert">No users available.</div>';
                     }
+                    // Free result set
+                    mysqli_free_result($result);
                 } else {
-                    // No users found
-                    echo '<div class="col">
-                        <div class="alert alert-danger" role="alert">No users available.</div>
-                      </div>';
+                    // Query execution failed
+                    echo '<div class="alert alert-danger" role="alert">Error: ' . mysqli_error($conn) . '</div>';
                 }
-                // Free result set
-                mysqli_free_result($result);
-            } else {
-                // Query execution failed
-                echo '<div class="col">
-                    <div class="alert alert-danger" role="alert">Error: ' . mysqli_error($conn) . '</div>
-                  </div>';
-            }
-            // Close the connection
-            mysqli_close($conn);
-            ?>
+                // Close the connection
+                mysqli_close($conn);
+                ?>
+            </div>
         </div>
     </div>
+
 
 
 

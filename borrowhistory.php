@@ -8,6 +8,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 }
 ?>
 
+<?php
+// Include config file
+require_once "config.php";
+
+// Fetch user's profile image path from the database
+$user_id = $_SESSION["id"];
+$sql = "SELECT image FROM users WHERE id = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $profile_image);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,17 +90,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
         <div class="container-fluid">
-            <div class="title rounded-3 p-1">
-                <span class="letter-a">A</span>
-                <span class="letter-l">l</span>
-                <span class="letter-i">i</span>
-                <span class="letter-m">m</span>
-                <span class="letter-b">b</span>
-                <span class="letter-r">r</span>
-                <span class="letter-a">a</span>
-                <span class="letter-r">r</span>
-                <span class="letter-y">y</span>
-                <img src="Images/icons8-book-50.png" alt="" style="margin-left: 5px;">
+            <div class="title p-1">
+                <img src="Images/logo.png" alt="" style="height:50px;">
             </div>
 
             <!-- Toggle Button -->
@@ -121,7 +127,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                 <div class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                             <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
@@ -138,6 +152,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                 </div>
             </div>
         </div>
+    </nav>
+    </div>
+    </div>
     </nav>
 
     <div class="container-fluid" style="margin-top: 85px;">

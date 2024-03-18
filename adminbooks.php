@@ -124,6 +124,22 @@
             mysqli_stmt_close($stmt);
         }
     }
+
+    ?>
+
+    <?php
+    // Include config file
+    require_once "config.php";
+
+    // Fetch user's profile image path from the database
+    $user_id = $_SESSION["id"];
+    $sql = "SELECT image FROM users WHERE id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $profile_image);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
     ?>
 
     <!DOCTYPE html>
@@ -141,13 +157,13 @@
         <script defer src="js/bootstrap.bundle.min.js"></script>
         <style>
             body {
-                font-family: 'Arial', sans-serif;
+                font-family: 'Montserrat', sans-serif;
             }
 
-            /* Fixed position for the header container */
+
             .header-container {
                 margin-top: 85px;
-                /* Ensure the header is above other content */
+
             }
 
             #backToTopBtn {
@@ -169,14 +185,23 @@
                 background-color: rgba(0, 0, 0, 0.7);
             }
 
-            label {
-                font-weight: bold;
+            .card {
+                background: linear-gradient(to bottom, rgba(135, 206, 235, 0.5), transparent);
+                background-color: white;
+                border: none;
+                border-radius: 15px;
+
+                box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
+
             }
 
             .card:hover {
                 background: linear-gradient(to bottom, #add8e6, #4682b4);
                 color: white;
                 cursor: pointer;
+
+                box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
+
             }
         </style>
 
@@ -187,17 +212,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
             <div class="container-fluid">
-                <div class="title rounded-3 p-1">
-                    <span class="letter-a">A</span>
-                    <span class="letter-l">l</span>
-                    <span class="letter-i">i</span>
-                    <span class="letter-m">m</span>
-                    <span class="letter-b">b</span>
-                    <span class="letter-r">r</span>
-                    <span class="letter-a">a</span>
-                    <span class="letter-r">r</span>
-                    <span class="letter-y">y</span>
-                    <img src="Images/icons8-book-50.png" alt="" style="margin-left: 5px;">
+                <div class="title p-1">
+                    <img src="Images/logo.png" alt="" style="height:50px;">
                 </div>
 
                 <!-- Toggle Button -->
@@ -233,7 +249,15 @@
                     <div class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                                <?php
+                                // Display user's profile image or default user icon
+                                if (!empty($profile_image)) {
+                                    echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                                } else {
+                                    echo '<i class="fa fa-user fa-lg"></i>';
+                                }
+                                ?>
+                                <?php echo htmlspecialchars($_SESSION["username"]); ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                                 <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
@@ -250,6 +274,9 @@
                     </div>
                 </div>
             </div>
+        </nav>
+        </div>
+        </div>
         </nav>
 
 
@@ -383,7 +410,7 @@
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_array($result)) {
                             echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">';
-                            echo '<div class="card h-100 border border-primary rounded-5 shadow">';
+                            echo '<div class="card h-100 border border-primary rounded-5">';
                             echo '<div class="d-flex justify-content-center align-items-center mt-2" style="height: 200px;">';
 
                             // Display the image if image path exists
@@ -450,19 +477,19 @@
         <script>
             $(document).ready(function() {
                 $("#searchButton").click(function() {
-                    var searchText = $("#searchInput").val().trim().toLowerCase(); // Remove leading and trailing spaces
-                    var found = false; // Flag to track if any results are found
+                    var searchText = $("#searchInput").val().trim().toLowerCase();
+                    var found = false;
                     $(".card").each(function() {
                         var title = $(this).find(".card-title").text().toLowerCase();
 
                         if (title.indexOf(searchText) === -1) {
-                            $(this).parent('.col-lg-3').hide(); // Hide the entire column
+                            $(this).parent('.col-lg-3').hide();
                         } else {
-                            $(this).parent('.col-lg-3').show(); // Show the entire column
-                            found = true; // Set flag to true if at least one result is found
+                            $(this).parent('.col-lg-3').show();
+                            found = true;
                         }
                     });
-                    // Display message if no results are found
+
                     if (!found) {
                         $(".no-results").show();
                     } else {
@@ -470,7 +497,7 @@
                     }
                 });
 
-                // Refresh button click event
+
                 $("#refreshButton").click(function() {
                     location.reload(); // Reload the page
                 });
@@ -480,7 +507,7 @@
 
         <script>
             $(document).ready(function() {
-                // Show or hide the button based on scroll position
+
                 $(window).scroll(function() {
                     if ($(this).scrollTop() > 100) {
                         $('#backToTopBtn').fadeIn();
@@ -489,7 +516,7 @@
                     }
                 });
 
-                // Scroll to top when button is clicked
+
                 $('#backToTopBtn').click(function() {
                     $('html, body').animate({
                         scrollTop: 0
@@ -501,10 +528,10 @@
 
         <script>
             $(document).ready(function() {
-                // Store the book ID to delete when delete button is clicked
+
                 var bookIdToDelete;
 
-                // Handle delete button click
+
                 $(".delete-btn").click(function() {
                     bookIdToDelete = $(this).data("book-id");
                 });

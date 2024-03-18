@@ -17,6 +17,11 @@ $username_err = $fullName_err = $email_err = $occupation_err = $address_err = $c
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate username
+    if (!empty(trim($_POST["username"]))) {
+        $username = trim($_POST["username"]);
+    }
+
     // Validate full name
     if (!empty(trim($_POST["fullName"]))) {
         $fullName = trim($_POST["fullName"]);
@@ -47,12 +52,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Check if any field has been updated
-    if (!empty($fullName) || !empty($email) || !empty($occupation) || !empty($address) || !empty($contactNum)) {
+    if (!empty($username) || !empty($fullName) || !empty($email) || !empty($occupation) || !empty($address) || !empty($contactNum)) {
         // Prepare an update statement
         $sql = "UPDATE users SET ";
         $params = array();
         $types = "";
         
+        if (!empty($username)) {
+            $sql .= "username = ?, ";
+            $params[] = $username;
+            $types .= "s";
+        }
         if (!empty($fullName)) {
             $sql .= "full_name = ?, ";
             $params[] = $fullName;

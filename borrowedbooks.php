@@ -3,10 +3,25 @@
 session_start();
 
 // Check if the user is logged in
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "user") {
     header("location: login.php");
     exit;
 }
+?>
+
+<?php
+// Include config file
+require_once "config.php";
+
+// Fetch user's profile image path from the database
+$user_id = $_SESSION["id"];
+$sql = "SELECT image FROM users WHERE id = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $profile_image);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,12 +52,12 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         .float-start {
             color: black;
         }
-        
+
         th,
         td {
-                border: 1px solid #dee2e6;
-                padding: 10px;
-                text-align: start;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: start;
         }
 
         th {
@@ -61,19 +76,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
         <div class="container-fluid">
-            <div class="title rounded-3 p-1">
-                <span class="letter-a">A</span>
-                <span class="letter-l">l</span>
-                <span class="letter-i">i</span>
-                <span class="letter-m">m</span>
-                <span class="letter-b">b</span>
-                <span class="letter-r">r</span>
-                <span class="letter-a">a</span>
-                <span class="letter-r">r</span>
-                <span class="letter-y">y</span>
-                <img src="Images/icons8-book-50.png" alt="" style="margin-left: 5px;">
+            <div class="title p-1">
+                <img src="Images/logo.png" alt="" style="height:50px;">
             </div>
-
             <!-- Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -104,7 +109,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <div class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-user fa-lg"></i> <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
                             <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
@@ -123,7 +136,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </div>
     </nav>
 
-    <div class="container" id="con">  
+    <div class="container" id="con">
         <?php
         // Include config file
         require_once "config.php";
@@ -178,14 +191,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                         echo "<td class='fw-bold'>" . $book_title . "</td>";
                                         echo "<td>" . $borrow_date . "</td>";
                                         echo "<td>" . $return_date . "</td>";
-                                        
+
                                         $today = date('Y-m-d');
                                         $diff = strtotime($return_date) - strtotime($today);
                                         $days_left = floor($diff / (60 * 60 * 24));
 
-                                        echo "<td>" . $days_left . "</td>"; 
+                                        echo "<td>" . $days_left . "</td>";
                                         echo "<td>";
-                                       
+
                                         echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         echo "</td>";
                                         echo "</tr>";
