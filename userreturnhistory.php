@@ -183,9 +183,14 @@ mysqli_stmt_close($stmt);
     </nav>
 
     <div class="container-fluid" style="margin-top:85px">
+        <?php if (mysqli_num_rows($result) === 0) : ?>
+            <div class="alert alert-info p-4 mt-2 text-danger fs-5" role="alert">
+                No returned books found.
+            </div>
+        <?php else: ?>
         <div class="card mt-2">
             <div class="card-header">
-                <h2 class="f2-bold">Return History</h2>
+                <h2 class="fw-bold">Return History</h2>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -215,6 +220,7 @@ mysqli_stmt_close($stmt);
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 
 </body>
