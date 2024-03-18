@@ -286,7 +286,6 @@ mysqli_stmt_close($stmt);
                     echo '<div class="card1">';
                     echo '<img src="' . $row['image_path'] . '" alt="Book Image">';
                     echo '<div class="info">';
-                    echo '<h1 class="heading1">' . $row['title'] . '</h1>';
                     echo '<div class="mt-auto">';
 
                     // Display availability badge
