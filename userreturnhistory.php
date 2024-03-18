@@ -64,7 +64,7 @@ mysqli_stmt_close($stmt);
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="navstyle.css">
+    <link rel="stylesheet" href="stylenav.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {

@@ -1,0 +1,54 @@
+/* Font */
+nav {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to bottom, #007bff, #003366); /* Dark blue gradient */
+    border-bottom: 2px solid #007bff; /* Border color */
+}
+
+
+/* Toggler Icon */
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.671);
+    color: rgba(255, 255, 255, 0.308);
+    padding: 10px 1px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+/* Navbar Links Hover */
+.navbar-nav .nav-link:hover { 
+    border-radius: 5px;
+    color: white;
+    transform: translateY(-2px); /* Move link 2 pixels upwards on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Dropdown Item */
+.dropdown-item {
+    color: rgb(255, 255, 255);  
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+
+/* Dropdown Item Hover */
+.dropdown-item:hover {
+    background: none;
+    color: white;
+    transform: translateX(5px); /* Move item 5 pixels to the right on hover */
+}
+.logo{
+    height: 60px;
+}

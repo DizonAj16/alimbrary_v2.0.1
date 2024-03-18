@@ -33,7 +33,7 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="navstyle.css">
+    <link rel="stylesheet" href="stylenav.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <script defer src="js/bootstrap.bundle.js"></script>
     <style>
@@ -53,8 +53,7 @@ mysqli_stmt_close($stmt);
         }
 
         .table th {
-            background-color: #007bff;
-            color: #fff;
+            color: black;
         }
 
         .btn-primary,
@@ -178,7 +177,7 @@ mysqli_stmt_close($stmt);
         ?>
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="float-start">Borrowed Books</h2>
+                        <h2 class="float-start fw-bold">Borrowed Books</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="card-body">

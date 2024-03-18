@@ -1,5 +1,4 @@
 <?php
-
 // Initialize the session
 session_start();
 
@@ -9,21 +8,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     exit;
 }
 require_once "config.php";
-?>
-
-<?php
-// Include config file
-require_once "config.php";
-
-// Fetch user's profile image path from the database
-$user_id = $_SESSION["id"];
-$sql = "SELECT image FROM users WHERE id = ?";
-$stmt = mysqli_prepare($conn, $sql);
-mysqli_stmt_bind_param($stmt, "i", $user_id);
-mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $profile_image);
-mysqli_stmt_fetch($stmt);
-mysqli_stmt_close($stmt);
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +22,7 @@ mysqli_stmt_close($stmt);
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="navstyle.css">
+    <link rel="stylesheet" href="stylenav.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
@@ -54,7 +38,7 @@ mysqli_stmt_close($stmt);
             padding: 15px;
             margin-bottom: 30px;
             max-width: 350px;
-            max-height: 380px;
+            max-height: 420px;
             overflow: hidden;
         }
 
@@ -112,7 +96,7 @@ mysqli_stmt_close($stmt);
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
             <div class="title p-1">
-                <img src="Images/logo.png" alt="" style="height:50px;">
+                <img class="logo" src="Images/logo.png" alt="">
             </div>
             <!-- Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,7 +104,7 @@ mysqli_stmt_close($stmt);
             </button>
             <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
                         </a>
@@ -188,6 +172,7 @@ mysqli_stmt_close($stmt);
                     // Fetch rows and display data
                     while ($row = mysqli_fetch_assoc($result)) {
                         $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
+                        $trashButton = $row['user_type'] === 'admin' ? '<button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="My Info"><i class="fas fa-eye lg text-light"></i></button>' : '<button class="btn btn-danger" onclick="deleteUser(' . $row['id'] . ')" data-bs-toggle="tooltip" data-bs-title="Delete User"><i class="fas fa-trash"></i></button>';
             ?>
                         <div class="col mb-4">
                             <div class="card <?php echo $cardColorClass; ?> card-user">
@@ -203,6 +188,7 @@ mysqli_stmt_close($stmt);
                                         <p class="card-text"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
                                         <p class="card-text"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
                                         <p class="card-text"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
+                                        <?php echo $trashButton; ?>
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +216,22 @@ mysqli_stmt_close($stmt);
         </div>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        });
+    </script>
 
+    <script>
+        function deleteUser(id) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                window.location.href = "delete_user.php?id=" + id;
+            }
+        }
+    </script>
 </body>
 
 </html>

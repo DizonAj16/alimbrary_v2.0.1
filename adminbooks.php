@@ -150,7 +150,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Books section</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="navstyle.css">
+        <link rel="stylesheet" href="stylenav.css">
         <link rel="stylesheet" href="titlestyle.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="fa-css/all.css">
@@ -213,7 +213,7 @@
 
             <div class="container-fluid">
                 <div class="title p-1">
-                    <img src="Images/logo.png" alt="" style="height:50px;">
+                    <img  class="logo" src="Images/logo.png" alt="">
                 </div>
 
                 <!-- Toggle Button -->
@@ -223,7 +223,7 @@
 
                 <!-- Navbar Links -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
                             </a>

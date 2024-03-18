@@ -71,7 +71,7 @@ mysqli_close($conn);
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background: rgba(255, 255, 255, 0.308);
             margin: 0;
             padding: 0;
             color: #333;
@@ -81,7 +81,7 @@ mysqli_close($conn);
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background: linear-gradient(to bottom, rgba(0, 0, 255, 0.5), transparent);
+            background: transparent;
             border-radius: 8px;
             box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
         }
@@ -89,7 +89,7 @@ mysqli_close($conn);
         h2 {
             font-weight: bold;
             font-size: 28px;
-            color: white;
+            color: black;
             margin-bottom: 20px;
         }
 

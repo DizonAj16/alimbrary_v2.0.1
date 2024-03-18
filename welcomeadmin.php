@@ -36,7 +36,7 @@ mysqli_close($conn);
   <script defer src="js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="titlestyle.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="navstyle.css">
+  <link rel="stylesheet" href="stylenav.css">
   <link rel="stylesheet" href="fa-css/all.css">
   <style>
     body {
@@ -83,7 +83,7 @@ mysqli_close($conn);
 
     <div class="container-fluid">
       <div class="title p-1">
-        <img src="Images/logo.png" alt="" style="height:50px;">
+        <img class="logo" src="Images/logo.png" alt="">
       </div>
 
       <!-- Toggle Button -->
@@ -93,7 +93,7 @@ mysqli_close($conn);
 
       <!-- Navbar Links -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <a class="nav-link active" href="welcomeadmin.php"><i class="fa-solid fa-home fa-lg"></i> Home
             </a>
