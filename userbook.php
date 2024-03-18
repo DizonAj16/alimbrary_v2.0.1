@@ -36,6 +36,8 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="navstyle.css">
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="fa-css/all.css">
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <style>
@@ -68,55 +70,24 @@ mysqli_stmt_close($stmt);
             background-color: rgba(0, 0, 0, 0.7);
         }
 
-        label {
-            font-weight: bold;
-        }
-
-        .card:hover {
-            background: linear-gradient(to bottom, #add8e6, #4682b4);
-            color: white;
-            cursor: pointer;
-        }
-
         .wrapper1 {
             margin-top: 20px;
             display: flex;
             width: 100%;
-            justify-content: space-around;
+            justify-content: space-between;
             flex-wrap: wrap;
+            padding: 30px;
         }
 
         .card1 {
-            width: 280px;
+            width: 250px;
             height: 420px;
-            padding: 2rem 1rem;
             background: #fff;
             position: relative;
-            display: flex;
-            align-items: flex-end;
             box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
             transition: 0.5s ease-in-out;
             margin-bottom: 20px;
             overflow: hidden;
-        }
-
-        .card1::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            transition: 0.5s all;
-            opacity: 0;
-
-        }
-
-        .card1:hover::before {
-            opacity: 1;
-
         }
 
         .card1 img {
@@ -126,7 +97,7 @@ mysqli_stmt_close($stmt);
             position: absolute;
             top: 0;
             left: 0;
-            transition: transform 0.5s ease, filter 0.5s ease;
+            transition: transform 0.5s ease;
             /* Add transition for smooth animation */
         }
 
@@ -161,7 +132,6 @@ mysqli_stmt_close($stmt);
 
         .card1 .info .heading1 {
             margin: 0;
-            text-overflow: ellipsis;
             font-size: 25px;
             text-align: center;
             font-weight: bold;
@@ -169,6 +139,10 @@ mysqli_stmt_close($stmt);
             color: blue;
             border-radius: 10px;
             padding: 5px;
+        }
+
+        .heading1 {
+            font-family: 'Lora', serif;
         }
 
         .badge-lg {
@@ -287,7 +261,8 @@ mysqli_stmt_close($stmt);
                     echo '<img src="' . $row['image_path'] . '" alt="Book Image">';
                     echo '<div class="info">';
                     echo '<div class="mt-auto">';
-
+                    // Display the title of the book
+                    echo '<div class="heading1 mb-2">' . $row['title'] . '</div>';
                     // Display availability badge
                     echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-lg">' . $row['availability'] . '</span>';
 
@@ -313,7 +288,6 @@ mysqli_stmt_close($stmt);
         mysqli_close($conn);
         ?>
     </div>
-
 
 
     <div class="col no-results rounded-3 p-3" style="display: none;">

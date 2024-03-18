@@ -14,7 +14,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 require_once "config.php";
 
 // Fetch user's profile image path from the database
-$user_id = $_SESSION["id"];
+$user_id = $_SESSION["id"]; 
 $sql = "SELECT image FROM users WHERE id = ?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
@@ -31,36 +31,28 @@ mysqli_stmt_close($stmt);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrowed Books</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="navstyle.css">
     <link rel="stylesheet" href="fa-css/all.css">
+    <script defer src="js/bootstrap.bundle.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: 'Montserrat', sans-serif;
         }
-
-        #con {
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
+        .container {
             margin-top: 85px;
         }
 
-        .float-start {
-            color: black;
-        }
-
-        th,
-        td {
+        .table th,
+        .table td {
             border: 1px solid #dee2e6;
             padding: 10px;
             text-align: start;
         }
 
-        th {
+        .table th {
             background-color: #007bff;
             color: #fff;
         }
@@ -69,12 +61,30 @@ mysqli_stmt_close($stmt);
         .btn-danger {
             margin: 5px;
         }
+
+        .card {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 8px 8px 0 0;
+            padding: 10px;
+        }
+
+        .card-body {
+            padding: 0;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-
         <div class="container-fluid">
             <div class="title p-1">
                 <img src="Images/logo.png" alt="" style="height:50px;">
@@ -136,7 +146,7 @@ mysqli_stmt_close($stmt);
         </div>
     </nav>
 
-    <div class="container" id="con">
+    <div class="container">
         <?php
         // Include config file
         require_once "config.php";
@@ -166,10 +176,12 @@ mysqli_stmt_close($stmt);
 
                 // Start displaying borrowed books
         ?>
-                <h2 class="float-start">Borrowed Books</h2>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="float-start">Borrowed Books</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -203,8 +215,6 @@ mysqli_stmt_close($stmt);
                                         echo "</td>";
                                         echo "</tr>";
                                     }
-
-
                                     ?>
                                 </tbody>
                             </table>
@@ -214,10 +224,10 @@ mysqli_stmt_close($stmt);
         <?php
             } else {
                 // Display message if there are no borrowed books or all books are returned
-                echo "<div class='container mt-5 bg-danger text-light p-4 rounded-3'>";
-                echo "<h2>No Borrowed Books</h2>";
-                echo "<p class='lead'>You haven't borrowed any books yet or all borrowed books are returned.</p>";
-                echo "</div>";
+                    echo "<div class='alert alert-danger mt-3' role='alert'>";
+                    echo "<h4 class='alert-heading'>No Borrowed Books</h4>";
+                    echo "<p class='mb-0'>You haven't borrowed any books yet or all borrowed books are returned.</p>";
+                    echo "</div>";
             }
 
             // Close statement

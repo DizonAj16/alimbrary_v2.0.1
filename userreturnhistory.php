@@ -53,7 +53,6 @@ mysqli_stmt_bind_result($stmt, $profile_image);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,7 +68,7 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: #f8f9fa;
         }
 
@@ -113,18 +112,43 @@ mysqli_stmt_close($stmt);
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
         }
+        .card-header {
+            background-color: #007bff !important;
+            color: #fff;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .float-start {
+            color: black;
+        }
+
+        th,
+        td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: start;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-primary,
+        .btn-danger {
+            margin: 5px;
+        }
     </style>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
         <div class="container-fluid">
             <div class="title p-1">
                 <img src="Images/logo.png" alt="" style="height:50px;">
             </div>
-
             <!-- Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -182,11 +206,12 @@ mysqli_stmt_close($stmt);
         </div>
     </nav>
 
-    <div class="container-fluid" style="margin-top:85px">
+    <div class="container" style="margin-top:85px">
         <?php if (mysqli_num_rows($result) === 0) : ?>
-            <div class="alert alert-info p-4 mt-2 text-danger fs-5" role="alert">
-                No returned books found.
-            </div>
+             <div class='alert alert-danger mt-3' role='alert'>
+                     <h4 class='alert-heading'>No Returned Books</h4>
+                     <p class='mb-0'>You haven't returned any books yet.</p>
+                     </div>
         <?php else: ?>
         <div class="card mt-2">
             <div class="card-header">

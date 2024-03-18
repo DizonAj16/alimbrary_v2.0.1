@@ -173,59 +173,62 @@ mysqli_stmt_close($stmt);
     </nav>
 
     <div class="container" style="margin-top: 100px;">
-    <div class="row row-cols-1 row-cols-md-3">
-        <?php
-        // Query to retrieve users information
-        $sql = "SELECT id, username, created_at, user_type, image FROM users ORDER BY id ASC";
-        // Execute the query
-        $result = mysqli_query($conn, $sql);
-        // Check if the query was successful
-        if ($result) {
-            // Check if there are any rows returned
-            if (mysqli_num_rows($result) > 0) {
-                // Counter for adding clearfix
-                $counter = 0;
-                // Fetch rows and display data
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
-        ?>
-                    <div class="col mb-4">
-                        <div class="card <?php echo $cardColorClass; ?> card-user">
-                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                <?php if (!empty($row['image'])) : ?>
-                                    <img src="<?php echo $row['image']; ?>" class="card-img-top profile-image mb-2" alt="Profile Image">
-                                <?php endif; ?>
-                                <div>
-                                    <h5 class="card-title text-center"> <?php echo $row['username']; ?></h5>
-                                    <p class="card-text"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
-                                    <p class="card-text"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
-                                    <p class="card-text"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
+        <div class="row row-cols-1 row-cols-md-3">
+            <?php
+            // Query to retrieve users information
+            $sql = "SELECT id, username, created_at, user_type, image FROM users ORDER BY id ASC";
+            // Execute the query
+            $result = mysqli_query($conn, $sql);
+            // Check if the query was successful
+            if ($result) {
+                // Check if there are any rows returned
+                if (mysqli_num_rows($result) > 0) {
+                    // Counter for adding clearfix
+                    $counter = 0;
+                    // Fetch rows and display data
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
+            ?>
+                        <div class="col mb-4">
+                            <div class="card <?php echo $cardColorClass; ?> card-user">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                    <?php if (!empty($row['image'])) : ?>
+                                        <img src="<?php echo $row['image']; ?>" class="card-img-top profile-image mb-2" alt="Profile Image">
+                                    <?php else : ?>
+                                        <i class="fas fa-question-circle text-secondary mb-2" style="font-size: 200px;"></i>
+                                    <?php endif; ?>
+
+                                    <div>
+                                        <h5 class="card-title text-center"> <?php echo $row['username']; ?></h5>
+                                        <p class="card-text"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
+                                        <p class="card-text"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
+                                        <p class="card-text"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-        <?php
-                    $counter++;
-                    // Add clearfix for every third column
-                    if ($counter % 3 == 0) {
-                        echo '<div class="w-100"></div>'; // Break to the next line
+            <?php
+                        $counter++;
+                        // Add clearfix for every third column
+                        if ($counter % 3 == 0) {
+                            echo '<div class="w-100"></div>'; // Break to the next line
+                        }
                     }
+                } else {
+                    // No users found
+                    echo '<div class="col"><div class="alert alert-danger" role="alert">No users available.</div></div>';
                 }
+                // Free result set
+                mysqli_free_result($result);
             } else {
-                // No users found
-                echo '<div class="col"><div class="alert alert-danger" role="alert">No users available.</div></div>';
+                // Query execution failed
+                echo '<div class="col"><div class="alert alert-danger" role="alert">Error: ' . mysqli_error($conn) . '</div></div>';
             }
-            // Free result set
-            mysqli_free_result($result);
-        } else {
-            // Query execution failed
-            echo '<div class="col"><div class="alert alert-danger" role="alert">Error: ' . mysqli_error($conn) . '</div></div>';
-        }
-        // Close the connection
-        mysqli_close($conn);
-        ?>
+            // Close the connection
+            mysqli_close($conn);
+            ?>
+        </div>
     </div>
-</div>
 
 
 </body>

@@ -81,7 +81,7 @@ mysqli_close($conn);
             max-width: 600px;
             margin: 50px auto;
             padding: 20px;
-            background: linear-gradient(to bottom, rgba(135, 206, 235, 0.8), transparent);
+            background: linear-gradient(to bottom, rgba(0, 0, 255, 0.5), transparent);
             border-radius: 8px;
             box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
         }
@@ -89,7 +89,7 @@ mysqli_close($conn);
         h2 {
             font-weight: bold;
             font-size: 28px;
-            color: #fff;
+            color: white;
             margin-bottom: 20px;
         }
 
@@ -163,7 +163,7 @@ mysqli_close($conn);
         a.btn-secondary {
             display: block;
             width: 100%;
-            max-width: 200px;
+            max-width: 50px;
             margin: 20px auto 0;
             padding: 10px 10px;
             text-align: center;
@@ -192,13 +192,16 @@ mysqli_close($conn);
         padding: 20px;
     }
         }
-        
+        .no-underline {
+    text-decoration: none !important;
+}
+
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h2 class="fw-bold text-primary">My Profile</h2>
+        <h2 class="fw-bold">My Profile</h2>
         <div class="profile-image">
             <?php
             if (!empty($image)) {
@@ -211,7 +214,7 @@ mysqli_close($conn);
                 <form action="upload.php" method="post" enctype="multipart/form-data">
                     <input type="file" name="image" id="image" accept="image/*">
                     <label for="image" data-bs-toggle="tooltip" data-bs-title="Upload image"><i class="fas fa-plus-circle fa-lg text-success" style="font-size: 30px;"></i></label>
-                    <input type="submit" class="btn btn-link" value="Submit">
+                    <input type="submit" class="btn btn-link no-underline" value="Submit">
                 </form>
             </div>
         </div>
@@ -258,7 +261,7 @@ mysqli_close($conn);
                 <div class="info-label">Joined </div>
                 <div class="info-value"><?php echo $daysJoined; ?> days ago</div>
             </div>
-            <a class="btn btn-link text-info" href="updateinfo.php">Update User Info</a>
+            <a class="btn btn-link text-info no-underline" href="updateinfo.php">Update User Info</a>
         </div>
         <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'welcomeadmin.php' : 'userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Home"><i class="fas fa-chevron-left"></i></a>
     </div>
