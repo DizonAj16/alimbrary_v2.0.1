@@ -114,14 +114,18 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             object-fit: cover;
         }
 
-        .table th,
-        .table td {
+        .table th{
             border: none;
             padding: 10px;
             text-align: left;
-            font-size: 16px;
+            font-size: 18px;
         }
-
+        .table td{
+            border: none;
+            padding: 10px;
+            text-align: left;
+            font-size: 18px;
+        }
         .card-footer {
             text-align: center;
         }

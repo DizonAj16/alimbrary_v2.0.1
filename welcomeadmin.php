@@ -58,18 +58,44 @@ mysqli_stmt_close($stmt);
       padding: 10px;
       border-radius: 10px;
     }
-    .centered-message h1{
+
+    .centered-message h1 {
       font-size: 2rem;
       color: black;
       font-weight: bold;
     }
-    .centered-message span{
+
+    .centered-message span {
       font-family: 'Raleway', sans-serif;
       font-weight: bold;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
       font-size: 2rem;
       color: rgb(102, 18, 18);
       letter-spacing: 2px;
+    }
+
+    .dashboard-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .dashboard-section {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: calc(50% - 20px);
+      max-width: 550px;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-section {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -105,6 +131,12 @@ mysqli_stmt_close($stmt);
     <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
       <span class="carousel-control-next-icon"></span>
     </button>
+
+    <div class="centered-message">
+      <h1>Welcome to the <span class="highlight">ZPPSU AlimBrary</span> Management System</h1>
+
+    </div>
+
   </div>
 
   <!-- Navbar -->
@@ -178,11 +210,60 @@ mysqli_stmt_close($stmt);
     </div>
   </nav>
 
-  <!-- Centered message -->
-  <div class="centered-message">
-    <h1>Welcome to the <span class="highlight">ZPPSU AlimBrary</span> Management System</h1>
+
+  <div class="dashboard-container">
+    <div class="container">
+    <h1 class="fw-bold text-center">Dashboard</h1>
+    </div>
+   
+    <div id="book-count" class="dashboard-section">
+      <?php include 'total_books.php'; ?>
+    </div>
+
+    <div class="users-list dashboard-section">
+      <?php include 'get_users.php'; ?>
+    </div>
+
+    <div class="current_borrowing_users dashboard-section">
+      <?php include 'current_borrowing_users.php'; ?>
+    </div>
+
+    <div class="total-available-books dashboard-section">
+      <?php include 'total_available_books.php'; ?>
+    </div>
+
+    <div class="total-borrowed-and-returned dashboard-section">
+      <?php include 'total_borrowed_and_returned.php'; ?>
+    </div>
+
+    <div class="most-borrowed-books dashboard-section">
+      <?php include 'top_borrowed_books.php'; ?>
+    </div>
+
+    <div class="top-returned-books dashboard-section">
+      <?php include 'top_returned_books.php'; ?>
+    </div>
+    
+    <div class="top-user-borrowed dashboard-section">
+      <?php include 'top_user_borrowed.php'; ?>
+    </div>
+
+    <div class="top-returned-user dashboard-section">
+      <?php include 'top_returned_user.php'; ?>
+    </div>
+
+    <div class="currently-borrowed-books dashboard-section">
+      <?php include 'currently_borrowed_books.php'; ?>
+    </div>
+
+
+
+
+
+
+
+
   </div>
 
-</body>
 
 </html>
