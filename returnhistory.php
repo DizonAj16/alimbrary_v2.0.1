@@ -209,7 +209,7 @@ mysqli_stmt_close($stmt);
                                 if ($days_borrowed == 0) {
                                     echo "<td>Less than a day</td>";
                                 } else {
-                                    echo "<td> . $days_borrowed  day(s)</td>";
+                                    echo "<td>$days_borrowed day(s)</td>";
                                 }
                                 echo "</tr>";
                             }
