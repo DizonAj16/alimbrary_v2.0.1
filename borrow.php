@@ -90,6 +90,7 @@ mysqli_close($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -166,7 +167,8 @@ mysqli_close($conn);
             padding: 15px;
         }
 
-        .modal-body, .modal-footer {
+        .modal-body,
+        .modal-footer {
             padding: 20px;
         }
 
@@ -174,7 +176,8 @@ mysqli_close($conn);
             border-top: none;
         }
 
-        .modal-footer .btn-primary, .modal-footer .btn-secondary {
+        .modal-footer .btn-primary,
+        .modal-footer .btn-secondary {
             width: 100px;
         }
 
@@ -182,11 +185,12 @@ mysqli_close($conn);
         .book-title {
             font-size: 22px;
             font-weight: bold;
-            color: #007bff;
+            color: black;
             margin-bottom: 20px;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="row justify-content-center">
@@ -239,4 +243,5 @@ mysqli_close($conn);
     <script src="jquery/jquery3.5.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

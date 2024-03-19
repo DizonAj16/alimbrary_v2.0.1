@@ -14,7 +14,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 require_once "config.php";
 
 // Fetch user's profile image path from the database
-$user_id = $_SESSION["id"]; 
+$user_id = $_SESSION["id"];
 $sql = "SELECT image FROM users WHERE id = ?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
@@ -33,7 +33,7 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylenav.css">
+    <link rel="stylesheet" href="navigation.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <script defer src="js/bootstrap.bundle.js"></script>
     <style>
@@ -41,6 +41,7 @@ mysqli_stmt_close($stmt);
             background-color: #f8f9fa;
             font-family: 'Montserrat', sans-serif;
         }
+
         .container {
             margin-top: 85px;
         }
@@ -86,7 +87,7 @@ mysqli_stmt_close($stmt);
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
             <div class="title p-1">
-                <img src="Images/logo.png" alt="" style="height:50px;">
+                <img class="logo" src="Images/logo.png" alt="">
             </div>
             <!-- Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -207,7 +208,7 @@ mysqli_stmt_close($stmt);
                                         $diff = strtotime($return_date) - strtotime($today);
                                         $days_left = floor($diff / (60 * 60 * 24));
 
-                                        echo "<td>" . $days_left . "</td>";
+                                        echo "<td>  $days_left  day(s)</td>";
                                         echo "<td>";
 
                                         echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
@@ -223,10 +224,10 @@ mysqli_stmt_close($stmt);
         <?php
             } else {
                 // Display message if there are no borrowed books or all books are returned
-                    echo "<div class='alert alert-danger mt-3' role='alert'>";
-                    echo "<h4 class='alert-heading'>No Borrowed Books</h4>";
-                    echo "<p class='mb-0'>You haven't borrowed any books yet or all borrowed books are returned.</p>";
-                    echo "</div>";
+                echo "<div class='alert alert-danger mt-3' role='alert'>";
+                echo "<h4 class='alert-heading'>No Borrowed Books</h4>";
+                echo "<p class='mb-0'>You haven't borrowed any books yet or all borrowed books are returned.</p>";
+                echo "</div>";
             }
 
             // Close statement

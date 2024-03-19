@@ -10,6 +10,20 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 require_once "config.php";
 ?>
 
+<?php
+// Include config file
+require_once "config.php";
+
+// Fetch user's profile image path from the database
+$user_id = $_SESSION["id"];
+$sql = "SELECT image FROM users WHERE id = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $profile_image);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +36,7 @@ require_once "config.php";
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylenav.css">
+    <link rel="stylesheet" href="navigation.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
@@ -172,7 +186,7 @@ require_once "config.php";
                     // Fetch rows and display data
                     while ($row = mysqli_fetch_assoc($result)) {
                         $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
-                        $trashButton = $row['user_type'] === 'admin' ? '<button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="My Info"><i class="fas fa-eye lg text-light"></i></button>' : '<button class="btn btn-danger" onclick="deleteUser(' . $row['id'] . ')" data-bs-toggle="tooltip" data-bs-title="Delete User"><i class="fas fa-trash"></i></button>';
+                        $trashButton = $row['user_type'] === 'admin' ? '<a href="myprofile.php"><button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="My Info"><i class="fas fa-eye lg text-light"></i></button></a>' : '<button class="btn btn-danger" onclick="deleteUser(' . $row['id'] . ')" data-bs-toggle="tooltip" data-bs-title="Delete User"><i class="fas fa-trash"></i></button>';
             ?>
                         <div class="col mb-4">
                             <div class="card <?php echo $cardColorClass; ?> card-user">
@@ -188,11 +202,14 @@ require_once "config.php";
                                         <p class="card-text"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
                                         <p class="card-text"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
                                         <p class="card-text"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
-                                        <?php echo $trashButton; ?>
+                                        <div class="text-center"> <!-- Added text-center class here -->
+                                            <?php echo $trashButton; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
             <?php
                         $counter++;
                         // Add clearfix for every third column

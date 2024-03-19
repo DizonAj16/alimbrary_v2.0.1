@@ -36,10 +36,18 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_result($stmt, $id, $username, $fullName, $email, $occupation, $address, $contactNum, $user_type, $created_at, $image);
             if (mysqli_stmt_fetch($stmt)) {
                 // Calculate days joined
+                // Calculate days joined
                 $dateJoined = new DateTime($created_at);
                 $dateNow = new DateTime();
                 $interval = $dateJoined->diff($dateNow);
                 $daysJoined = $interval->format('%a');
+
+                // Check if user joined today
+                if ($daysJoined == 0) {
+                    $daysJoined = "Just now";
+                } else {
+                    $daysJoined .= " days ago";
+                }
             }
         } else {
             // No rows found, something went wrong
@@ -138,6 +146,7 @@ mysqli_close($conn);
             margin-top: 5px;
             /* Added margin to the top */
         }
+
         .file-upload {
             text-align: center;
         }
@@ -187,15 +196,16 @@ mysqli_close($conn);
                 text-align: center;
                 /* Center align on smaller screens */
             }
-            .container {
-        max-width: 90%;
-        padding: 20px;
-    }
-        }
-        .no-underline {
-    text-decoration: none !important;
-}
 
+            .container {
+                max-width: 90%;
+                padding: 20px;
+            }
+        }
+
+        .no-underline {
+            text-decoration: none !important;
+        }
     </style>
 </head>
 
@@ -259,7 +269,7 @@ mysqli_close($conn);
             </div>
             <div class="info-row">
                 <div class="info-label">Joined </div>
-                <div class="info-value"><?php echo $daysJoined; ?> days ago</div>
+                <div class="info-value"><?php echo $daysJoined; ?></div>
             </div>
             <a class="btn btn-link text-info no-underline" href="updateinfo.php">Update User Info</a>
         </div>

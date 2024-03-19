@@ -64,7 +64,7 @@ mysqli_stmt_close($stmt);
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylenav.css">
+    <link rel="stylesheet" href="navigation.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
@@ -112,6 +112,7 @@ mysqli_stmt_close($stmt);
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
         }
+
         .card-header {
             background-color: #007bff !important;
             color: #fff;
@@ -147,7 +148,7 @@ mysqli_stmt_close($stmt);
 
         <div class="container-fluid">
             <div class="title p-1">
-                <img src="Images/logo.png" alt="" style="height:50px;">
+                <img class="logo" src="Images/logo.png" alt="">
             </div>
             <!-- Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -208,43 +209,56 @@ mysqli_stmt_close($stmt);
 
     <div class="container" style="margin-top:85px">
         <?php if (mysqli_num_rows($result) === 0) : ?>
-             <div class='alert alert-danger mt-3' role='alert'>
-                     <h4 class='alert-heading'>No Returned Books</h4>
-                     <p class='mb-0'>You haven't returned any books yet.</p>
-                     </div>
-        <?php else: ?>
-        <div class="card mt-2">
-            <div class="card-header">
-                <h2 class="fw-bold">Return History</h2>
+            <div class='alert alert-danger mt-3' role='alert'>
+                <h4 class='alert-heading'>No Returned Books</h4>
+                <p class='mb-0'>You haven't returned any books yet.</p>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover mb-0">
-                        <thead>
-                            <tr>
-                                <th>Return ID</th>
-                                <th>Title</th>
-                                <th>Borrow Date</th>
-                                <th>Date Returned</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Loop through each row in the result set
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-                                echo "<td>" . $row['return_id'] . "</td>";
-                                echo "<td class='fw-bold'>" . $row['title'] . "</td>";
-                                echo "<td>" . $row['borrow_date'] . "</td>";
-                                echo "<td>" . $row['returned_date_time'] . "</td>";
-                                echo "</tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+        <?php else : ?>
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h2 class="fw-bold">Return History</h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Return ID</th>
+                                    <th>Title</th>
+                                    <th>Borrow Date</th>
+                                    <th>Date Returned</th>
+                                    <th>Days Borrowed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // Loop through each row in the result set
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['return_id'] . "</td>";
+                                    echo "<td class='fw-bold'>" . $row['title'] . "</td>";
+                                    echo "<td>" . $row['borrow_date'] . "</td>";
+                                    echo "<td>" . $row['returned_date_time'] . "</td>";
+
+                                    // Calculate the number of days borrowed
+                                    $borrow_date = strtotime($row['borrow_date']);
+                                    $returned_date = strtotime($row['returned_date_time']);
+                                    $days_borrowed = floor(($returned_date - $borrow_date) / (60 * 60 * 24));
+
+                                    // If days borrowed is 0, display "Less than a day"
+                                    if ($days_borrowed == 0) {
+                                        echo "<td>Less than a day</td>";
+                                    } else {
+                                        echo "<td>  $days_borrowed  day(s)</td>";
+                                    }
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php endif; ?>
     </div>
 

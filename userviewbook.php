@@ -69,6 +69,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -106,7 +107,8 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
 
         .book-image {
             max-width: 100%;
-            height: 450px; /* Increase image height */
+            height: 450px;
+            /* Increase image height */
             margin-bottom: 20px;
             border-radius: 10px;
             object-fit: cover;
@@ -142,9 +144,19 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             padding-top: 20px;
             font-size: 16px;
         }
+
+        .book-title {
+            font-family: 'Arial Black', sans-serif;
+            color: #4CAF50;
+            /* Change the color to your preference */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
     </style>
     <script src="js/bootstrap.bundle.js"></script>
 </head>
+
 <body>
     <div class="container">
         <div class="card mb-5">
@@ -166,12 +178,12 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                                 <tbody>
                                     <tr>
                                         <th>Title</th>
-                                        <td><?php echo htmlspecialchars($title); ?></td>
-                                    </tr> 
+                                        <td class="book-title"><?php echo htmlspecialchars($title); ?></td>
+                                    </tr>
                                     <tr>
                                         <th>Author</th>
                                         <td><?php echo htmlspecialchars($author); ?></td>
-                                         
+
                                     </tr>
                                     <tr>
                                         <th>Description</th>
@@ -208,14 +220,13 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         </div>
     </div>
     <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                    return new bootstrap.Tooltip(tooltipTriggerEl)
-                });
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
             });
-        </script>
+        });
+    </script>
 </body>
+
 </html>
-
-

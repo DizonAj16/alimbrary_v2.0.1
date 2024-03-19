@@ -2,16 +2,19 @@
 // Start session
 session_start();
 
-// Check if the user is logged in and is an admin, if not then redirect to login page
+// Check if the user is logged in and is a user, if not then redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
   header("location: login.php");
   exit;
 }
 
+// Set the welcome message
+$welcome_message = "Welcome, Admin!";
+
 // Include config file
 require_once "config.php";
 
-// Retrieve user's profile image path from the database
+// Fetch user's profile image path from the database
 $user_id = $_SESSION["id"];
 $sql = "SELECT image FROM users WHERE id = ?";
 $stmt = mysqli_prepare($conn, $sql);
@@ -20,9 +23,6 @@ mysqli_stmt_execute($stmt);
 mysqli_stmt_bind_result($stmt, $profile_image);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
-
-// Close the connection
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -36,11 +36,40 @@ mysqli_close($conn);
   <script defer src="js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="titlestyle.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="stylenav.css">
+  <link rel="stylesheet" href="navigation.css">
   <link rel="stylesheet" href="fa-css/all.css">
   <style>
     body {
       font-family: 'Arial', sans-serif;
+    }
+
+    /* Centered message style */
+    .centered-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+
+
+
+      background: rgba(255, 255, 255, 0.8);
+
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .centered-message h1{
+      font-size: 2rem;
+      color: black;
+      font-weight: bold;
+    }
+    .centered-message span{
+      font-family: 'Raleway', sans-serif;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 2rem;
+      color: rgb(102, 18, 18);
+      letter-spacing: 2px;
     }
   </style>
 </head>
@@ -59,13 +88,13 @@ mysqli_close($conn);
     <!-- The slideshow/carousel -->
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="Images\custom-upload-1681454804.webp" alt="Los Angeles" class="d-block" style="width: 100%; height: 100vh;">
+        <img src="Images/zppsulibrary.jpg" alt="Los Angeles" class="d-block" style="width: 100%; height: 100vh;">
       </div>
       <div class="carousel-item">
-        <img src="Images\istockphoto-1437365584-1024x1024.jpg" alt="Chicago" class="d-block" style="width: 100%; height: 100vh;">
+        <img src="Images/zppsulibrary.jpg" alt="Chicago" class="d-block" style="width: 100%; height: 100vh;">
       </div>
       <div class="carousel-item">
-        <img src="Images\School-Library-Management-Software-01-1024x555.png" alt="New York" class="d-block" style="width: 100%; height: 100vh;">
+        <img src="Images/zppsulibrary.jpg" alt="New York" class="d-block" style="width: 100%; height: 100vh;">
       </div>
     </div>
 
@@ -83,7 +112,7 @@ mysqli_close($conn);
 
     <div class="container-fluid">
       <div class="title p-1">
-        <img class="logo" src="Images/logo.png" alt="">
+        <img src="Images/logo.png" alt="" style="height:50px;">
       </div>
 
       <!-- Toggle Button -->
@@ -95,7 +124,7 @@ mysqli_close($conn);
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="welcomeadmin.php"><i class="fa-solid fa-home fa-lg"></i> Home
+            <a class="nav-link active" href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
             </a>
           </li>
           <li class="nav-item">
@@ -114,6 +143,9 @@ mysqli_close($conn);
             <a class="nav-link" href="returnhistory.php"><i class="fa fa-address-book fa-lg"></i> Return History</a>
           </li>
         </ul>
+
+        <!-- Welcome message -->
+        <span class="navbar-text mx-3"><?php echo $welcome_message; ?></span>
 
         <!-- Dropdown -->
         <div class="navbar-nav ml-auto">
@@ -145,6 +177,11 @@ mysqli_close($conn);
       </div>
     </div>
   </nav>
+
+  <!-- Centered message -->
+  <div class="centered-message">
+    <h1>Welcome to the <span class="highlight">ZPPSU AlimBrary</span> Management System</h1>
+  </div>
 
 </body>
 

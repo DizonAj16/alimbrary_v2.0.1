@@ -150,7 +150,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Books section</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="stylenav.css">
+        <link rel="stylesheet" href="navigation.css">
         <link rel="stylesheet" href="titlestyle.css">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="fa-css/all.css">
@@ -213,7 +213,7 @@
 
             <div class="container-fluid">
                 <div class="title p-1">
-                    <img  class="logo" src="Images/logo.png" alt="">
+                    <img class="logo" src="Images/logo.png" alt="">
                 </div>
 
                 <!-- Toggle Button -->
@@ -275,10 +275,7 @@
                 </div>
             </div>
         </nav>
-        </div>
-        </div>
-        </nav>
-
+ 
 
         <div class="header-container">
             <div class="container-fluid">

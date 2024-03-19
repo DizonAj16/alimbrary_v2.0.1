@@ -50,7 +50,7 @@ mysqli_stmt_close($stmt);
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylenav.css">
+    <link rel="stylesheet" href="navigation.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
@@ -107,7 +107,7 @@ mysqli_stmt_close($stmt);
 
         <div class="container-fluid">
             <div class="title p-1">
-                <img class="logo" src="Images/logo.png" alt="" >
+                <img class="logo" src="Images/logo.png" alt="">
             </div>
 
             <!-- Toggle Button -->
@@ -169,11 +169,8 @@ mysqli_stmt_close($stmt);
             </div>
         </div>
     </nav>
-    </div>
-    </div>
-    </nav>
 
-    <div class="container-fluid" style="margin-top:95px;">
+    <div class="container" style="margin-top:95px;">
         <div class="card mt-2">
             <div class="card-header">
                 <h3 class="fw-bold">Return History</h3>
@@ -188,6 +185,7 @@ mysqli_stmt_close($stmt);
                                 <th>Book Title</th>
                                 <th>Date Borrowed</th>
                                 <th>Date Returned</th>
+                                <th>Days Borrowed</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -200,6 +198,19 @@ mysqli_stmt_close($stmt);
                                 echo "<td class='fw-bold'>" . $row['title'] . "</td>";
                                 echo "<td>" . $row['borrow_date'] . "</td>";
                                 echo "<td>" . $row['returned_date_time'] . "</td>";
+                                
+                                // Calculate the days borrowed
+                                $date1 = strtotime($row['borrow_date']);
+                                $date2 = strtotime($row['returned_date_time']);
+                                $diff = abs($date2 - $date1);
+                                $days_borrowed = floor($diff / (60 * 60 * 24));
+
+                                // Display "Less than a day" if days borrowed is 0
+                                if ($days_borrowed == 0) {
+                                    echo "<td>Less than a day</td>";
+                                } else {
+                                    echo "<td> . $days_borrowed  day(s)</td>";
+                                }
                                 echo "</tr>";
                             }
                             ?>

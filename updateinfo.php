@@ -133,7 +133,7 @@ mysqli_close($conn);
         <form action="update_process.php" method="post">
             <div class="form-group">
                 <label class="form-label" for="address">Username:</label>
-                <input type="text" class="form-control" id="address" name="username" value="<?php echo $username; ?>">
+                <input type="text" class="form-control" id="address" name="username" value="<?php echo $username; ?>" readonly>
             </div>
             <div class="form-group">
                 <label class="form-label" for="fullName">Full Name:</label>

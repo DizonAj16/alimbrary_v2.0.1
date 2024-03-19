@@ -33,7 +33,7 @@ mysqli_stmt_close($stmt);
     <title>Books section</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="stylenav.css">
+    <link rel="stylesheet" href="navigation.css">
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
@@ -73,6 +73,7 @@ mysqli_stmt_close($stmt);
         label {
             font-weight: bold;
         }
+
         .wrapper1 {
             margin-top: 20px;
             display: flex;
@@ -164,15 +165,22 @@ mysqli_stmt_close($stmt);
             border-radius: 10px;
             padding: 5px;
         }
+
         .heading1 {
-    font-family: 'Lora', serif;
-    font-size: 20px; /* Adjust the font size */
-    font-weight: bold; /* Make the title bold */
-    color: #444; /* Set the color to a slightly darker shade */
-    text-transform: uppercase; /* Convert text to uppercase */
-    letter-spacing: 1px; /* Add spacing between letters */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow effect */
-}
+            font-family: 'Lora', serif;
+            font-size: 20px;
+            /* Adjust the font size */
+            font-weight: bold;
+            /* Make the title bold */
+            color: #444;
+            /* Set the color to a slightly darker shade */
+            text-transform: uppercase;
+            /* Convert text to uppercase */
+            letter-spacing: 1px;
+            /* Add spacing between letters */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            /* Add a subtle shadow effect */
+        }
 
         .badge-lg {
             font-size: 1rem;
@@ -191,7 +199,7 @@ mysqli_stmt_close($stmt);
 
         <div class="container-fluid">
             <div class="title p-1">
-                <img src="Images/logo.png" alt="" style="height:50px;">
+                <img class="logo" src="Images/logo.png" alt="">
             </div>
 
             <!-- Toggle Button -->
@@ -201,7 +209,7 @@ mysqli_stmt_close($stmt);
 
             <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
                         </a>
@@ -276,47 +284,47 @@ mysqli_stmt_close($stmt);
 
 
     <div class="wrapper1">
-    <?php
-    // Include config file
-    require_once "config.php";
+        <?php
+        // Include config file
+        require_once "config.php";
 
-    // Attempt select query execution
-    $sql = "SELECT * FROM books ORDER BY book_id DESC";
+        // Attempt select query execution
+        $sql = "SELECT * FROM books ORDER BY book_id DESC";
 
-    if ($result = mysqli_query($conn, $sql)) {
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_array($result)) {
-                echo '<div class="card1">';
-                echo '<img src="' . $row['image_path'] . '" alt="Book Image">';
-                echo '<div class="info">';
-                echo '<div class="mt-auto">';
-                // Display the title of the book
-                echo '<div class="heading1 mb-2">' . $row['title'] . '</div>';
-                // Display availability badge
-                echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-lg">' . $row['availability'] . '</span>';
+        if ($result = mysqli_query($conn, $sql)) {
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_array($result)) {
+                    echo '<div class="card1">';
+                    echo '<img src="' . $row['image_path'] . '" alt="Book Image">';
+                    echo '<div class="info">';
+                    echo '<div class="mt-auto">';
+                    // Display the title of the book
+                    echo '<div class="heading1 mb-2">' . $row['title'] . '</div>';
+                    // Display availability badge
+                    echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-lg">' . $row['availability'] . '</span>';
 
-                // Display buttons
-                echo '<div class="d-flex justify-content-center">';
-                echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-primary me-2 fw-bold">Read More</a>';
-                echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning fw-bold">Borrow Book</a>';
-                echo '</div>'; // Close d-flex div
-                echo '</div>'; // Close mt-auto div
-                echo '</div>'; // Close info div
-                echo '</div>'; // Close card1 div
+                    // Display buttons
+                    echo '<div class="d-flex justify-content-center">';
+                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-primary me-2 fw-bold">Read More</a>';
+                    echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning fw-bold">Borrow Book</a>';
+                    echo '</div>'; // Close d-flex div
+                    echo '</div>'; // Close mt-auto div
+                    echo '</div>'; // Close info div
+                    echo '</div>'; // Close card1 div
+                }
+                // Free result set
+                mysqli_free_result($result);
+            } else {
+                echo '<p>No books available</p>';
             }
-            // Free result set
-            mysqli_free_result($result);
         } else {
-            echo '<p>No books available</p>';
+            echo '<p>Unable to fetch books</p>';
         }
-    } else {
-        echo '<p>Unable to fetch books</p>';
-    }
 
-    // Close connection
-    mysqli_close($conn);
-    ?>
-</div>
+        // Close connection
+        mysqli_close($conn);
+        ?>
+    </div>
 
 
     <div class="col no-results rounded-3 p-3" style="display: none;">

@@ -18,103 +18,60 @@ $username_err = $fullName_err = $email_err = $occupation_err = $address_err = $c
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate username
-    if (!empty(trim($_POST["username"]))) {
-        $username = trim($_POST["username"]);
+    $username = trim($_POST["username"]);
+    if (empty($username) || ctype_space($username)) {
+        $username = null; // Set to null if only spaces or empty
     }
 
     // Validate full name
-    if (!empty(trim($_POST["fullName"]))) {
-        $fullName = trim($_POST["fullName"]);
+    $fullName = trim($_POST["fullName"]);
+    if (empty($fullName) || ctype_space($fullName)) {
+        $fullName = null; // Set to null if only spaces or empty
     }
-    
-    // Validate email
-    if (!empty(trim($_POST["email"]))) {
-        if (filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
-            $email = trim($_POST["email"]);
-        } else {
-            $email_err = "Invalid email address format.";
-        }
-    }
-    
-    // Validate occupation
-    if (!empty(trim($_POST["occupation"]))) {
-        $occupation = trim($_POST["occupation"]);
-    }
-    
-    // Validate address
-    if (!empty(trim($_POST["address"]))) {
-        $address = trim($_POST["address"]);
-    }
-    
-    // Validate contact number
-    if (!empty(trim($_POST["contactNum"]))) {
-        $contactNum = trim($_POST["contactNum"]);
-    }
-    
-    // Check if any field has been updated
-    if (!empty($username) || !empty($fullName) || !empty($email) || !empty($occupation) || !empty($address) || !empty($contactNum)) {
-        // Prepare an update statement
-        $sql = "UPDATE users SET ";
-        $params = array();
-        $types = "";
-        
-        if (!empty($username)) {
-            $sql .= "username = ?, ";
-            $params[] = $username;
-            $types .= "s";
-        }
-        if (!empty($fullName)) {
-            $sql .= "full_name = ?, ";
-            $params[] = $fullName;
-            $types .= "s";
-        }
-        if (!empty($email)) {
-            $sql .= "email = ?, ";
-            $params[] = $email;
-            $types .= "s";
-        }
-        if (!empty($occupation)) {
-            $sql .= "occupation = ?, ";
-            $params[] = $occupation;
-            $types .= "s";
-        }
-        if (!empty($address)) {
-            $sql .= "address = ?, ";
-            $params[] = $address;
-            $types .= "s";
-        }
-        if (!empty($contactNum)) {
-            $sql .= "contact_num = ?, ";
-            $params[] = $contactNum;
-            $types .= "s";
-        }
-        
-        // Remove the trailing comma and space
-        $sql = rtrim($sql, ", ");
-        
-        $sql .= " WHERE id = ?";
-        $types .= "i";
-        
-        $params[] = $_SESSION["id"];
-        
-        if ($stmt = mysqli_prepare($conn, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, $types, ...$params);
-            
-            // Attempt to execute the prepared statement
-            if (mysqli_stmt_execute($stmt)) {
-                // Redirect to profile page after successful update
-                header("location: myprofile.php");
-            } else {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
 
-            // Close statement
-            mysqli_stmt_close($stmt);
+    // Validate email
+    $email = trim($_POST["email"]);
+    if (empty($email) || ctype_space($email)) {
+        $email = null; // Set to null if only spaces or empty
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $email_err = "Invalid email address format.";
+    }
+
+    // Validate occupation
+    $occupation = trim($_POST["occupation"]);
+    if (empty($occupation) || ctype_space($occupation)) {
+        $occupation = null; // Set to null if only spaces or empty
+    }
+
+    // Validate address
+    $address = trim($_POST["address"]);
+    if (empty($address) || ctype_space($address)) {
+        $address = null; // Set to null if only spaces or empty
+    }
+
+    // Validate contact number
+    $contactNum = trim($_POST["contactNum"]);
+    if (empty($contactNum) || ctype_space($contactNum)) {
+        $contactNum = null; // Set to null if only spaces or empty
+    }
+
+    // Prepare an update statement
+    $sql = "UPDATE users SET username = ?, full_name = ?, email = ?, occupation = ?, address = ?, contact_num = ? WHERE id = ?";
+    
+    if ($stmt = mysqli_prepare($conn, $sql)) {
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($stmt, "ssssssi", $username, $fullName, $email, $occupation, $address, $contactNum, $_SESSION["id"]);
+        
+        // Attempt to execute the prepared statement
+        if (mysqli_stmt_execute($stmt)) {
+            // Redirect to profile page after successful update
+            header("location: myprofile.php");
+        } else {
+            echo "Oops! Something went wrong. Please try again later.";
         }
-    } else {
-        // No fields to update
-        header("location: myprofile.php");
+
+        // Close statement
+        mysqli_stmt_close($stmt);
     }
     
     // Close connection

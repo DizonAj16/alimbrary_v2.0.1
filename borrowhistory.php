@@ -34,7 +34,7 @@ mysqli_stmt_close($stmt);
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="stylenav.css">
+    <link rel="stylesheet" href="navigation.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
@@ -157,7 +157,7 @@ mysqli_stmt_close($stmt);
     </div>
     </nav>
 
-    <div class="container-fluid" style="margin-top: 95px;">
+    <div class="container" style="margin-top: 95px;">
         <div class="card mt-2">
             <div class="card-header">
                 <h3 class="fw-bold">Borrow History</h3>
@@ -172,6 +172,7 @@ mysqli_stmt_close($stmt);
                                 <th>Book Title</th>
                                 <th>Borrow Date</th>
                                 <th>Return Until</th>
+                                <th>Days Left</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -202,12 +203,39 @@ mysqli_stmt_close($stmt);
                                             <td>' . $row['username'] . '</td>
                                             <td class="fw-bold">' . $row['title'] . '</td>
                                             <td>' . $row['borrow_date'] . '</td>
-                                            <td>' . ($row['return_date'] ? $row['return_date'] : 'Not returned') . '</td>
-                                        </tr>';
+                                            <td>' . ($row['return_date'] ? $row['return_date'] : 'Not returned') . '</td>';
+
+                                        // Calculate the days left
+                                        // Calculate the days left
+// Calculate the days left
+if ($row['return_date']) {
+    // Book has been returned, calculate the days since return
+    $return_date = new DateTime($row['return_date']); // Assuming 'return_date' is the column name in your database
+    $current_date = new DateTime();
+    $interval = $return_date->diff($current_date);
+    $days_since_return = $interval->days;
+    $days_left = ($days_since_return == 0) ? 'Less than a day' : $days_since_return . ' day(s)';
+} else {
+    // Book has not been returned, calculate the days left until return
+    $return_date = new DateTime($row['return_until']); // Assuming 'return_until' is the column name in your database
+    $current_date = new DateTime();
+    $interval = $current_date->diff($return_date);
+    $days_left = $interval->days;
+    if ($days_left == 0) {
+        $days_left = 'Less than a day';
+    } else if ($days_left < 0) {
+        $days_left = 'Overdue';
+    }
+}
+
+
+
+
+                                        echo '<td>' . $days_left . '</td></tr>';
                                     }
                                 } else {
                                     // No borrow history found
-                                    echo '<tr><td colspan="5" class="text-center">No borrow history available.</td></tr>';
+                                    echo '<tr><td colspan="6" class="text-center">No borrow history available.</td></tr>';
                                 }
                                 // Free result set
                                 mysqli_free_result($result);
