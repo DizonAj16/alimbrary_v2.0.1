@@ -209,14 +209,18 @@ mysqli_stmt_close($stmt);
 
     <div class="container" style="margin-top:85px">
         <?php if (mysqli_num_rows($result) === 0) : ?>
-            <div class='alert alert-danger mt-3' role='alert'>
+            <div class='alert alert-danger' role='alert'>
                 <h4 class='alert-heading'>No Returned Books</h4>
                 <p class='mb-0'>You haven't returned any books yet.</p>
             </div>
         <?php else : ?>
             <div class="card mt-2">
-                <div class="card-header">
-                    <h2 class="fw-bold">Return History</h2>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="fw-bold mb-0">Return History</h2>
+                    <div class="d-flex">
+                        <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 200px;">
+                        <!-- You can add a search button here if needed -->
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -260,8 +264,33 @@ mysqli_stmt_close($stmt);
                 </div>
             </div>
         <?php endif; ?>
+
+        <div id="noResults" class="alert alert-danger mt-3" style="display: none;">
+            No results found
+        </div>
     </div>
 
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').keyup(function() {
+                var searchText = $(this).val().toLowerCase();
+                $('tbody tr').each(function() {
+                    var title = $(this).find('td:eq(1)').text().toLowerCase(); // Index 1 for the title column
+                    if (title.indexOf(searchText) === -1) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
+                if ($('tbody tr:visible').length === 0) {
+                    $('#noResults').show();
+                } else {
+                    $('#noResults').hide();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

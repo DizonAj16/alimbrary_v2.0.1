@@ -177,11 +177,17 @@ mysqli_stmt_close($stmt);
                 // Start displaying borrowed books
         ?>
                 <div class="card">
-                    <div class="card-header">
-                        <h2 class="float-start fw-bold">Borrowed Books</h2>
-                        <div class="clearfix"></div>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="fw-bold mb-0">Borrowed Books</h2>
+                        <div class="d-flex">
+                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 200px;">
+                            <!-- You can add a search button here if needed -->
+                        </div>
                     </div>
                     <div class="card-body">
+
+
+
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -194,6 +200,9 @@ mysqli_stmt_close($stmt);
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
+
+
+
                                 <tbody>
                                     <?php
                                     // Fetch records
@@ -220,11 +229,15 @@ mysqli_stmt_close($stmt);
                             </table>
                         </div>
                     </div>
+
+                    <div id="noResults" class="alert alert-danger mt-3" style="display: none;">
+                        No results found
+                    </div>
                 </div>
         <?php
             } else {
                 // Display message if there are no borrowed books or all books are returned
-                echo "<div class='alert alert-danger mt-3' role='alert'>";
+                echo "<div class='alert alert-danger' role='alert'>";
                 echo "<h4 class='alert-heading'>No Borrowed Books</h4>";
                 echo "<p class='mb-0'>You haven't borrowed any books yet or all borrowed books are returned.</p>";
                 echo "</div>";
@@ -238,6 +251,34 @@ mysqli_stmt_close($stmt);
         mysqli_close($conn);
         ?>
     </div>
+
+
+
+
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').keyup(function() {
+                var searchText = $(this).val().toLowerCase();
+                var found = false;
+                $('tbody tr').each(function() {
+                    var title = $(this).find('td:eq(1)').text().toLowerCase(); // Index 1 for the title column
+                    if (title.indexOf(searchText) === -1) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                        found = true;
+                    }
+                });
+                if (!found) {
+                    $('#noResults').show(); // Show "No results found" message
+                } else {
+                    $('#noResults').hide(); // Hide "No results found" message if there are results
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

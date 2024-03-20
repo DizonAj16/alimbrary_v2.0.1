@@ -159,32 +159,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Book</title>
-    <link rel="stylesheet" href="navstyle.css">
-    <link rel="stylesheet" href="fa-css/all.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fa-css/all.css">
     <style>
         body {
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
         }
 
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
         .container {
             max-width: 800px;
             margin-top: 20px;
+            margin-bottom: 40px;
         }
 
         h2 {
             color: #333;
             text-align: center;
-            margin-bottom: 30px;
             font-weight: bold;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         label {
@@ -231,63 +236,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div class="container mb-3">
-        <h2>Update Book</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
-            <input type="hidden" name="current_image_path" value="<?php echo $image_path; ?>">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group mb-2">
-                        <label for="title">Title</label>
-                        <input type="text" id="title" name="title" class="form-control" value="<?php echo $title; ?>">
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="author">Author</label>
-                        <input type="text" id="author" name="author" class="form-control" value="<?php echo $author; ?>">
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="isbn">ISBN</label>
-                        <input type="text" id="isbn" name="isbn" class="form-control" value="<?php echo $isbn; ?>">
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="pub_year">Year published</label>
-                        <input type="text" id="pub_year" name="pub_year" class="form-control" value="<?php echo $pub_year; ?>">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group mb-2">
-                        <label for="genre">Genre</label>
-                        <input type="text" id="genre" name="genre" class="form-control" value="<?php echo $genre; ?>">
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" class="form-control"><?php echo $description; ?></textarea>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="current_image">Current Image</label>
-                        <?php if (!empty($image_path)) : ?>
-                            <br>
-                            <img src="<?php echo $image_path; ?>" alt="Current Image" class="img-fluid image-preview">
-                        <?php else : ?>
-                            <span>No image available</span>
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-group ">
-                        <label for="new_image">New Image</label>
-                        <input type="file" id="new_image" name="image" class="form-control-file">
-                        <span class="text-danger"><?php echo $image_err; ?></span>
-                    </div>
-                </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-light mt-2 mb-2">Update Book</h2>
             </div>
-            <div class="form-group text-center mt-3">
-                <input type="submit" class="btn btn-success" value="Update">
-                <a href="adminbooks.php" class="btn btn-secondary ml-2">Cancel</a>
+            <div class="card-body">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
+                    <input type="hidden" name="current_image_path" value="<?php echo $image_path; ?>">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="title">Title</label>
+                                <input type="text" id="title" name="title" class="form-control" value="<?php echo $title; ?>">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="author">Author</label>
+                                <input type="text" id="author" name="author" class="form-control" value="<?php echo $author; ?>">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="isbn">ISBN</label>
+                                <input type="text" id="isbn" name="isbn" class="form-control" value="<?php echo $isbn; ?>">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="pub_year">Year published</label>
+                                <input type="text" id="pub_year" name="pub_year" class="form-control" value="<?php echo $pub_year; ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label for="genre">Genre</label>
+                                <input type="text" id="genre" name="genre" class="form-control" value="<?php echo $genre; ?>">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" class="form-control"><?php echo $description; ?></textarea>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="current_image">Current Image</label>
+                                <?php if (!empty($image_path)) : ?>
+                                    <br>
+                                    <img src="<?php echo $image_path; ?>" alt="Current Image" class="img-fluid image-preview">
+                                <?php else : ?>
+                                    <span>No image available</span>
+                                <?php endif; ?>
+                            </div>
+                            <div class="form-group ">
+                                <label for="new_image">New Image</label>
+                                <input type="file" id="new_image" name="image" class="form-control-file">
+                                <span class="text-danger"><?php echo $image_err; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center mt-3">
+                        <input type="submit" class="btn btn-success" value="Update">
+                        <a href="adminbooks.php" class="btn btn-secondary ml-2">Cancel</a>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-   <script defer src="js/bootstrap.bundle.js"></script>
+    <script defer src="js/bootstrap.bundle.js"></script>
 </body>
 
 </html>
-

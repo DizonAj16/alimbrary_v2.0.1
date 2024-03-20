@@ -85,14 +85,20 @@ mysqli_stmt_close($stmt);
 
         .table th,
         .table td {
-            padding: 15px;
-            text-align: left;
+            padding: 10px;
+            /* Adjusted padding */
+            text-align: center;
+            /* Center align text */
+            vertical-align: middle;
+            /* Align content vertically center */
             border: 1px solid #dee2e6;
         }
 
         th {
             background-color: #007bff;
             color: #fff;
+            vertical-align: middle;
+            /* Align header content vertically center */
         }
 
         tbody tr:hover {
@@ -172,12 +178,16 @@ mysqli_stmt_close($stmt);
 
     <div class="container" style="margin-top:95px;">
         <div class="card mt-2">
-            <div class="card-header">
-                <h3 class="fw-bold">Return History</h3>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="fw-bold mb-0">Return History</h3>
+                <div class="input-group" style="max-width: 200px;">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search by username...">
+                </div>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover mb-0">
+                    <table class="table table-bordered table-hover mb-0" id="returnHistoryTable">
                         <thead>
                             <tr>
                                 <th>Return ID</th>
@@ -198,7 +208,7 @@ mysqli_stmt_close($stmt);
                                 echo "<td class='fw-bold'>" . $row['title'] . "</td>";
                                 echo "<td>" . $row['borrow_date'] . "</td>";
                                 echo "<td>" . $row['returned_date_time'] . "</td>";
-                                
+
                                 // Calculate the days borrowed
                                 $date1 = strtotime($row['borrow_date']);
                                 $date2 = strtotime($row['returned_date_time']);
@@ -222,6 +232,27 @@ mysqli_stmt_close($stmt);
         </div>
     </div>
 
+    <script>
+    // Function to perform live search
+    function liveSearch() {
+        // Get the search query from the input field
+        var searchQuery = document.getElementById('searchInput').value.trim();
+
+        // Send the search query to the server using AJAX
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Update the table with the filtered results
+                document.getElementById("returnHistoryTable").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "search_return_history.php?q=" + searchQuery, true);
+        xhttp.send();
+    }
+
+    // Trigger live search on input change
+    document.getElementById('searchInput').addEventListener('input', liveSearch);
+</script>
 
 </body>
 

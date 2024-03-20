@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 06:43 PM
+-- Generation Time: Mar 20, 2024 at 02:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -53,11 +53,11 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (26, 'The Da Vinci Code', 'The story revolves around Harvard symbologist Robert Langdon as he investigates a murder at the Louvre Museum in Paris. Filled with hidden codes, symbols, and historical secrets, the novel takes readers on a thrilling journey through art, history, and religious intrigue.', 'Dan Brown', '978-0307474278', 2003, 'Mystery, Thriller', 'Available', 0x75706c6f6164732f7468652d64612d76696e63692d636f64652e6a7067),
 (33, 'A Game of Thrones', 'The story unfolds in the fictional continents of Westeros and Essos, where noble families vie for control of the Iron Throne and the Seven Kingdoms. Filled with political intrigue, power struggles, and unexpected twists, the book introduces readers to a vast and immersive world with memorable characters and a gripping narrative.', 'George R.R. Martin', '978-895152732', 1996, 'Fantasy', 'Available', 0x75706c6f6164732f676f742e6a7067),
 (34, 'The Chronicles of Narnia', 'The series follows the adventures of children who are magically transported to the world of Narnia, where they encounter talking animals, mythical creatures, and epic battles between good and evil.', 'C.S. Lewis', '978-566884303', 1950, 'Fantasy, Children\'s', 'Available', 0x75706c6f6164732f6e61726e69612e6a7067),
-(35, 'Noli Me Tangere', 'The title translates to \"Touch Me Not\" in English. This classic work explores the injustices and societal issues prevalent during the Spanish colonial period in the Philippines, exposing corruption, abuse of power, and the struggle for national identity.', 'Jose Rizal', '978-533703972', 1887, 'Fiction, Classic', 'Not Available', 0x75706c6f6164732f6e6f6c69206d652074616e676572652e6a7067),
+(35, 'Noli Me Tangere', 'The title translates to \"Touch Me Not\" in English. This classic work explores the injustices and societal issues prevalent during the Spanish colonial period in the Philippines, exposing corruption, abuse of power, and the struggle for national identity.', 'Jose Rizal', '978-533703972', 1887, 'Fiction, Classic', 'Available', 0x75706c6f6164732f6e6f6c69206d652074616e676572652e6a7067),
 (36, 'El Filibusterismo', 'The title translates to \"The Subversive\" or \"The Filibustering\" in English. This novel delves deeper into the issues of social injustice, corruption, and abuse of power during the Spanish colonial era in the Philippines.', 'Jose Rizal', '978-985906966', 1891, 'Fiction, Classic', 'Not Available', 0x75706c6f6164732f656c2066696c692e6a7067),
 (39, 'Naruto Volume 1: Uzumaki Naruto', 'The story follows Naruto Uzumaki, a young ninja with dreams of becoming the strongest ninja and earning the title of Hokage, the leader of his village.', 'Masashi Kishimoto', '978-865252755', 2003, 'Shonen, Action, Adventure', 'Available', 0x75706c6f6164732f6e617275746f2d766f6c2d312e6a7067),
 (40, 'One Piece Volume 1: Romance Dawn', 'marks the beginning of an epic adventure created by Eiichiro Oda. The story follows Monkey D. Luffy, a young and ambitious pirate with the dream of finding the legendary treasure known as One Piece and becoming the Pirate King.', 'Eiichiro Oda', '978-750763248', 2003, 'Shonen, Action, Adventure', 'Available', 0x75706c6f6164732f6f702d726f6d616e63652d6461776e2e6a7067),
-(41, 'Attack on Titan Volume 1: The Fall of Shiganshina', 'In a world besieged by giant humanoid creatures known as Titans, humanity seeks refuge within enormous walled cities. Eren Yeager, the protagonist, witnesses the sudden breach of the outer wall, leading to catastrophic consequences.', 'Hajime Isayama', '978-781830480', 2012, 'Shonen, Dark Fantasy, Action', 'Not Available', 0x75706c6f6164732f5368696e67656b695f6e6f5f4b796f6a696e5f6d616e67615f766f6c756d655f312e6a7067),
+(41, 'Attack on Titan Volume 1: The Fall of Shiganshina', 'In a world besieged by giant humanoid creatures known as Titans, humanity seeks refuge within enormous walled cities. Eren Yeager, the protagonist, witnesses the sudden breach of the outer wall, leading to catastrophic consequences.', 'Hajime Isayama', '978-781830480', 2012, 'Shonen, Dark Fantasy, Action', 'Available', 0x75706c6f6164732f5368696e67656b695f6e6f5f4b796f6a696e5f6d616e67615f766f6c756d655f312e6a7067),
 (42, 'Death Note Volume 1: Boredom', 'introduces readers to the enthralling world of Light Yagami, a highly intelligent high school student who discovers a mysterious notebook with deadly powers.', 'Tsugumi Ohba', '978-327638769', 2005, 'Shonen, Psychological Thriller, Mystery', 'Available', 0x75706c6f6164732f64656174686e6f74652e6a7067),
 (43, 'Fullmetal Alchemist Volume 1: The Land of Sand', 'After a failed alchemical experiment to bring their deceased mother back to life, Edward loses his left leg, and Alphonse loses his entire body. In a desperate attempt to save his brother, Edward sacrifices his right arm to bind Alphonse\'s soul to a suit of armor.', 'Hiromu Arakawa', '978-692597068', 2005, 'Shonen, Adventure, Fantasy', 'Available', 0x75706c6f6164732f666d612e6a7067),
 (44, 'Dragon Ball Volume 1', 'The story follows Goku, a young and naive boy with a monkey\'s tail, as he sets out on a journey to find the Dragon Balls, powerful orbs that can grant any wish.', 'Akira Toriyama', '978-977272956', 2003, 'Shonen, Action, Adventure', 'Available', 0x75706c6f6164732f647261676f6e2d62616c6c2d766f6c2d312d736a2d65646974696f6e2e6a7067),
@@ -69,19 +69,18 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (79, 'The Shining', 'A psychological horror novel about a writer who takes his family to an isolated hotel for the winter, where supernatural forces begin to take hold.', 'Stephen King', '978-845126051', 1978, 'Horror Psychological Thriller', 'Available', 0x75706c6f6164732f746865207368696e696e672e6a7067),
 (80, 'Batman: The Killing Joke', '\"The Killing Joke\" explores the complex relationship between Batman and his arch-nemesis, the Joker. The story delves into the Joker\'s origin, presenting him as a failed comedian who turns to crime after a series of tragic events.', 'Alan Moore', '978-751350093', 1988, 'Superhero, Psychological thriller', 'Available', 0x75706c6f6164732f6261746d616e2e6a7067),
 (81, 'The Great Gatsby', '\"The Great Gatsby\" is a novel set in the 1920s, depicting the Jazz Age and the Roaring Twenties in America. It follows the story of Jay Gatsby, a wealthy and mysterious man, and his pursuit of the American Dream. The book explores themes of love, wealth, decadence, and the emptiness of the pursuit of material success.', 'F. Scott Fitzgeraldd', '978-598445512', 1926, 'Fiction, Classic Literature', 'Available', 0x75706c6f6164732f5468655f47726561745f4761747362795f436f7665725f313932355f5265746f75636865642e6a7067),
-(87, 'Stupid is Forever', 'A compilation of witty and humorous essays, anecdotes, and speeches by the renowned Philippine senator.', 'Miriam Defensor Santiago', '978-406826823', 2014, 'Humor/Politics', 'Not Available', 0x75706c6f6164732f73747570696420697320666f72657665722e6a7067),
+(87, 'Stupid is Forever', 'A compilation of witty and humorous essays, anecdotes, and speeches by the renowned Philippine senator.', 'Miriam Defensor Santiago', '978-406826823', 2014, 'Humor/Politics', 'Available', 0x75706c6f6164732f73747570696420697320666f72657665722e6a7067),
 (88, 'The Lion, the Witch and the Wardrobe', 'The first book in The Chronicles of Narnia series, it follows the adventures of four siblings who discover the magical land of Narnia and join the fight against the White Witch.', 'C.S. Lewis', '978-948777154', 1950, 'Fantasy, Children\'s Literature', 'Available', 0x75706c6f6164732f7468652d6c696f6e2d7468652d77697463682d616e642d7468652d77617264726f62652d312e6a7067),
-(89, '1984', 'A dystopian novel set in a totalitarian society where individuality and independent thought are suppressed by the ruling Party led by Big Brother.', 'George Orwell', '978-583411954', 1949, 'Dystopian Fiction, Political Satire', 'Available', 0x75706c6f6164732f313938342e6a7067),
+(89, '1984', 'A dystopian novel set in a totalitarian society where individuality and independent thought are suppressed by the ruling Party led by Big Brother.', 'George Orwell', '978-583411954', 1949, 'Dystopian Fiction, Political Satire', 'Not Available', 0x75706c6f6164732f313938342e6a7067),
 (90, 'The Help', 'Set in 1960s Mississippi, the novel tells the story of African American maids who work for white families and the unlikely friendships that form amidst racial tensions and social injustices.', 'Kathryn Stockett', '978-821590241', 2009, 'Historical Fiction, Drama', 'Available', 0x75706c6f6164732f7468652068656c702e6a7067),
-(91, 'Watchmen', 'Set in an alternate history where superheroes are real, \"Watchmen\" explores complex themes of power, morality, and human nature.', 'Alan Moore', '978-407028204', 1986, 'Superhero, Mystery, Drama', 'Not Available', 0x75706c6f6164732f57617463686d656e2c5f69737375655f312e6a7067),
-(92, 'X-Men: Days of Future Past', 'In a dystopian future, mutants are hunted to near-extinction, prompting the X-Men to send Wolverine back in time to prevent the catastrophic events that led to this timeline.', 'Chris Claremont', '978-196028760', 1981, 'Superhero, Science Fiction, Time Travel', 'Not Available', 0x75706c6f6164732f786d656e2e6a7067),
+(91, 'Watchmen', 'Set in an alternate history where superheroes are real, \"Watchmen\" explores complex themes of power, morality, and human nature.', 'Alan Moore', '978-407028204', 1986, 'Superhero, Mystery, Drama', 'Available', 0x75706c6f6164732f57617463686d656e2c5f69737375655f312e6a7067),
+(92, 'X-Men: Days of Future Past', 'In a dystopian future, mutants are hunted to near-extinction, prompting the X-Men to send Wolverine back in time to prevent the catastrophic events that led to this timeline.', 'Chris Claremont', '978-196028760', 1981, 'Superhero, Science Fiction, Time Travel', 'Available', 0x75706c6f6164732f786d656e2e6a7067),
 (93, 'The Structure of Scientific Revolutions', 'This seminal work explores the process of scientific revolutions and paradigm shifts.', 'Thomas S. Kuhn', '978-733645177', 1962, 'Philosophy of Science', 'Available', 0x75706c6f6164732f746865207374727563747572652e6a7067),
 (94, 'Capital in the Twenty-First Century', 'Piketty examines the dynamics of wealth and income inequality in capitalist economies.', 'Thomas Piketty', '978-234847473', 2013, 'Economics', 'Available', 0x75706c6f6164732f6361706974616c2d696e2d7468652d7477656e74792d66697273742d63656e747572792d332e6a7067),
 (95, 'Guns, Germs, and Steel: The Fates of Human Societies', 'Diamond explores the factors that have shaped human history, including geography, agriculture, and technology.', 'Jared Diamond', '978-537225273', 1997, 'Anthropology/History', 'Not Available', 0x75706c6f6164732f67756e732d6765726d732d616e642d737465656c2d7468652d66617465732d6f662d68756d616e2d736f636965746965732d323074682d616e6e69766572736172792d65646974696f6e2e6a7067),
-(96, 'The Art of War', 'Sun Tzu\'s classic treatise on military strategy and tactics.', 'Sun Tzu', '978-127658115', 0, 'Military Science/Philosophy', 'Not Available', 0x75706c6f6164732f7468652d6172742d6f662d7761722d37342e6a7067),
+(96, 'The Art of War', 'Sun Tzu\'s classic treatise on military strategy and tactics.', 'Sun Tzu', '978-127658115', 0, 'Military Science/Philosophy', 'Available', 0x75706c6f6164732f7468652d6172742d6f662d7761722d37342e6a7067),
 (97, 'The Impact of Climate Change on Agricultural Practices', 'This thesis explores the effects of climate change on modern agricultural practices, analyzing data from various regions and proposing sustainable solutions.', 'John Smith', '978-924130200', 2021, 'Environmental Science', 'Not Available', 0x75706c6f6164732f6167726963756c747572616c2e6a7067),
-(98, 'Thinking, Fast and Slow', 'Kahneman explores the two systems of thinking that drive human decision-making.', 'Daniel Kahneman', '978-722323128', 2011, 'Psychology/Behavioral Economics', 'Available', 0x75706c6f6164732f7468696e6b696e672d666173742d616e642d736c6f772e6a7067),
-(99, 'The Art of Happiness', 'The Dalai Lama shares his insights on achieving lasting happiness and fulfillment.', 'Dalai Lama and Howard C. Cutler', '978-819994953', 1998, 'Philosophy/Self-Help', 'Not Available', 0x75706c6f6164732f7468652d6172742d6f662d68617070696e6573732d313074682d616e6e69766572736172792d65646974696f6e2d612d68616e64626f6f6b2d666f722d6c6976696e672e6a7067);
+(98, 'Thinking, Fast and Slow', 'Kahneman explores the two systems of thinking that drive human decision-making.', 'Daniel Kahneman', '978-722323128', 2011, 'Psychology/Behavioral Economics', 'Not Available', 0x75706c6f6164732f7468696e6b696e672d666173742d616e642d736c6f772e6a7067);
 
 -- --------------------------------------------------------
 
@@ -247,11 +246,16 @@ INSERT INTO `borrowed_books` (`borrow_id`, `user_id`, `book_id`, `borrow_date`, 
 (181, 26, 22, '2024-03-19', '2024-04-30'),
 (182, 26, 36, '2024-03-19', '2024-06-29'),
 (183, 20, 97, '2024-03-19', '2024-03-27'),
-(184, 19, 99, '2024-03-19', '2024-03-27'),
 (185, 20, 35, '2024-03-19', '2024-03-30'),
 (186, 23, 76, '2024-03-19', '2024-03-30'),
 (187, 23, 23, '2024-03-19', '2024-03-29'),
-(188, 23, 21, '2024-03-19', '2024-03-23');
+(188, 23, 21, '2024-03-19', '2024-03-23'),
+(190, 23, 24, '2024-03-19', '2024-03-30'),
+(191, 20, 98, '2024-03-20', '2024-03-30'),
+(192, 20, 21, '2024-03-20', '2024-05-02'),
+(193, 19, 89, '2024-03-20', '2024-06-27'),
+(194, 19, 95, '2024-03-20', '2024-11-02'),
+(195, 19, 97, '2024-03-20', '2024-03-30');
 
 -- --------------------------------------------------------
 
@@ -408,7 +412,18 @@ INSERT INTO `return_history` (`return_id`, `borrow_id`, `user_id`, `book_id`, `r
 (164, 172, 20, 91, '2024-03-19 04:15:35', 'returned'),
 (165, 179, 26, 94, '2024-03-19 07:31:28', 'returned'),
 (166, 186, 23, 76, '2024-03-19 17:39:45', 'returned'),
-(167, 187, 23, 23, '2024-03-19 17:39:52', 'returned');
+(167, 187, 23, 23, '2024-03-19 17:39:52', 'returned'),
+(168, 185, 20, 35, '2024-03-19 17:52:50', 'returned'),
+(169, 183, 20, 97, '2024-03-19 17:53:02', 'returned'),
+(170, 171, 20, 87, '2024-03-19 17:53:10', 'returned'),
+(171, 173, 20, 92, '2024-03-19 17:53:27', 'returned'),
+(172, 175, 21, 96, '2024-03-19 17:56:26', 'returned'),
+(173, 175, 21, 96, '2024-03-19 17:56:26', 'returned'),
+(174, 174, 21, 91, '2024-03-19 17:56:33', 'returned'),
+(176, 178, 19, 95, '2024-03-19 17:59:04', 'returned'),
+(177, 177, 19, 24, '2024-03-19 17:59:10', 'returned'),
+(178, 176, 19, 41, '2024-03-19 17:59:16', 'returned'),
+(179, 188, 23, 21, '2024-03-19 17:59:52', 'returned');
 
 -- --------------------------------------------------------
 
@@ -485,19 +500,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
 
 --
 -- AUTO_INCREMENT for table `return_history`
 --
 ALTER TABLE `return_history`
-  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- AUTO_INCREMENT for table `users`

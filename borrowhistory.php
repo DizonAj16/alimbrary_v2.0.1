@@ -69,14 +69,18 @@ mysqli_stmt_close($stmt);
 
         .table th,
         .table td {
-            padding: 15px;
-            text-align: left;
+            padding: 10px;
+            /* Adjusted padding */
+            text-align: center;
+            /* Center align text */
             border: 1px solid #dee2e6;
         }
 
         th {
             background-color: #007bff;
             color: #fff;
+            vertical-align: middle;
+            /* Align header content vertically center */
         }
 
         tbody tr:hover {
@@ -153,18 +157,20 @@ mysqli_stmt_close($stmt);
             </div>
         </div>
     </nav>
-    </div>
-    </div>
-    </nav>
+
 
     <div class="container" style="margin-top: 95px;">
         <div class="card mt-2">
-            <div class="card-header">
-                <h3 class="fw-bold">Borrow History</h3>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="fw-bold mb-0">Borrow History</h3>
+                <div class="input-group" style="max-width: 200px;">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search by username...">
+                </div>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-responsive table-hover mb-0">
+                    <table class="table table-bordered table-responsive table-hover mb-0" id="borrowHistoryTable">
                         <thead>
                             <tr>
                                 <th>Borrow ID</th>
@@ -207,26 +213,26 @@ mysqli_stmt_close($stmt);
 
                                         // Calculate the days left
                                         // Calculate the days left
-// Calculate the days left
-if ($row['return_date']) {
-    // Book has been returned, calculate the days since return
-    $return_date = new DateTime($row['return_date']); // Assuming 'return_date' is the column name in your database
-    $current_date = new DateTime();
-    $interval = $return_date->diff($current_date);
-    $days_since_return = $interval->days;
-    $days_left = ($days_since_return == 0) ? 'Less than a day' : $days_since_return . ' day(s)';
-} else {
-    // Book has not been returned, calculate the days left until return
-    $return_date = new DateTime($row['return_until']); // Assuming 'return_until' is the column name in your database
-    $current_date = new DateTime();
-    $interval = $current_date->diff($return_date);
-    $days_left = $interval->days;
-    if ($days_left == 0) {
-        $days_left = 'Less than a day';
-    } else if ($days_left < 0) {
-        $days_left = 'Overdue';
-    }
-}
+                                        // Calculate the days left
+                                        if ($row['return_date']) {
+                                            // Book has been returned, calculate the days since return
+                                            $return_date = new DateTime($row['return_date']); // Assuming 'return_date' is the column name in your database
+                                            $current_date = new DateTime();
+                                            $interval = $return_date->diff($current_date);
+                                            $days_since_return = $interval->days;
+                                            $days_left = ($days_since_return == 0) ? 'Less than a day' : $days_since_return . ' day(s)';
+                                        } else {
+                                            // Book has not been returned, calculate the days left until return
+                                            $return_date = new DateTime($row['return_until']); // Assuming 'return_until' is the column name in your database
+                                            $current_date = new DateTime();
+                                            $interval = $current_date->diff($return_date);
+                                            $days_left = $interval->days;
+                                            if ($days_left == 0) {
+                                                $days_left = 'Less than a day';
+                                            } else if ($days_left < 0) {
+                                                $days_left = 'Overdue';
+                                            }
+                                        }
 
 
 
@@ -255,7 +261,27 @@ if ($row['return_date']) {
         </div>
     </div>
 
+    <script>
+        // Function to perform live search
+        function liveSearch() {
+            // Get the search query from the input field
+            var searchQuery = document.getElementById('searchInput').value.trim();
 
+            // Send the search query to the server using AJAX
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Update the table with the filtered results
+                    document.getElementById("borrowHistoryTable").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "search_borrow_history.php?q=" + searchQuery, true);
+            xhttp.send();
+        }
+
+        // Trigger live search on input change
+        document.getElementById('searchInput').addEventListener('input', liveSearch);
+    </script>
 </body>
 
 </html>

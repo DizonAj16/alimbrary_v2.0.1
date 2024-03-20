@@ -66,11 +66,11 @@ mysqli_stmt_close($stmt);
     }
 
     .centered-message span {
-      font-family: 'Raleway', sans-serif;
+      font-family: "Gill Sans", sans-serif;
       font-weight: bold;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
       font-size: 2rem;
-      color: rgb(102, 18, 18);
+      color: #800000;
       letter-spacing: 2px;
     }
   </style>

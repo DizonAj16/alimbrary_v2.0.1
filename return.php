@@ -17,6 +17,7 @@
             padding: 20px;
             border-radius: 8px;
             margin-top: 50px;
+            max-width: 500px;
         }
 
         h2 {

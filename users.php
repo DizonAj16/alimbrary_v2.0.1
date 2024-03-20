@@ -186,7 +186,7 @@ mysqli_stmt_close($stmt);
                     // Fetch rows and display data
                     while ($row = mysqli_fetch_assoc($result)) {
                         $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
-                        $trashButton = $row['user_type'] === 'admin' ? '<a href="myprofile.php"><button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="My Info"><i class="fas fa-eye lg text-light"></i></button></a>' : '<button class="btn btn-danger" onclick="deleteUser(' . $row['id'] . ')" data-bs-toggle="tooltip" data-bs-title="Delete User"><i class="fas fa-trash"></i></button>';
+                        $trashButton = $row['user_type'] === 'admin' ? '<a href="admin_info.php"><button class="btn btn-primary"><i class="fas fa-eye lg text-light"></i> My Info</button></a>' : '<button class="btn btn-danger" onclick="deleteUser(' . $row['id'] . ')"><i class="fas fa-trash"></i> Delete</button>';
             ?>
                         <div class="col mb-4">
                             <div class="card <?php echo $cardColorClass; ?> card-user">
@@ -202,13 +202,18 @@ mysqli_stmt_close($stmt);
                                         <p class="card-text"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
                                         <p class="card-text"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
                                         <p class="card-text"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
-                                        <div class="text-center"> <!-- Added text-center class here -->
+                                        <div class="text-center">
+                                            <?php if ($row['user_type'] !== 'admin') : ?>
+                                                <a href="view_user.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
+                                            <?php endif; ?>
                                             <?php echo $trashButton; ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
 
             <?php
                         $counter++;
@@ -233,14 +238,7 @@ mysqli_stmt_close($stmt);
         </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl)
-            });
-        });
-    </script>
+
 
     <script>
         function deleteUser(id) {

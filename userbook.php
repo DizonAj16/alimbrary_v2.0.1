@@ -266,14 +266,8 @@ mysqli_stmt_close($stmt);
                 <div class="col-md-12">
                     <div class="mt-3 clearfix">
                         <h2 class="float-start">Books</h2>
-                        <button class="btn btn-secondary btn-md float-end me-2" type="button" id="refreshButton" data-bs-toggle="tooltip" data-bs-title="Refresh">
-                            <i class="fa fa-refresh"></i>
                         </button>
-
-                        <button class="btn btn-dark text-light btn-md float-end me-2" type="button" id="searchButton" data-bs-toggle="tooltip" data-bs-title="Search">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title" style="width:115px;" autocomplete="off">
+                        <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title" style="width:200px;" autocomplete="off">
                     </div>
                 </div>
             </div>
@@ -283,7 +277,7 @@ mysqli_stmt_close($stmt);
 
 
 
-    <div class="wrapper1">
+    <div class="wrapper1" id="searchBooksTable">
         <?php
         // Include config file
         require_once "config.php";
@@ -346,36 +340,42 @@ mysqli_stmt_close($stmt);
         });
     </script>
 
-    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script src="jquery/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#searchButton").click(function() {
-                var searchText = $("#searchInput").val().trim().toLowerCase(); // Remove leading and trailing spaces
-                var found = false; // Flag to track if any results are found
-                $(".card1").each(function() {
-                    var title = $(this).find(".heading1").text().toLowerCase(); // Change .card-title to .heading1
-
-                    if (title.indexOf(searchText) === -1) {
-                        $(this).hide(); // Hide the entire card1
-                    } else {
-                        $(this).show(); // Show the entire card1
-                        found = true; // Set flag to true if at least one result is found
-                    }
-                });
-                // Display message if no results are found
-                if (!found) {
-                    $(".no-results").show();
-                } else {
-                    $(".no-results").hide();
-                }
-            });
-
-            // Refresh button click event
-            $("#refreshButton").click(function() {
-                location.reload(); // Reload the page
-            });
+$(document).ready(function() {
+    $("#searchInput").on("keyup", function() {
+        var searchText = $(this).val().toLowerCase().trim();
+        $.ajax({
+            url: "search_user_books.php", // Update to the correct file name
+            method: "POST",
+            data: { searchQuery: searchText },
+            success: function(response) {
+                $("#searchBooksTable").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
         });
+    });
+
+    $("#refreshButton").click(function() {
+        $("#searchInput").val("");
+        $.ajax({
+            url: "search_user_books.php", // Update to the correct file name
+            method: "POST",
+            data: { searchQuery: "" },
+            success: function(response) {
+                $("#searchBooksTable").html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+
     </script>
+
 
 
 
