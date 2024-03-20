@@ -1,6 +1,6 @@
 # Alimbrary v2
 **Developmental stage**  
-_Not so stable version_
+_Stable version_
 
 ### Admin Credentials:
 - Username: admin
