@@ -203,6 +203,9 @@
                     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
 
                 }
+                label{
+                    font-weight: bold;
+                }
             </style>
 
 
