@@ -43,26 +43,21 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                 $interval = $dateJoined->diff($dateNow);
                 $daysJoined = $interval->format('%a');
 
-                // If days joined exceeds 30 days, convert it into months and remaining days
-                if ($daysJoined > 30) {
-                    $months = floor($daysJoined / 30);
-                    $remainingDays = $daysJoined % 30;
-                    if ($remainingDays == 0) {
-                        $daysJoined = "$months month(s)";
-                    } else {
-                        $daysJoined = "$months month(s) $remainingDays";
-                    }
-                } else {
-                    // If days joined is less than or equal to 30 days, display the number of days
-                    $daysJoined = "$daysJoined day(s)";
-                }
-
-
                 // Check if user joined today
                 if ($daysJoined == 0) {
                     $daysJoined = "Just now";
+                } elseif ($daysJoined <= 30) {
+                    // If days joined is less than or equal to 30 days, display the number of days
+                    $daysJoined = "$daysJoined day(s) ago";
                 } else {
-                    $daysJoined .= " day(s) ago";
+                    // If days joined exceeds 30 days, convert it into months and remaining days
+                    $months = floor($daysJoined / 30);
+                    $remainingDays = $daysJoined % 30;
+                    if ($remainingDays == 0) {
+                        $daysJoined = "$months month(s) ago";
+                    } else {
+                        $daysJoined = "$months month(s) $remainingDays day(s) ago";
+                    }
                 }
             }
         } else {

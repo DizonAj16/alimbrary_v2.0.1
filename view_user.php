@@ -85,7 +85,6 @@
             margin-bottom: 20px;
             object-fit: cover;
             /* Maintain aspect ratio and cover container */
-            border: 1px solid blue;
             border-radius: 50%;
         }
 
@@ -199,9 +198,10 @@
                         <div class="user-info-container">
                             <div class="user-image">
                                 <?php
-                                echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image">';
+                                echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image" style="border: 1px solid blue;">';
                                 ?>
                             </div>
+
                             <div class="user-info">
                                 <h4><?php echo $username; ?></h4>
                                 <p><strong>User ID:</strong> <?php echo $param_id; ?></p>
