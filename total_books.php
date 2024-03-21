@@ -1,3 +1,17 @@
+<style>
+  .book-count-container {
+    text-align: center;
+    color: blue;
+
+  }
+
+  .book-count {
+    font-size: 30px;
+    color: blue; /* Dark color for the number */
+    font-weight: bold;
+  }
+</style>
+
 <?php
 // Include database connection
 include 'config.php';
@@ -14,8 +28,8 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);
     
     // Display the number of books
-    echo '<div class="text-center">';
-    echo "<h3>Total number of books: " . $row['book_count'] . "</h3>";
+    echo '<div class="book-count-container">';
+    echo "<h3><span class='book-count'>" . $row['book_count'] . " Books</span></h3>";
     echo '</div>';
 } else {
     // Display an error message if the query fails

@@ -17,13 +17,11 @@ $result_borrowed = mysqli_query($conn, $query_borrowed);
 // Check if the query was successful
 if ($result_borrowed) {
     echo '<div>';
-    echo "<h3 class='text-center' style='margin-bottom: 10px;'>Currently Borrowed Books</h3>";
+    echo "<h3 class='text-center fw-bold' style='margin-bottom: 20px; font-size: 30px;'>Books Yet to Be Returned</h3>";
     echo "<ol style='padding-left: 20px;'>"; // Use <ol> for numbered list
-    $count = 1; // Initialize numbering counter
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result_borrowed)) {
-        echo "<li>{$row['title']} (Borrowed by {$row['username']} on {$row['borrow_date']})</li>";
-        $count++; // Increment counter for each item
+        echo "<li class='fw-bold' style='font-size:18px;'>{$row['title']} (Borrowed by {$row['username']} on {$row['borrow_date']})</li>";
     }
     echo "</ol>";
     echo "</div>";

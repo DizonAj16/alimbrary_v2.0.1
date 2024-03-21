@@ -98,6 +98,25 @@ mysqli_stmt_close($stmt);
             margin-right: 10px;
         }
 
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #backToTopBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
         @media (min-width: 768px) {
             .row-cols-reverse {
                 flex-direction: row-reverse;
@@ -247,6 +266,30 @@ mysqli_stmt_close($stmt);
             }
         }
     </script>
+
+    <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#backToTopBtn').fadeIn();
+                } else {
+                    $('#backToTopBtn').fadeOut();
+                }
+            });
+
+
+            $('#backToTopBtn').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'slow');
+                return false;
+            });
+        });
+    </script>
+
 </body>
 
 </html>

@@ -1,3 +1,16 @@
+<style>
+  .user-count-container {
+    text-align: center;
+    color: blue;
+  }
+
+  .user-count {
+    font-size: 30px;
+    color: blue; /* Dark color for the number */
+    font-weight: bold;
+  }
+</style>
+
 <?php
 // Include database connection
 include 'config.php';
@@ -14,8 +27,8 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);
     
     // Display the number of users
-    echo '<div class="text-center">';
-    echo "<h3>Total number of users: " . $row['user_count'] . "</h3>";
+    echo '<div class="user-count-container">';
+    echo "<h3><span class='user-count'>" . $row['user_count'] . " Users</span></h3>";
     echo '</div>';
 } else {
     // Display an error message if the query fails

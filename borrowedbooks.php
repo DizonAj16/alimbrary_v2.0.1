@@ -80,6 +80,25 @@ mysqli_stmt_close($stmt);
         .card-body {
             padding: 0;
         }
+
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #backToTopBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
     </style>
 </head>
 
@@ -180,7 +199,7 @@ mysqli_stmt_close($stmt);
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="fw-bold mb-0">Borrowed Books</h2>
                         <div class="d-flex">
-                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 200px;">
+                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 160px;">
                             <!-- You can add a search button here if needed -->
                         </div>
                     </div>
@@ -217,7 +236,18 @@ mysqli_stmt_close($stmt);
                                         $diff = strtotime($return_date) - strtotime($today);
                                         $days_left = floor($diff / (60 * 60 * 24));
 
-                                        echo "<td>  $days_left  day(s)</td>";
+                                        if ($days_left > 30) {
+                                            $months = floor($days_left / 30);
+                                            $remaining_days = $days_left % 30;
+                                            if ($remaining_days == 0) {
+                                                echo "<td>$months month(s)</td>";
+                                            } else {
+                                                echo "<td>$months month(s) $remaining_days day(s)</td>";
+                                            }
+                                        } else {
+                                            echo "<td>$days_left day(s)</td>";
+                                        }
+
                                         echo "<td>";
 
                                         echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
@@ -279,6 +309,29 @@ mysqli_stmt_close($stmt);
         });
     </script>
 
+    
+    <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#backToTopBtn').fadeIn();
+                } else {
+                    $('#backToTopBtn').fadeOut();
+                }
+            });
+
+
+            $('#backToTopBtn').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'slow');
+                return false;
+            });
+        });
+    </script>
 </body>
 
 </html>

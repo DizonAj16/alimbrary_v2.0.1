@@ -12,13 +12,17 @@
         body {
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
-            padding-top: 50px; /* Add padding to the top */
+            padding-top: 50px;
+            /* Add padding to the top */
         }
 
         .container {
-            max-width: 850px; /* Limit maximum width of the container */
-            margin: 0 auto; /* Center the container horizontally */
-            padding: 0 15px; /* Add padding to the sides */
+            max-width: 850px;
+            /* Limit maximum width of the container */
+            margin: 0 auto;
+            /* Center the container horizontally */
+            padding: 0 15px;
+            /* Add padding to the sides */
             margin-bottom: 40px;
         }
 
@@ -33,6 +37,7 @@
             border-radius: 15px 15px 0 0;
             text-align: center;
         }
+
         h2 {
             text-align: center;
         }
@@ -73,10 +78,13 @@
         }
 
         .user-image {
-            width: 150px; /* Adjust the width of the user image */
-            height: 150px; /* Adjust the height of the user image */
+            width: 150px;
+            /* Adjust the width of the user image */
+            height: 150px;
+            /* Adjust the height of the user image */
             margin-bottom: 20px;
-            object-fit: cover; /* Maintain aspect ratio and cover container */
+            object-fit: cover;
+            /* Maintain aspect ratio and cover container */
             border: 1px solid blue;
             border-radius: 50%;
         }
@@ -133,10 +141,31 @@
                     $image_path = $row["image"];
 
                     // Calculate time since registration
+                    // Calculate time since registration
                     $registration_date = new DateTime($created_at);
                     $current_date = new DateTime();
                     $interval = $current_date->diff($registration_date);
                     $days_since_registration = $interval->days;
+
+                    // If user joined today, display "Just now"
+                    if ($days_since_registration == 0) {
+                        $registration_status = "Just now";
+                    } else {
+                        // If user joined more than 30 days ago, display duration in terms of months and days
+                        if ($days_since_registration > 30) {
+                            $months = floor($days_since_registration / 30);
+                            $remaining_days = $days_since_registration % 30;
+                            if ($remaining_days == 0) {
+                                $registration_status = "$months month(s)";
+                            } else {
+                                $registration_status = "$months month(s) $remaining_days day(s)";
+                            }
+                        } else {
+                            // If user joined within the last 30 days, display the number of days
+                            $registration_status = "$days_since_registration day(s) ago";
+                        }
+                    }
+
 
                     // Close the statement
                     mysqli_stmt_close($stmt);

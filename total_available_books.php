@@ -1,3 +1,16 @@
+<style>
+  .available-books-container {
+    text-align: center;
+    color: green;
+  }
+
+  .available-books-count {
+    font-size: 30px;
+    color: green; /* Dark color for the number */
+    font-weight: bold;
+  }
+</style>
+
 <?php
 // Include database connection
 include 'config.php';
@@ -17,8 +30,8 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);
     
     // Display the total count of available books
-    echo '<div class="text-center">';
-    echo "<h3>Total Available Books: {$row['total_available']} </h3>";
+    echo '<div class="available-books-container">';
+    echo "<h3><span class='available-books-count'>{$row['total_available']} Available books</span></h3>";
     echo "</div>";
 } else {
     // Display an error message if the query fails

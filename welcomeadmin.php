@@ -41,6 +41,12 @@ mysqli_stmt_close($stmt);
   <style>
     body {
       font-family: 'Arial', sans-serif;
+      margin: 0;
+      /* Remove default margin */
+      padding: 0;
+      /* Remove default padding */
+      overflow-x: hidden;
+      /* Prevent horizontal scrollbar */
     }
 
     /* Centered message style */
@@ -50,11 +56,7 @@ mysqli_stmt_close($stmt);
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-
-
-
       background: rgba(255, 255, 255, 0.8);
-
       padding: 10px;
       border-radius: 10px;
     }
@@ -79,23 +81,65 @@ mysqli_stmt_close($stmt);
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      margin-top: 40px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      padding: 20px;
     }
 
     .dashboard-section {
-      background-color: #f9f9f9;
+      flex: 1 1 500px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: calc(50% - 20px);
-      max-width: 550px;
     }
 
+    /* Adjustments for small screens */
     @media (max-width: 768px) {
       .dashboard-section {
-        width: 100%;
+        flex-basis: calc(100% - 40px);
+        /* Adjust for smaller screen */
       }
+    }
+
+    .currently-borrowed-books.wider {
+      width: 865px;
+      /* Adjust width as needed */
+      max-width: none;
+    }
+
+    .gradient1 {
+      background: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.6));
+    }
+
+    .gradient2 {
+      background: linear-gradient(to bottom, rgba(0, 255, 0, 0), rgba(0, 255, 0, 0.6));
+    }
+
+    .gradient3 {
+      background: linear-gradient(to bottom, rgba(0, 0, 255, 0), rgba(0, 0, 255, 0.6));
+    }
+
+    .gradient4 {
+      background: linear-gradient(to bottom, rgba(255, 255, 0, 0), rgba(255, 255, 0, 0.6));
+    }
+
+    #backToTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    #backToTopBtn:hover {
+      background-color: rgba(0, 0, 0, 0.7);
     }
   </style>
 </head>
@@ -134,7 +178,7 @@ mysqli_stmt_close($stmt);
 
     <div class="centered-message">
       <h1>Welcome to the <span class="highlight">ZPPSU AlimBrary</span> Management System</h1>
-
+      <a href="#dashboard"><button class="btn btn-info btn-md p-2 text-center text-light fw-bold">Go to Dashboard</button></a>
     </div>
 
   </div>
@@ -211,48 +255,59 @@ mysqli_stmt_close($stmt);
   </nav>
 
 
-  <div class="dashboard-container">
+  <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
     <div class="container">
-    <h1 class="fw-bold text-center">Dashboard</h1>
+      <h1 class="fw-bold text-center"><i class="fas fa-tachometer text-dark"></i> Dashboard</h1>
     </div>
-   
-    <div id="book-count" class="dashboard-section">
+
+    <div id="book-count" class="dashboard-section gradient3">
+      <i class="fas fa-book fa-3x text-primary"></i>
       <?php include 'total_books.php'; ?>
     </div>
 
-    <div class="users-list dashboard-section">
+    <div class="users-list dashboard-section gradient3">
+      <i class="fas fa-users fa-3x text-primary"></i>
       <?php include 'get_users.php'; ?>
     </div>
 
-    <div class="current_borrowing_users dashboard-section">
+    <div class="current_borrowing_users dashboard-section gradient2">
+      <i class="fas fa-user-clock fa-3x text-success"></i>
       <?php include 'current_borrowing_users.php'; ?>
     </div>
 
-    <div class="total-available-books dashboard-section">
+    <div class="total-available-books dashboard-section gradient2">
+      <i class="fas fa-book-open fa-3x text-success"></i>
       <?php include 'total_available_books.php'; ?>
     </div>
 
-    <div class="total-borrowed-and-returned dashboard-section">
+    <div class="total-borrowed-and-returned dashboard-section gradient2">
+      <i class="fas fa-exchange-alt fa-3x text-success"></i>
       <?php include 'total_borrowed_and_returned.php'; ?>
     </div>
 
-    <div class="most-borrowed-books dashboard-section">
-      <?php include 'top_borrowed_books.php'; ?>
-    </div>
-
-    <div class="top-returned-books dashboard-section">
-      <?php include 'top_returned_books.php'; ?>
-    </div>
-    
-    <div class="top-user-borrowed dashboard-section">
+    <div class="top-user-borrowed dashboard-section gradient1">
+      <i class="fas fa-chart-line fa-3x text-danger"></i>
       <?php include 'top_user_borrowed.php'; ?>
     </div>
 
-    <div class="top-returned-user dashboard-section">
+
+    <div class="top-returned-user dashboard-section gradient1">
+      <i class="fas fa-chart-line fa-3x text-danger"></i>
       <?php include 'top_returned_user.php'; ?>
     </div>
 
-    <div class="currently-borrowed-books dashboard-section">
+    <div class="most-borrowed-books dashboard-section  gradient1">
+      <i class="fas fa-book-reader fa-3x text-danger"></i>
+      <?php include 'top_borrowed_books.php'; ?>
+    </div>
+
+    <div class="top-returned-books dashboard-section gradient4">
+      <i class="fas fa-book-reader fa-3x text-warning"></i>
+      <?php include 'top_returned_books.php'; ?>
+    </div>
+
+    <div class="currently-borrowed-books dashboard-section wider gradient4">
+      <i class="fas fa-book fa-3x text-warning"></i>
       <?php include 'currently_borrowed_books.php'; ?>
     </div>
 
@@ -264,6 +319,30 @@ mysqli_stmt_close($stmt);
 
 
   </div>
+
+<!-- Back to Top Button -->
+<button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script>
+  $(document).ready(function() {
+
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 100) {
+        $('#backToTopBtn').fadeIn();
+      } else {
+        $('#backToTopBtn').fadeOut();
+      }
+    });
+
+
+    $('#backToTopBtn').click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 'slow');
+      return false;
+    });
+  });
+</script>
 
 
 </html>

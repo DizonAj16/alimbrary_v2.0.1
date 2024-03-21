@@ -104,6 +104,25 @@ mysqli_stmt_close($stmt);
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
         }
+
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #backToTopBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
     </style>
 </head>
 
@@ -201,6 +220,7 @@ mysqli_stmt_close($stmt);
                         <tbody>
                             <?php
                             // Loop through each row in the result set
+                            // Loop through each row in the result set
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
                                 echo "<td>" . $row['return_id'] . "</td>";
@@ -215,14 +235,22 @@ mysqli_stmt_close($stmt);
                                 $diff = abs($date2 - $date1);
                                 $days_borrowed = floor($diff / (60 * 60 * 24));
 
-                                // Display "Less than a day" if days borrowed is 0
-                                if ($days_borrowed == 0) {
-                                    echo "<td>Less than a day</td>";
+                                // Convert days borrowed into months and remaining days if it exceeds 30 days
+                                if ($days_borrowed >= 30) {
+                                    $months = floor($days_borrowed / 30);
+                                    $remaining_days = $days_borrowed % 30;
+                                    echo "<td>$months month(s) $remaining_days day(s)</td>";
                                 } else {
-                                    echo "<td>$days_borrowed day(s)</td>";
+                                    // Display "Less than a day" if days borrowed is 0
+                                    if ($days_borrowed == 0) {
+                                        echo "<td>Less than a day</td>";
+                                    } else {
+                                        echo "<td>$days_borrowed day(s)</td>";
+                                    }
                                 }
                                 echo "</tr>";
                             }
+
                             ?>
                         </tbody>
                     </table>
@@ -233,26 +261,50 @@ mysqli_stmt_close($stmt);
     </div>
 
     <script>
-    // Function to perform live search
-    function liveSearch() {
-        // Get the search query from the input field
-        var searchQuery = document.getElementById('searchInput').value.trim();
+        // Function to perform live search
+        function liveSearch() {
+            // Get the search query from the input field
+            var searchQuery = document.getElementById('searchInput').value.trim();
 
-        // Send the search query to the server using AJAX
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Update the table with the filtered results
-                document.getElementById("returnHistoryTable").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "search_return_history.php?q=" + searchQuery, true);
-        xhttp.send();
-    }
+            // Send the search query to the server using AJAX
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Update the table with the filtered results
+                    document.getElementById("returnHistoryTable").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "search_return_history.php?q=" + searchQuery, true);
+            xhttp.send();
+        }
 
-    // Trigger live search on input change
-    document.getElementById('searchInput').addEventListener('input', liveSearch);
-</script>
+        // Trigger live search on input change
+        document.getElementById('searchInput').addEventListener('input', liveSearch);
+    </script>
+
+
+    <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#backToTopBtn').fadeIn();
+                } else {
+                    $('#backToTopBtn').fadeOut();
+                }
+            });
+
+
+            $('#backToTopBtn').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'slow');
+                return false;
+            });
+        });
+    </script>
 
 </body>
 

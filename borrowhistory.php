@@ -86,6 +86,25 @@ mysqli_stmt_close($stmt);
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
         }
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #backToTopBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
     </style>
 </head>
 
@@ -214,13 +233,22 @@ mysqli_stmt_close($stmt);
                                         // Calculate the days left
                                         // Calculate the days left
                                         // Calculate the days left
+                                        // Calculate the days left
                                         if ($row['return_date']) {
                                             // Book has been returned, calculate the days since return
                                             $return_date = new DateTime($row['return_date']); // Assuming 'return_date' is the column name in your database
                                             $current_date = new DateTime();
                                             $interval = $return_date->diff($current_date);
                                             $days_since_return = $interval->days;
-                                            $days_left = ($days_since_return == 0) ? 'Less than a day' : $days_since_return . ' day(s)';
+                                            if ($days_since_return == 0) {
+                                                $days_left = 'Less than a day';
+                                            } elseif ($days_since_return >= 30) {
+                                                $months = floor($days_since_return / 30);
+                                                $remaining_days = $days_since_return % 30;
+                                                $days_left = $months . ' month(s) ' . $remaining_days . ' day(s)';
+                                            } else {
+                                                $days_left = $days_since_return . ' day(s)';
+                                            }
                                         } else {
                                             // Book has not been returned, calculate the days left until return
                                             $return_date = new DateTime($row['return_until']); // Assuming 'return_until' is the column name in your database
@@ -229,13 +257,16 @@ mysqli_stmt_close($stmt);
                                             $days_left = $interval->days;
                                             if ($days_left == 0) {
                                                 $days_left = 'Less than a day';
-                                            } else if ($days_left < 0) {
+                                            } elseif ($days_left < 0) {
                                                 $days_left = 'Overdue';
+                                            } elseif ($days_left >= 30) {
+                                                $months = floor($days_left / 30);
+                                                $remaining_days = $days_left % 30;
+                                                $days_left = $months . ' month(s) ' . $remaining_days . ' day(s)';
+                                            } else {
+                                                $days_left = $days_left . ' day(s)';
                                             }
                                         }
-
-
-
 
                                         echo '<td>' . $days_left . '</td></tr>';
                                     }
@@ -282,6 +313,30 @@ mysqli_stmt_close($stmt);
         // Trigger live search on input change
         document.getElementById('searchInput').addEventListener('input', liveSearch);
     </script>
+
+<button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#backToTopBtn').fadeIn();
+                } else {
+                    $('#backToTopBtn').fadeOut();
+                }
+            });
+
+
+            $('#backToTopBtn').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'slow');
+                return false;
+            });
+        });
+    </script>
+ 
 </body>
 
 </html>

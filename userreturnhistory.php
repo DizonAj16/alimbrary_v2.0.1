@@ -140,6 +140,24 @@ mysqli_stmt_close($stmt);
         .btn-danger {
             margin: 5px;
         }
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #backToTopBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
     </style>
 </head>
 
@@ -249,14 +267,26 @@ mysqli_stmt_close($stmt);
                                     $returned_date = strtotime($row['returned_date_time']);
                                     $days_borrowed = floor(($returned_date - $borrow_date) / (60 * 60 * 24));
 
-                                    // If days borrowed is 0, display "Less than a day"
-                                    if ($days_borrowed == 0) {
-                                        echo "<td>Less than a day</td>";
+                                    // If days borrowed exceeds 30 days, convert it into months and remaining days
+                                    if ($days_borrowed > 30) {
+                                        $months = floor($days_borrowed / 30);
+                                        $remaining_days = $days_borrowed % 30;
+                                        if ($remaining_days == 0) {
+                                            echo "<td>$months month(s)</td>";
+                                        } else {
+                                            echo "<td>$months month(s) $remaining_days day(s)</td>";
+                                        }
                                     } else {
-                                        echo "<td>  $days_borrowed  day(s)</td>";
+                                        // If days borrowed is less than or equal to 30 days, display the number of days
+                                        if ($days_borrowed == 0) {
+                                            echo "<td>Less than a day</td>";
+                                        } else {
+                                            echo "<td>$days_borrowed day(s)</td>";
+                                        }
                                     }
                                     echo "</tr>";
                                 }
+
                                 ?>
                             </tbody>
                         </table>
@@ -291,6 +321,31 @@ mysqli_stmt_close($stmt);
             });
         });
     </script>
+
+
+<button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#backToTopBtn').fadeIn();
+                } else {
+                    $('#backToTopBtn').fadeOut();
+                }
+            });
+
+
+            $('#backToTopBtn').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'slow');
+                return false;
+            });
+        });
+    </script>
+ 
 </body>
 
 </html>

@@ -16,15 +16,13 @@ $result_top_returned_users = mysqli_query($conn, $query_top_returned_users);
 
 // Check if the query was successful
 if ($result_top_returned_users) {
-    echo '<div style="display: flex; flex-direction: column;">';
-    echo "<h3 style='margin-bottom: 10px; text-align: center;'>Top Returned Users</h3>";
+    echo '<div style="display: flex; flex-direction: column; align-items: center;">';
+    echo "<h3 style='margin-bottom: 20px; text-align: center; color: red;' class='fw-bold'>Top Returning Users</h3>"; // Apply red color to the heading
     echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; // Start an ordered list with decimal numbering
     
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result_top_returned_users)) {
-        $counter = 1; // Reset the counter for each user
-        echo "<li style='margin-bottom: 5px;'>{$row['username']} (Returned {$row['return_count']} books)</li>"; // Include the counter for each user
-        $counter++;
+        echo "<li style='margin-bottom: 5px; color: red; font-weight:bold; font-size: 18px;'>{$row['username']} (Returned {$row['return_count']} books)</li>"; // Include the counter for each user and apply red color
     }
     echo "</ol>"; // End the ordered list
     echo "</div>"; // End the flex container

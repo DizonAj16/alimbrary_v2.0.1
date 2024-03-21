@@ -16,20 +16,17 @@ $result_top_returned = mysqli_query($conn, $query_top_returned);
 
 // Check if the query was successful
 if ($result_top_returned) {
-    echo '<div>';
-    echo "<h3 class='text-center' style='margin-bottom: 10px;'>Top Returned Books</h3>";
-    echo "<ol style='padding-left: 20px;'>"; // Use <ol> for numbered list
-    $count = 1; // Initialize numbering counter
+    echo "<h3 style='margin-bottom: 20px; font-size: 30px;' class='text-center fw-bold'>Top Returned Books</h3>"; // Increased font size
+    echo '<div class="d-flex justify-content-center align-items-center">';
+    echo "<div class='text-start'>";
+    
+    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; // Use <ol> for numbered list
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result_top_returned)) {
-        if ($count == 1) { // Keep the first item centered
-            echo "<div><li>{$row['title']} (Returned {$row['return_count']} times)</li></div>";
-        } else { // Flex-start the rest of the items
-            echo "<li>{$row['title']} (Returned {$row['return_count']} times)</li>";
-        }
-        $count++; // Increment counter for each item
+        echo "<li style='font-weight:bold; font-size: 20px;'>{$row['title']} (Returned {$row['return_count']} times)</li>"; // Added font-size property
     }
     echo "</ol>";
+    echo "</div>";
     echo "</div>";
 } else {
     // Display an error message if the query fails

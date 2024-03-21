@@ -17,16 +17,17 @@ $result = mysqli_query($conn, $query);
 // Check if the query was successful
 if ($result) {
     echo '<div class="text-center">';
-    echo "<h3>Top Borrowed Books</h3>";
-    echo "<ul style='list-style-type: none; padding-left: 0; display: flex; flex-direction: column; align-items: flex-start;'>";
+    echo "<h3 style='color: red; margin-bottom: 20px;' class='fw-bold'>Most Popular Books</h3>"; // Apply red color to the heading and add margin-bottom for spacing
+    echo "<div style='display: flex; flex-direction: column; align-items: center;'>"; // Use flexbox to align content center
+    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; // Use <ol> for ordered list and specify the style
     // Fetch the result as an associative array
-    $count = 1;
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<li style='margin-bottom: 10px;'>{$count}. {$row['title']} - Borrowed {$row['borrow_count']} times</li>";
-        $count++;
+        // Display each book title and its borrow count
+        echo "<li style='color: red; text-align: start; font-weight:bold;'>{$row['title']} - Borrowed {$row['borrow_count']} times</li>"; // Apply red color to the list items and center the text
     }
-    echo "</ul>";
-    echo "</div>";
+    echo "</ol>";
+    echo "</div>"; // End of flex container
+    echo "</div>"; // End of text-center div
 } else {
     // Display an error message if the query fails
     echo "Error: " . mysqli_error($conn);

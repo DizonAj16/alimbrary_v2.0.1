@@ -1,3 +1,16 @@
+<style>
+  .borrowed-books-container {
+    text-align: center;
+    color: green;
+  }
+
+  .borrowed-books-count {
+    font-size: 30px;
+    color: green; /* Dark color for the number */
+    font-weight: bold;
+  }
+</style>
+
 <?php
 // Include database connection
 include 'config.php';
@@ -18,8 +31,8 @@ if ($result) {
     $row = mysqli_fetch_assoc($result);
     
     // Display the total number of books currently borrowed by users
-    echo '<div class="text-center">';
-    echo "<h3>Total number of books currently borrowed by users: {$row['total_borrowed_books']}</h3>";
+    echo '<div class="borrowed-books-container">';
+    echo "<h3><span class='borrowed-books-count'>{$row['total_borrowed_books']} Books currently borrowed</span></h3>";
     echo "</div>";
 } else {
     // Display an error message if the query fails
