@@ -206,7 +206,7 @@
                             <div class="user-info">
                                 <h4><?php echo $username; ?></h4>
                                 <p><strong>User ID:</strong> <?php echo $param_id; ?></p>
-                                <p><strong>Email:</strong> <?php echo $email; ?></p <p><strong>Email:</strong> <?php echo $email; ?></p>
+                                <p><strong>Email:</strong> <?php echo $email; ?><?php echo $email; ?></p>
                                 <p><strong>Full Name:</strong> <?php echo $full_name; ?></p>
                                 <p><strong>Occupation:</strong> <?php echo $occupation; ?></p>
                                 <p><strong>Address:</strong> <?php echo $address; ?></p>

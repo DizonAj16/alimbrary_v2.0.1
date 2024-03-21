@@ -257,7 +257,7 @@ mysqli_stmt_close($stmt);
 
   <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
     <div class="container">
-      <h1 class="fw-bold text-center"><i class="fas fa-tachometer text-dark"></i> Dashboard</h1>
+      <h1 class="fw-bold text-center"><i class="fas fa-tachometer-alt text-dark"></i> Dashboard</h1>
     </div>
 
     <div id="book-count" class="dashboard-section gradient3">
