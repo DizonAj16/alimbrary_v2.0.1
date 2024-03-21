@@ -85,7 +85,6 @@
             margin-bottom: 20px;
             object-fit: cover;
             /* Maintain aspect ratio and cover container */
-            border-radius: 50%;
         }
 
         @media (max-width: 768px) {
@@ -139,8 +138,6 @@
                     $created_at = $row["created_at"];
                     $image_path = $row["image"];
 
-                    // Calculate time since registration
-                    // Calculate time since registration
                     $registration_date = new DateTime($created_at);
                     $current_date = new DateTime();
                     $interval = $current_date->diff($registration_date);
@@ -150,21 +147,20 @@
                     if ($days_since_registration == 0) {
                         $registration_status = "Just now";
                     } else {
-                        // If user joined more than 30 days ago, display duration in terms of months and days
-                        if ($days_since_registration > 30) {
+                        // If user joined within the last 30 days, display the number of days
+                        if ($days_since_registration <= 30) {
+                            $registration_status = "$days_since_registration day(s) ago";
+                        } else {
+                            // If user joined more than 30 days ago, calculate months and remaining days
                             $months = floor($days_since_registration / 30);
                             $remaining_days = $days_since_registration % 30;
                             if ($remaining_days == 0) {
-                                $registration_status = "$months month(s)";
+                                $registration_status = "$months month(s) ago";
                             } else {
-                                $registration_status = "$months month(s) $remaining_days day(s)";
+                                $registration_status = "$months month(s) $remaining_days day(s) ago";
                             }
-                        } else {
-                            // If user joined within the last 30 days, display the number of days
-                            $registration_status = "$days_since_registration day(s) ago";
                         }
                     }
-
 
                     // Close the statement
                     mysqli_stmt_close($stmt);
@@ -198,21 +194,26 @@
                         <div class="user-info-container">
                             <div class="user-image">
                                 <?php
-                                echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image" style="border: 1px solid blue;">';
+                                if (!empty($image_path)) {
+                                    echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image" style="border: 1px solid blue;">';
+                                } else {
+                                    // Use Font Awesome icon as an alternative if no image is available
+                                    echo '<i class="fas fa-user-circle fa-9x" style="color: #007bff;"></i>';
+                                }
                                 ?>
                             </div>
 
                             <div class="user-info">
                                 <h4><?php echo $username; ?></h4>
                                 <p><strong>User ID:</strong> <?php echo $param_id; ?></p>
-                                <p><strong>Email:</strong> <?php echo $email; ?></p>
+                                <p><strong>Email:</strong> <?php echo $email; ?></p <p><strong>Email:</strong> <?php echo $email; ?></p>
                                 <p><strong>Full Name:</strong> <?php echo $full_name; ?></p>
                                 <p><strong>Occupation:</strong> <?php echo $occupation; ?></p>
                                 <p><strong>Address:</strong> <?php echo $address; ?></p>
                                 <p><strong>Contact Number:</strong> <?php echo $contact_number; ?></p>
                                 <p><strong>User Type:</strong> <?php echo $user_type; ?></p>
                                 <p><strong>Date Created:</strong> <?php echo $created_at; ?></p>
-                                <p><strong>Joined <?php echo $days_since_registration; ?> days ago</strong></p>
+                                <p><strong>Joined <?php echo $registration_status; ?></strong></p> <!-- Display registration status here -->
                                 <div class="text-center"></div>
                                 <a href="users.php" class="btn btn-primary"><i class="fas fa-chevron-left"></i> Back to Users</a>
                             </div>

@@ -36,7 +36,7 @@ if ($result_borrowed) {
         <div class="books-info">
             
             <p><?php echo $row_borrowed['total_borrowed']; ?></p>
-            <h3>Total Borrowed Books</h3>
+            <h3 class="fw-bold">Total Borrowed Books</h3>
         </div>
         <?php
         // Query to get the total number of returned books
@@ -53,7 +53,7 @@ if ($result_borrowed) {
             <div class="books-info">
                
                 <p><?php echo $row_returned['total_returned']; ?></p>
-                <h3>Total Returned Books</h3>
+                <h3 class="fw-bold">Total Returned Books</h3>
             </div>
             <?php
         } else {
