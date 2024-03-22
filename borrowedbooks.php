@@ -51,12 +51,10 @@ mysqli_stmt_close($stmt);
             border: 1px solid #dee2e6;
             padding: 8px;
             text-align: start;
-            font-size: 14px;
         }
 
         .table th {
             color: black;
-            font-size: 14px;
         }
 
         .btn-primary,
@@ -68,8 +66,7 @@ mysqli_stmt_close($stmt);
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .card-header {
@@ -262,7 +259,7 @@ mysqli_stmt_close($stmt);
                         </div>
                     </div>
 
-                    <div id="noResults" class="alert alert-danger mt-3" style="display: none;">
+                    <div id="noResults" class="alert alert-danger ms-2 me-2" style="display: none;">
                         No results found
                     </div>
                 </div>

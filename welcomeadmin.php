@@ -86,7 +86,11 @@ mysqli_stmt_close($stmt);
     }
 
     .dashboard-section {
-      flex: 1 1 300px;
+      flex: 1 1 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
       padding: 20px;
       border-radius: 10px;
@@ -100,6 +104,12 @@ mysqli_stmt_close($stmt);
         /* Adjust for smaller screen */
       }
     }
+
+    .dashboard-section i {
+      margin-bottom: 10px;
+      /* Adjust as needed */
+    }
+
 
     .currently-borrowed-books.wider {
       width: 865px;
@@ -320,29 +330,29 @@ mysqli_stmt_close($stmt);
 
   </div>
 
-<!-- Back to Top Button -->
-<button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
-<script src="jquery/jquery-3.5.1.min.js"></script>
-<script>
-  $(document).ready(function() {
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+  <script src="jquery/jquery-3.5.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
 
-    $(window).scroll(function() {
-      if ($(this).scrollTop() > 100) {
-        $('#backToTopBtn').fadeIn();
-      } else {
-        $('#backToTopBtn').fadeOut();
-      }
+      $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+          $('#backToTopBtn').fadeIn();
+        } else {
+          $('#backToTopBtn').fadeOut();
+        }
+      });
+
+
+      $('#backToTopBtn').click(function() {
+        $('html, body').animate({
+          scrollTop: 0
+        }, 'slow');
+        return false;
+      });
     });
-
-
-    $('#backToTopBtn').click(function() {
-      $('html, body').animate({
-        scrollTop: 0
-      }, 'slow');
-      return false;
-    });
-  });
-</script>
+  </script>
 
 
 </html>

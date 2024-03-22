@@ -140,6 +140,7 @@ mysqli_stmt_close($stmt);
         .btn-danger {
             margin: 5px;
         }
+
         #backToTopBtn {
             display: none;
             position: fixed;
@@ -291,61 +292,62 @@ mysqli_stmt_close($stmt);
                             </tbody>
                         </table>
                     </div>
+                    <div id="noResults" class="alert alert-danger mt-3 mb-3 me-2 ms-2" style="display: none;">
+                        No results found
+                    </div>
                 </div>
             </div>
-        <?php endif; ?>
-
-        <div id="noResults" class="alert alert-danger mt-3" style="display: none;">
-            No results found
-        </div>
     </div>
+<?php endif; ?>
 
-    <script src="jquery/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#searchInput').keyup(function() {
-                var searchText = $(this).val().toLowerCase();
-                $('tbody tr').each(function() {
-                    var title = $(this).find('td:eq(1)').text().toLowerCase(); // Index 1 for the title column
-                    if (title.indexOf(searchText) === -1) {
-                        $(this).hide();
-                    } else {
-                        $(this).show();
-                    }
-                });
-                if ($('tbody tr:visible').length === 0) {
-                    $('#noResults').show();
+
+
+<script src="jquery/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#searchInput').keyup(function() {
+            var searchText = $(this).val().toLowerCase();
+            $('tbody tr').each(function() {
+                var title = $(this).find('td:eq(1)').text().toLowerCase(); // Index 1 for the title column
+                if (title.indexOf(searchText) === -1) {
+                    $(this).hide();
                 } else {
-                    $('#noResults').hide();
+                    $(this).show();
                 }
             });
+            if ($('tbody tr:visible').length === 0) {
+                $('#noResults').show();
+            } else {
+                $('#noResults').hide();
+            }
         });
-    </script>
+    });
+</script>
 
 
 <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
-    <script src="jquery/jquery-3.5.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
+<script src="jquery/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
 
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 100) {
-                    $('#backToTopBtn').fadeIn();
-                } else {
-                    $('#backToTopBtn').fadeOut();
-                }
-            });
-
-
-            $('#backToTopBtn').click(function() {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 'slow');
-                return false;
-            });
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('#backToTopBtn').fadeIn();
+            } else {
+                $('#backToTopBtn').fadeOut();
+            }
         });
-    </script>
- 
+
+
+        $('#backToTopBtn').click(function() {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 'slow');
+            return false;
+        });
+    });
+</script>
+
 </body>
 
 </html>
