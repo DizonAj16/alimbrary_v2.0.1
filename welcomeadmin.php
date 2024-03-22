@@ -86,7 +86,7 @@ mysqli_stmt_close($stmt);
     }
 
     .dashboard-section {
-      flex: 1 1 500px;
+      flex: 1 1 300px;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
       padding: 20px;
       border-radius: 10px;
