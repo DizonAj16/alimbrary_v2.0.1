@@ -155,7 +155,6 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             /* Change the color to your preference */
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
     </style>
     <script src="js/bootstrap.bundle.js"></script>

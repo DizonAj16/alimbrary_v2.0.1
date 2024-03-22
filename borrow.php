@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<script>
             setTimeout(function() {
                 window.location.href = "borrowedbooks.php?prompt=success";
-            }, 1000); // Delay in milliseconds (2 seconds)
+            }, 300); // Delay in milliseconds (2 seconds)
         </script>';
         exit;
     }

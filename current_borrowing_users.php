@@ -1,12 +1,12 @@
 <style>
   .borrowed-books-container {
     text-align: center;
-    color: green;
+    color: white;
   }
 
   .borrowed-books-count {
     font-size: 30px;
-    color: green; /* Dark color for the number */
+    color: white; /* Dark color for the number */
     font-weight: bold;
   }
 </style>

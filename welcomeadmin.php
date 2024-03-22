@@ -86,15 +86,21 @@ mysqli_stmt_close($stmt);
     }
 
     .dashboard-section {
-      flex: 1 1 320px;
+      flex: 1 1 290px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .dashboard-section:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      /* Adjust shadow properties as needed */
     }
 
     /* Adjustments for small screens */
@@ -150,6 +156,10 @@ mysqli_stmt_close($stmt);
 
     #backToTopBtn:hover {
       background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    #borrowedBooksContent {
+      display: none;
     }
   </style>
 </head>
@@ -270,58 +280,78 @@ mysqli_stmt_close($stmt);
       <h1 class="fw-bold text-center"><i class="fas fa-tachometer-alt text-dark"></i> Dashboard</h1>
     </div>
 
-    <div id="book-count" class="dashboard-section gradient3">
-      <i class="fas fa-book fa-3x text-primary"></i>
+    <!-- Modify the dashboard sections with solid background colors -->
+    <div id="book-count" class="dashboard-section bg-primary text-white">
+      <i class="fas fa-book fa-3x"></i>
       <?php include 'total_books.php'; ?>
     </div>
 
-    <div class="users-list dashboard-section gradient2">
-      <i class="fas fa-users fa-3x text-success"></i>
+    <div class="users-list dashboard-section bg-success text-white">
+      <i class="fas fa-users fa-3x"></i>
       <?php include 'get_users.php'; ?>
     </div>
 
-    <div class="current_borrowing_users dashboard-section gradient2">
-      <i class="fas fa-user-clock fa-3x text-success"></i>
+    <div class="current_borrowing_users dashboard-section bg-warning text-white">
+      <i class="fas fa-user-clock fa-3x"></i>
       <?php include 'current_borrowing_users.php'; ?>
     </div>
 
-    <div class="total-available-books dashboard-section gradient3">
-      <i class="fas fa-book-open fa-3x text-primary"></i>
+    <div class="total-available-books dashboard-section bg-primary text-white">
+      <i class="fas fa-book-open fa-3x"></i>
       <?php include 'total_available_books.php'; ?>
     </div>
 
-    <div class="total-borrowed-and-returned dashboard-section gradient3">
-      <i class="fas fa-exchange-alt fa-3x text-primary"></i>
+    <div class="total-borrowed-and-returned dashboard-section bg-success text-white">
+      <i class="fas fa-exchange-alt fa-3x"></i>
       <?php include 'total_borrowed_and_returned.php'; ?>
     </div>
 
-    <div class="top-user-borrowed dashboard-section gradient1">
-      <i class="fas fa-chart-line fa-3x text-danger"></i>
+    <div class="top-user-borrowed dashboard-section bg-danger text-white">
+      <i class="fas fa-chart-line fa-3x"></i>
       <?php include 'top_user_borrowed.php'; ?>
     </div>
 
-
-    <div class="top-returned-user dashboard-section gradient1">
-      <i class="fas fa-chart-line fa-3x text-danger"></i>
+    <div class="top-returned-user dashboard-section bg-info text-white">
+      <i class="fas fa-chart-line fa-3x"></i>
       <?php include 'top_returned_user.php'; ?>
     </div>
 
-    <div class="most-borrowed-books dashboard-section  gradient3">
-      <i class="fas fa-book-reader fa-3x text-primary"></i>
+    <div class="most-borrowed-books dashboard-section bg-warning text-white">
+      <i class="fas fa-book-reader fa-3x"></i>
       <?php include 'top_borrowed_books.php'; ?>
     </div>
 
-    <div class="top-returned-books dashboard-section gradient4">
-      <i class="fas fa-book-reader fa-3x text-warning"></i>
+    <div class="top-returned-books dashboard-section bg-info text-white">
+      <i class="fas fa-book-reader fa-3x"></i>
       <?php include 'top_returned_books.php'; ?>
     </div>
 
-    <div class="currently-borrowed-books dashboard-section wider gradient1">
-      <i class="fas fa-book fa-3x text-danger"></i>
-      <?php include 'currently_borrowed_books.php'; ?>
+    <div class="currently-borrowed-books dashboard-section bg-danger text-white" id="borrowedBooksSection">
+      <i class="fas fa-book fa-3x"></i>
+      <h3 class="fw-bold" id="borrowedBooksTitle">Currently borrowed books</h3>
+      <div id="borrowedBooksContent" style="display: none;">
+        <?php include 'currently_borrowed_books.php'; ?>
+      </div>
+      <button class="btn btn-warning btn-md fw-bold" id="expandButton" onclick="toggleExpand()">Expand</button>
     </div>
 
+    <script>
+      function toggleExpand() {
+        var content = document.getElementById("borrowedBooksContent");
+        var title = document.getElementById("borrowedBooksTitle");
+        var button = document.getElementById("expandButton");
 
+        if (content.style.display === "none") {
+          content.style.display = "block";
+          title.style.display = "none";
+          button.textContent = "Collapse";
+        } else {
+          content.style.display = "none";
+          title.style.display = "block";
+          button.textContent = "Expand";
+        }
+      }
+    </script>
 
 
 
