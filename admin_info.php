@@ -3,7 +3,7 @@
 session_start();
 
 // Check if user is logged in
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: login.php");
     exit;
 }
@@ -37,12 +37,7 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             if (mysqli_stmt_fetch($stmt)) {
                 // Calculate days joined
                 // Calculate days joined
-                $dateJoined = new DateTime($created_at);
-                $dateNow = new DateTime();
-                $interval = $dateJoined->diff($dateNow);
-                $daysJoined = $interval->format('%a');
-
-                // If days joined exceeds 30 days, convert it into months and remaining days
+                // Calculate days joined
                 $dateJoined = new DateTime($created_at);
                 $dateNow = new DateTime();
                 $interval = $dateJoined->diff($dateNow);
@@ -115,6 +110,7 @@ mysqli_close($conn);
             font-size: 28px;
             color: black;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .profile-image img {
@@ -124,7 +120,8 @@ mysqli_close($conn);
             border: 5px solid #3498db;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: block;
-            margin: 0 auto;
+            margin: 0 auto 20px;
+            /* Added margin bottom */
         }
 
         .profile-info,
@@ -142,44 +139,23 @@ mysqli_close($conn);
         }
 
         .info-label {
-            float: left;
             width: 30%;
             color: #555;
             font-weight: bold;
-            text-align: left;
-            /* Adjusted text alignment */
-            margin-top: 5px;
-            /* Added margin to the top */
+            float: left;
         }
 
         .info-value {
-            float: left;
             width: 70%;
             color: #333;
             font-weight: normal;
-            text-align: left;
-            /* Adjusted text alignment */
-            margin-top: 5px;
-            /* Added margin to the top */
+            float: left;
         }
 
         .file-upload {
             text-align: center;
         }
 
-        .profile-image img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid #3498db;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: block;
-            margin: 0 auto;
-        }
-
-        input[type="file"] {
-            display: none;
-        }
 
         label[for="image"] {
             cursor: pointer;
@@ -190,6 +166,7 @@ mysqli_close($conn);
             width: 100%;
             max-width: 50px;
             margin: 20px auto 0;
+            /* Adjusted margin */
             padding: 10px 10px;
             text-align: center;
             background-color: #3498db;
@@ -203,6 +180,18 @@ mysqli_close($conn);
             background-color: #2b85b8;
         }
 
+        .no-underline {
+            text-decoration: none !important;
+        }
+
+        .username {
+            text-align: center;
+            margin-top: 5px;
+            /* Adjust as needed */
+            font-weight: bold;
+            color: #333;
+        }
+
         @media (max-width: 767px) {
 
             .info-label,
@@ -210,17 +199,12 @@ mysqli_close($conn);
                 width: 100%;
                 float: none;
                 text-align: center;
-                /* Center align on smaller screens */
             }
 
             .container {
                 max-width: 90%;
                 padding: 20px;
             }
-        }
-
-        .no-underline {
-            text-decoration: none !important;
         }
     </style>
 </head>
@@ -236,13 +220,29 @@ mysqli_close($conn);
                 echo '<img src="default.jpg" alt="Profile Image">';
             }
             ?>
-            <div class="file-upload mt-2">
+            <div class="username"><?php echo $username; ?></div>
+            <div class="file-upload mt-2 d-flex justify-content-center">
                 <form action="upload.php" method="post" enctype="multipart/form-data">
-                    <input type="file" name="image" id="image" accept="image/*">
-                    <label for="image" data-bs-toggle="tooltip" data-bs-title="Upload image"><i class="fas fa-plus-circle fa-lg text-success" style="font-size: 30px;"></i></label>
-                    <input type="submit" class="btn btn-link no-underline" value="Submit">
+                    <div class="input-group">
+                        <input type="file" class="form-control-sm d-none" name="image" id="image" accept="image/*">
+                        <label for="image" class="input-group-text me-2 rounded" data-bs-toggle="tooltip" data-bs-title="Upload image">
+                            <i class="fas fa-file-upload fa-lg text-success"></i>
+                        </label>
+                        <div class="col-xx-6">
+                            <input type="text" class="form-control form-control-sm" id="file-name" readonly>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-sm mt-2" value="Submit">
                 </form>
             </div>
+
+
+            <script>
+                document.getElementById('image').addEventListener('change', function() {
+                    var fileName = this.files[0].name;
+                    document.getElementById('file-name').value = fileName;
+                });
+            </script>
         </div>
 
         <div class="profile-info">
@@ -251,7 +251,8 @@ mysqli_close($conn);
                 <div class="info-value"><?php echo $id; ?></div>
             </div>
             <div class="info-row">
-                <div class="info-label">Username:</div>
+                <div class="
+                info-label">Username:</div>
                 <div class="info-value"><?php echo $username; ?></div>
             </div>
             <div class="info-row">
@@ -287,10 +288,9 @@ mysqli_close($conn);
                 <div class="info-label">Joined </div>
                 <div class="info-value"><?php echo $daysJoined; ?></div>
             </div>
-            <a class="btn btn-link text-info no-underline" href="updateinfo.php">Update User Info</a>
+            <a class="btn btn-link text-info" href="updateinfo.php">Update User Info</a>
         </div>
-        <a href="users.php" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
-
+        <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'users.php' : 'userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Home"><i class="fas fa-chevron-left"></i></a>
     </div>
 
 

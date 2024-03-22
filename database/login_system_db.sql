@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2024 at 08:18 PM
+-- Generation Time: Mar 22, 2024 at 05:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,7 +74,7 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (89, '1984', 'A dystopian novel set in a totalitarian society where individuality and independent thought are suppressed by the ruling Party led by Big Brother.', 'George Orwell', '978-583411954', 1949, 'Dystopian Fiction, Political Satire', 'Not Available', 0x75706c6f6164732f313938342e6a7067),
 (90, 'The Help', 'Set in 1960s Mississippi, the novel tells the story of African American maids who work for white families and the unlikely friendships that form amidst racial tensions and social injustices.', 'Kathryn Stockett', '978-821590241', 2009, 'Historical Fiction, Drama', 'Available', 0x75706c6f6164732f7468652068656c702e6a7067),
 (91, 'Watchmen', 'Set in an alternate history where superheroes are real, \"Watchmen\" explores complex themes of power, morality, and human nature.', 'Alan Moore', '978-407028204', 1986, 'Superhero, Mystery, Drama', 'Not Available', 0x75706c6f6164732f57617463686d656e2c5f69737375655f312e6a7067),
-(92, 'X-Men: Days of Future Past', 'In a dystopian future, mutants are hunted to near-extinction, prompting the X-Men to send Wolverine back in time to prevent the catastrophic events that led to this timeline.', 'Chris Claremont', '978-196028760', 1981, 'Superhero, Science Fiction, Time Travel', 'Available', 0x75706c6f6164732f786d656e2e6a7067),
+(92, 'X-Men: Days of Future Past', 'In a dystopian future, mutants are hunted to near-extinction, prompting the X-Men to send Wolverine back in time to prevent the catastrophic events that led to this timeline.', 'Chris Claremont', '978-196028760', 1981, 'Superhero, Science Fiction, Time Travel', 'Not Available', 0x75706c6f6164732f786d656e2e6a7067),
 (93, 'The Structure of Scientific Revolutions', 'This seminal work explores the process of scientific revolutions and paradigm shifts.', 'Thomas S. Kuhn', '978-733645177', 1962, 'Philosophy of Science', 'Not Available', 0x75706c6f6164732f746865207374727563747572652e6a7067),
 (94, 'Capital in the Twenty-First Century', 'Piketty examines the dynamics of wealth and income inequality in capitalist economies.', 'Thomas Piketty', '978-234847473', 2013, 'Economics', 'Available', 0x75706c6f6164732f6361706974616c2d696e2d7468652d7477656e74792d66697273742d63656e747572792d332e6a7067),
 (95, 'Guns, Germs, and Steel: The Fates of Human Societies', 'Diamond explores the factors that have shaped human history, including geography, agriculture, and technology.', 'Jared Diamond', '978-537225273', 1997, 'Anthropology/History', 'Not Available', 0x75706c6f6164732f67756e732d6765726d732d616e642d737465656c2d7468652d66617465732d6f662d68756d616e2d736f636965746965732d323074682d616e6e69766572736172792d65646974696f6e2e6a7067),
@@ -279,7 +279,8 @@ INSERT INTO `borrowed_books` (`borrow_id`, `user_id`, `book_id`, `borrow_date`, 
 (218, 22, 17, '2024-03-20', '2024-05-25'),
 (219, 22, 89, '2024-03-20', '2024-04-27'),
 (220, 22, 48, '2024-03-20', '2024-05-31'),
-(221, 19, 97, '2024-03-21', '2024-03-30');
+(221, 19, 97, '2024-03-21', '2024-03-30'),
+(222, 19, 92, '2024-03-22', '2024-05-25');
 
 -- --------------------------------------------------------
 
@@ -484,10 +485,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `full_name`, `occupation`, `contact_num`, `address`, `password`, `created_at`, `user_type`, `image`) VALUES
 (14, 'admin', '', '', '', '', '', '$2y$10$hx7IQKH9AedGbB9t7NASMeAEEdwUM3auxfpFUm5w5l1epjKmH5pqa', '2024-02-19 00:01:30', 'admin', 0x496d616765732f696d61676573202837292e706e67),
 (19, 'user01', '', '', '', '', '', '$2y$10$ZcIJAaijt7fsOM94WOQ7VO9iuOlngdHeeSmbdt7zPbiLIjlopukOS', '2024-02-29 17:32:35', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
-(20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'Student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$UaJqQA3MwCIwPAVoET82iuT4L/bXTvpO20GqnlqjYodqh3LlQzc96', '2024-03-04 23:12:13', 'user', 0x496d616765732f73747564656e742069636f6e2e706e67),
+(20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'Student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$UaJqQA3MwCIwPAVoET82iuT4L/bXTvpO20GqnlqjYodqh3LlQzc96', '2024-03-04 23:12:13', 'user', 0x496d616765732f7363686f6f6c2d73747564656e742d69636f6e2d31382e706e67),
 (21, 'alim', '', 'Al-khazri Sali Alim', '', '', '', '$2y$10$hJTfIblmbU9nWO4wWhkiS.TW.oJtns.Y5M.imeF7BlSmDamIqsfgG', '2024-03-05 03:36:45', 'user', 0x496d616765732f73747564656e742069636f6e20322e706e67),
-(22, 'luffy', '', '', '', '0', '', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c756666792e6a7067),
-(23, 'johndoe69', '', '', '', '0', '', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f757365722069636f6e20342e706e67),
+(22, 'luffy', '', '', '', '', '', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c7566667920696d6167652e6a7067),
+(23, 'johndoe69', '', '', '', '', '', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f42617369635f55695f5f32383138365f32392e6a7067),
 (26, 'user02', '', '', '', '', '', '$2y$10$bSwzGRlOUB.9LHBVhRlSDOP9hubnK8mlOnjgK3odwzWIeGO2QyYby', '2024-03-19 13:08:31', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
 (27, 'qwerty', '', '', '', '', '', '$2y$10$UOPAAIW4BYc/7Ku3ojqg3e18ctSOlkWRmOKI.xT5H8EKjAen43xhO', '2024-03-22 03:08:35', 'user', '');
 
@@ -539,7 +540,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
 
 --
 -- AUTO_INCREMENT for table `return_history`

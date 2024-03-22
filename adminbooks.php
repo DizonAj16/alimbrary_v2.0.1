@@ -157,7 +157,7 @@
             <script defer src="js/bootstrap.bundle.js"></script>
             <style>
                 body {
-                    font-family: 'Montserrat', sans-serif;
+                    font-family: 'Arial', sans-serif;
                 }
 
 
@@ -203,8 +203,31 @@
                     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
 
                 }
-                label{
+
+                label {
                     font-weight: bold;
+                }
+
+                .slide-bottom {
+                    display: none;
+                    transform: translateY(-100%);
+                    transition: transform 0.5s ease-out;
+                }
+
+                .slide-bottom.show {
+                    display: block;
+                    transform: translateY(0);
+                }
+
+                .slide-right {
+                    display: none;
+                    transform: translateX(100%);
+                    transition: transform 0.5s ease-out;
+                }
+
+                .slide-right.show {
+                    display: block;
+                    transform: translateX(0);
                 }
             </style>
 
@@ -287,7 +310,7 @@
                             <div class="mt-3 clearfix">
                                 <h2 class="float-start">Books</h2>
                                 <button type="button" class="btn btn-success btn-md float-end me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Add New Book">
-                                    <i class="fa fa-plus-circle text-light"></i>  Add book
+                                    <i class="fa fa-plus-circle text-light"></i> Add book
                                 </button>
 
                                 <input type="text" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title" aria-label="Search" aria-describedby="button-addon2" style="max-width: 200px;">
@@ -300,8 +323,8 @@
 
 
 
-            <div class="modal fade" id="exampleModal">
-                <div class="modal-dialog modal-dialog-centered">
+            <div class="modal fade slide-right" id="exampleModal">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title text-center"><i class="fa fa-book me-2"></i> Add Book</h5>
@@ -345,7 +368,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="availability" class="form-label">Availability</label>
-                                            <select name="availability" class="form-control <?php echo (!empty($availability_err)) ? 'is-invalid' : ''; ?>">
+                                            <select name="availability" class="form-select <?php echo (!empty($availability_err)) ? 'is-invalid' : ''; ?>">
                                                 <option value="Available">Available</option>
                                                 <option value="Not Available">Not Available</option>
                                             </select>

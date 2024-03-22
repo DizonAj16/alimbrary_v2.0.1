@@ -218,9 +218,9 @@ mysqli_stmt_close($stmt);
 
                                     <div>
                                         <h5 class="card-title text-center"> <?php echo $row['username']; ?></h5>
-                                        <p class="card-text"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
-                                        <p class="card-text"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
-                                        <p class="card-text"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
+                                        <p class="card-text fw-bold"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
+                                        <p class="card-text fw-bold"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
+                                        <p class="card-text fw-bold"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
                                         <div class="text-center">
                                             <?php if ($row['user_type'] !== 'admin') : ?>
                                                 <a href="view_user.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>

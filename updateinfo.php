@@ -157,8 +157,8 @@ mysqli_close($conn);
             </div>
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <input type="submit" class="btn btn-primary" value="Update">
-                <a href="myprofile.php">Cancel</a>
+                <input type="submit" class="btn btn-primary btn-sm me-2" value="Update">
+                <a class="btn btn-secondary btn-sm" href="myprofile.php">Cancel</a>
             </div>
         </form>
     </div>

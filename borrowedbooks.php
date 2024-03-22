@@ -49,12 +49,14 @@ mysqli_stmt_close($stmt);
         .table th,
         .table td {
             border: 1px solid #dee2e6;
-            padding: 10px;
+            padding: 8px;
             text-align: start;
+            font-size: 14px;
         }
 
         .table th {
             color: black;
+            font-size: 14px;
         }
 
         .btn-primary,

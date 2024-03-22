@@ -42,7 +42,7 @@ mysqli_stmt_close($stmt);
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
         /* Fixed position for the header container */
