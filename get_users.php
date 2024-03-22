@@ -1,12 +1,12 @@
 <style>
   .user-count-container {
     text-align: center;
-    color: blue;
+    color: green;
   }
 
   .user-count {
     font-size: 30px;
-    color: blue; /* Dark color for the number */
+    color: green; /* Dark color for the number */
     font-weight: bold;
   }
 </style>

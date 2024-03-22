@@ -229,6 +229,20 @@
                     display: block;
                     transform: translateX(0);
                 }
+
+                .slide-left {
+                    animation: slideLeft 0.5s ease;
+                }
+
+                @keyframes slideLeft {
+                    from {
+                        transform: translateX(0);
+                    }
+
+                    to {
+                        transform: translateX(-100%);
+                    }
+                }
             </style>
 
 
@@ -323,12 +337,12 @@
 
 
 
-            <div class="modal fade slide-right" id="exampleModal">
+            <div class="modal fade" id="exampleModal">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title text-center"><i class="fa fa-book me-2"></i> Add Book</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close"></button>
                         </div>
                         <div class="modal-body">
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
@@ -383,7 +397,6 @@
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                    <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </form>
                         </div>
@@ -530,6 +543,25 @@
                             scrollTop: 0
                         }, 'slow');
                         return false;
+                    });
+                });
+            </script>
+
+
+            <script>
+                $(document).ready(function() {
+                    // Show the modal with slide-right animation when opening
+                    $('#exampleModal').on('show.bs.modal', function() {
+                        $(this).removeClass('slide-left'); // Remove slide-left class if it exists
+                        $(this).addClass('slide-right'); // Add slide-right animation class
+                    });
+
+                    // Hide the modal with slide-left animation when close button is clicked
+                    $('#exampleModal .btn-close').on('click', function() {
+                        $('#exampleModal').addClass('slide-left'); // Add slide-left animation class
+                        setTimeout(function() {
+                            $('#exampleModal').modal('hide'); // Hide modal after animation completes
+                        }, 300); // Animation duration in milliseconds (same as defined in CSS)
                     });
                 });
             </script>

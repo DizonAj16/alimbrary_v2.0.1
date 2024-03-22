@@ -90,7 +90,7 @@ mysqli_close($conn);
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: rgba(255, 255, 255, 0.308);
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
             color: #333;

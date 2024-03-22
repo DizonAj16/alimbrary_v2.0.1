@@ -265,8 +265,8 @@ mysqli_stmt_close($stmt);
       <?php include 'total_books.php'; ?>
     </div>
 
-    <div class="users-list dashboard-section gradient3">
-      <i class="fas fa-users fa-3x text-primary"></i>
+    <div class="users-list dashboard-section gradient2">
+      <i class="fas fa-users fa-3x text-success"></i>
       <?php include 'get_users.php'; ?>
     </div>
 
@@ -275,13 +275,13 @@ mysqli_stmt_close($stmt);
       <?php include 'current_borrowing_users.php'; ?>
     </div>
 
-    <div class="total-available-books dashboard-section gradient2">
-      <i class="fas fa-book-open fa-3x text-success"></i>
+    <div class="total-available-books dashboard-section gradient3">
+      <i class="fas fa-book-open fa-3x text-primary"></i>
       <?php include 'total_available_books.php'; ?>
     </div>
 
-    <div class="total-borrowed-and-returned dashboard-section gradient2">
-      <i class="fas fa-exchange-alt fa-3x text-success"></i>
+    <div class="total-borrowed-and-returned dashboard-section gradient3">
+      <i class="fas fa-exchange-alt fa-3x text-primary"></i>
       <?php include 'total_borrowed_and_returned.php'; ?>
     </div>
 
@@ -296,8 +296,8 @@ mysqli_stmt_close($stmt);
       <?php include 'top_returned_user.php'; ?>
     </div>
 
-    <div class="most-borrowed-books dashboard-section  gradient1">
-      <i class="fas fa-book-reader fa-3x text-danger"></i>
+    <div class="most-borrowed-books dashboard-section  gradient3">
+      <i class="fas fa-book-reader fa-3x text-primary"></i>
       <?php include 'top_borrowed_books.php'; ?>
     </div>
 
@@ -306,8 +306,8 @@ mysqli_stmt_close($stmt);
       <?php include 'top_returned_books.php'; ?>
     </div>
 
-    <div class="currently-borrowed-books dashboard-section wider gradient4">
-      <i class="fas fa-book fa-3x text-warning"></i>
+    <div class="currently-borrowed-books dashboard-section wider gradient1">
+      <i class="fas fa-book fa-3x text-danger"></i>
       <?php include 'currently_borrowed_books.php'; ?>
     </div>
 

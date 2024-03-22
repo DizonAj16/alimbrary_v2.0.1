@@ -23,7 +23,7 @@ if ($result_top_returned) {
     echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; // Use <ol> for numbered list
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result_top_returned)) {
-        echo "<li style='font-weight:bold; font-size: 20px;'>{$row['title']} (Returned {$row['return_count']} times)</li>"; // Added font-size property
+        echo "<li style='font-weight:bold; font-size: 15px;'>{$row['title']} (Returned {$row['return_count']} times)</li>"; // Added font-size property
     }
     echo "</ol>";
     echo "</div>";

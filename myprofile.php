@@ -90,7 +90,7 @@ mysqli_close($conn);
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: rgba(255, 255, 255, 0.308);
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
             color: #333;
@@ -102,7 +102,7 @@ mysqli_close($conn);
             padding: 20px;
             background: transparent;
             border-radius: 8px;
-            box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         h2 {
@@ -130,7 +130,7 @@ mysqli_close($conn);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Adjusted shadow */
         }
 
         .info-row {

@@ -7,13 +7,13 @@
 
   .books-info h3 {
     margin-bottom: 10px;
-    color: green; /* Green color for headings */
+    color: blue; /* blue color for headings */
   }
 
   .books-info p {
     font-size: 30px;
     font-weight: bold;
-    color: green; /* Green color for numbers */
+    color: blue; /* blue color for numbers */
   }
 </style>
 

@@ -1,12 +1,12 @@
 <style>
   .available-books-container {
     text-align: center;
-    color: green;
+    color: blue;
   }
 
   .available-books-count {
     font-size: 30px;
-    color: green; /* Dark color for the number */
+    color: blue; /* Dark color for the number */
     font-weight: bold;
   }
 </style>

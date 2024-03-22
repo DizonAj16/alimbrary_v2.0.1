@@ -147,10 +147,12 @@ i span {
     text-decoration: underline;
 }
 .error{
-    color: rgb(241, 9, 9);
+    color: white;
     font-size: 20px;
-    background-color: transparent;
+    background-color: lightcoral;
     margin-top: 5px;
+    border-radius: 5px;
+
 }
 
 .title {
