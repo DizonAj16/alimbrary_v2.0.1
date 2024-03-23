@@ -130,7 +130,7 @@ mysqli_stmt_close($stmt);
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fa fa-info-circle fa-lg"></i> About</a>
+            <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Books</a>

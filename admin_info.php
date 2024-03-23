@@ -148,6 +148,7 @@ mysqli_close($conn);
             color: #333;
             font-weight: normal;
             float: left;
+            font-weight: bold;
         }
 
         .file-upload {
@@ -279,7 +280,7 @@ mysqli_close($conn);
             </div>
             <a class="btn btn-link text-info" href="updateinfo.php">Update User Info</a>
         </div>
-        <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'welcomeadmin.php' : 'userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Home"><i class="fas fa-chevron-left"></i></a>
+        <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'users.php' : 'userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Home"><i class="fas fa-chevron-left"></i></a>
     </div>
 
     <script>

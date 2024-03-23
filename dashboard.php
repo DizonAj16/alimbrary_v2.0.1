@@ -7,6 +7,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     header("location: login.php");
     exit;
 }
+require_once 'config.php';
+// Retrieve user's profile image
+$user_id = $_SESSION["id"];
+$sql = "SELECT image FROM users WHERE id = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $profile_image);
+mysqli_stmt_fetch($stmt);
 ?>
 
 

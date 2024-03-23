@@ -146,6 +146,7 @@ mysqli_close($conn);
             color: #333;
             font-weight: normal;
             float: left;
+            font-weight: bold;
         }
 
         .file-upload {

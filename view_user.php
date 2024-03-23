@@ -9,91 +9,91 @@
         <link rel="stylesheet" href="fa-css/all.css">
         <script defer src="js/bootstrap.bundle.js"></script>
         <style>
-            body {
-                background-color: #f8f9fa;
-                font-family: Arial, sans-serif;
-                padding-top: 50px;
-                /* Add padding to the top */
-                display: flex;
-                justify-content: center;
-                align-items: center;
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 50px;
+            /* Add padding to the top */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
 
-            }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 650px;
+            /* Limit maximum width of the container */
+            margin-bottom: 40px;
+            padding: 0 15px;
+            /* Add padding to the sides */
+        }
 
-            .container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                max-width: 650px;
-                /* Limit maximum width of the container */
-                margin-bottom: 40px;
-                padding: 0 15px;
-                /* Add padding to the sides */
-            }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            /* Ensure card takes full width */
+            margin-bottom: 30px;
+        }
 
-            .card {
-                border-radius: 15px;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-                width: 100%;
-                /* Ensure card takes full width */
-                margin-bottom: 30px;
-            }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            border-radius: 15px 15px 0 0;
+            text-align: center;
+            /* Adjust text alignment to center */
+        }
 
-            .card-header {
-                background-color: #007bff;
-                color: white;
-                border-radius: 15px 15px 0 0;
-                text-align: center;
-                /* Adjust text alignment to center */
-            }
+        h4 {
+            margin-bottom: 10px;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
 
-            h4 {
-                margin-bottom: 10px;
-                color: #007bff;
-                font-weight: bold;
-                font-size: 1.5rem;
-            }
+        p {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
 
-            p {
-                margin-bottom: 8px;
-                font-size: 1.1rem;
-            }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 1.1rem;
+            padding: 8px 20px;
+        }
 
-            .btn-primary {
-                background-color: #007bff;
-                border-color: #007bff;
-                font-size: 1.1rem;
-                padding: 8px 20px;
-            }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
 
-            .btn-primary:hover {
-                background-color: #0056b3;
-                border-color: #0056b3;
-            }
+        .user-info-container {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 500px;
+        }
 
-            .user-info-container {
-                display: flex;
-                align-items: center;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                max-width: 500px;
-            }
+        .user-info {
+            flex: 1;
+            margin-left: 30px;
+            overflow: hidden;
+        }
 
-            .user-info {
-                flex: 1;
-                margin-left: 30px;
-                overflow: hidden;
-            }
-
-            .user-image {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 20px;
-                object-fit: cover;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
+        .user-image {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            object-fit: cover;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         </style>
 
 
@@ -204,15 +204,15 @@
 
                         <div class="user-info">
                             <h4><?php echo $username; ?></h4>
-                            <p><strong>User ID:</strong> <?php echo $param_id; ?></p>
-                            <p><strong>Email:</strong> <?php echo $email; ?></p>
-                            <p><strong>Full Name:</strong> <?php echo $full_name; ?></p>
-                            <p><strong>Occupation:</strong> <?php echo $occupation; ?></p>
-                            <p><strong>Address:</strong> <?php echo $address; ?></p>
-                            <p><strong>Contact Number:</strong> <?php echo $contact_number; ?></p>
-                            <p><strong>User Type:</strong> <?php echo $user_type; ?></p>
-                            <p><strong>Date Created:</strong> <?php echo $created_at_formatted; ?></p>
-                            <p><strong>Joined <?php echo $registration_status; ?></strong></p> <!-- Display registration status here -->
+                            <p><strong>User ID: </strong><?php echo $param_id; ?></p>
+                            <p><strong>Email: </strong><?php echo $email; ?></p>
+                            <p><strong>Full Name: </strong><?php echo $full_name; ?></p>
+                            <p><strong>Occupation: </strong><?php echo $occupation; ?></p>
+                            <p><strong>Address: </strong><?php echo $address; ?></p>
+                            <p><strong>Contact Number: </strong><?php echo $contact_number; ?></p>
+                            <p><strong>User Type: </strong><?php echo $user_type; ?></p>
+                            <p><strong>Date Created: </strong><?php echo $created_at_formatted; ?></p>
+                            <p><strong>Joined  </strong><?php echo $registration_status; ?></p> <!-- Display registration status here -->
                             <div class="text-center"></div>
                             <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
                         </div>
