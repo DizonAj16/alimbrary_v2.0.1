@@ -210,7 +210,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
         </div>
 
         <div class="top-user-borrowed dashboard-section bg-danger text-white">
-            <i class="fas fa-chart-line fa-3x"></i>
+            <i class="fas fa-chart-bar fa-3x"></i>
             <?php include 'top_user_borrowed.php'; ?>
         </div>
 

@@ -12,12 +12,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 require_once "config.php";
 
 // Define SQL query to fetch return history data
-$return_history_sql = "SELECT return_history.return_id, borrowed_books.borrow_date, users.username, books.title, return_history.returned_date_time, borrowed_books.return_date 
+// Define SQL query to fetch return history data with days borrowed
+$return_history_sql = "SELECT return_history.return_id, borrowed_books.borrow_date, users.username, books.title, return_history.returned_date_time, borrowed_books.return_date,
+                            DATEDIFF(return_history.returned_date_time, borrowed_books.borrow_date) AS days_borrowed 
                         FROM return_history
+                        JOIN borrowed_books ON return_history.borrow_id = borrowed_books.borrow_id
                         JOIN users ON return_history.user_id = users.id
                         JOIN books ON return_history.book_id = books.book_id
-                        JOIN borrowed_books ON return_history.borrow_id = borrowed_books.borrow_id
                         ORDER BY return_history.returned_date_time DESC";
+
 
 
 // Execute the query
@@ -230,6 +233,23 @@ mysqli_stmt_close($stmt);
                                 echo "<td>" . $row['borrow_date'] . "</td>";
                                 echo "<td>" . $row['returned_date_time'] . "</td>";
 
+                                // Display days borrowed
+                                $days_borrowed = $row['days_borrowed'];
+
+                                if ($days_borrowed == 0) {
+                                    echo "<td>Less than a day</td>";
+                                } elseif ($days_borrowed >= 30) {
+                                    $months = floor($days_borrowed / 30);
+                                    $remaining_days = $days_borrowed % 30;
+                                    if ($remaining_days > 0) {
+                                        echo "<td>$months month(s) $remaining_days day(s)</td>";
+                                    } else {
+                                        echo "<td>$months month(s)</td>";
+                                    }
+                                } else {
+                                    echo "<td>$days_borrowed day(s)</td>";
+                                }
+
                                 // Get the return date from the borrowed_books table
                                 $return_date = $row['return_date'];
 
@@ -243,29 +263,12 @@ mysqli_stmt_close($stmt);
                                     $return_status = "On Time";
                                 }
 
-                                // Convert days borrowed into months and remaining days if it exceeds 30 days
-                                $date1 = strtotime($row['return_date']);
-                                $date2 = strtotime($row['returned_date_time']);
-                                $diff = abs($date2 - $date1);
-                                $days_borrowed = floor($diff / (60 * 60 * 24));
-
-                                if ($days_borrowed >= 30) {
-                                    $months = floor($days_borrowed / 30);
-                                    $remaining_days = $days_borrowed % 30;
-                                    echo "<td>$months month(s) $remaining_days day(s)</td>";
-                                } else {
-                                    if ($days_borrowed == 0) {
-                                        echo "<td>Less than a day</td>";
-                                    } else {
-                                        echo "<td>$days_borrowed day(s)</td>";
-                                    }
-                                }
-
                                 // Display return status
                                 echo "<td>$return_status</td>";
 
                                 echo "</tr>";
                             }
+
                             ?>
 
                         </tbody>
