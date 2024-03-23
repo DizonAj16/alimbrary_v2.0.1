@@ -136,6 +136,7 @@
                         $contact_number = $row["contact_num"];
                         $user_type = $row["user_type"];
                         $created_at = $row["created_at"];
+                        $created_at_formatted = date("F j, Y, g:i A", strtotime($created_at));
                         $image_path = $row["image"];
 
                         $registration_date = new DateTime($created_at);
@@ -210,7 +211,7 @@
                             <p><strong>Address:</strong> <?php echo $address; ?></p>
                             <p><strong>Contact Number:</strong> <?php echo $contact_number; ?></p>
                             <p><strong>User Type:</strong> <?php echo $user_type; ?></p>
-                            <p><strong>Date Created:</strong> <?php echo $created_at; ?></p>
+                            <p><strong>Date Created:</strong> <?php echo $created_at_formatted; ?></p>
                             <p><strong>Joined <?php echo $registration_status; ?></strong></p> <!-- Display registration status here -->
                             <div class="text-center"></div>
                             <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>

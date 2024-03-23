@@ -230,33 +230,37 @@ mysqli_stmt_close($stmt);
                                 echo "<td>" . $row['return_id'] . "</td>";
                                 echo "<td>" . $row['username'] . "</td>";
                                 echo "<td class='fw-bold'>" . $row['title'] . "</td>";
-                                echo "<td>" . $row['borrow_date'] . "</td>";
-                                echo "<td>" . $row['returned_date_time'] . "</td>";
+                                // Display borrowed date in 12-hour format with only the date
+                                echo "<td>" . date("F j, Y", strtotime($row['borrow_date'])) . "</td>";
+
+                                // Display returned date in 12-hour format with only the date
+                                echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
+
+                                // Calculate days borrowed using DateTime objects
+                                $borrow_date = new DateTime($row['borrow_date']);
+                                $returned_date_time = new DateTime($row['returned_date_time']);
+                                $interval = $borrow_date->diff($returned_date_time);
+                                $days_borrowed = $interval->days;
 
                                 // Display days borrowed
-                                $days_borrowed = $row['days_borrowed'];
-
+                                echo "<td>";
                                 if ($days_borrowed == 0) {
-                                    echo "<td>Less than a day</td>";
+                                    echo "Less than a day";
                                 } elseif ($days_borrowed >= 30) {
                                     $months = floor($days_borrowed / 30);
                                     $remaining_days = $days_borrowed % 30;
                                     if ($remaining_days > 0) {
-                                        echo "<td>$months month(s) $remaining_days day(s)</td>";
+                                        echo "$months month(s) $remaining_days day(s)";
                                     } else {
-                                        echo "<td>$months month(s)</td>";
+                                        echo "$months month(s)";
                                     }
                                 } else {
-                                    echo "<td>$days_borrowed day(s)</td>";
+                                    echo "$days_borrowed day(s)";
                                 }
-
-                                // Get the return date from the borrowed_books table
-                                $return_date = $row['return_date'];
-
-                                // Get the returned date from the return_history table
-                                $returned_date_time = $row['returned_date_time'];
+                                echo "</td>";
 
                                 // Compare returned date with expected return date to determine return status
+                                $return_date = new DateTime($row['return_date']);
                                 if ($returned_date_time > $return_date) {
                                     $return_status = "Late";
                                 } else {
@@ -264,14 +268,19 @@ mysqli_stmt_close($stmt);
                                 }
 
                                 // Display return status
-                                echo "<td>$return_status</td>";
+                                echo "<td>";
+                                if ($return_status === "On Time") {
+                                    echo '<span class="badge bg-success">' . $return_status . '</span>';
+                                } else {
+                                    echo '<span class="badge bg-danger">' . $return_status . '</span>';
+                                }
+                                echo "</td>";
 
                                 echo "</tr>";
                             }
-
                             ?>
-
                         </tbody>
+
                     </table>
                 </div>
 

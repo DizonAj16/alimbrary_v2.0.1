@@ -203,9 +203,6 @@ mysqli_stmt_close($stmt);
                         </div>
                     </div>
                     <div class="card-body">
-
-
-
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -218,9 +215,6 @@ mysqli_stmt_close($stmt);
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-
-
-
                                 <tbody>
                                     <?php
                                     // Fetch records
@@ -228,33 +222,42 @@ mysqli_stmt_close($stmt);
                                         echo "<tr>";
                                         echo "<td>" . $borrow_id . "</td>";
                                         echo "<td class='fw-bold'>" . $book_title . "</td>";
-                                        echo "<td>" . $borrow_date . "</td>";
-                                        echo "<td>" . $return_date . "</td>";
+                                        // Display borrowed date in 12-hour format with only the date
+                                        echo "<td>" . date("F j, Y", strtotime($borrow_date)) . "</td>";
 
-                                        $today = date('Y-m-d');
-                                        $diff = strtotime($return_date) - strtotime($today);
-                                        $days_left = floor($diff / (60 * 60 * 24));
+                                        // Display return date in 12-hour format with only the date
+                                        echo "<td>" . date("F j, Y", strtotime($return_date)) . "</td>";
 
-                                        if ($days_left > 30) {
-                                            $months = floor($days_left / 30);
-                                            $remaining_days = $days_left % 30;
-                                            if ($remaining_days == 0) {
-                                                echo "<td>$months month(s)</td>";
-                                            } else {
-                                                echo "<td>$months month(s) $remaining_days day(s)</td>";
-                                            }
+                                        // Calculate days left using DateTime object
+                                        $return_date_obj = new DateTime($return_date);
+                                        $current_date_obj = new DateTime();
+                                        $interval = $current_date_obj->diff($return_date_obj);
+                                        $days_left = $interval->days;
+
+                                        // Display days left
+                                        echo "<td>";
+                                        if ($days_left > 0) {
+                                            echo "$days_left day(s) left";
+                                        } elseif ($days_left == 0) {
+                                            echo "less than a day";
                                         } else {
-                                            echo "<td>$days_left day(s)</td>";
+                                            echo "Overdue by " . abs($days_left) . " day(s)";
                                         }
+                                        echo "</td>";
 
                                         echo "<td>";
-
-                                        echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
+                                        // Check if the book is not returned yet
+                                        if ($days_left > 0) {
+                                            echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
+                                        } else {
+                                            echo "Book is already due";
+                                        }
                                         echo "</td>";
                                         echo "</tr>";
                                     }
                                     ?>
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
@@ -281,9 +284,6 @@ mysqli_stmt_close($stmt);
         ?>
     </div>
 
-
-
-
     <script src="jquery/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -308,7 +308,6 @@ mysqli_stmt_close($stmt);
         });
     </script>
 
-    
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="jquery/jquery-3.5.1.min.js"></script>
     <script>

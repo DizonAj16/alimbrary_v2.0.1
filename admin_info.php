@@ -57,6 +57,9 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
                         $daysJoined = "$months month(s) $remainingDays day(s) ago";
                     }
                 }
+
+                // Convert the created_at date to 12-hour format
+                $created_at_formatted = date("F j, Y, g:i A", strtotime($created_at));
             }
         } else {
             // No rows found, something went wrong
@@ -74,6 +77,8 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 // Close connection
 mysqli_close($conn);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -266,7 +271,7 @@ mysqli_close($conn);
             </div>
             <div class="info-row">
                 <div class="info-label">Date Created:</div>
-                <div class="info-value"><?php echo $created_at; ?></div>
+                <div class="info-value"><?php echo $created_at_formatted; ?></div>
             </div>
             <div class="info-row">
                 <div class="info-label">Joined:</div>

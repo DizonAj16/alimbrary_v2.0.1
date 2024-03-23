@@ -261,8 +261,8 @@ mysqli_stmt_close($stmt);
                                     echo "<tr>";
                                     echo "<td>" . $row['return_id'] . "</td>";
                                     echo "<td class='fw-bold'>" . $row['title'] . "</td>";
-                                    echo "<td>" . $row['borrow_date'] . "</td>";
-                                    echo "<td>" . $row['returned_date_time'] . "</td>";
+                                    echo "<td>" . date("F j, Y", strtotime($row['borrow_date'])) . "</td>";
+                                    echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
 
                                     // Calculate the number of days borrowed
                                     $borrow_date = strtotime($row['borrow_date']);
@@ -289,10 +289,11 @@ mysqli_stmt_close($stmt);
 
                                     // Determine return status
                                     $expected_return_date = strtotime($row['return_date']);
+                                    
                                     if ($returned_date <= $expected_return_date) {
-                                        echo "<td>On Time</td>";
+                                        echo '<td><span class="badge bg-success">On Time</span></td>';
                                     } else {
-                                        echo "<td>Late</td>";
+                                        echo '<td><span class="badge bg-danger">Late</span></td>';
                                     }
 
                                     echo "</tr>";
