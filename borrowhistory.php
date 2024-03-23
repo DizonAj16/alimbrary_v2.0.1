@@ -86,6 +86,7 @@ mysqli_stmt_close($stmt);
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
         }
+
         #backToTopBtn {
             display: none;
             position: fixed;
@@ -104,7 +105,6 @@ mysqli_stmt_close($stmt);
         #backToTopBtn:hover {
             background-color: rgba(0, 0, 0, 0.7);
         }
-
     </style>
 </head>
 
@@ -130,7 +130,7 @@ mysqli_stmt_close($stmt);
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-info-circle fa-lg"></i> About</a>
+                        <a class="nav-link" href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
@@ -166,11 +166,11 @@ mysqli_stmt_close($stmt);
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
-                            <li>
+                            < li>
                                 <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
-                        </ul>
+                    </li>
+                    <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                    </ul>
                     </li>
                 </div>
             </div>
@@ -198,6 +198,8 @@ mysqli_stmt_close($stmt);
                                 <th>Borrow Date</th>
                                 <th>Return Until</th>
                                 <th>Days Left</th>
+                                <th>Status</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -208,8 +210,8 @@ mysqli_stmt_close($stmt);
                             // Function to show borrow history
                             function showBorrowHistory($conn)
                             {
-                                // Query to retrieve all borrow history information with book title
-                                $sql = "SELECT borrowed_books.borrow_id, borrowed_books.borrow_date, borrowed_books.return_date, users.id, users.username, books.title 
+                                // Query to retrieve all borrow history information with book title and status
+                                $sql = "SELECT borrowed_books.borrow_id, borrowed_books.borrow_date, borrowed_books.return_date, borrowed_books.return_date, users.id, users.username, books.title, return_history.return_id 
                                     FROM borrowed_books 
                                     INNER JOIN users ON borrowed_books.user_id = users.id
                                     INNER JOIN books ON borrowed_books.book_id = books.book_id
@@ -230,13 +232,13 @@ mysqli_stmt_close($stmt);
                                             <td>' . $row['borrow_date'] . '</td>
                                             <td>' . ($row['return_date'] ? $row['return_date'] : 'Not returned') . '</td>';
 
-                                        // Calculate the days left
-                                        // Calculate the days left
-                                        // Calculate the days left
+                                        // Check status and display accordingly
+                                        
+
                                         // Calculate the days left
                                         if ($row['return_date']) {
                                             // Book has been returned, calculate the days since return
-                                            $return_date = new DateTime($row['return_date']); // Assuming 'return_date' is the column name in your database
+                                            $return_date = new DateTime($row['return_date']);
                                             $current_date = new DateTime();
                                             $interval = $return_date->diff($current_date);
                                             $days_since_return = $interval->days;
@@ -251,7 +253,7 @@ mysqli_stmt_close($stmt);
                                             }
                                         } else {
                                             // Book has not been returned, calculate the days left until return
-                                            $return_date = new DateTime($row['return_until']); // Assuming 'return_until' is the column name in your database
+                                            $return_date = new DateTime($row['return_until']);
                                             $current_date = new DateTime();
                                             $interval = $current_date->diff($return_date);
                                             $days_left = $interval->days;
@@ -268,11 +270,14 @@ mysqli_stmt_close($stmt);
                                             }
                                         }
 
-                                        echo '<td>' . $days_left . '</td></tr>';
+                                        echo '<td>' . $days_left . '</td>';
+                                        echo '<td>' . ($row['return_id'] ? 'Returned' : 'Not returned') . '</td>';
+                                        echo '</tr>';
+                                        
                                     }
                                 } else {
                                     // No borrow history found
-                                    echo '<tr><td colspan="6" class="text-center">No borrow history available.</td></tr>';
+                                    echo '<tr><td colspan="7" class="text-center">No borrow history available.</td></tr>';
                                 }
                                 // Free result set
                                 mysqli_free_result($result);
@@ -314,7 +319,7 @@ mysqli_stmt_close($stmt);
         document.getElementById('searchInput').addEventListener('input', liveSearch);
     </script>
 
-<button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+    <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="jquery/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -336,7 +341,7 @@ mysqli_stmt_close($stmt);
             });
         });
     </script>
- 
+
 </body>
 
 </html>

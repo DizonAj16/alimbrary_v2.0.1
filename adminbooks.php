@@ -252,6 +252,14 @@
                     /* Adjust max-width as needed */
                     display: block;
                 }
+
+                @media (max-width: 768px) {
+
+                    /* Adjust the max-width of the search input for smaller screens */
+                    #liveSearchInput {
+                        max-width: 130px;
+                    }
+                }
             </style>
 
 
@@ -278,7 +286,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fa fa-info-circle fa-lg"></i> About</a>
+                                <a class="nav-link" href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
@@ -336,7 +344,7 @@
                                     <i class="fa fa-plus-circle text-light"></i> Add book
                                 </button>
 
-                                <input type="text" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title" aria-label="Search" aria-describedby="button-addon2" style="max-width: 200px;">
+                                <input type="text" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title" aria-label="Search" aria-describedby="button-addon2" style="width: 200px;">
                             </div>
                         </div>
                     </div>
@@ -460,7 +468,7 @@
                                 echo '</div>';
 
                                 echo '<div class="card-body">';
-                                echo '<h5 class="card-title text-center mb-3 fw-bold truncate" style="height: 50px; overflow: hidden; text-overflow: ellipsis; font-size: 18px;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
+                                echo '<h5 class="card-title text-center mb-3 fw-bold truncate" font-size: 18px;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
                                 echo '<p class="card-text text-center mb-3" style="font-size: 16px;">';
                                 echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light">' . $row['availability'] . '</span>';
                                 echo '</p>';

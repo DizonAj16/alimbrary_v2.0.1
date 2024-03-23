@@ -143,7 +143,7 @@ mysqli_stmt_close($stmt);
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-info-circle fa-lg"></i> About</a>
+                        <a class="nav-link" href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
@@ -213,7 +213,7 @@ mysqli_stmt_close($stmt);
                                     <?php if (!empty($row['image'])) : ?>
                                         <img src="<?php echo $row['image']; ?>" class="card-img-top profile-image mb-2" alt="Profile Image">
                                     <?php else : ?>
-                                        <i class="fas fa-question-circle text-secondary mb-2" style="font-size: 200px;"></i>
+                                        <i class="fas fa-user-circle text-dark mb-2" style="font-size: 200px;"></i>
                                     <?php endif; ?>
 
                                     <div>

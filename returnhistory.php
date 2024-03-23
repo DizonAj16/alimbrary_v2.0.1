@@ -12,12 +12,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 require_once "config.php";
 
 // Define SQL query to fetch return history data
-$return_history_sql = "SELECT return_history.return_id, borrowed_books.borrow_date, users.username, books.title, return_history.returned_date_time 
+$return_history_sql = "SELECT return_history.return_id, borrowed_books.borrow_date, users.username, books.title, return_history.returned_date_time, borrowed_books.return_date 
                         FROM return_history
                         JOIN users ON return_history.user_id = users.id
                         JOIN books ON return_history.book_id = books.book_id
                         JOIN borrowed_books ON return_history.borrow_id = borrowed_books.borrow_id
                         ORDER BY return_history.returned_date_time DESC";
+
 
 // Execute the query
 $result = mysqli_query($conn, $return_history_sql);
@@ -148,7 +149,7 @@ mysqli_stmt_close($stmt);
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-info-circle fa-lg"></i> About</a>
+                        <a class="nav-link" href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
@@ -215,11 +216,11 @@ mysqli_stmt_close($stmt);
                                 <th>Date Borrowed</th>
                                 <th>Date Returned</th>
                                 <th>Days Borrowed</th>
+                                <th>Return Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            // Loop through each row in the result set
                             // Loop through each row in the result set
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
@@ -229,29 +230,44 @@ mysqli_stmt_close($stmt);
                                 echo "<td>" . $row['borrow_date'] . "</td>";
                                 echo "<td>" . $row['returned_date_time'] . "</td>";
 
-                                // Calculate the days borrowed
-                                $date1 = strtotime($row['borrow_date']);
+                                // Get the return date from the borrowed_books table
+                                $return_date = $row['return_date'];
+
+                                // Get the returned date from the return_history table
+                                $returned_date_time = $row['returned_date_time'];
+
+                                // Compare returned date with expected return date to determine return status
+                                if ($returned_date_time > $return_date) {
+                                    $return_status = "Late";
+                                } else {
+                                    $return_status = "On Time";
+                                }
+
+                                // Convert days borrowed into months and remaining days if it exceeds 30 days
+                                $date1 = strtotime($row['return_date']);
                                 $date2 = strtotime($row['returned_date_time']);
                                 $diff = abs($date2 - $date1);
                                 $days_borrowed = floor($diff / (60 * 60 * 24));
 
-                                // Convert days borrowed into months and remaining days if it exceeds 30 days
                                 if ($days_borrowed >= 30) {
                                     $months = floor($days_borrowed / 30);
                                     $remaining_days = $days_borrowed % 30;
                                     echo "<td>$months month(s) $remaining_days day(s)</td>";
                                 } else {
-                                    // Display "Less than a day" if days borrowed is 0
                                     if ($days_borrowed == 0) {
                                         echo "<td>Less than a day</td>";
                                     } else {
                                         echo "<td>$days_borrowed day(s)</td>";
                                     }
                                 }
+
+                                // Display return status
+                                echo "<td>$return_status</td>";
+
                                 echo "</tr>";
                             }
-
                             ?>
+
                         </tbody>
                     </table>
                 </div>

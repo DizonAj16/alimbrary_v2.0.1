@@ -196,7 +196,7 @@
                                 echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image" style="border: 2px solid blue;">';
                             } else {
                                 // Use Font Awesome icon as an alternative if no image is available
-                                echo '<i class="fas fa-user-circle fa-9x" style="color: #007bff;"></i>';
+                                echo '<i class="fas fa-user-circle fa-9x" style="color: black;"></i>';
                             }
                             ?>
                         </div>

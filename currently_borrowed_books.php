@@ -10,7 +10,7 @@ $query_borrowed = "
     JOIN users u ON bb.user_id = u.id
     LEFT JOIN return_history rh ON bb.borrow_id = rh.borrow_id
     WHERE rh.borrow_id IS NULL
-    ORDER BY bb.borrow_date DESC"; // Add ORDER BY clause to order by borrow_date ascending
+    ORDER BY bb.borrow_id DESC"; // Add ORDER BY clause to order by borrow_date ascending
 
 // Execute the query to get all currently borrowed books
 $result_borrowed = mysqli_query($conn, $query_borrowed);

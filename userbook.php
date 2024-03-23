@@ -79,20 +79,21 @@ mysqli_stmt_close($stmt);
             display: flex;
             width: 100%;
             justify-content: start;
+            align-items: center;
             flex-wrap: wrap;
             padding: 0 30px 0 30px;
+            gap: 20px;
         }
 
         .card1 {
             width: 280px;
             height: 420px;
-            padding: 2rem 1rem;
             background: #fff;
             position: relative;
             box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
             transition: 0.5s ease-in-out;
+            margin-left: 20px;
             margin-bottom: 20px;
-            margin-left: 35px;
             overflow: hidden;
         }
 

@@ -1,0 +1,294 @@
+<?php
+// Start session
+session_start();
+
+// Check if the user is logged in and is a user, if not then redirect to login page
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
+    header("location: login.php");
+    exit;
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="titlestyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="navigation.css">
+    <link rel="stylesheet" href="fa-css/all.css">
+    <style>
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+
+        .dashboard-section {
+            flex: 1 1 290px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .dashboard-section:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            /* Adjust shadow properties as needed */
+        }
+
+        /* Adjustments for small screens */
+        @media (max-width: 768px) {
+            .dashboard-section {
+                flex-basis: calc(100% - 40px);
+                /* Adjust for smaller screen */
+            }
+        }
+
+        .dashboard-section i {
+            margin-bottom: 10px;
+            /* Adjust as needed */
+        }
+
+
+        .currently-borrowed-books.wider {
+            width: 865px;
+            /* Adjust width as needed */
+            max-width: none;
+        }
+
+        .gradient1 {
+            background: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.6));
+        }
+
+        .gradient2 {
+            background: linear-gradient(to bottom, rgba(0, 255, 0, 0), rgba(0, 255, 0, 0.6));
+        }
+
+        .gradient3 {
+            background: linear-gradient(to bottom, rgba(0, 0, 255, 0), rgba(0, 0, 255, 0.6));
+        }
+
+        .gradient4 {
+            background: linear-gradient(to bottom, rgba(255, 255, 0, 0), rgba(255, 255, 0, 0.6));
+        }
+
+        #borrowedBooksContent {
+            display: none;
+        }
+
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #backToTopBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+        <div class="container-fluid">
+            <div class="title p-1">
+                <img src="Images/logo.png" alt="" style="height:50px;">
+            </div>
+
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-user-circle fa-lg"></i> Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="borrowhistory.php"><i class="fa fa-users fa-lg"></i> Borrow History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="returnhistory.php"><i class="fa fa-address-book fa-lg"></i> Return History</a>
+                    </li>
+                </ul>
+
+                <!-- Dropdown -->
+                <div class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
+
+        <!-- Modify the dashboard sections with solid background colors -->
+        <div id="book-count" class="dashboard-section bg-primary text-white">
+            <i class="fas fa-book fa-3x"></i>
+            <?php include 'total_books.php'; ?>
+        </div>
+
+        <div class="users-list dashboard-section bg-success text-white">
+            <i class="fas fa-users fa-3x"></i>
+            <?php include 'get_users.php'; ?>
+        </div>
+
+        <div class="current_borrowing_users dashboard-section bg-warning text-white">
+            <i class="fas fa-user-clock fa-3x"></i>
+            <?php include 'current_borrowing_users.php'; ?>
+        </div>
+
+        <div class="total-available-books dashboard-section bg-primary text-white">
+            <i class="fas fa-book-open fa-3x"></i>
+            <?php include 'total_available_books.php'; ?>
+        </div>
+
+        <div class="total-borrowed-and-returned dashboard-section bg-success text-white">
+            <i class="fas fa-exchange-alt fa-3x"></i>
+            <?php include 'total_borrowed_and_returned.php'; ?>
+        </div>
+
+        <div class="top-user-borrowed dashboard-section bg-danger text-white">
+            <i class="fas fa-chart-line fa-3x"></i>
+            <?php include 'top_user_borrowed.php'; ?>
+        </div>
+
+        <div class="top-returned-user dashboard-section bg-info text-white">
+            <i class="fas fa-chart-line fa-3x"></i>
+            <?php include 'top_returned_user.php'; ?>
+        </div>
+
+        <div class="most-borrowed-books dashboard-section bg-warning text-white">
+            <i class="fas fa-book-reader fa-3x"></i>
+            <?php include 'top_borrowed_books.php'; ?>
+        </div>
+
+        <div class="top-returned-books dashboard-section bg-info text-white">
+            <i class="fas fa-book-reader fa-3x"></i>
+            <?php include 'top_returned_books.php'; ?>
+        </div>
+
+        <div class="currently-borrowed-books dashboard-section bg-danger text-white" id="borrowedBooksSection">
+            <i class="fas fa-book fa-3x"></i>
+            <h3 class="fw-bold" id="borrowedBooksTitle">Currently borrowed books</h3>
+            <div id="borrowedBooksContent" style="display: none;">
+                <?php include 'currently_borrowed_books.php'; ?>
+            </div>
+            <button class="btn btn-warning btn-md fw-bold" id="expandButton" onclick="toggleExpand()">Expand</button>
+        </div>
+
+        <script>
+            function toggleExpand() {
+                var content = document.getElementById("borrowedBooksContent");
+                var title = document.getElementById("borrowedBooksTitle");
+                var button = document.getElementById("expandButton");
+
+                if (content.style.display === "none") {
+                    content.style.display = "block";
+                    title.style.display = "none";
+                    button.textContent = "Collapse";
+                } else {
+                    content.style.display = "none";
+                    title.style.display = "block";
+                    button.textContent = "Expand";
+                }
+            }
+        </script>
+
+
+
+
+
+
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#backToTopBtn').fadeIn();
+                } else {
+                    $('#backToTopBtn').fadeOut();
+                }
+            });
+
+
+            $('#backToTopBtn').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'slow');
+                return false;
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>

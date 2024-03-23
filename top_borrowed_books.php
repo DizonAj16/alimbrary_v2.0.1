@@ -23,7 +23,7 @@ if ($result) {
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result)) {
         // Display each book title and its borrow count
-        echo "<li style='color: white; text-align: start; font-weight:bold;'>{$row['title']} - Borrowed {$row['borrow_count']} times</li>"; // Apply red color to the list items and center the text
+        echo "<li style='color: white; text-align: start; font-weight:bold; font-size:18px;'>{$row['title']} - Borrowed {$row['borrow_count']} times</li>"; // Apply red color to the list items and center the text
     }
     echo "</ol>";
     echo "</div>"; // End of flex container

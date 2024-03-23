@@ -15,7 +15,7 @@ require_once "config.php";
 $user_id = $_SESSION["id"];
 
 // Define SQL query to fetch return history data for the logged-in user
-$return_history_sql = "SELECT return_history.return_id, borrowed_books.borrow_date, users.username, books.title, return_history.returned_date_time 
+$return_history_sql = "SELECT return_history.return_id, borrowed_books.borrow_date, users.username, books.title, return_history.returned_date_time, borrowed_books.return_date
                         FROM return_history
                         JOIN users ON return_history.user_id = users.id
                         JOIN books ON return_history.book_id = books.book_id
@@ -200,7 +200,7 @@ mysqli_stmt_close($stmt);
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php
-                            // Display user's profile image or default user icon
+                            // Display user 's profile image or default user icon
                             if (!empty($profile_image)) {
                                 echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
                             } else {
@@ -251,6 +251,7 @@ mysqli_stmt_close($stmt);
                                     <th>Borrow Date</th>
                                     <th>Date Returned</th>
                                     <th>Days Borrowed</th>
+                                    <th>Return Status</th> <!-- New column for return status -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -285,9 +286,17 @@ mysqli_stmt_close($stmt);
                                             echo "<td>$days_borrowed day(s)</td>";
                                         }
                                     }
+
+                                    // Determine return status
+                                    $expected_return_date = strtotime($row['return_date']);
+                                    if ($returned_date <= $expected_return_date) {
+                                        echo "<td>On Time</td>";
+                                    } else {
+                                        echo "<td>Late</td>";
+                                    }
+
                                     echo "</tr>";
                                 }
-
                                 ?>
                             </tbody>
                         </table>
@@ -356,3 +365,4 @@ mysqli_stmt_close($stmt);
 // Close connection
 mysqli_close($conn);
 ?>
+

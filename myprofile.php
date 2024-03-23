@@ -36,8 +36,6 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
             mysqli_stmt_bind_result($stmt, $id, $username, $fullName, $email, $occupation, $address, $contactNum, $user_type, $created_at, $image);
             if (mysqli_stmt_fetch($stmt)) {
                 // Calculate days joined
-                // Calculate days joined
-                // Calculate days joined
                 $dateJoined = new DateTime($created_at);
                 $dateNow = new DateTime();
                 $interval = $dateJoined->diff($dateNow);
@@ -121,16 +119,11 @@ mysqli_close($conn);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: block;
             margin: 0 auto 20px;
-            /* Added margin bottom */
         }
 
-        .profile-info,
-        .profile-image {
-            background-color: rgba(255, 255, 255, 0.3);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Adjusted shadow */
+        .profile-image i {
+            display: flex;
+            justify-content: center;
         }
 
         .info-row {
@@ -156,7 +149,6 @@ mysqli_close($conn);
             text-align: center;
         }
 
-
         label[for="image"] {
             cursor: pointer;
         }
@@ -166,7 +158,6 @@ mysqli_close($conn);
             width: 100%;
             max-width: 50px;
             margin: 20px auto 0;
-            /* Adjusted margin */
             padding: 10px 10px;
             text-align: center;
             background-color: #3498db;
@@ -187,13 +178,11 @@ mysqli_close($conn);
         .username {
             text-align: center;
             margin-top: 5px;
-            /* Adjust as needed */
             font-weight: bold;
             color: #333;
         }
 
         @media (max-width: 767px) {
-
             .info-label,
             .info-value {
                 width: 100%;
@@ -217,7 +206,7 @@ mysqli_close($conn);
             if (!empty($image)) {
                 echo '<img src="' . $image . '" alt="Profile Image">';
             } else {
-                echo '<img src="default.jpg" alt="Profile Image">';
+                echo '<i class="fas fa-user-circle fa-5x text-dark" style="font-size: 200px;"></i>';
             }
             ?>
             <div class="username"><?php echo $username; ?></div>
@@ -225,18 +214,16 @@ mysqli_close($conn);
                 <form action="upload.php" method="post" enctype="multipart/form-data">
                     <div class="input-group">
                         <input type="file" class="form-control-sm d-none" name="image" id="image" accept="image/*">
-                        <label for="image" class="input-group-text me-2 rounded" data-bs-toggle="tooltip" data-bs-title="Upload image">
+                        <label for="image" class="input-group-text me-2 rounded" data-bs-toggle="tooltip" data-bs-title="Click to upload image">
                             <i class="fas fa-file-upload fa-lg text-success"></i>
                         </label>
                         <div class="col-xx-6">
                             <input type="text" class="form-control form-control-sm" id="file-name" readonly>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-primary btn-sm mt-2" value="Submit">
+                    <input type="submit" class="btn btn-primary btn-sm mt-2" value="Upload">
                 </form>
             </div>
-
-
             <script>
                 document.getElementById('image').addEventListener('change', function() {
                     var fileName = this.files[0].name;
@@ -244,15 +231,13 @@ mysqli_close($conn);
                 });
             </script>
         </div>
-
         <div class="profile-info">
             <div class="info-row">
                 <div class="info-label">ID:</div>
                 <div class="info-value"><?php echo $id; ?></div>
             </div>
             <div class="info-row">
-                <div class="
-                info-label">Username:</div>
+                <div class="info-label">Username:</div>
                 <div class="info-value"><?php echo $username; ?></div>
             </div>
             <div class="info-row">
@@ -275,24 +260,22 @@ mysqli_close($conn);
                 <div class="info-label">Contact Number:</div>
                 <div class="info-value"><?php echo $contactNum; ?></div>
             </div>
-
             <div class="info-row">
                 <div class="info-label">User Type:</div>
                 <div class="info-value"><?php echo $user_type; ?></div>
             </div>
             <div class="info-row">
-                <div class="info-label">Date created:</div>
+                <div class="info-label">Date Created:</div>
                 <div class="info-value"><?php echo $created_at; ?></div>
             </div>
             <div class="info-row">
-                <div class="info-label">Joined </div>
+                <div class="info-label">Joined:</div>
                 <div class="info-value"><?php echo $daysJoined; ?></div>
             </div>
             <a class="btn btn-link text-info" href="updateinfo.php">Update User Info</a>
         </div>
         <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'welcomeadmin.php' : 'userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Home"><i class="fas fa-chevron-left"></i></a>
     </div>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
