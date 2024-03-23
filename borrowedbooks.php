@@ -250,7 +250,8 @@ mysqli_stmt_close($stmt);
                                         if ($days_left > 0) {
                                             echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         } else {
-                                            echo "Book is already due";
+                                            echo "<p class='text-danger'>Book is already due</p>";
+                                            echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         }
                                         echo "</td>";
                                         echo "</tr>";
