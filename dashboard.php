@@ -193,25 +193,31 @@ mysqli_stmt_fetch($stmt);
     <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
 
         <!-- Modify the dashboard sections with solid background colors -->
-        <div id="book-count" class="dashboard-section bg-primary text-white">
-            <i class="fas fa-book fa-3x"></i>
-            <?php include 'total_books.php'; ?>
-        </div>
+        <a href="adminbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
+            <div id="book-count">
+                <i class="fas fa-book fa-3x"></i>
+                <?php include 'total_books.php'; ?>
+            </div>
+        </a>
 
-        <div class="users-list dashboard-section bg-success text-white">
+        <a href="users.php" class="users-list dashboard-section bg-success text-white" style="text-decoration: none;">
             <i class="fas fa-users fa-3x"></i>
             <?php include 'get_users.php'; ?>
-        </div>
+        </a>
 
-        <div class="current_borrowing_users dashboard-section bg-warning text-white">
-            <i class="fas fa-user-clock fa-3x"></i>
-            <?php include 'current_borrowing_users.php'; ?>
-        </div>
 
-        <div class="total-available-books dashboard-section bg-primary text-white">
+        <a href="not_availablebooks.php" class="current_borrowing_users dashboard-section bg-warning text-white" style="text-decoration: none;">
+                <i class="fas fa-user-clock fa-3x"></i>
+                <?php include 'current_borrowing_users.php'; ?>
+        </a>
+
+
+
+        <a href="available_books.php" class="total-available-books dashboard-section bg-primary text-white" style="text-decoration: none;">
             <i class="fas fa-book-open fa-3x"></i>
             <?php include 'total_available_books.php'; ?>
-        </div>
+        </a>
+
 
         <div class="total-borrowed-and-returned dashboard-section bg-success text-white">
             <i class="fas fa-exchange-alt fa-3x"></i>
@@ -289,7 +295,7 @@ mysqli_stmt_fetch($stmt);
             }
         }
     </script>
-    
+
     </div>
 
     <!-- Back to Top Button -->

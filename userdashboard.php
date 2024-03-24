@@ -144,10 +144,13 @@ mysqli_stmt_close($stmt);
     </nav>
 
     <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
-        <div class="dashboard-section bg-primary text-white">
+
+
+        <a href="borrowedbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
             <i class="fas fa-book-open fa-3x"></i>
-                <?php include 'user_currently_borrowed.php'; ?>
-        </div>
+            <?php include 'user_currently_borrowed.php'; ?>
+        </a>
+
 
         <div class="dashboard-section bg-success text-white">
             <i class="fas fa-book fa-3x"></i>
@@ -159,16 +162,15 @@ mysqli_stmt_close($stmt);
             <?php include 'total_user_borrowed_today.php'; ?>
         </div>
 
-
-        <div class="dashboard-section bg-danger text-white">
+        <a href="borrowedbooks.php" class="dashboard-section bg-danger text-white" style="text-decoration: none;">
             <i class="fas fa-exclamation-triangle fa-3x"></i>
             <?php include 'user_overdue_books.php'; ?>
-        </div>
+        </a>
 
-        <div class="dashboard-section bg-secondary text-white">
-            <i class="fas fa-chart-pie fa-3x"></i>
-            <?php include 'total_user_returned.php'; ?>
-        </div>
+        <a href="userreturnhistory.php" class="dashboard-section bg-secondary text-white" style="text-decoration: none;">
+                <i class="fas fa-chart-pie fa-3x"></i>
+                <?php include 'total_user_returned.php'; ?>
+        </a>
 
 
         <div class="dashboard-section bg-info text-white">

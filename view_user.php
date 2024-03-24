@@ -1,32 +1,28 @@
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User Information</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="fa-css/all.css">
-        <script defer src="js/bootstrap.bundle.js"></script>
-        <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Font Awesome CSS link -->
+    <link rel="stylesheet" href="fa-css/all.css">
+    <script defer src="js/bootstrap.bundle.js"></script>
+    <style>
         body {
             background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding-top: 50px;
             /* Add padding to the top */
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin: 0;
         }
 
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             max-width: 650px;
             /* Limit maximum width of the container */
-            margin-bottom: 40px;
+            margin: auto;
             padding: 0 15px;
             /* Add padding to the sides */
         }
@@ -34,8 +30,6 @@
         .card {
             border-radius: 15px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            /* Ensure card takes full width */
             margin-bottom: 30px;
         }
 
@@ -47,11 +41,18 @@
             /* Adjust text alignment to center */
         }
 
-        h4 {
-            margin-bottom: 10px;
+        h2 {
+            margin-bottom: 0;
             color: #007bff;
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        h4 {
+            margin-bottom: 15px;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.4rem;
         }
 
         p {
@@ -73,16 +74,14 @@
 
         .user-info-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 500px;
+            padding: 20px 0;
         }
 
         .user-info {
-            flex: 1;
-            margin-left: 30px;
-            overflow: hidden;
+            text-align: center;
+            max-width: 500px;
         }
 
         .user-image {
@@ -90,17 +89,14 @@
             height: 150px;
             margin-bottom: 20px;
             object-fit: cover;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        </style>
+    </style>
+</head>
 
-
-    </head>
-
-    <body>
-        <?php
+<body>
+<?php
         // Initialize the session
         session_start();
 
@@ -184,52 +180,52 @@
         }
         ?>
 
-        <div class="container">
-            <div class="card">
-                <div class="card-header">
-                    <h2>User Information</h2>
-                </div>
-                <div class="card-body">
-                    <div class="user-info-container">
-                        <div class="user-image">
-                            <?php
-                            if (!empty($image_path)) {
-                                echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image" style="border: 2px solid blue;">';
-                            } else {
-                                // Use Font Awesome icon as an alternative if no image is available
-                                echo '<i class="fas fa-user-circle fa-9x" style="color: black;"></i>';
-                            }
-                            ?>
-                        </div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-light">User Information</h2>
+            </div>
+            <div class="card-body">
+                <div class="user-info-container">
+                    <div class="user-image">
+                        <?php
+                        if (!empty($image_path)) {
+                            echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image">';
+                        } else {
+                            // Use Font Awesome icon as an alternative if no image is available
+                            echo '<i class="fas fa-user-circle fa-9x" style="color: black;"></i>';
+                        }
+                        ?>
+                    </div>
 
-                        <div class="user-info">
-                            <h4><?php echo $username; ?></h4>
-                            <p><strong>User ID: </strong><?php echo $param_id; ?></p>
-                            <p><strong>Email: </strong><?php echo $email; ?></p>
-                            <p><strong>Full Name: </strong><?php echo $full_name; ?></p>
-                            <p><strong>Occupation: </strong><?php echo $occupation; ?></p>
-                            <p><strong>Address: </strong><?php echo $address; ?></p>
-                            <p><strong>Contact Number: </strong><?php echo $contact_number; ?></p>
-                            <p><strong>User Type: </strong><?php echo $user_type; ?></p>
-                            <p><strong>Date Created: </strong><?php echo $created_at_formatted; ?></p>
-                            <p><strong>Joined  </strong><?php echo $registration_status; ?></p> <!-- Display registration status here -->
-                            <div class="text-center"></div>
-                            <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
-                        </div>
+                    <div class="user-info">
+                        <h4><?php echo $username; ?></h4>
+                        <p><strong>User ID: </strong><?php echo $param_id; ?></p>
+                        <p><strong>Email: </strong><?php echo $email; ?></p>
+                        <p><strong>Full Name: </strong><?php echo $full_name; ?></p>
+                        <p><strong>Occupation: </strong><?php echo $occupation; ?></p>
+                        <p><strong>Address: </strong><?php echo $address; ?></p>
+                        <p><strong>Contact Number: </strong><?php echo $contact_number; ?></p>
+                        <p><strong>User Type: </strong><?php echo $user_type; ?></p>
+                        <p><strong>Date Created: </strong><?php echo $created_at_formatted; ?></p>
+                        <p><strong>Joined: </strong><?php echo $registration_status; ?></p> <!-- Display registration status here -->
+                        <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i> Back to Users</a>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-                var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                    return new
-                    bootstrap.Tooltip(tooltipTriggerEl)
-                });
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new
+                bootstrap.Tooltip(tooltipTriggerEl)
             });
-        </script>
-    </body>
+        });
+    </script>
+</body>
 
-    </html>
+</html>
+
