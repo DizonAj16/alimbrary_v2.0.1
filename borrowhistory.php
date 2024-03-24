@@ -183,8 +183,7 @@ mysqli_stmt_close($stmt);
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h3 class="fw-bold mb-0">Borrow History</h3>
                 <div class="input-group" style="max-width: 200px;">
-                    <input type="text" class="form-control" id="searchInput
-                    " placeholder="Search by username...">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search by username...">
                 </div>
             </div>
 
@@ -213,11 +212,11 @@ mysqli_stmt_close($stmt);
                             {
                                 // Query to retrieve all borrow history information with book title and status
                                 $sql = "SELECT borrowed_books.borrow_id, borrowed_books.borrow_date, borrowed_books.return_date, borrowed_books.return_date, users.id, users.username, books.title, return_history.return_id 
-            FROM borrowed_books 
-            INNER JOIN users ON borrowed_books.user_id = users.id
-            INNER JOIN books ON borrowed_books.book_id = books.book_id
-            LEFT JOIN return_history ON borrowed_books.borrow_id = return_history.borrow_id
-            ORDER BY borrowed_books.borrow_id DESC";
+                                FROM borrowed_books 
+                                INNER JOIN users ON borrowed_books.user_id = users.id
+                                INNER JOIN books ON borrowed_books.book_id = books.book_id
+                                LEFT JOIN return_history ON borrowed_books.borrow_id = return_history.borrow_id
+                                ORDER BY borrowed_books.borrow_id DESC";
 
                                 // Execute the query
                                 $result = mysqli_query($conn, $sql);
@@ -227,17 +226,17 @@ mysqli_stmt_close($stmt);
                                     // Display borrow history information in a table
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         echo '<tr>
-                    <td>' . $row['borrow_id'] . '</td>
-                    <td>' . $row['username'] . '</td>
-                    <td class="fw-bold">' . $row['title'] . '</td>
-                    <td>' . date("F j, Y", strtotime($row['borrow_date'])) . '</td>
-                    <td>' . ($row['return_date'] ? date("F j, Y", strtotime($row['return_date'])) : 'Not returned') . '</td>';
+                                        <td>' . $row['borrow_id'] . '</td>
+                                        <td>' . $row['username'] . '</td>
+                                        <td class="fw-bold">' . $row['title'] . '</td>
+                                        <td>' . date("F j, Y", strtotime($row['borrow_date'])) . '</td>
+                                        <td>' . ($row['return_date'] ? date("F j, Y", strtotime($row['return_date'])) : 'Not returned') . '</td>';
 
                                         // Calculate the days left
                                         echo '<td>';
                                         if ($row['return_id']) {
                                             // If returned, display a success badge and leave the days left column blank
-                                            
+
                                         } else {
                                             // If not returned, calculate days left
                                             // Calculate the days left until return
