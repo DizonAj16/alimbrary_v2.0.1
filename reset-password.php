@@ -8,18 +8,45 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-// Initialize the cancel link variable
-$cancel_link = isset($_SESSION["user_type"]) && $_SESSION["user_type"] == 'admin' ? "welcomeadmin.php" : "userwelcome.php";
-                
 // Include config file
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$new_password = $confirm_password = "";
-$new_password_err = $confirm_password_err = "";
+$current_password = $new_password = $confirm_password = "";
+$current_password_err = $new_password_err = $confirm_password_err = "";
+$cancel_link = isset($_SESSION["user_type"]) && $_SESSION["user_type"] == 'admin' ? "welcomeadmin.php" : "userwelcome.php";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Validate current password
+    if (empty(trim($_POST["current_password"]))) {
+        $current_password_err = "Please enter your current password.";
+    } else {
+        $current_password = trim($_POST["current_password"]);
+        // Check if current password matches the one in the database
+        $sql = "SELECT password FROM users WHERE id = ?";
+        if ($stmt = mysqli_prepare($conn, $sql)) {
+            mysqli_stmt_bind_param($stmt, "i", $param_id);
+            $param_id = $_SESSION["id"];
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_store_result($stmt);
+                if (mysqli_stmt_num_rows($stmt) == 1) {
+                    mysqli_stmt_bind_result($stmt, $hashed_password);
+                    if (mysqli_stmt_fetch($stmt)) {
+                        if (password_verify($current_password, $hashed_password)) {
+                            // Current password is correct
+                        } else {
+                            $current_password_err = "The password you entered is incorrect.";
+                        }
+                    }
+                }
+            } else {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+            mysqli_stmt_close($stmt);
+        }
+    }
 
     // Validate new password
     if (empty(trim($_POST["new_password"]))) {
@@ -41,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check input errors before updating the database
-    if (empty($new_password_err) && empty($confirm_password_err)) {
+    if (empty($current_password_err) && empty($new_password_err) && empty($confirm_password_err)) {
         // Prepare an update statement
         $sql = "UPDATE users SET password = ? WHERE id = ?";
 
@@ -56,7 +83,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Password updated successfully. Redirect to login page
-                header("location: login.php");
+                echo "<script>
+                        setTimeout(function() {
+                            alert('Password successfully changed');
+                            window.location.href = 'login.php';
+                        }, 200);
+                      </script>";
                 exit();
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
@@ -80,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font: 14px sans-serif;
@@ -126,6 +158,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>Please fill out this form to reset your password.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group">
+                <label>Current Password</label>
+                <input type="password" name="current_password" class="form-control <?php echo (!empty($current_password_err)) ? 'is-invalid' : ''; ?>">
+                <span class="invalid-feedback"><?php echo $current_password_err; ?></span>
+            </div>
+            <div class="form-group">
                 <label>New Password</label>
                 <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
                 <span class="invalid-feedback"><?php echo $new_password_err; ?></span>
@@ -137,13 +174,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                
                 <a class="btn btn-link" href="<?php echo $cancel_link; ?>">Cancel</a>
             </div>
         </form>
-
-
-
     </div>
 </body>
 

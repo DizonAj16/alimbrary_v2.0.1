@@ -1,5 +1,3 @@
-
-
 <?php
 // Include config file
 require_once "config.php";
@@ -8,6 +6,7 @@ require_once "config.php";
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 $user_type = "user";
+$signup_success_message = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -84,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Redirect to login page
-                header("location: login.php");
+                $signup_success_message = "Account successfully created.";
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -132,8 +131,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="submit" class="btn btn-primary" value="Submit">
                </div>
             </form>
-            <?php if (!empty($login_err)) : ?>
-               <div class="error"><?php echo $login_err; ?></div>
+            <script>
+                // JavaScript code to show success message via alert with timeout
+                <?php if (!empty($signup_success_message)) : ?>
+                    setTimeout(function() {
+                        alert("<?php echo $signup_success_message; ?>");
+                        window.location.href = "login.php";
+                    }, 200);
+                <?php endif; ?>
+            </script>
+            <?php if (!empty($username_err) || !empty($password_err) || !empty($confirm_password_err)) : ?>
+               <div class="error">
+                   <?php echo $username_err; ?>
+                   <?php echo $password_err; ?>
+                   <?php echo $confirm_password_err; ?>
+               </div>
             <?php endif; ?>
             <div class="signup">
                Have an account?
