@@ -16,7 +16,7 @@ $result_top_returned = mysqli_query($conn, $query_top_returned);
 
 // Check if the query was successful
 if ($result_top_returned) {
-    echo "<h3 style='margin-bottom: 20px; font-size: 30px;' class='text-center fw-bold'>Top Returned Books</h3>"; // Increased font size
+    echo "<h3 style='margin-bottom: 20px; font-size: 30px;' class='text-center fw-bold'>Most Returned Books</h3>"; // Increased font size
     echo '<div class="d-flex justify-content-center align-items-center">';
     echo "<div class='text-start'>";
     

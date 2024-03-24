@@ -128,7 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $genre = $row["genre"];
                     $description = $row["description"];
                     $image_path = $row["image_path"];
-
                 } else {
                     // URL doesn't contain a valid book_id parameter. Redirect to error page
                     header("location: error.php");
@@ -282,11 +281,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <span>No image available</span>
                                 <?php endif; ?>
                             </div>
-                            <div class="form-group ">
-                                <label for="new_image">New Image</label>
-                                <input type="file" id="new_image" name="image" class="form-control-file">
+                            <div class="form-group">
+                                <label for="new_image" class="form-label">New Image</label>
+                                <div class="input-group">
+                                    <input type="file" id="new_image" name="image" class="form-control d-none" onchange="updateFileName(this)">
+                                    <label for="new_image" class="input-group-text bg-success text-light fw-bold fs-4 rounded me-2">
+                                        <i class="fas fa-upload"></i>
+                                    </label>
+                                    <input type="text" id="file_name" class="form-control" readonly>
+                                </div>
+                                
                                 <span class="text-danger"><?php echo $image_err; ?></span>
+
+                                <script>
+                                    function updateFileName(input) {
+                                        var fileName = input.files[0].name;
+                                        document.getElementById("file_name").value = fileName;
+                                    }
+                                </script>
+
                             </div>
+
+
                         </div>
                     </div>
                     <div class="form-group text-center mt-3">

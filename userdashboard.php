@@ -145,8 +145,8 @@ mysqli_stmt_close($stmt);
 
     <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
         <div class="dashboard-section bg-primary text-white">
-            <i class="fas fa-user fa-3x"></i>
-            <?php include 'get_users.php'; ?>
+            <i class="fas fa-book-open fa-3x"></i>
+                <?php include 'user_currently_borrowed.php'; ?>
         </div>
 
         <div class="dashboard-section bg-success text-white">
@@ -172,7 +172,7 @@ mysqli_stmt_close($stmt);
 
 
         <div class="dashboard-section bg-info text-white">
-            <i class="fas fa-history fa-3x mr-3"></i>
+            <i class="fas fa-star fa-3x mr-3"></i>
             <h3 class="fw-bold" id="title">My Favorite Books</h3>
             <div id="userMostBorrowedBooks" style="display: none;">
                 <?php include 'user_most_borrowed_books.php'; ?>
@@ -199,8 +199,8 @@ mysqli_stmt_close($stmt);
 
         <a href="myprofile.php" class="dashboard-section bg-dark text-light" style="text-decoration: none;">
             <div class="text-center">
-            <i class="fas fa-hand-point-down fa-2x mr-2"></i>
-                <h2><i>Click here to update your profile!</i></h2>
+                <i class="fas fa-hand-point-down fa-2x mr-2"></i>
+                <h2><i>Update your profile!</i></h2>
             </div>
         </a>
     </div>

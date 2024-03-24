@@ -218,24 +218,40 @@ mysqli_stmt_fetch($stmt);
             <?php include 'total_borrowed_and_returned.php'; ?>
         </div>
 
-        <div class="top-user-borrowed dashboard-section bg-danger text-white">
+        <div class="top-user-borrowed dashboard-section bg-danger text-white" id="topUserBorrowedSection">
             <i class="fas fa-chart-bar fa-3x"></i>
-            <?php include 'top_user_borrowed.php'; ?>
+            <h3 class="fw-bold" id="topUserBorrowedTitle">Top Borrowers</h3>
+            <div id="topUserBorrowedContent" style="display: none;">
+                <?php include 'top_user_borrowed.php'; ?>
+            </div>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topUserBorrowed')">Expand</button>
         </div>
 
-        <div class="top-returned-user dashboard-section bg-info text-white">
+        <div class="top-returned-user dashboard-section bg-info text-white" id="topReturnedUserSection">
             <i class="fas fa-chart-line fa-3x"></i>
-            <?php include 'top_returned_user.php'; ?>
+            <h3 class="fw-bold" id="topReturnedUserTitle">Top Returners</h3>
+            <div id="topReturnedUserContent" style="display: none;">
+                <?php include 'top_returned_user.php'; ?>
+            </div>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedUser')">Expand</button>
         </div>
 
-        <div class="most-borrowed-books dashboard-section bg-warning text-white">
-            <i class="fas fa-book-reader fa-3x"></i>
-            <?php include 'top_borrowed_books.php'; ?>
+        <div class="most-borrowed-books dashboard-section bg-warning text-white" id="mostBorrowedBooksSection">
+            <i class="fas fa-star fa-3x"></i>
+            <h3 class="fw-bold text-center" id="mostBorrowedBooksTitle">Most Popular Books</h3>
+            <div id="mostBorrowedBooksContent" style="display: none;">
+                <?php include 'top_borrowed_books.php'; ?>
+            </div>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('mostBorrowedBooks')">Expand</button>
         </div>
 
-        <div class="top-returned-books dashboard-section bg-info text-white">
+        <div class="top-returned-books dashboard-section bg-info text-white" id="topReturnedBooksSection">
             <i class="fas fa-book-reader fa-3x"></i>
-            <?php include 'top_returned_books.php'; ?>
+            <h3 class="fw-bold" id="topReturnedBooksTitle">Most Returned Books</h3>
+            <div id="topReturnedBooksContent" style="display: none;">
+                <?php include 'top_returned_books.php'; ?>
+            </div>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedBooks')">Expand</button>
         </div>
 
         <div class="currently-borrowed-books dashboard-section bg-danger text-white" id="borrowedBooksSection">
@@ -244,32 +260,36 @@ mysqli_stmt_fetch($stmt);
             <div id="borrowedBooksContent" style="display: none;">
                 <?php include 'currently_borrowed_books.php'; ?>
             </div>
-            <button class="btn btn-warning btn-md fw-bold" id="expandButton" onclick="toggleExpand()">Expand</button>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('borrowedBooks')">Expand</button>
         </div>
+    </div>
 
-        <script>
-            function toggleExpand() {
-                var content = document.getElementById("borrowedBooksContent");
-                var title = document.getElementById("borrowedBooksTitle");
-                var button = document.getElementById("expandButton");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
 
-                if (content.style.display === "none") {
-                    content.style.display = "block";
-                    title.style.display = "none";
-                    button.textContent = "Collapse";
-                } else {
-                    content.style.display = "none";
-                    title.style.display = "block";
-                    button.textContent = "Expand";
-                }
+            var contentSections = document.querySelectorAll(".dashboard-section > div[id$='Content']");
+            contentSections.forEach(function(section) {
+                section.style.display = "none";
+            });
+        });
+
+        function toggleExpand(sectionId) {
+            var content = document.getElementById(sectionId + "Content");
+            var title = document.getElementById(sectionId + "Title");
+            var button = document.querySelector(`button[onclick="toggleExpand('${sectionId}')"]`);
+
+            if (content.style.display === "none") {
+                content.style.display = "block";
+                title.style.display = "none";
+                button.textContent = "Collapse";
+            } else {
+                content.style.display = "none";
+                title.style.display = "block";
+                button.textContent = "Expand";
             }
-        </script>
-
-
-
-
-
-
+        }
+    </script>
+    
     </div>
 
     <!-- Back to Top Button -->

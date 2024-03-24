@@ -5,7 +5,7 @@ include 'config.php';
 // Check if user_id parameter is provided in the session
 if (isset($_SESSION["id"]) && !empty(trim($_SESSION["id"]))) {
     // Prepare a select statement to get the 5 most borrowed books by the user
-    $sql = "SELECT book_id, COUNT(*) AS borrow_count FROM borrowed_books WHERE user_id = ? GROUP BY book_id ORDER BY borrow_count DESC LIMIT 5";
+    $sql = "SELECT book_id, COUNT(*) AS borrow_count FROM borrowed_books WHERE user_id = ? GROUP BY book_id ORDER BY borrow_count DESC LIMIT 10";
 
     if ($stmt = mysqli_prepare($conn, $sql)) {
         // Bind variables to the prepared statement as parameters
@@ -41,7 +41,7 @@ if (isset($_SESSION["id"]) && !empty(trim($_SESSION["id"]))) {
                 }
                 echo "</ol>";
             } else {
-                echo "<p>No books borrowed yet.</p>";
+                echo "<h3 class='fw-bold'>No books borrowed yet.</h3>";
             }
         } else {
             echo "Oops! Something went wrong. Please try again later.";

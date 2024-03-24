@@ -405,10 +405,25 @@
                                             </select>
                                             <div class="invalid-feedback"><?php echo $availability_err; ?></div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="image" class="form-label">Image</label>
-                                            <input type="file" name="image" class="form-control <?php echo (!empty($image_err)) ? 'is-invalid' : ''; ?>">
-                                            <div class="invalid-feedback"><?php echo $image_err; ?></div>
+                                        <div class="form-group">
+                                            <label for="new_image" class="form-label">New Image</label>
+                                            <div class="input-group">
+                                                <input type="file" id="new_image" name="image" class="form-control d-none" onchange="updateFileName(this)">
+                                                <label for="new_image" class="input-group-text bg-success text-light fw-bold fs-4 rounded me-2">
+                                                    <i class="fas fa-upload"></i>
+                                                </label>
+                                                <input type="text" id="file_name" class="form-control" readonly>
+                                            </div>
+
+                                            <span class="text-danger"><?php echo $image_err; ?></span>
+
+                                            <script>
+                                                function updateFileName(input) {
+                                                    var fileName = input.files[0].name;
+                                                    document.getElementById("file_name").value = fileName;
+                                                }
+                                            </script>
+
                                         </div>
                                     </div>
                                 </div>
