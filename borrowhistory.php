@@ -229,7 +229,7 @@ mysqli_stmt_close($stmt);
                                         <td>' . $row['borrow_id'] . '</td>
                                         <td>' . $row['username'] . '</td>
                                         <td class="fw-bold">' . $row['title'] . '</td>
-                                        <td>' . date("F j, Y", strtotime($row['borrow_date'])) . '</td>
+                                        <td>' . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . '</td>
                                         <td>' . ($row['return_date'] ? date("F j, Y", strtotime($row['return_date'])) : 'Not returned') . '</td>';
 
                                         // Calculate the days left

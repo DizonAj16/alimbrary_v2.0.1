@@ -223,7 +223,8 @@ mysqli_stmt_close($stmt);
                                         echo "<td>" . $borrow_id . "</td>";
                                         echo "<td class='fw-bold'>" . $book_title . "</td>";
                                         // Display borrowed date in 12-hour format with only the date
-                                        echo "<td>" . date("F j, Y", strtotime($borrow_date)) . "</td>";
+                                        echo "<td>" . date("F j, Y, h:i A", strtotime($borrow_date)) . "</td>";
+
 
                                         // Display return date in 12-hour format with only the date
                                         echo "<td>" . date("F j, Y", strtotime($return_date)) . "</td>";

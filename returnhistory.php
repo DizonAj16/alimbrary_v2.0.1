@@ -231,7 +231,7 @@ mysqli_stmt_close($stmt);
                                 echo "<td>" . $row['username'] . "</td>";
                                 echo "<td class='fw-bold'>" . $row['title'] . "</td>";
                                 // Display borrowed date in 12-hour format with only the date
-                                echo "<td>" . date("F j, Y", strtotime($row['borrow_date'])) . "</td>";
+                                echo "<td>" . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . "</td>";
 
                                 // Display returned date in 12-hour format with only the date
                                 echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";

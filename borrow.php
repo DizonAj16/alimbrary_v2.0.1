@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_close($update_stmt);
 
         // Insert borrowing record into borrowed_books table
-        $borrow_date = date("Y-m-d");
+        $borrow_date = date("Y-m-d H:i:s"); // Change to include time
         $insert_sql = "INSERT INTO borrowed_books (user_id, book_id, borrow_date, return_date) VALUES (?, ?, ?, ?)";
         $insert_stmt = mysqli_prepare($conn, $insert_sql);
         mysqli_stmt_bind_param($insert_stmt, "iiss", $_SESSION["id"], $book_id, $borrow_date, $return_date);
@@ -84,9 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close the connection
 mysqli_close($conn);
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -205,7 +202,7 @@ mysqli_close($conn);
                         <form id="borrowForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?book_id=' . $book_id; ?>" method="post">
                             <div class="form-group mb-2">
                                 <label for="borrow_date" class="form-label mb-2">Borrow Date:</label>
-                                <input type="date" id="borrow_date" name="borrow_date" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
+                                <input type="text" id="borrow_date" name="borrow_date" class="form-control" value="<?php echo date('Y-m-d H:i:s'); ?>" readonly>
                             </div>
                             <div class="form-group mb-2">
                                 <label for="return_date" class="form-label mb-2">Return Date:</label>
@@ -246,3 +243,4 @@ mysqli_close($conn);
 </body>
 
 </html>
+
