@@ -113,17 +113,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="login.css">
     <script>
         function showAlertAndRedirect() {
-            <?php if (!empty($current_password_err) && (empty($new_password_err) && empty($confirm_password_err))) : ?>
-                alert("Error changing password: <?php echo $current_password_err; ?>");
-            <?php elseif (empty($current_password_err) && ((!empty($new_password_err) || !empty($confirm_password_err)))) : ?>
-                alert("Error changing password: Please check the new password and confirm password fields.");
-            <?php else : ?>
-                alert("Password changed successfully.");
-                setTimeout(function() {
-                    window.location.href = "login.php";
-                }, 200);
-            <?php endif; ?>
-        }
+    <?php if (!empty($current_password_err) && (empty($new_password_err) && empty($confirm_password_err))) : ?>
+        alert("Error changing password: <?php echo $current_password_err; ?>");
+    <?php elseif (empty($current_password_err) && ((!empty($new_password_err) || !empty($confirm_password_err)))) : ?>
+        alert("Error changing password: Please check the new password and confirm password fields.");
+    <?php else : ?>
+        alert("Password changed successfully.");
+        setTimeout(function() {
+            window.location.href = "login.php";
+        }, 200);
+    <?php endif; ?>
+
+    // Redirect only if there are no errors
+    <?php if (empty($current_password_err) || empty($new_password_err) || empty($confirm_password_err)) : ?>
+        return true;
+    <?php else : ?>
+        return false;
+    <?php endif; ?>
+}
     </script>
 
 

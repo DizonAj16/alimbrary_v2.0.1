@@ -145,8 +145,8 @@ mysqli_stmt_close($stmt);
     <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
 
 
-        <div class="total-available-books dashboard-section bg-primary text-white">
-            <i class="fas fa-book-open fa-3x"></i>
+        <div class="total-available-books dashboard-section bg-info text-white">
+            <i class="fab fa-readme fa-3x"></i>
             <?php include 'total_available_books.php'; ?>
         </div>
 
@@ -162,7 +162,7 @@ mysqli_stmt_close($stmt);
         </div>
 
         <div class="dashboard-section bg-warning text-white">
-            <i class="fas fa-clock fa-3x"></i>
+            <i class="fas fa-calendar-check fa-3x"></i>
             <?php include 'total_user_borrowed_today.php'; ?>
         </div>
 
@@ -172,7 +172,7 @@ mysqli_stmt_close($stmt);
         </a>
 
         <a href="userreturnhistory.php" class="dashboard-section bg-secondary text-white" style="text-decoration: none;">
-            <i class="fas fa-chart-pie fa-3x"></i>
+            <i class="fas fa-reply-all fa-3x"></i>
             <?php include 'total_user_returned.php'; ?>
         </a>
 
@@ -205,7 +205,7 @@ mysqli_stmt_close($stmt);
 
         <a href="myprofile.php" class="dashboard-section bg-dark text-light" style="text-decoration: none;">
             <div class="text-center">
-                <i class="fas fa-hand-point-down fa-2x mr-2"></i>
+                <i class="fas fa-mouse-pointer fa-2x mr-2"></i>
                 <h2><i>Update your profile!</i></h2>
             </div>
         </a>
