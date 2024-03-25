@@ -213,7 +213,7 @@
                         <p><strong>User Type: </strong><?php echo $user_type; ?></p>
                         <p><strong>Date Created: </strong><?php echo $created_at_formatted; ?></p>
                         <p><strong>Joined: </strong><?php echo $registration_status; ?></p> <!-- Display registration status here -->
-                        <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i> Back to Users</a>
+                        <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
                     </div>
                 </div>
             </div>
