@@ -9,8 +9,8 @@ $sql = "SELECT * FROM books ORDER BY book_id DESC";
 if (isset($_POST['searchQuery']) && !empty($_POST['searchQuery'])) {
     // Sanitize the search query to prevent SQL injection
     $searchQuery = mysqli_real_escape_string($conn, $_POST['searchQuery']);
-    // Modify the SQL query to include the search filter
-    $sql = "SELECT * FROM books WHERE title LIKE '%$searchQuery%' ORDER BY book_id DESC";
+    // Modify the SQL query to include the search filter for title and genre
+    $sql = "SELECT * FROM books WHERE title LIKE '%$searchQuery%' OR genre LIKE '%$searchQuery%' ORDER BY book_id DESC";
 }
 
 // Attempt select query execution
@@ -22,14 +22,14 @@ if ($result = mysqli_query($conn, $sql)) {
             echo '<div class="info">';
             echo '<div class="mt-auto">';
             // Display the title of the book
-            echo '<div class="heading1 mb-2">' . $row['title'] . '</div>';
+            echo '<div class="heading1 mb-2 d-none">' . $row['title'] . '</div>';
             // Display availability badge
             echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-lg">' . $row['availability'] . '</span>';
 
             // Display buttons
             echo '<div class="d-flex justify-content-center">';
-            echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-primary me-2 fw-bold">Read More</a>';
-            echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning fw-bold">Borrow Book</a>';
+            echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 fw-bold text-light">Read More</a>';
+            echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning text-dark fw-bold">Borrow Book</a>';
             echo '</div>'; // Close d-flex div
             echo '</div>'; // Close mt-auto div
             echo '</div>'; // Close info div
@@ -48,6 +48,6 @@ if ($result = mysqli_query($conn, $sql)) {
     echo '</div>';
 }
 
-
 // Close connection
 mysqli_close($conn);
+?>

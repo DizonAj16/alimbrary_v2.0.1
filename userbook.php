@@ -121,7 +121,7 @@ mysqli_stmt_close($stmt);
             position: absolute;
             top: 0;
             left: 0;
-            transition: transform 0.5s ease, filter 0.5s ease;
+            transition: transform 0.5s ease;
             /* Add transition for smooth animation */
         }
 
@@ -186,7 +186,46 @@ mysqli_stmt_close($stmt);
         }
 
         .btn {
+            width: 125px;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
             font-size: 15px;
+        }
+
+        .btn-info {
+            color: #fff;
+            border: 3px solid #c266d3;
+            background-image: -webkit-linear-gradient(30deg, #c266d3 50%, transparent 50%);
+            background-image: linear-gradient(30deg, #c266d3 50%, transparent 50%);
+            background-size: 500px;
+            background-repeat: no-repeat;
+            background-position: 0%;
+            -webkit-transition: background 300ms ease-in-out;
+            transition: background 300ms ease-in-out;
+        }
+
+        .btn-info:hover {
+            background-position: 100%;
+            color: #fff;
+        }
+
+        .btn-warning {
+            background-color: #F4F200;
+            background-image: #F4F200;
+            background-image: -moz-linear-gradient(top, #fff 0%, #F4F200 100%);
+            background-image: -webkit-linear-gradient(top, #fff 0%, #F4F200 100%);
+            background-image: linear-gradient(to bottom, #fff 0%, #F4F200 100%);
+            background-size: 300px;
+            background-repeat: no-repeat;
+            background-position: 0%;
+            -webkit-transition: background 300ms ease-in-out;
+            transition: background 300ms ease-in-out;
+        }
+
+        .btn-warning:hover {
+            background-position: -200%;
+            transition: background 300ms ease-in-out;
         }
     </style>
 
@@ -214,7 +253,7 @@ mysqli_stmt_close($stmt);
                         </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
+                        <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="userbook.php"><i class="fa fa-book fa-lg"></i> Books</a>
@@ -265,8 +304,7 @@ mysqli_stmt_close($stmt);
                 <div class="col-md-12">
                     <div class="mt-3 clearfix">
                         <h2 class="float-start">Books</h2>
-                        </button>
-                        <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title" style="width:200px;" autocomplete="off">
+                        <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Title or Genre" style="width:200px;" autocomplete="off">
                     </div>
                 </div>
             </div>
@@ -298,8 +336,8 @@ mysqli_stmt_close($stmt);
 
                     // Display buttons
                     echo '<div class="d-flex justify-content-center">';
-                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-primary me-2 fw-bold">Read More</a>';
-                    echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning fw-bold">Borrow Book</a>';
+                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 text-center">Read More</a>';
+                    echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning text-center text-dark fw-bold">Borrow Book</a>';
                     echo '</div>'; // Close d-flex div
                     echo '</div>'; // Close mt-auto div
                     echo '</div>'; // Close info div
@@ -341,38 +379,24 @@ mysqli_stmt_close($stmt);
 
     <script src="jquery/jquery-3.6.0.min.js"></script>
     <script>
-$(document).ready(function() {
-    $("#searchInput").on("keyup", function() {
-        var searchText = $(this).val().toLowerCase().trim();
-        $.ajax({
-            url: "search_user_books.php", // Update to the correct file name
-            method: "POST",
-            data: { searchQuery: searchText },
-            success: function(response) {
-                $("#searchBooksTable").html(response);
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
+        $(document).ready(function() {
+            $("#searchInput").on("keyup", function() {
+                var searchText = $(this).val().toLowerCase().trim();
+                $.ajax({
+                    url: "search_user_books.php", // Update to the correct file name
+                    method: "POST",
+                    data: {
+                        searchQuery: searchText
+                    },
+                    success: function(response) {
+                        $("#searchBooksTable").html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
         });
-    });
-
-    $("#refreshButton").click(function() {
-        $("#searchInput").val("");
-        $.ajax({
-            url: "search_user_books.php", // Update to the correct file name
-            method: "POST",
-            data: { searchQuery: "" },
-            success: function(response) {
-                $("#searchBooksTable").html(response);
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    });
-});
-
     </script>
 
 

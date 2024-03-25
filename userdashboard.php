@@ -145,6 +145,11 @@ mysqli_stmt_close($stmt);
     <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
 
 
+        <div class="total-available-books dashboard-section bg-primary text-white">
+            <i class="fas fa-book-open fa-3x"></i>
+            <?php include 'total_available_books.php'; ?>
+        </div>
+
         <a href="borrowedbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
             <i class="fas fa-book-open fa-3x"></i>
             <?php include 'user_currently_borrowed.php'; ?>
@@ -167,8 +172,8 @@ mysqli_stmt_close($stmt);
         </a>
 
         <a href="userreturnhistory.php" class="dashboard-section bg-secondary text-white" style="text-decoration: none;">
-                <i class="fas fa-chart-pie fa-3x"></i>
-                <?php include 'total_user_returned.php'; ?>
+            <i class="fas fa-chart-pie fa-3x"></i>
+            <?php include 'total_user_returned.php'; ?>
         </a>
 
 
