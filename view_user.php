@@ -46,18 +46,22 @@
             color: #007bff;
             font-weight: bold;
             font-size: 1.8rem;
+            font-family: 'Arial', sans-serif;
         }
 
         h4 {
             margin-bottom: 15px;
             color: #000;
             font-weight: bold;
-            font-size: 1.4rem;
+            font-size: 2rem;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
         }
 
         p {
             margin-bottom: 8px;
             font-size: 1.1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .btn-primary {
@@ -80,7 +84,7 @@
         }
 
         .user-info {
-            text-align: center;
+            text-align: start;
             max-width: 500px;
         }
 
@@ -193,7 +197,7 @@
                             echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image">';
                         } else {
                             // Use Font Awesome icon as an alternative if no image is available
-                            echo '<i class="fas fa-user-circle fa-9x" style="color: black;"></i>';
+                            echo '<i class="fas fa-user-circle" style="color: black; font-size:200px;"></i>';
                         }
                         ?>
                     </div>

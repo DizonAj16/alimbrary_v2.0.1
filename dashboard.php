@@ -29,7 +29,6 @@ mysqli_stmt_fetch($stmt);
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="titlestyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="navigation.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <style>
@@ -194,8 +193,8 @@ mysqli_stmt_fetch($stmt);
 
         <!-- Modify the dashboard sections with solid background colors -->
         <a href="adminbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
+            <i class="fas fa-book fa-3x"></i>
             <div id="book-count">
-                <i class="fas fa-book fa-3x"></i>
                 <?php include 'total_books.php'; ?>
             </div>
         </a>
@@ -207,8 +206,8 @@ mysqli_stmt_fetch($stmt);
 
 
         <a href="not_availablebooks.php" class="current_borrowing_users dashboard-section bg-warning text-white" style="text-decoration: none;">
-                <i class="fas fa-user-clock fa-3x"></i>
-                <?php include 'current_borrowing_users.php'; ?>
+            <i class="fas fa-user-clock fa-3x"></i>
+            <?php include 'current_borrowing_users.php'; ?>
         </a>
 
 
@@ -260,14 +259,6 @@ mysqli_stmt_fetch($stmt);
             <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedBooks')">Expand</button>
         </div>
 
-        <div class="currently-borrowed-books dashboard-section bg-danger text-white" id="borrowedBooksSection">
-            <i class="fas fa-book fa-3x"></i>
-            <h3 class="fw-bold" id="borrowedBooksTitle">Currently borrowed books</h3>
-            <div id="borrowedBooksContent" style="display: none;">
-                <?php include 'currently_borrowed_books.php'; ?>
-            </div>
-            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('borrowedBooks')">Expand</button>
-        </div>
     </div>
 
     <script>

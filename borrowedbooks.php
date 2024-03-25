@@ -32,7 +32,6 @@ mysqli_stmt_close($stmt);
     <title>Borrowed Books</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="titlestyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="navigation.css">
     <link rel="stylesheet" href="fa-css/all.css">
     <script defer src="js/bootstrap.bundle.js"></script>
@@ -251,7 +250,7 @@ mysqli_stmt_close($stmt);
                                         if ($days_left > 0) {
                                             echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         } else {
-                                            echo "<p class='text-danger'>Book is already due</p>";
+                                            echo "<p class='text-danger'>Book is nearing due</p>";
                                             echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         }
                                         echo "</td>";

@@ -1,5 +1,17 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
+    header("location: login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,17 +26,20 @@
             margin-bottom: 20px;
         }
     </style>
+
 </head>
+
 <body>
     <div class="container mt-3">
         <a href="dashboard.php" class="btn btn-primary back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
         <h2 class="mb-4 text-success fw-bold">Available Books</h2>
         <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search by Title...">
         <table class="table table-striped table-hover">
-            <thead>
+            <thead style="font-size: 15px;">
                 <tr>
                     <th>Title</th>
                     <th>Availability</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="booksTable">
@@ -33,7 +48,7 @@
                 require_once "config.php";
 
                 // Attempt select query execution
-                $sql = "SELECT title, availability FROM books WHERE availability = 'Available' ORDER BY book_id DESC";
+                $sql = "SELECT book_id, title, availability FROM books WHERE availability = 'Available' ORDER BY book_id DESC";
 
                 if ($result = mysqli_query($conn, $sql)) {
                     if (mysqli_num_rows($result) > 0) {
@@ -47,15 +62,18 @@
                                 echo '<span class="badge bg-danger">Not Available</span>';
                             }
                             echo "</td>";
+                            echo "<td>";
+                            echo '<a href="view_available_books.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" data-bs-toggle="tooltip" data-bs-title="View Book"><i class="fas fa-eye"></i></a>';
+                            echo "</td>";
                             echo "</tr>";
                         }
                         // Free result set
                         mysqli_free_result($result);
                     } else {
-                        echo '<tr><td colspan="2">No books found</td></tr>';
+                        echo '<tr><td colspan="3">No books found</td></tr>';
                     }
                 } else {
-                    echo '<tr><td colspan="2">Oops! Something went wrong. Please try again later.</td></tr>';
+                    echo '<tr><td colspan="3">Oops! Something went wrong. Please try again later.</td></tr>';
                 }
 
                 // Close connection
@@ -68,14 +86,24 @@
     <script src="jquery/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
     <script>
-        $(document).ready(function(){
-            $('#searchInput').on('keyup', function(){
+        $(document).ready(function() {
+            $('#searchInput').on('keyup', function() {
                 var searchText = $(this).val().toLowerCase();
-                $('#booksTable tr').filter(function(){
+                $('#booksTable tr').filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
                 });
             });
         });
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        });
+    </script>
 </body>
+
 </html>

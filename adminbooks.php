@@ -152,7 +152,6 @@
             <link rel="stylesheet" href="css/bootstrap.css">
             <link rel="stylesheet" href="navigation.css">
             <link rel="stylesheet" href="titlestyle.css">
-            <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
             <link rel="stylesheet" href="fa-css/all.css">
             <script defer src="js/bootstrap.bundle.js"></script>
             <style>

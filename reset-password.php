@@ -113,12 +113,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="login.css">
     <script>
         function showAlertAndRedirect() {
-            alert("Password changed successfully.");
-            setTimeout(function () {
-                window.location.href = "login.php";
-            }, 200);
+            <?php if (!empty($current_password_err) && (empty($new_password_err) && empty($confirm_password_err))) : ?>
+                alert("Error changing password: <?php echo $current_password_err; ?>");
+            <?php elseif (empty($current_password_err) && ((!empty($new_password_err) || !empty($confirm_password_err)))) : ?>
+                alert("Error changing password: Please check the new password and confirm password fields.");
+            <?php else : ?>
+                alert("Password changed successfully.");
+                setTimeout(function() {
+                    window.location.href = "login.php";
+                }, 200);
+            <?php endif; ?>
         }
     </script>
+
+
+
 </head>
 
 <body>
@@ -146,11 +155,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </form>
             <?php if (!empty($current_password_err) || !empty($new_password_err) || !empty($confirm_password_err)) : ?>
-               <div class="error">
-                   <?php echo $current_password_err; ?>
-                   <?php echo $new_password_err; ?>
-                   <?php echo $confirm_password_err; ?>
-               </div>
+                <div class="error">
+                    <?php echo $current_password_err; ?>
+                    <?php echo $new_password_err; ?>
+                    <?php echo $confirm_password_err; ?>
+                </div>
             <?php endif; ?>
             <div class="form-group">
                 <a class="btn btn-link text-light mt-2" href="<?php echo $cancel_link; ?>">Cancel</a>

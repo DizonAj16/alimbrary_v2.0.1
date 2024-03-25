@@ -9,7 +9,7 @@ $query = "
     JOIN books b ON bb.book_id = b.book_id
     GROUP BY bb.book_id
     ORDER BY borrow_count DESC
-    LIMIT 5"; // Change the LIMIT value to adjust the number of top books you want to display
+    LIMIT 10"; // Change the LIMIT value to adjust the number of top books you want to display
 
 // Execute the query
 $result = mysqli_query($conn, $query);

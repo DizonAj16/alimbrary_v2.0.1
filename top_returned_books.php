@@ -9,7 +9,7 @@ $query_top_returned = "
     JOIN books b ON rh.book_id = b.book_id
     GROUP BY rh.book_id
     ORDER BY return_count DESC
-    LIMIT 5"; // Change the LIMIT value to adjust the number of top returned books you want to display
+    LIMIT 10"; // Change the LIMIT value to adjust the number of top returned books you want to display
 
 // Execute the query to get the top 5 returned books
 $result_top_returned = mysqli_query($conn, $query_top_returned);
