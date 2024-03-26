@@ -43,10 +43,8 @@ mysqli_stmt_close($stmt);
             font-family: 'Arial', sans-serif;
         }
 
-        /* Fixed position for the header container */
         .header-container {
             margin-top: 85px;
-            /* Ensure the header is above other content */
         }
 
         #backToTopBtn {
@@ -74,12 +72,12 @@ mysqli_stmt_close($stmt);
 
         .wrapper1 {
             margin-top: 20px;
+            margin-bottom: 50px;
             display: flex;
             width: 100%;
-            justify-content: start;
-            align-items: center;
+            justify-content: center;
+            align-items: start;
             flex-wrap: wrap;
-            padding: 0 30px 0 30px;
             gap: 20px;
         }
 
@@ -90,8 +88,6 @@ mysqli_stmt_close($stmt);
             position: relative;
             box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
             transition: 0.5s ease-in-out;
-            margin-left: 20px;
-            margin-bottom: 20px;
             overflow: hidden;
         }
 
@@ -122,12 +118,10 @@ mysqli_stmt_close($stmt);
             top: 0;
             left: 0;
             transition: transform 0.5s ease;
-            /* Add transition for smooth animation */
         }
 
         .card1:hover img {
             transform: scale(1.1);
-            /* Apply zoom effect on hover */
         }
 
 
@@ -168,17 +162,11 @@ mysqli_stmt_close($stmt);
         .heading1 {
             font-family: 'Lora', serif;
             font-size: 20px;
-            /* Adjust the font size */
             font-weight: bold;
-            /* Make the title bold */
             color: #444;
-            /* Set the color to a slightly darker shade */
             text-transform: uppercase;
-            /* Convert text to uppercase */
             letter-spacing: 1px;
-            /* Add spacing between letters */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            /* Add a subtle shadow effect */
         }
 
         .badge-lg {
