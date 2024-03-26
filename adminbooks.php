@@ -189,7 +189,6 @@
                     background-color: white;
                     border: none;
                     border-radius: 15px;
-
                     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
 
                 }
@@ -198,7 +197,6 @@
                     background: linear-gradient(to bottom, #add8e6, #4682b4);
                     color: white;
                     cursor: pointer;
-
                     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
 
                 }
@@ -245,8 +243,6 @@
 
 
                 @media (max-width: 768px) {
-
-                    /* Adjust the max-width of the search input for smaller screens */
                     #liveSearchInput {
                         max-width: 130px;
                     }
@@ -414,7 +410,6 @@
                                                     document.getElementById("file_name").value = fileName;
                                                 }
                                             </script>
-
                                         </div>
                                     </div>
                                 </div>

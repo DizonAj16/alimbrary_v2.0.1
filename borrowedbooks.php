@@ -198,7 +198,6 @@ mysqli_stmt_close($stmt);
                         <h2 class="fw-bold mb-0">Borrowed Books</h2>
                         <div class="d-flex">
                             <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 160px;">
-                            <!-- You can add a search button here if needed -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -292,7 +291,7 @@ mysqli_stmt_close($stmt);
                 var searchText = $(this).val().toLowerCase();
                 var found = false;
                 $('tbody tr').each(function() {
-                    var title = $(this).find('td:eq(1)').text().toLowerCase(); // Index 1 for the title column
+                    var title = $(this).find('td:eq(1)').text().toLowerCase(); 
                     if (title.indexOf(searchText) === -1) {
                         $(this).hide();
                     } else {

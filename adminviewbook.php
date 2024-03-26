@@ -152,7 +152,6 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         .book-title {
             font-family: 'Arial Black', sans-serif;
             color: #4CAF50;
-            /* Change the color to your preference */
             text-transform: uppercase;
             letter-spacing: 1px;
         }

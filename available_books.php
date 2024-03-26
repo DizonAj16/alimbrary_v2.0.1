@@ -16,11 +16,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Available Books</title>
-    <!-- Bootstrap CSS link -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome CSS link -->
     <link rel="stylesheet" href="fa-css/all.css">
-    <!-- Custom CSS -->
     <style>
         .back-btn {
             margin-bottom: 20px;
@@ -82,9 +79,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
             </tbody>
         </table>
     </div>
-    <!-- Bootstrap JS and custom JavaScript can be included at the end of the body -->
+
     <script src="jquery/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
+    
     <script>
         $(document).ready(function() {
             $('#searchInput').on('keyup', function() {

@@ -11,7 +11,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 // Include config file
 require_once "config.php";
 
-// Define SQL query to fetch return history data
+
 // Define SQL query to fetch return history data with days borrowed
 $return_history_sql = "SELECT return_history.return_id, borrowed_books.borrow_date, users.username, books.title, return_history.returned_date_time, borrowed_books.return_date,
                             DATEDIFF(return_history.returned_date_time, borrowed_books.borrow_date) AS days_borrowed 
@@ -89,11 +89,8 @@ mysqli_stmt_close($stmt);
         .table th,
         .table td {
             padding: 10px;
-            /* Adjusted padding */
             text-align: center;
-            /* Center align text */
             vertical-align: middle;
-            /* Align content vertically center */
             border: 1px solid #dee2e6;
         }
 

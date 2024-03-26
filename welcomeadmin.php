@@ -41,14 +41,10 @@ mysqli_stmt_close($stmt);
     body {
       font-family: 'Arial', sans-serif;
       margin: 0;
-      /* Remove default margin */
       padding: 0;
-      /* Remove default padding */
       overflow-x: hidden;
-      /* Prevent horizontal scrollbar */
     }
-
-    /* Centered message style */
+ 
     .centered-message {
       position: absolute;
       top: 50%;

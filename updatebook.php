@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $genre = trim($_POST["genre"]);
     $description = trim($_POST["description"]);
 
-    // Validate title, author, isbn, publication year, genre (you already have this code)
+    // Validate title, author, isbn, publication year, genre
 
     // Check if file is uploaded without errors (if an image is provided)
     if (!empty($_FILES["image"]["name"])) {

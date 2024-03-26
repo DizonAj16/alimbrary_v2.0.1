@@ -42,18 +42,14 @@ mysqli_stmt_close($stmt);
       font-family: 'Arial', sans-serif;
     }
 
-    /* Centered message style */
+
     .centered-message {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-
-
-
       background: rgba(255, 255, 255, 0.8);
-
       padding: 10px;
       border-radius: 10px;
     }

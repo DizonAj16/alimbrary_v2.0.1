@@ -108,7 +108,6 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         .book-image {
             max-width: 100%;
             height: 450px;
-            /* Increase image height */
             margin-bottom: 20px;
             border-radius: 10px;
             object-fit: cover;
@@ -152,7 +151,6 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         .book-title {
             font-family: 'Arial Black', sans-serif;
             color: #4CAF50;
-            /* Change the color to your preference */
             text-transform: uppercase;
             letter-spacing: 1px;
         }

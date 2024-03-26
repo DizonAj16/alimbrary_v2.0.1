@@ -231,8 +231,7 @@ mysqli_stmt_close($stmt);
                             </div>
                         </div>
 
-
-
+                        
             <?php
                         $counter++;
                         // Add clearfix for every third column

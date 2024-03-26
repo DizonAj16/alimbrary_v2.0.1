@@ -2,7 +2,6 @@
 // Include config file
 include 'config.php';
 
-// Start session
 
 // Check if user_id parameter is provided in the session
 if (isset($_SESSION["id"]) && !empty(trim($_SESSION["id"]))) {

@@ -237,7 +237,7 @@ mysqli_stmt_close($stmt);
                     <h2 class="fw-bold mb-0">Return History</h2>
                     <div class="d-flex">
                         <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 200px;">
-                        <!-- You can add a search button here if needed -->
+                        
                     </div>
                 </div>
                 <div class="card-body">
@@ -250,7 +250,7 @@ mysqli_stmt_close($stmt);
                                     <th>Borrow Date</th>
                                     <th>Date Returned</th>
                                     <th>Days Borrowed</th>
-                                    <th>Return Status</th> <!-- New column for return status -->
+                                    <th>Return Status</th> 
                                 </tr>
                             </thead>
                             <tbody>

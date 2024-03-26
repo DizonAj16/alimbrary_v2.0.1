@@ -100,7 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="fa-css/all.css">
         <link rel="stylesheet" href="login.css">
         <style>
-            /* Add CSS for responsiveness */
             @media only screen and (max-width: 480px) {
                 .content {
                     width: 80%;

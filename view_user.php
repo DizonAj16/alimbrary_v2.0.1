@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
-    <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Font Awesome CSS link -->
     <link rel="stylesheet" href="fa-css/all.css">
     <script defer src="js/bootstrap.bundle.js"></script>
     <style>
@@ -15,16 +13,13 @@
             background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding-top: 50px;
-            /* Add padding to the top */
             margin: 0;
         }
 
         .container {
             max-width: 650px;
-            /* Limit maximum width of the container */
             margin: auto;
             padding: 0 15px;
-            /* Add padding to the sides */
         }
 
         .card {
@@ -38,7 +33,6 @@
             color: white;
             border-radius: 15px 15px 0 0;
             text-align: center;
-            /* Adjust text alignment to center */
         }
 
         h2 {
@@ -196,7 +190,6 @@
                         if (!empty($image_path)) {
                             echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image">';
                         } else {
-                            // Use Font Awesome icon as an alternative if no image is available
                             echo '<i class="fas fa-user-circle" style="color: black; font-size:200px;"></i>';
                         }
                         ?>
@@ -212,7 +205,7 @@
                         <p><strong>Contact Number: </strong><?php echo $contact_number; ?></p>
                         <p><strong>User Type: </strong><?php echo $user_type; ?></p>
                         <p><strong>Date Created: </strong><?php echo $created_at_formatted; ?></p>
-                        <p><strong>Joined: </strong><?php echo $registration_status; ?></p> <!-- Display registration status here -->
+                        <p><strong>Joined: </strong><?php echo $registration_status; ?></p> 
                         <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
                     </div>
                 </div>

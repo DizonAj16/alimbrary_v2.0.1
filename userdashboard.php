@@ -66,7 +66,6 @@ mysqli_stmt_close($stmt);
             margin-bottom: 10px;
         }
 
-        /* Adjustments for small screens */
         @media (max-width: 768px) {
             .dashboard-section {
                 flex-basis: calc(100% - 40px);

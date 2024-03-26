@@ -179,7 +179,6 @@ mysqli_close($conn);
             width: 100px;
         }
 
-        /* Highlighting Book Title */
         .book-title {
             font-size: 22px;
             font-weight: bold;
@@ -198,7 +197,7 @@ mysqli_close($conn);
                         Borrow Book
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title book-title">Book title: <?php echo $book_title; ?></h5> <!-- Added book-title class -->
+                        <h5 class="card-title book-title">Book title: <?php echo $book_title; ?></h5> 
                         <form id="borrowForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?book_id=' . $book_id; ?>" method="post">
                             <div class="form-group mb-2">
                                 <label for="borrow_date" class="form-label mb-2">Borrow Date:</label>
