@@ -9,7 +9,7 @@ $query = "
     JOIN users u ON bb.user_id = u.id
     GROUP BY bb.user_id
     ORDER BY borrow_count DESC
-    LIMIT 10"; 
+    LIMIT 10"; // Change the LIMIT value to adjust the number of top users you want to display
 
 // Execute the query
 $result = mysqli_query($conn, $query);
@@ -17,12 +17,14 @@ $result = mysqli_query($conn, $query);
 // Check if the query was successful
 if ($result) {
     echo '<div style="display: flex; flex-direction: column; align-items: center;">';
-    echo "<h3 style='margin-bottom: 20px; text-align: center; color: white;' class='fw-bold'>Top Borrowers</h3>"; 
-    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; 
+    echo "<h3 style='margin-bottom: 20px; text-align: center; color: white;' class='fw-bold'>Top Borrowers</h3>"; // Apply red color to the heading and add margin-bottom for spacing
+    // Start the inline styling directly within the PHP echo
+    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; // Changed to <ol> for ordered list
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result)) {
-        
-        echo "<li style='margin-bottom: 5px; color: white; font-weight:bold; font-size: 18px;'>{$row['username']} - Borrowed {$row['borrow_count']} times</li>"; 
+        // Add inline style to make list items display inline and apply red color
+        echo "<li style='margin-bottom: 5px; color: white; font-weight:bold; font-size: 18px;'>{$row['username']} - Borrowed {$row['borrow_count']} times</li>"; // Added font-size property
+    }
     echo "</ol>";
     echo "</div>";
 } else {

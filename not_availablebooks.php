@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Not Available Books</title>
+    <!-- Bootstrap CSS link -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS link -->
     <link rel="stylesheet" href="fa-css/all.css">
-
+    <!-- Custom CSS -->
     <style>
         .back-btn {
             margin-bottom: 20px;
@@ -30,7 +32,7 @@
                         <th>Borrowed By</th>
                         <th>Borrow Date</th>
                         <th>Availability</th>
-                        <th>Action</th> <
+                        <th>Action</th> <!-- New column for Action -->
                     </tr>
                 </thead>
                 <tbody id="booksTable">

@@ -6,7 +6,7 @@
 
   .borrowed-books-count {
     font-size: 30px;
-    color: white; 
+    color: white; /* Dark color for the number */
     font-weight: bold;
   }
 </style>
