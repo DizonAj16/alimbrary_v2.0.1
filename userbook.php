@@ -167,6 +167,7 @@ mysqli_stmt_close($stmt);
             text-transform: uppercase;
             letter-spacing: 1px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
         }
 
         .badge-lg {

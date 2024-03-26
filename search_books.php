@@ -68,7 +68,7 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
                 echo '</div>';
 
                 echo '<div class="card-body">';
-                echo '<h5 class="card-title text-center mb-3 fw-bold truncate" style="height: 50px; font-size: 18px;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
+                echo '<h5 class="card-title text-center mb-3 fw-bold" style="height: 50px; font-size: 18px;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
                 echo '<p class="card-text text-center mb-3" style="font-size: 16px;">';
                 echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light">' . $row['availability'] . '</span>';
                 echo '</p>';
