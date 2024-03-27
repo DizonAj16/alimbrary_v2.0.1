@@ -321,9 +321,9 @@ mysqli_stmt_close($stmt);
                     echo '<div class="heading1 mb-2 d-none">' . $row['title'] . '</div>';
                     echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-lg">' . $row['availability'] . '</span>';
 
-                    // Display buttons
+
                     echo '<div class="d-flex justify-content-center">';
-                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 text-center">Read More</a>';
+                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 text-center">View Details</a>';
                     echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning text-center text-dark fw-bold">Borrow Book</a>';
                     echo '</div>'; 
                     echo '</div>'; 

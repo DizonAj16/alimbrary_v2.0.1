@@ -111,14 +111,7 @@ mysqli_stmt_close($stmt);
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
         }
-
-        .card-header {
-            background-color: #007bff !important;
-            color: #fff;
-            border-bottom: none;
-            border-radius: 10px 10px 0 0;
-        }
-
+        
         .float-start {
             color: black;
         }

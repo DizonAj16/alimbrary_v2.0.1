@@ -21,12 +21,10 @@ if ($result = mysqli_query($conn, $sql)) {
             echo '<img src="' . $row['image_path'] . '" alt="Book Image">';
             echo '<div class="info">';
             echo '<div class="mt-auto">';
-            // Display the title of the book
             echo '<div class="heading1 mb-2 d-none">' . $row['title'] . '</div>';
-            // Display availability badge
             echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-lg">' . $row['availability'] . '</span>';
 
-            // Display buttons
+
             echo '<div class="d-flex justify-content-center">';
             echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 fw-bold text-light">Read More</a>';
             echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning text-dark fw-bold">Borrow Book</a>';

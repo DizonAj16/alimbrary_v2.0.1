@@ -9,7 +9,7 @@ $query_top_returned = "
     JOIN books b ON rh.book_id = b.book_id
     GROUP BY rh.book_id
     ORDER BY return_count DESC
-    LIMIT 10"; // Change the LIMIT value to adjust the number of top returned books you want to display
+    LIMIT 10"; 
 
 // Execute the query to get the top 5 returned books
 $result_top_returned = mysqli_query($conn, $query_top_returned);
@@ -20,10 +20,9 @@ if ($result_top_returned) {
     echo '<div class="d-flex justify-content-center align-items-center">';
     echo "<div class='text-start'>";
     
-    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; // Use <ol> for numbered list
-    // Fetch the result as an associative array
+    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; 
     while ($row = mysqli_fetch_assoc($result_top_returned)) {
-        echo "<li style='font-weight:bold; font-size: 18px;'>{$row['title']} (Returned {$row['return_count']} times)</li>"; // Added font-size property
+        echo "<li style='font-weight:bold; font-size: 18px;'>{$row['title']} (Returned {$row['return_count']} times)</li>"; 
     }
     echo "</ol>";
     echo "</div>";

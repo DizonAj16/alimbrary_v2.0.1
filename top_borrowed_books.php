@@ -9,7 +9,7 @@ $query = "
     JOIN books b ON bb.book_id = b.book_id
     GROUP BY bb.book_id
     ORDER BY borrow_count DESC
-    LIMIT 10"; // Change the LIMIT value to adjust the number of top books you want to display
+    LIMIT 10"; 
 
 // Execute the query
 $result = mysqli_query($conn, $query);
@@ -26,8 +26,8 @@ if ($result) {
         echo "<li style='color: white; text-align: start; font-weight:bold; font-size:18px;'>{$row['title']} - Borrowed {$row['borrow_count']} times</li>"; // Apply red color to the list items and center the text
     }
     echo "</ol>";
-    echo "</div>"; // End of flex container
-    echo "</div>"; // End of text-center div
+    echo "</div>"; 
+    echo "</div>"; 
 } else {
     // Display an error message if the query fails
     echo "Error: " . mysqli_error($conn);

@@ -56,26 +56,22 @@ mysqli_stmt_fetch($stmt);
         .dashboard-section:hover {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
             cursor: pointer;
-            /* Adjust shadow properties as needed */
         }
 
         /* Adjustments for small screens */
         @media (max-width: 768px) {
             .dashboard-section {
                 flex-basis: calc(100% - 40px);
-                /* Adjust for smaller screen */
             }
         }
 
         .dashboard-section i {
             margin-bottom: 10px;
-            /* Adjust as needed */
         }
 
 
         .currently-borrowed-books.wider {
             width: 865px;
-            /* Adjust width as needed */
             max-width: none;
         }
 

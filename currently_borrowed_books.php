@@ -21,7 +21,7 @@ if ($result_borrowed) {
     if (mysqli_num_rows($result_borrowed) > 0) {
         echo '<div>';
         echo "<h3 class='text-center fw-bold' style='margin-bottom: 20px; font-size: 30px; color:white;'>Currently borrowed books</h3>";
-        echo "<ol style='padding-left: 20px;'>"; // Use <ol> for numbered list
+        echo "<ol style='padding-left: 20px;'>";
         // Fetch the result as an associative array
         while ($row = mysqli_fetch_assoc($result_borrowed)) {
             echo "<li class='fw-bold' style='font-size:15px;'>{$row['title']} (Borrowed by {$row['username']} on {$row['borrow_date']})</li>";

@@ -24,7 +24,7 @@ $sql = "SELECT title, availability FROM books WHERE book_id = ?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $book_id);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $book_title, $availability); // Corrected variable name here
+mysqli_stmt_bind_result($stmt, $book_title, $availability); 
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 

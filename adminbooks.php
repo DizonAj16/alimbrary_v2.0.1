@@ -331,7 +331,7 @@
                                     <i class="fa fa-plus-circle text-light"></i> Add book
                                 </button>
                                 
-                                <input type="text" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 200px;">
+                                <input type="text" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 200px;">
                             </div>
                         </div>
                     </div>

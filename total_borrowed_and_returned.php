@@ -1,5 +1,4 @@
 <style>
-
   .books-info {
     text-align: center;
     margin-bottom: 20px;
@@ -7,13 +6,13 @@
 
   .books-info h3 {
     margin-bottom: 10px;
-    color: white; /* white color for headings */
+    color: white; 
   }
 
   .books-info p {
     font-size: 30px;
     font-weight: bold;
-    color: white; /* white color for numbers */
+    color: white; 
   }
 </style>
 

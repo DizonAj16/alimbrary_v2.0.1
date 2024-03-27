@@ -6,7 +6,7 @@
 
   .available-books-count {
     font-size: 30px;
-    color: white; /* Dark color for the number */
+    color: white; 
     font-weight: bold;
   }
 </style>

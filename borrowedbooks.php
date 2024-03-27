@@ -64,14 +64,14 @@ mysqli_stmt_close($stmt);
         .card {
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 10px;
         }
 
         .card-header {
             background-color: #007bff;
             color: #fff;
-            border-radius: 8px 8px 0 0;
+            border-radius: 10px 10px 0 0;
             padding: 10px;
         }
 
@@ -197,7 +197,7 @@ mysqli_stmt_close($stmt);
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="fw-bold mb-0">Borrowed Books</h2>
                         <div class="d-flex">
-                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 160px;">
+                            <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 200px;">
                         </div>
                     </div>
                     <div class="card-body">
@@ -310,6 +310,7 @@ mysqli_stmt_close($stmt);
 
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="jquery/jquery-3.5.1.min.js"></script>
+
     <script>
         $(document).ready(function() {
 

@@ -89,11 +89,8 @@ mysqli_stmt_close($stmt);
         .table th,
         .table td {
             padding: 10px;
-            /* Adjusted padding */
             text-align: center;
-            /* Center align text */
             vertical-align: middle;
-            /* Align content vertically center */
             border: 1px solid #dee2e6;
         }
 
@@ -101,7 +98,6 @@ mysqli_stmt_close($stmt);
             background-color: #007bff;
             color: #fff;
             vertical-align: middle;
-            /* Align header content vertically center */
         }
 
         tbody tr:hover {

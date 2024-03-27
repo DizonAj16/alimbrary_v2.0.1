@@ -224,16 +224,15 @@ mysqli_close($conn);
                         <label for="image" class="input-group-text me-2 rounded" data-bs-toggle="tooltip" data-bs-title="Click to upload image">
                             <i class="fas fa-upload fa-lg text-success"></i>
                         </label>
-                        <!-- Display selected file name -->
                         <div class="col-xx-6">
                             <input type="text" class="form-control form-control-sm" id="file-name" readonly>
                         </div>
                     </div>
-                    <!-- Submit button -->
+
                     <input type="submit" class="btn btn-primary btn-sm mt-2" value="Upload">
                 </form>
             </div>
-
+            
             <script>
                 document.getElementById('image').addEventListener('change', function() {
                     var fileName = this.files[0].name;

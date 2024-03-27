@@ -160,20 +160,24 @@ mysqli_stmt_close($stmt);
             <?php include 'total_user_borrowed.php'; ?>
         </div>
 
+        <a href="userreturnhistory.php" class="dashboard-section bg-secondary text-white" style="text-decoration: none;">
+            <i class="fas fa-reply-all fa-3x"></i>
+            <?php include 'total_user_returned.php'; ?>
+        </a>
+
+
         <div class="dashboard-section bg-warning text-white">
             <i class="fas fa-calendar-check fa-3x"></i>
             <?php include 'total_user_borrowed_today.php'; ?>
         </div>
+
 
         <a href="borrowedbooks.php" class="dashboard-section bg-danger text-white" style="text-decoration: none;">
             <i class="fas fa-exclamation-triangle fa-3x"></i>
             <?php include 'user_overdue_books.php'; ?>
         </a>
 
-        <a href="userreturnhistory.php" class="dashboard-section bg-secondary text-white" style="text-decoration: none;">
-            <i class="fas fa-reply-all fa-3x"></i>
-            <?php include 'total_user_returned.php'; ?>
-        </a>
+
 
 
         <div class="dashboard-section bg-info text-white">
@@ -204,8 +208,8 @@ mysqli_stmt_close($stmt);
 
         <a href="myprofile.php" class="dashboard-section bg-dark text-light" style="text-decoration: none;">
             <div class="text-center">
-                <i class="fas fa-mouse-pointer fa-2x mr-2"></i>
-                <h2><i>Update your profile!</i></h2>
+                <i class="fas fa-edit fa-2x mr-2"></i>
+                <h2><i>Edit your profile!</i></h2>
             </div>
         </a>
     </div>

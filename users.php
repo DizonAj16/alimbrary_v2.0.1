@@ -234,7 +234,6 @@ mysqli_stmt_close($stmt);
                         
             <?php
                         $counter++;
-                        // Add clearfix for every third column
                         if ($counter % 3 == 0) {
                             echo '<div class="w-100"></div>'; // Break to the next line
                         }

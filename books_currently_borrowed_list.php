@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Availability</title>
-    <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="fa-css/all.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Add your custom CSS or other stylesheets here -->
 </head>
 <body>
     <div class="container mt-3">
@@ -50,10 +48,9 @@
         mysqli_close($conn);
         ?>
     </div>
-    <!-- Bootstrap JS and other scripts can be included at the end of the body -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Add your custom JavaScript or other scripts here -->
+
+    <script src="jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    
 </body>
 </html>
