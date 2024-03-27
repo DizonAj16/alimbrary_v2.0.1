@@ -143,7 +143,7 @@ mysqli_stmt_fetch($stmt);
                         <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> ManageUsers</a>
+                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> Manage Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
