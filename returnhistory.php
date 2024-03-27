@@ -89,7 +89,6 @@ mysqli_stmt_close($stmt);
         .table th,
         .table td {
             padding: 10px;
-            text-align: center;
             vertical-align: middle;
             border: 1px solid #dee2e6;
         }
@@ -206,7 +205,7 @@ mysqli_stmt_close($stmt);
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover mb-0" id="returnHistoryTable">
-                        <thead>
+                        <thead class="text-center">
                             <tr>
                                 <th>Return ID</th>
                                 <th>User</th>
@@ -222,14 +221,14 @@ mysqli_stmt_close($stmt);
                             // Loop through each row in the result set
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
-                                echo "<td>" . $row['return_id'] . "</td>";
-                                echo "<td>" . $row['username'] . "</td>";
+                                echo "<td class='text-center'>" . $row['return_id'] . "</td>";
+                                echo "<td class='text-center'>" . $row['username'] . "</td>";
                                 echo "<td class='fw-bold'>" . $row['title'] . "</td>";
                                 // Display borrowed date in 12-hour format with only the date
-                                echo "<td>" . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . "</td>";
+                                echo "<td class='text-center'>" . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . "</td>";
 
                                 // Display returned date in 12-hour format with only the date
-                                echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
+                                echo "<td class='text-center'>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
 
                                 // Calculate days borrowed using DateTime objects
                                 $borrow_date = new DateTime($row['borrow_date']);
@@ -238,7 +237,7 @@ mysqli_stmt_close($stmt);
                                 $days_borrowed = $interval->days;
 
                                 // Display days borrowed
-                                echo "<td>";
+                                echo "<td class='text-center'>";
                                 if ($days_borrowed == 0) {
                                     echo "Less than a day";
                                 } elseif ($days_borrowed >= 30) {
@@ -263,7 +262,7 @@ mysqli_stmt_close($stmt);
                                 }
 
                                 // Display return status
-                                echo "<td>";
+                                echo "<td class='text-center'>";
                                 if ($return_status === "On Time") {
                                     echo '<span class="badge bg-success">' . $return_status . '</span>';
                                 } else {

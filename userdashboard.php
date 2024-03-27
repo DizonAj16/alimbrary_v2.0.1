@@ -143,11 +143,11 @@ mysqli_stmt_close($stmt);
 
     <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
 
+        <a class="total-available-books dashboard-section bg-info text-white" href="userbook.php" style="text-decoration: none;">
+                <i class="fab fa-readme fa-3x"></i>
+                <?php include 'total_available_books.php'; ?>
+        </a>
 
-        <div class="total-available-books dashboard-section bg-info text-white">
-            <i class="fab fa-readme fa-3x"></i>
-            <?php include 'total_available_books.php'; ?>
-        </div>
 
         <a href="borrowedbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
             <i class="fas fa-book-open fa-3x"></i>

@@ -31,8 +31,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
         <a href="dashboard.php" class="btn btn-primary back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
         <h2 class="mb-4 text-success fw-bold">Available Books</h2>
         <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search by Title...">
-        <table class="table table-striped table-hover">
-            <thead style="font-size: 15px;">
+        <table class="table table-striped table-hover table-bordered border-dark">
+            <thead class="text-center">
                 <tr>
                     <th>Title</th>
                     <th>Availability</th>
@@ -51,15 +51,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
-                            echo "<td>" . $row['title'] . "</td>";
-                            echo "<td>";
+                            echo "<td class='fw-bold'>" . $row['title'] . "</td>";
+                            echo "<td class='text-center'>";
                             if ($row['availability'] == 'Available') {
                                 echo '<span class="badge bg-success">Available</span>';
                             } else {
                                 echo '<span class="badge bg-danger">Not Available</span>';
                             }
                             echo "</td>";
-                            echo "<td>";
+                            echo "<td class='text-center'>";
                             echo '<a href="view_available_books.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" data-bs-toggle="tooltip" data-bs-title="View Book"><i class="fas fa-eye"></i></a>';
                             echo "</td>";
                             echo "</tr>";

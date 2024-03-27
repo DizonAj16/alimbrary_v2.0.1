@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    <body>
       <div class="bg-img">
          <div class="content">
-            <header>Signup Form</header>
+            <header>Signup</header>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                <div class="field">
                   <span class="fa fa-user"></span>

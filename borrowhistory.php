@@ -69,7 +69,6 @@ mysqli_stmt_close($stmt);
         .table th,
         .table td {
             padding: 10px;
-            text-align: center;
             border: 1px solid #dee2e6;
         }
 
@@ -186,7 +185,7 @@ mysqli_stmt_close($stmt);
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-responsive table-hover mb-0" id="borrowHistoryTable">
-                        <thead>
+                        <thead class="text-center">
                             <tr>
                                 <th>Borrow ID</th>
                                 <th>Username</th>
@@ -222,11 +221,11 @@ mysqli_stmt_close($stmt);
                                     // Display borrow history information in a table
                                     while ($row = mysqli_fetch_assoc($result)) {
                                         echo '<tr>
-                                        <td>' . $row['borrow_id'] . '</td>
-                                        <td>' . $row['username'] . '</td>
-                                        <td class="fw-bold">' . $row['title'] . '</td>
-                                        <td>' . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . '</td>
-                                        <td>' . ($row['return_date'] ? date("F j, Y", strtotime($row['return_date'])) : 'Not returned') . '</td>';
+                                        <td class="text-center">' . $row['borrow_id'] . '</td>
+                                        <td class="text-center">' . $row['username'] . '</td>
+                                        <td class="fw-bold text-start">' . $row['title'] . '</td>
+                                        <td class="text-center">' . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . '</td>
+                                        <td class="text-center">' . ($row['return_date'] ? date("F j, Y", strtotime($row['return_date'])) : 'Not returned') . '</td>';
 
                                         // Calculate the days left
                                         echo '<td>';

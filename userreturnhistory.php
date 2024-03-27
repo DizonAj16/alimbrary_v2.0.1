@@ -98,8 +98,6 @@ mysqli_stmt_close($stmt);
 
         .table th,
         .table td {
-            padding: 15px;
-            text-align: left;
             border: 1px solid #dee2e6;
         }
 
@@ -111,7 +109,7 @@ mysqli_stmt_close($stmt);
         tbody tr:hover {
             background-color: rgba(0, 123, 255, 0.1);
         }
-        
+
         .float-start {
             color: black;
         }
@@ -120,7 +118,6 @@ mysqli_stmt_close($stmt);
         td {
             border: 1px solid #dee2e6;
             padding: 10px;
-            text-align: start;
         }
 
         th {
@@ -236,7 +233,7 @@ mysqli_stmt_close($stmt);
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover mb-0">
-                            <thead>
+                            <thead class="text-center">
                                 <tr>
                                     <th>Return ID</th>
                                     <th>Title</th>
@@ -251,7 +248,7 @@ mysqli_stmt_close($stmt);
                                 // Loop through each row in the result set
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo "<tr>";
-                                    echo "<td>" . $row['return_id'] . "</td>";
+                                    echo "<td class='text-center'>" . $row['return_id'] . "</td>";
                                     echo "<td class='fw-bold'>" . $row['title'] . "</td>";
                                     echo "<td>" . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . "</td>";
                                     echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
@@ -266,16 +263,16 @@ mysqli_stmt_close($stmt);
                                         $months = floor($days_borrowed / 30);
                                         $remaining_days = $days_borrowed % 30;
                                         if ($remaining_days == 0) {
-                                            echo "<td>$months month(s)</td>";
+                                            echo "<td class='text-center'>$months month(s)</td>";
                                         } else {
-                                            echo "<td>$months month(s) $remaining_days day(s)</td>";
+                                            echo "<td class='text-center'>$months month(s) $remaining_days day(s)</td>";
                                         }
                                     } else {
                                         // If days borrowed is less than or equal to 30 days, display the number of days
                                         if ($days_borrowed == 0) {
-                                            echo "<td>Less than a day</td>";
+                                            echo "<td class='text-center'>Less than a day</td>";
                                         } else {
-                                            echo "<td>$days_borrowed day(s)</td>";
+                                            echo "<td class='text-center'>$days_borrowed day(s)</td>";
                                         }
                                     }
 
@@ -283,9 +280,9 @@ mysqli_stmt_close($stmt);
                                     $expected_return_date = strtotime($row['return_date']);
                                     
                                     if ($returned_date <= $expected_return_date) {
-                                        echo '<td><span class="badge bg-success">On Time</span></td>';
+                                        echo '<td class="text-center"><span class="badge bg-success">On Time</span></td>';
                                     } else {
-                                        echo '<td><span class="badge bg-danger">Late</span></td>';
+                                        echo '<td class="text-center"><span class="badge bg-danger">Late</span></td>';
                                     }
 
                                     echo "</tr>";

@@ -293,7 +293,7 @@ mysqli_stmt_close($stmt);
                 <div class="col-md-12">
                     <div class="mt-3 clearfix">
                         <h2 class="float-start">Books</h2>
-                        <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Title or Genre" style="width:200px;" autocomplete="off">
+                        <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" style="width:200px;" autocomplete="off">
                     </div>
                 </div>
             </div>

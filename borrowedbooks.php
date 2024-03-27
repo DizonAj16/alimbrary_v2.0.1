@@ -49,7 +49,6 @@ mysqli_stmt_close($stmt);
         .table td {
             border: 1px solid #dee2e6;
             padding: 8px;
-            text-align: start;
         }
 
         .table th {
@@ -203,7 +202,7 @@ mysqli_stmt_close($stmt);
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover">
-                                <thead>
+                                <thead class="text-center">
                                     <tr>
                                         <th>Borrow ID</th>
                                         <th>Book Title</th>
@@ -218,7 +217,7 @@ mysqli_stmt_close($stmt);
                                     // Fetch records
                                     while (mysqli_stmt_fetch($stmt)) {
                                         echo "<tr>";
-                                        echo "<td>" . $borrow_id . "</td>";
+                                        echo "<td class='text-center'>" . $borrow_id . "</td>";
                                         echo "<td class='fw-bold'>" . $book_title . "</td>";
                                         // Display borrowed date in 12-hour format with only the date
                                         echo "<td>" . date("F j, Y, h:i A", strtotime($borrow_date)) . "</td>";
