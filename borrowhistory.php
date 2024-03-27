@@ -256,7 +256,7 @@ mysqli_stmt_close($stmt);
 
 
                                         // Display status
-                                        echo '<td>';
+                                        echo '<td class="text-center">';
                                         if ($row['return_id']) {
                                             // If returned, display a success badge
                                             echo '<span class="badge bg-success">Returned</span>';
