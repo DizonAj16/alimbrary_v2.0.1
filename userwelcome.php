@@ -128,13 +128,13 @@ mysqli_stmt_close($stmt);
             <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Books</a>
+            <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Browse Books</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-book fa-lg"></i> Returned Books</a>
+            <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-history fa-lg"></i> Returned Books</a>
           </li>
         </ul>
 
@@ -155,7 +155,7 @@ mysqli_stmt_close($stmt);
               <?php echo htmlspecialchars($_SESSION["username"]); ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-              <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
+              <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>

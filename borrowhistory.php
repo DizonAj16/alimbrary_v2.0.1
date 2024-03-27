@@ -105,11 +105,11 @@ mysqli_stmt_close($stmt);
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
         <div class="container-fluid">
             <div class="title p-1">
-                <img class="logo" src="Images/logo.png" alt="">
+                <img src="Images/logo.png" alt="" style="height:50px;">
             </div>
 
             <!-- Toggle Button -->
@@ -121,23 +121,23 @@ mysqli_stmt_close($stmt);
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
+                        <a class="nav-link " href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
+                        <a class="nav-link " href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="users.php"><i class="fa fa-user-circle fa-lg"></i> Users</a>
+                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> ManageUsers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="borrowhistory.php"><i class="fa fa-users fa-lg"></i> Borrow History</a>
+                        <a class="nav-link active" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="returnhistory.php"><i class="fa fa-address-book fa-lg"></i> Return History</a>
+                        <a class="nav-link" href="returnhistory.php"><i class="fa fa-archive fa-lg"></i> Return History</a>
                     </li>
                 </ul>
 
@@ -156,7 +156,7 @@ mysqli_stmt_close($stmt);
                             <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
+                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -235,14 +235,14 @@ mysqli_stmt_close($stmt);
                                         } else {
                                             // If not returned, calculate days left
                                             // Calculate the days left until return
-                                            $return_date = new DateTime($row['return_date']);
-                                            $current_date = new DateTime();
-                                            $interval = $current_date->diff($return_date);
-                                            $days_left = $interval->days;
+                                            $current_date = date_create(date("Y-m-d")); // Current date
+                                            $return_date_obj = date_create($row['return_date']); // Return date
+                                            $days_left = date_diff($current_date, $return_date_obj)->format("%r%a"); // Days left
+
                                             if ($days_left == 0) {
                                                 $days_left = 'Less than a day';
                                             } elseif ($days_left < 0) {
-                                                $days_left = 'Overdue';
+                                                $days_left = '<p class="text-danger fw-bold">Overdue</p>';
                                             } elseif ($days_left >= 30) {
                                                 $months = floor($days_left / 30);
                                                 $remaining_days = $days_left % 30;
@@ -253,6 +253,7 @@ mysqli_stmt_close($stmt);
                                             echo $days_left;
                                         }
                                         echo '</td>';
+
 
                                         // Display status
                                         echo '<td>';

@@ -281,7 +281,7 @@ mysqli_close($conn);
                 <div class="info-label">Joined:</div>
                 <div class="info-value"><?php echo $daysJoined; ?></div>
             </div>
-            <a class="btn btn-primary text-light" href="updateinfo.php">Update User Info</a>
+            <a class="btn btn-primary text-light" href="updateinfo.php"><i class="fas fa-edit text-light fa-lg"></i> Update Info</a>
         </div>
         <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'welcomeadmin.php' : 'userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Home"><i class="fas fa-chevron-left"></i></a>
     </div>

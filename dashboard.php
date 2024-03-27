@@ -133,7 +133,7 @@ mysqli_stmt_fetch($stmt);
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
+                        <a class="nav-link " href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
                         </a>
                     </li>
                     <li class="nav-item">
@@ -143,13 +143,13 @@ mysqli_stmt_fetch($stmt);
                         <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-user-circle fa-lg"></i> Users</a>
+                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> ManageUsers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="borrowhistory.php"><i class="fa fa-users fa-lg"></i> Borrow History</a>
+                        <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="returnhistory.php"><i class="fa fa-address-book fa-lg"></i> Return History</a>
+                        <a class="nav-link" href="returnhistory.php"><i class="fa fa-archive fa-lg"></i> Return History</a>
                     </li>
                 </ul>
 
@@ -168,7 +168,7 @@ mysqli_stmt_fetch($stmt);
                             <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
+                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -189,67 +189,67 @@ mysqli_stmt_fetch($stmt);
 
         <!-- Modify the dashboard sections with solid background colors -->
         <a href="adminbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
-    <i class="fas fa-book fa-3x"></i>
-    <div id="book-count">
-        <?php include 'total_books.php'; ?>
-    </div>
-</a>
+            <i class="fas fa-book fa-3x"></i>
+            <div id="book-count">
+                <?php include 'total_books.php'; ?>
+            </div>
+        </a>
 
-<a href="users.php" class="users-list dashboard-section bg-success text-white" style="text-decoration: none;">
-    <i class="fas fa-users fa-3x"></i>
-    <?php include 'get_users.php'; ?>
-</a>
+        <a href="users.php" class="users-list dashboard-section bg-success text-white" style="text-decoration: none;">
+            <i class="fas fa-users fa-3x"></i>
+            <?php include 'get_users.php'; ?>
+        </a>
 
-<a href="not_availablebooks.php" class="current_borrowing_users dashboard-section bg-warning text-white" style="text-decoration: none;">
-    <i class="fas fa-user-clock fa-3x"></i>
-    <?php include 'current_borrowing_users.php'; ?>
-</a>
+        <a href="not_availablebooks.php" class="current_borrowing_users dashboard-section bg-warning text-white" style="text-decoration: none;">
+            <i class="fas fa-user-clock fa-3x"></i>
+            <?php include 'current_borrowing_users.php'; ?>
+        </a>
 
-<a href="available_books.php" class="total-available-books dashboard-section bg-info text-white" style="text-decoration: none;">
-    <i class="fas fa-book-open fa-3x"></i>
-    <?php include 'total_available_books.php'; ?>
-</a>
+        <a href="available_books.php" class="total-available-books dashboard-section bg-info text-white" style="text-decoration: none;">
+            <i class="fas fa-book-open fa-3x"></i>
+            <?php include 'total_available_books.php'; ?>
+        </a>
 
-<div class="total-borrowed-and-returned dashboard-section bg-primary text-white">
-    <i class="fas fa-exchange-alt fa-3x"></i>
-    <?php include 'total_borrowed_and_returned.php'; ?>
-</div>
+        <div class="total-borrowed-and-returned dashboard-section bg-primary text-white">
+            <i class="fas fa-exchange-alt fa-3x"></i>
+            <?php include 'total_borrowed_and_returned.php'; ?>
+        </div>
 
-<div class="top-user-borrowed dashboard-section bg-success text-white" id="topUserBorrowedSection">
-    <i class="fas fa-chart-bar fa-3x"></i>
-    <h3 class="fw-bold" id="topUserBorrowedTitle">Top Borrowers</h3>
-    <div id="topUserBorrowedContent" style="display: none;">
-        <?php include 'top_user_borrowed.php'; ?>
-    </div>
-    <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topUserBorrowed')">Expand</button>
-</div>
+        <div class="top-user-borrowed dashboard-section bg-success text-white" id="topUserBorrowedSection">
+            <i class="fas fa-chart-bar fa-3x"></i>
+            <h3 class="fw-bold" id="topUserBorrowedTitle">Top Borrowers</h3>
+            <div id="topUserBorrowedContent" style="display: none;">
+                <?php include 'top_user_borrowed.php'; ?>
+            </div>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topUserBorrowed')">Expand</button>
+        </div>
 
-<div class="top-returned-user dashboard-section bg-danger text-white" id="topReturnedUserSection">
-    <i class="fas fa-chart-line fa-3x"></i>
-    <h3 class="fw-bold" id="topReturnedUserTitle">Top Returners</h3>
-    <div id="topReturnedUserContent" style="display: none;">
-        <?php include 'top_returned_user.php'; ?>
-    </div>
-    <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedUser')">Expand</button>
-</div>
+        <div class="top-returned-user dashboard-section bg-danger text-white" id="topReturnedUserSection">
+            <i class="fas fa-chart-line fa-3x"></i>
+            <h3 class="fw-bold" id="topReturnedUserTitle">Top Returners</h3>
+            <div id="topReturnedUserContent" style="display: none;">
+                <?php include 'top_returned_user.php'; ?>
+            </div>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedUser')">Expand</button>
+        </div>
 
-<div class="most-borrowed-books dashboard-section bg-warning text-white" id="mostBorrowedBooksSection">
-    <i class="fas fa-star fa-3x"></i>
-    <h3 class="fw-bold text-center" id="mostBorrowedBooksTitle">Most Popular Books</h3>
-    <div id="mostBorrowedBooksContent" style="display: none;">
-        <?php include 'top_borrowed_books.php'; ?>
-    </div>
-    <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('mostBorrowedBooks')">Expand</button>
-</div>
+        <div class="most-borrowed-books dashboard-section bg-warning text-white" id="mostBorrowedBooksSection">
+            <i class="fas fa-star fa-3x"></i>
+            <h3 class="fw-bold text-center" id="mostBorrowedBooksTitle">Most Popular Books</h3>
+            <div id="mostBorrowedBooksContent" style="display: none;">
+                <?php include 'top_borrowed_books.php'; ?>
+            </div>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('mostBorrowedBooks')">Expand</button>
+        </div>
 
-<div class="top-returned-books dashboard-section bg-info text-white" id="topReturnedBooksSection">
-    <i class="fas fa-book-reader fa-3x"></i>
-    <h3 class="fw-bold" id="topReturnedBooksTitle">Most Returned Books</h3>
-    <div id="topReturnedBooksContent" style="display: none;">
-        <?php include 'top_returned_books.php'; ?>
-    </div>
-    <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedBooks')">Expand</button>
-</div>
+        <div class="top-returned-books dashboard-section bg-info text-white" id="topReturnedBooksSection">
+            <i class="fas fa-book-reader fa-3x"></i>
+            <h3 class="fw-bold" id="topReturnedBooksTitle">Most Returned Books</h3>
+            <div id="topReturnedBooksContent" style="display: none;">
+                <?php include 'top_returned_books.php'; ?>
+            </div>
+            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedBooks')">Expand</button>
+        </div>
 
 
     </div>

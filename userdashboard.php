@@ -79,67 +79,69 @@ mysqli_stmt_close($stmt);
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
-        <div class="container-fluid">
-            <div class="title p-1">
-                <img class="logo" src="Images/logo.png" alt="">
-            </div>
+<div class="container-fluid">
+  <div class="title p-1">
+    <img class="logo" src="Images/logo.png" alt="">
+  </div>
 
-            <!-- Toggle Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <!-- Toggle Button -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-            <!-- Navbar Links -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-book fa-lg"></i> Returned Books</a>
-                    </li>
-                </ul>
+  <!-- Navbar Links -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link " href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Browse Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-history fa-lg"></i> Returned Books</a>
+      </li>
+    </ul>
 
-                <!-- Dropdown -->
-                <div class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php
-                            // Display user's profile image or default user icon
-                            if (!empty($profile_image)) {
-                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
-                            } else {
-                                echo '<i class="fa fa-user fa-lg"></i>';
-                            }
-                            ?>
-                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
-                        </ul>
-                    </li>
-                </div>
-            </div>
-        </div>
-    </nav>
+
+    
+    <!-- Dropdown -->
+    <div class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <?php
+          // Display user's profile image or default user icon
+          if (!empty($profile_image)) {
+            echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+          } else {
+            echo '<i class="fa fa-user fa-lg"></i>';
+          }
+          ?>
+          <?php echo htmlspecialchars($_SESSION["username"]); ?>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+          <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+        </ul>
+      </li>
+    </div>
+  </div>
+</div>
+</nav>
 
     <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
 

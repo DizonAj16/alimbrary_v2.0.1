@@ -257,7 +257,7 @@
 
                 <div class="container-fluid">
                     <div class="title p-1">
-                        <img class="logo" src="Images/logo.png" alt="">
+                        <img src="Images/logo.png" alt="" style="height:50px;">
                     </div>
 
                     <!-- Toggle Button -->
@@ -269,23 +269,23 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
+                                <a class="nav-link " href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
+                                <a class="nav-link " href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-user-circle fa-lg"></i> Users</a>
+                                <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> ManageUsers</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="borrowhistory.php"><i class="fa fa-users fa-lg"></i> Borrow History</a>
+                                <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="returnhistory.php"><i class="fa fa-address-book fa-lg"></i> Return History</a>
+                                <a class="nav-link" href="returnhistory.php"><i class="fa fa-archive fa-lg"></i> Return History</a>
                             </li>
                         </ul>
 
@@ -304,7 +304,7 @@
                                     <?php echo htmlspecialchars($_SESSION["username"]); ?>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
+                                    <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -330,7 +330,7 @@
                                 <button type="button" class="btn btn-success btn-md float-end me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Add New Book">
                                     <i class="fa fa-plus-circle text-light"></i> Add book
                                 </button>
-                                
+
                                 <input type="text" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 200px;">
                             </div>
                         </div>

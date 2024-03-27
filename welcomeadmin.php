@@ -44,7 +44,7 @@ mysqli_stmt_close($stmt);
       padding: 0;
       overflow-x: hidden;
     }
- 
+
     .centered-message {
       position: absolute;
       top: 50%;
@@ -70,7 +70,6 @@ mysqli_stmt_close($stmt);
       color: #800000;
       letter-spacing: 2px;
     }
-
   </style>
 </head>
 
@@ -139,13 +138,13 @@ mysqli_stmt_close($stmt);
             <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-user-circle fa-lg"></i> Users</a>
+            <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> ManageUsers</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="borrowhistory.php"><i class="fa fa-users fa-lg"></i> Borrow History</a>
+            <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="returnhistory.php"><i class="fa fa-address-book fa-lg"></i> Return History</a>
+            <a class="nav-link" href="returnhistory.php"><i class="fa fa-archive fa-lg"></i> Return History</a>
           </li>
         </ul>
 
@@ -167,7 +166,7 @@ mysqli_stmt_close($stmt);
               <?php echo htmlspecialchars($_SESSION["username"]); ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-              <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
+              <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>

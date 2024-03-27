@@ -35,7 +35,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
             <thead class="text-center">
                 <tr>
                     <th>Title</th>
-                    <th>Availability</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -52,13 +51,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
                             echo "<td class='fw-bold'>" . $row['title'] . "</td>";
-                            echo "<td class='text-center'>";
-                            if ($row['availability'] == 'Available') {
-                                echo '<span class="badge bg-success">Available</span>';
-                            } else {
-                                echo '<span class="badge bg-danger">Not Available</span>';
-                            }
-                            echo "</td>";
                             echo "<td class='text-center'>";
                             echo '<a href="view_available_books.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" data-bs-toggle="tooltip" data-bs-title="View Book"><i class="fas fa-eye"></i></a>';
                             echo "</td>";

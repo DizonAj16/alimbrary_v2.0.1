@@ -100,67 +100,71 @@ mysqli_stmt_close($stmt);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container-fluid">
-            <div class="title p-1">
-                <img class="logo" src="Images/logo.png" alt="">
-            </div>
-            <!-- Toggle Button -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
-            <!-- Navbar Links -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-book fa-lg"></i> Returned Books</a>
-                    </li>
-                </ul>
+<div class="container-fluid">
+  <div class="title p-1">
+    <img class="logo" src="Images/logo.png" alt="">
+  </div>
 
-                <!-- Dropdown -->
-                <div class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php
-                            // Display user's profile image or default user icon
-                            if (!empty($profile_image)) {
-                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
-                            } else {
-                                echo '<i class="fa fa-user fa-lg"></i>';
-                            }
-                            ?>
-                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-undo"></i> Reset Password</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
-                        </ul>
-                    </li>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <!-- Toggle Button -->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar Links -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link " href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Browse Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-history fa-lg"></i> Returned Books</a>
+      </li>
+    </ul>
+
+
+    
+    <!-- Dropdown -->
+    <div class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <?php
+          // Display user's profile image or default user icon
+          if (!empty($profile_image)) {
+            echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+          } else {
+            echo '<i class="fa fa-user fa-lg"></i>';
+          }
+          ?>
+          <?php echo htmlspecialchars($_SESSION["username"]); ?>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+          <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+        </ul>
+      </li>
+    </div>
+  </div>
+</div>
+</nav>
 
     <div class="container">
         <?php
@@ -226,11 +230,11 @@ mysqli_stmt_close($stmt);
                                         // Display return date in 12-hour format with only the date
                                         echo "<td>" . date("F j, Y", strtotime($return_date)) . "</td>";
 
-                                        // Calculate days left using DateTime object
-                                        $return_date_obj = new DateTime($return_date);
-                                        $current_date_obj = new DateTime();
-                                        $interval = $current_date_obj->diff($return_date_obj);
-                                        $days_left = $interval->days;
+                                        // Calculate days left directly comparing current date with return date
+                                        $current_date = date_create(date("Y-m-d")); // Current date
+                                        $return_date_obj = date_create($return_date); // Return date
+                                        $days_left = date_diff($current_date, $return_date_obj)->format("%r%a"); // Days left
+
 
                                         // Display days left
                                         echo "<td>";
@@ -239,7 +243,7 @@ mysqli_stmt_close($stmt);
                                         } elseif ($days_left == 0) {
                                             echo "less than a day";
                                         } else {
-                                            echo "Overdue by " . abs($days_left) . " day(s)";
+                                            echo "<p class='text-danger fw-bold'>Overdue by " . abs($days_left) . " day(s)";
                                         }
                                         echo "</td>";
 
@@ -247,11 +251,15 @@ mysqli_stmt_close($stmt);
                                         // Check if the book is not returned yet
                                         if ($days_left > 0) {
                                             echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
+                                        } elseif ($days_left == 0) {
+                                            echo "<p class='text-danger'>Book is nearing due</p>";
+                                            echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         } else {
-                                            echo "<p class='text-danger'>Book is already due</p>";
+                                            echo "<p class='text-danger'>Book is overdue</p>";
                                             echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         }
                                         echo "</td>";
+
                                         echo "</tr>";
                                     }
                                     ?>
@@ -290,7 +298,7 @@ mysqli_stmt_close($stmt);
                 var searchText = $(this).val().toLowerCase();
                 var found = false;
                 $('tbody tr').each(function() {
-                    var title = $(this).find('td:eq(1)').text().toLowerCase(); 
+                    var title = $(this).find('td:eq(1)').text().toLowerCase();
                     if (title.indexOf(searchText) === -1) {
                         $(this).hide();
                     } else {

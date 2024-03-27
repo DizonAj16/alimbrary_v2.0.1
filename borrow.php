@@ -106,7 +106,6 @@ mysqli_close($conn);
 
         .card {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
         }
 
         .card-header {
@@ -191,9 +190,9 @@ mysqli_close($conn);
 <body>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-center">
                         Borrow Book
                     </div>
                     <div class="card-body">
@@ -201,7 +200,8 @@ mysqli_close($conn);
                         <form id="borrowForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?book_id=' . $book_id; ?>" method="post">
                             <div class="form-group mb-2">
                                 <label for="borrow_date" class="form-label mb-2">Borrow Date:</label>
-                                <input type="text" id="borrow_date" name="borrow_date" class="form-control" value="<?php echo date('Y-m-d H:i:s'); ?>" readonly>
+                                <input type="text" id="borrow_date" name="borrow_date" class="form-control" value="<?php echo date('F j, Y g:i A'); ?>" readonly>
+
                             </div>
                             <div class="form-group mb-2">
                                 <label for="return_date" class="form-label mb-2">Return Date:</label>
