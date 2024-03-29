@@ -33,10 +33,13 @@
             color: white;
             border-radius: 15px 15px 0 0;
             text-align: center;
+            padding: 10px 0;
+            /* Added padding */
         }
 
         h2 {
-            margin-bottom: 0;
+            margin-bottom: 10px;
+            /* Reduced margin */
             color: #007bff;
             font-weight: bold;
             font-size: 1.8rem;
@@ -53,7 +56,8 @@
         }
 
         p {
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            /* Reduced margin */
             font-size: 1.1rem;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -63,6 +67,8 @@
             border-color: #007bff;
             font-size: 1.1rem;
             padding: 8px 20px;
+            margin-top: 10px;
+            /* Added margin */
         }
 
         .btn-primary:hover {
@@ -94,89 +100,89 @@
 </head>
 
 <body>
-<?php
-        // Initialize the session
-        session_start();
+    <?php
+    // Initialize the session
+    session_start();
 
-        // Include config file
-        require_once "config.php";
+    // Include config file
+    require_once "config.php";
 
-        // Check if user_id parameter is provided in the URL
-        if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
-            // Prepare a select statement
-            $sql = "SELECT id, username, email, full_name, occupation, address, contact_num, user_type, created_at, image FROM users WHERE id = ?";
+    // Check if user_id parameter is provided in the URL
+    if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
+        // Prepare a select statement
+        $sql = "SELECT id, username, email, full_name, occupation, address, contact_num, user_type, created_at, image FROM users WHERE id = ?";
 
-            if ($stmt = mysqli_prepare($conn, $sql)) {
-                // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "i", $param_id);
+        if ($stmt = mysqli_prepare($conn, $sql)) {
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "i", $param_id);
 
-                // Set parameters
-                $param_id = trim($_GET["id"]);
+            // Set parameters
+            $param_id = trim($_GET["id"]);
 
-                // Attempt to execute the prepared statement
-                if (mysqli_stmt_execute($stmt)) {
-                    $result = mysqli_stmt_get_result($stmt);
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) {
+                $result = mysqli_stmt_get_result($stmt);
 
-                    if (mysqli_num_rows($result) == 1) {
-                        // Fetch result row
-                        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                if (mysqli_num_rows($result) == 1) {
+                    // Fetch result row
+                    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-                        // Retrieve individual field values
-                        $username = $row["username"];
-                        $email = $row["email"];
-                        $full_name = $row["full_name"];
-                        $occupation = $row["occupation"];
-                        $address = $row["address"];
-                        $contact_number = $row["contact_num"];
-                        $user_type = $row["user_type"];
-                        $created_at = $row["created_at"];
-                        $created_at_formatted = date("F j, Y, g:i A", strtotime($created_at));
-                        $image_path = $row["image"];
+                    // Retrieve individual field values
+                    $username = $row["username"];
+                    $email = $row["email"];
+                    $full_name = $row["full_name"];
+                    $occupation = $row["occupation"];
+                    $address = $row["address"];
+                    $contact_number = $row["contact_num"];
+                    $user_type = $row["user_type"];
+                    $created_at = $row["created_at"];
+                    $created_at_formatted = date("F j, Y, g:i A", strtotime($created_at));
+                    $image_path = $row["image"];
 
-                        $registration_date = new DateTime($created_at);
-                        $current_date = new DateTime();
-                        $interval = $current_date->diff($registration_date);
-                        $days_since_registration = $interval->days;
+                    $registration_date = new DateTime($created_at);
+                    $current_date = new DateTime();
+                    $interval = $current_date->diff($registration_date);
+                    $days_since_registration = $interval->days;
 
-                        // If user joined today, display "Just now"
-                        if ($days_since_registration == 0) {
-                            $registration_status = "Just now";
+                    // If user joined today, display "Just now"
+                    if ($days_since_registration == 0) {
+                        $registration_status = "Just now";
+                    } else {
+                        // If user joined within the last 30 days, display the number of days
+                        if ($days_since_registration <= 30) {
+                            $registration_status = "$days_since_registration day(s) ago";
                         } else {
-                            // If user joined within the last 30 days, display the number of days
-                            if ($days_since_registration <= 30) {
-                                $registration_status = "$days_since_registration day(s) ago";
+                            // If user joined more than 30 days ago, calculate months and remaining days
+                            $months = floor($days_since_registration / 30);
+                            $remaining_days = $days_since_registration % 30;
+                            if ($remaining_days == 0) {
+                                $registration_status = "$months month(s) ago";
                             } else {
-                                // If user joined more than 30 days ago, calculate months and remaining days
-                                $months = floor($days_since_registration / 30);
-                                $remaining_days = $days_since_registration % 30;
-                                if ($remaining_days == 0) {
-                                    $registration_status = "$months month(s) ago";
-                                } else {
-                                    $registration_status = "$months month(s) $remaining_days day(s) ago";
-                                }
+                                $registration_status = "$months month(s) $remaining_days day(s) ago";
                             }
                         }
-
-                        // Close the statement
-                        mysqli_stmt_close($stmt);
-
-                        // Close the connection
-                        mysqli_close($conn);
-                    } else {
-                        // Redirect to error page if user ID doesn't exist
-                        header("location: error.php");
-                        exit();
                     }
+
+                    // Close the statement
+                    mysqli_stmt_close($stmt);
+
+                    // Close the connection
+                    mysqli_close($conn);
                 } else {
-                    echo "Oops! Something went wrong. Please try again later.";
+                    // Redirect to error page if user ID doesn't exist
+                    header("location: error.php");
+                    exit();
                 }
+            } else {
+                echo "Oops! Something went wrong. Please try again later.";
             }
-        } else {
-            // Redirect to error page if user ID parameter is not provided
-            header("location: error.php");
-            exit();
         }
-        ?>
+    } else {
+        // Redirect to error page if user ID parameter is not provided
+        header("location: error.php");
+        exit();
+    }
+    ?>
 
     <div class="container">
         <div class="card">
@@ -196,18 +202,20 @@
                     </div>
 
                     <div class="user-info">
-                        <h4><?php echo $username; ?></h4>
-                        <p><strong>User ID: </strong><?php echo $param_id; ?></p>
-                        <p><strong>Email: </strong><?php echo $email; ?></p>
-                        <p><strong>Full Name: </strong><?php echo $full_name; ?></p>
-                        <p><strong>Occupation: </strong><?php echo $occupation; ?></p>
-                        <p><strong>Address: </strong><?php echo $address; ?></p>
-                        <p><strong>Contact Number: </strong><?php echo $contact_number; ?></p>
-                        <p><strong>User Type: </strong><?php echo $user_type; ?></p>
-                        <p><strong>Date Created: </strong><?php echo $created_at_formatted; ?></p>
-                        <p><strong>Joined: </strong><?php echo $registration_status; ?></p> 
+                        <h4><em><?php echo $username; ?></em></h4>
+                        <p><span class="fas fa-id-badge"></span> <strong>User ID:</strong> <em><?php echo $param_id; ?></em></p>
+                        <p><span class="fas fa-envelope"></span> <strong>Email:</strong> <em><?php echo $email; ?></em></p>
+                        <p><span class="fas fa-user"></span> <strong>Full Name:</strong> <em><?php echo $full_name; ?></em></p>
+                        <p><span class="fas fa-briefcase"></span> <strong>Occupation:</strong> <em><?php echo $occupation; ?></em></p>
+                        <p><span class="fas fa-map-marker-alt"></span> <strong>Address:</strong> <em><?php echo $address; ?></em></p>
+                        <p><span class="fas fa-phone-alt"></span> <strong>Contact Number:</strong> <em><?php echo $contact_number; ?></em></p>
+                        <p><span class="fas fa-user-tag"></span> <strong>User Type:</strong> <em><?php echo $user_type; ?></em></p>
+                        <p><span class="fas fa-calendar"></span> <strong>Date Created:</strong> <em><?php echo $created_at_formatted; ?></em></p>
+                        <p><span class="fas fa-calendar-check"></span> <strong>Joined:</strong> <em><?php echo $registration_status; ?></em></p>
                         <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -225,4 +233,3 @@
 </body>
 
 </html>
-
