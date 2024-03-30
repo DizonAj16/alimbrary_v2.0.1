@@ -29,7 +29,7 @@
                         <th>Borrowed By</th>
                         <th>Borrow Date</th>
                         <th>Status</th>
-                        <th>Action</th> 
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="booksTable">
@@ -54,7 +54,7 @@
                                 echo "<td class='fw-bold'>" . $row_borrowed['title'] . "</td>";
                                 echo "<td class='text-center text-primary fw-bold'>" . $row_borrowed['username'] . "</td>";
                                 echo "<td>" . date("F j, Y, h:i A", strtotime($row_borrowed['borrow_date'])) . "</td>";
-                                
+
                                 // Calculate status based on return date
                                 $current_date = date("Y-m-d");
                                 $return_date = $row_borrowed['return_date'];
@@ -81,6 +81,9 @@
                     mysqli_close($conn);
                     ?>
                 </tbody>
+                <div id="noResults" class="alert alert-danger mt-3 mb-3" style="display: none;">
+                    No results found
+                </div>
             </table>
         </div>
     </div>
@@ -94,6 +97,13 @@
             $('#booksTable tr').filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
             });
+            if ($('tbody tr:visible').length === 0) {
+                $('#noResults').show();
+                $('thead').hide();
+            } else {
+                $('#noResults').hide();
+                $('thead').show();
+            }
         });
     });
 </script>

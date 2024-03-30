@@ -26,7 +26,7 @@ $result = mysqli_stmt_get_result($stmt);
 ?>
 
 <table class="table table-bordered table-hover mb-0" id="returnHistoryTable">
-    <thead>
+    <thead class="text-center">
         <tr>
             <th>Return ID</th>
             <th>User</th>
@@ -44,53 +44,37 @@ $result = mysqli_stmt_get_result($stmt);
             // Loop through each row in the result set
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
-                echo "<td>" . $row['return_id'] . "</td>";
-                echo "<td>" . $row['username'] . "</td>";
+                echo "<td class='text-center'>" . $row['return_id'] . "</td>";
+                echo "<td class='text-center'>" . $row['username'] . "</td>";
                 echo "<td class='fw-bold'>" . $row['title'] . "</td>";
-                // Display borrowed date in 12-hour format with only the date
-                echo "<td>" . date("F j, Y", strtotime($row['borrow_date'])) . "</td>";
+                // Display borrowed date in the specified format
+                echo "<td class='text-center'>" . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . "</td>";
 
-                // Display returned date in 12-hour format with only the date
-                echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
+                // Display returned date in the specified format or "Not returned" if null
+                echo "<td class='text-center'>" . ($row['returned_date_time'] ? date("F j, Y, h:i A", strtotime($row['returned_date_time'])) : 'Not returned') . "</td>";
 
-                // Calculate days borrowed using DateTime objects
-                $borrow_date = new DateTime($row['borrow_date']);
-                $returned_date_time = new DateTime($row['returned_date_time']);
-                $interval = $borrow_date->diff($returned_date_time);
-                $days_borrowed = $interval->days;
-
-                // Display days borrowed
-                echo "<td>";
-                if ($days_borrowed == 0) {
+                // Calculate days borrowed and display in the specified format
+                echo "<td class='text-center'>";
+                if ($row['days_borrowed'] == 0) {
                     echo "Less than a day";
-                } elseif ($days_borrowed >= 30) {
-                    $months = floor($days_borrowed / 30);
-                    $remaining_days = $days_borrowed % 30;
+                } elseif ($row['days_borrowed'] >= 30) {
+                    $months = floor($row['days_borrowed'] / 30);
+                    $remaining_days = $row['days_borrowed'] % 30;
                     if ($remaining_days > 0) {
                         echo "$months month(s) $remaining_days day(s)";
                     } else {
                         echo "$months month(s)";
                     }
                 } else {
-                    echo "$days_borrowed day(s)";
+                    echo $row['days_borrowed'] . " day(s)";
                 }
                 echo "</td>";
 
-                // Compare returned date with expected return date to determine return status
-                $return_date = new DateTime($row['return_date']);
-                if ($returned_date_time > $return_date) {
-                    $return_status = "Late";
-                } else {
-                    $return_status = "On Time";
-                }
-
-                // Display return status
-                echo "<td>";
-                if ($return_status === "On Time") {
-                    echo '<span class="badge bg-success">' . $return_status . '</span>';
-                } else {
-                    echo '<span class="badge bg-danger">' . $return_status . '</span>';
-                }
+                // Determine return status and display as badge
+                echo "<td class='text-center'>";
+                $return_status = ($row['returned_date_time'] > $row['return_date']) ? "Late" : "On Time";
+                $badge_class = ($return_status === "On Time") ? "bg-success" : "bg-danger";
+                echo '<span class="badge ' . $badge_class . '">' . $return_status . '</span>';
                 echo "</td>";
 
                 echo "</tr>";

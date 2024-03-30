@@ -69,12 +69,15 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                 mysqli_close($conn);
                 ?>
             </tbody>
+            <div id="noResults" class="alert alert-danger mt-3 mb-3" style="display: none;">
+                No results found
+            </div>
         </table>
     </div>
 
     <script src="jquery/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             $('#searchInput').on('keyup', function() {
@@ -82,6 +85,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                 $('#booksTable tr').filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(searchText) > -1);
                 });
+                if ($('tbody tr:visible').length === 0) {
+                    $('#noResults').show();
+                    $('thead').hide();
+                } else {
+                    $('#noResults').hide();
+                    $('thead').show();
+                }
             });
         });
     </script>
