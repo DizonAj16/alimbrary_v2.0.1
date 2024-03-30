@@ -249,9 +249,9 @@ mysqli_stmt_close($stmt);
 
                                         echo "<td>";
                                         // Check if the book is not returned yet
-                                        if ($days_left > 0) {
+                                        if ($days_left > 1) {
                                             echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
-                                        } elseif ($days_left == 0) {
+                                        } elseif ($days_left <= 1) {
                                             echo "<p class='text-danger'>Book is nearing due</p>";
                                             echo "<a href='return.php?borrow_id=" . $borrow_id . "' class='btn btn-danger btn-sm text-light fw-bold'>Return Book</a>";
                                         } else {
