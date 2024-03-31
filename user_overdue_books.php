@@ -8,8 +8,8 @@ if (isset($_SESSION["id"]) && !empty(trim($_SESSION["id"]))) {
     $sql = "SELECT COUNT(*) AS total_overdue FROM borrowed_books 
             LEFT JOIN return_history ON borrowed_books.borrow_id = return_history.borrow_id
             WHERE borrowed_books.user_id = ? 
-            AND (borrowed_books.return_date <= CURRENT_DATE OR 
-                 borrowed_books.return_date <= DATE_ADD(CURRENT_DATE, INTERVAL 1 DAY)) 
+            AND (borrowed_books.return_date <= CURRENT_TIMESTAMP OR 
+                 borrowed_books.return_date <= DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 DAY)) 
             AND return_history.borrow_id IS NULL";
 
     if ($stmt = mysqli_prepare($conn, $sql)) {

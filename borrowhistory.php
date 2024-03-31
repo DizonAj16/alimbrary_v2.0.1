@@ -225,7 +225,7 @@ mysqli_stmt_close($stmt);
                                         <td class="text-center">' . $row['username'] . '</td>
                                         <td class="fw-bold text-start">' . $row['title'] . '</td>
                                         <td class="text-center">' . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . '</td>
-                                        <td class="text-center">' . ($row['return_date'] ? date("F j, Y", strtotime($row['return_date'])) : 'Not returned') . '</td>';
+                                        <td class="text-center">' . ($row['return_date'] ? date("F j, Y, h:i A", strtotime($row['return_date'])) : 'Not returned') . '</td>';
 
                                         // Calculate the days left
                                         echo '<td>';

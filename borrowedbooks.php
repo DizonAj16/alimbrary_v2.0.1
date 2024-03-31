@@ -228,7 +228,7 @@ mysqli_stmt_close($stmt);
 
 
                                         // Display return date in 12-hour format with only the date
-                                        echo "<td>" . date("F j, Y", strtotime($return_date)) . "</td>";
+                                        echo "<td>" . date("F j, Y, h:i A", strtotime($return_date)) . "</td>";
 
                                         // Calculate days left directly comparing current date with return date
                                         $current_date = date_create(date("Y-m-d")); // Current date

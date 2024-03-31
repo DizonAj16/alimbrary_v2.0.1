@@ -1,4 +1,7 @@
 <?php
+// Set the time zone to Manila
+date_default_timezone_set('Asia/Manila');
+
 // Initialize the session
 session_start();
 
@@ -24,7 +27,7 @@ $sql = "SELECT title, availability FROM books WHERE book_id = ?";
 $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "i", $book_id);
 mysqli_stmt_execute($stmt);
-mysqli_stmt_bind_result($stmt, $book_title, $availability); 
+mysqli_stmt_bind_result($stmt, $book_title, $availability);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
 
@@ -43,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check if return date is in the future
-    if (strtotime($return_date) <= strtotime(date("Y-m-d"))) {
+    if (strtotime($return_date) <= strtotime(date("Y-m-d H:i:s"))) {
         $return_date_err = "Return date must be in the future.";
     }
 
@@ -60,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_close($update_stmt);
 
         // Insert borrowing record into borrowed_books table
-        $borrow_date = date("Y-m-d H:i:s"); // Change to include time
+        $borrow_date = date("Y-m-d H:i:s"); // Include time
         $insert_sql = "INSERT INTO borrowed_books (user_id, book_id, borrow_date, return_date) VALUES (?, ?, ?, ?)";
         $insert_stmt = mysqli_prepare($conn, $insert_sql);
         mysqli_stmt_bind_param($insert_stmt, "iiss", $_SESSION["id"], $book_id, $borrow_date, $return_date);
@@ -80,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
+
 
 // Close the connection
 mysqli_close($conn);
@@ -196,17 +200,17 @@ mysqli_close($conn);
                         Borrow Book
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title book-title">Book title: <?php echo $book_title; ?></h5> 
+                        <h5 class="card-title book-title">Book title: <?php echo $book_title; ?></h5>
                         <form id="borrowForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?book_id=' . $book_id; ?>" method="post">
                             <div class="form-group mb-2">
                                 <label for="borrow_date" class="form-label mb-2">Borrow Date:</label>
                                 <input type="text" id="borrow_date" name="borrow_date" class="form-control" value="<?php echo date('F j, Y g:i A'); ?>" readonly>
-
                             </div>
                             <div class="form-group mb-2">
                                 <label for="return_date" class="form-label mb-2">Return Date:</label>
-                                <input type="date" id="return_date" name="return_date" class="form-control" required>
+                                <input type="datetime-local" id="return_date" name="return_date" class="form-control" required>
                             </div>
+
                             <div class="form-group">
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmationModal">Borrow</button>
                                 <a href="userbook.php" class="btn btn-secondary">Cancel</a>
@@ -242,4 +246,3 @@ mysqli_close($conn);
 </body>
 
 </html>
-
