@@ -126,72 +126,72 @@ mysqli_stmt_close($stmt);
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
-<div class="container-fluid">
-    <div class="title p-1">
-        <img src="Images/logo.png" alt="" style="height:50px;">
-    </div>
+        <div class="container-fluid">
+            <div class="title p-1">
+                <img src="Images/logo.png" alt="" style="height:50px;">
+            </div>
 
-    <!-- Toggle Button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <!-- Navbar Links -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link " href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> Manage Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="returnhistory.php"><i class="fa fa-archive fa-lg"></i> Return History</a>
-            </li>
-        </ul>
-
-        <!-- Dropdown -->
-        <div class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php
-                    // Display user's profile image or default user icon
-                    if (!empty($profile_image)) {
-                        echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
-                    } else {
-                        echo '<i class="fa fa-user fa-lg"></i>';
-                    }
-                    ?>
-                    <?php echo htmlspecialchars($_SESSION["username"]); ?>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                    <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
+                        </a>
                     </li>
-                    <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
+                    <li class="nav-item">
+                        <a class="nav-link " href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                     </li>
-                    <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> Manage Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="returnhistory.php"><i class="fa fa-archive fa-lg"></i> Return History</a>
+                    </li>
                 </ul>
-            </li>
+
+                <!-- Dropdown -->
+                <div class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-</nav>
+    </nav>
 
     <div class="container" style="margin-top:95px;">
         <div class="card mt-2">
@@ -212,7 +212,7 @@ mysqli_stmt_close($stmt);
                                 <th>Book Title</th>
                                 <th>Date Borrowed</th>
                                 <th>Date Returned</th>
-                                <th>Days Borrowed</th>
+                                <th>Time Borrowed</th>
                                 <th>Return Status</th>
                             </tr>
                         </thead>
@@ -230,26 +230,23 @@ mysqli_stmt_close($stmt);
                                 // Display returned date in 12-hour format with only the date
                                 echo "<td class='text-center'>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
 
-                                // Calculate days borrowed using DateTime objects
+                                
+                                // Calculate time borrowed using DateTime objects
                                 $borrow_date = new DateTime($row['borrow_date']);
                                 $returned_date_time = new DateTime($row['returned_date_time']);
                                 $interval = $borrow_date->diff($returned_date_time);
                                 $days_borrowed = $interval->days;
+                                $hours_borrowed = $interval->h;
+                                $minutes_borrowed = $interval->i;
 
-                                // Display days borrowed
+                                // Display time borrowed
                                 echo "<td class='text-center'>";
-                                if ($days_borrowed == 0) {
-                                    echo "Less than a day";
-                                } elseif ($days_borrowed >= 30) {
-                                    $months = floor($days_borrowed / 30);
-                                    $remaining_days = $days_borrowed % 30;
-                                    if ($remaining_days > 0) {
-                                        echo "$months month(s) $remaining_days day(s)";
-                                    } else {
-                                        echo "$months month(s)";
-                                    }
+                                if ($days_borrowed == 0 && $hours_borrowed == 0) {
+                                    echo "$minutes_borrowed minute(s)";
+                                } elseif ($days_borrowed == 0) {
+                                    echo "$hours_borrowed hour(s), $minutes_borrowed minute(s)";
                                 } else {
-                                    echo "$days_borrowed day(s)";
+                                    echo "$days_borrowed day(s), $hours_borrowed hour(s), $minutes_borrowed minute(s)";
                                 }
                                 echo "</td>";
 

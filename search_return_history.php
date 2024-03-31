@@ -33,7 +33,7 @@ $result = mysqli_stmt_get_result($stmt);
             <th>Book Title</th>
             <th>Date Borrowed</th>
             <th>Date Returned</th>
-            <th>Days Borrowed</th>
+            <th>Time Borrowed</th>
             <th>Return Status</th>
         </tr>
     </thead>
@@ -54,21 +54,24 @@ $result = mysqli_stmt_get_result($stmt);
                 echo "<td class='text-center'>" . ($row['returned_date_time'] ? date("F j, Y, h:i A", strtotime($row['returned_date_time'])) : 'Not returned') . "</td>";
 
                 // Calculate days borrowed and display in the specified format
-                echo "<td class='text-center'>";
-                if ($row['days_borrowed'] == 0) {
-                    echo "Less than a day";
-                } elseif ($row['days_borrowed'] >= 30) {
-                    $months = floor($row['days_borrowed'] / 30);
-                    $remaining_days = $row['days_borrowed'] % 30;
-                    if ($remaining_days > 0) {
-                        echo "$months month(s) $remaining_days day(s)";
-                    } else {
-                        echo "$months month(s)";
-                    }
-                } else {
-                    echo $row['days_borrowed'] . " day(s)";
-                }
-                echo "</td>";
+                $borrow_date = new DateTime($row['borrow_date']);
+                                $returned_date_time = new DateTime($row['returned_date_time']);
+                                $interval = $borrow_date->diff($returned_date_time);
+                                $days_borrowed = $interval->days;
+                                $hours_borrowed = $interval->h;
+                                $minutes_borrowed = $interval->i;
+
+                                // Display time borrowed
+                                echo "<td class='text-center'>";
+                                if ($days_borrowed == 0 && $hours_borrowed == 0) {
+                                    echo "$minutes_borrowed minute(s)";
+                                } elseif ($days_borrowed == 0) {
+                                    echo "$hours_borrowed hour(s), $minutes_borrowed minute(s)";
+                                } else {
+                                    echo "$days_borrowed day(s), $hours_borrowed hour(s), $minutes_borrowed minute(s)";
+                                }
+                                echo "</td>";
+
 
                 // Determine return status and display as badge
                 echo "<td class='text-center'>";

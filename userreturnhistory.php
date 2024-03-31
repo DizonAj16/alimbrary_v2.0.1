@@ -241,7 +241,7 @@ mysqli_stmt_close($stmt);
                                     <th>Title</th>
                                     <th>Borrow Date</th>
                                     <th>Date Returned</th>
-                                    <th>Days Borrowed</th>
+                                    <th>Time Borrowed</th>
                                     <th>Return Status</th> 
                                 </tr>
                             </thead>
@@ -255,28 +255,26 @@ mysqli_stmt_close($stmt);
                                     echo "<td>" . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . "</td>";
                                     echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
 
-                                    // Calculate the number of days borrowed
+                                    // Calculate the time borrowed
                                     $borrow_date = strtotime($row['borrow_date']);
                                     $returned_date = strtotime($row['returned_date_time']);
-                                    $days_borrowed = floor(($returned_date - $borrow_date) / (60 * 60 * 24));
-
-                                    // If days borrowed exceeds 30 days, convert it into months and remaining days
-                                    if ($days_borrowed > 30) {
-                                        $months = floor($days_borrowed / 30);
-                                        $remaining_days = $days_borrowed % 30;
-                                        if ($remaining_days == 0) {
-                                            echo "<td class='text-center'>$months month(s)</td>";
-                                        } else {
-                                            echo "<td class='text-center'>$months month(s) $remaining_days day(s)</td>";
-                                        }
-                                    } else {
-                                        // If days borrowed is less than or equal to 30 days, display the number of days
-                                        if ($days_borrowed == 0) {
-                                            echo "<td class='text-center'>Less than a day</td>";
-                                        } else {
-                                            echo "<td class='text-center'>$days_borrowed day(s)</td>";
-                                        }
+                                    $diff = $returned_date - $borrow_date;
+                                    $days = floor($diff / (60 * 60 * 24));
+                                    $hours = floor(($diff - $days * 60 * 60 * 24) / (60 * 60));
+                                    $minutes = floor(($diff - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
+                                    $seconds = $diff % 60;
+                                    $time_borrowed = "";
+                                    if ($days > 0) {
+                                        $time_borrowed .= "$days day(s) ";
                                     }
+                                    if ($hours > 0) {
+                                        $time_borrowed .= "$hours hour(s) ";
+                                    }
+                                    if ($minutes > 0) {
+                                        $time_borrowed .= "$minutes minute(s) ";
+                                    }
+
+                                    echo "<td class='text-center'>$time_borrowed</td>";
 
                                     // Determine return status
                                     $expected_return_date = strtotime($row['return_date']);
@@ -357,4 +355,3 @@ mysqli_stmt_close($stmt);
 // Close connection
 mysqli_close($conn);
 ?>
-

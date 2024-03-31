@@ -6,7 +6,7 @@
             <th>Book Title</th>
             <th>Borrow Date</th>
             <th>Return Until</th>
-            <th>Days Left</th>
+            <th>Time Left</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -45,31 +45,31 @@
                     <td class="text-center">' . $row['username'] . '</td>
                     <td class="fw-bold text-start">' . $row['title'] . '</td>
                     <td class="text-center">' . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . '</td>
-                    <td class="text-center">' . ($row['return_date'] ? date("F j, Y", strtotime($row['return_date'])) : 'Not returned') . '</td>';
+                    <td class="text-center">' . ($row['return_date'] ? date("F j, Y, h:i A", strtotime($row['return_date'])) : 'Not returned') . '</td>';
 
-                // Calculate the days left
+                // Calculate the time left
                 echo '<td>';
                 if ($row['return_id']) {
-                    // If returned, display a success badge and leave the days left column blank
-                } else {
-                    // If not returned, calculate days left
-                    // Calculate the days left until return
-                    $current_date = date_create(date("Y-m-d")); // Current date
-                    $return_date_obj = date_create($row['return_date']); // Return date
-                    $days_left = date_diff($current_date, $return_date_obj)->format("%r%a"); // Days left
+                    // If returned, display a success badge and leave the time left column blank
 
-                    if ($days_left == 0) {
-                        $days_left = 'Less than a day';
-                    } elseif ($days_left < 0) {
-                        $days_left = '<p class="text-danger fw-bold">Overdue</p>';
-                    } elseif ($days_left >= 30) {
-                        $months = floor($days_left / 30);
-                        $remaining_days = $days_left % 30;
-                        $days_left = $months . ' month(s) ' . $remaining_days . ' day(s)';
+                } else {
+                    // If not returned, calculate time left
+                    // If not returned, calculate time left
+                    $current_date = time() + (6 * 60 * 60); // Adding 6 hours to the current timestamp to adjust for the discrepancy
+                    $return_date = strtotime($row['return_date']); // Return timestamp
+                    $time_left = $return_date - $current_date; // Time left in seconds
+
+                    $days = floor($time_left / (60 * 60 * 24));
+                    $hours = floor(($time_left % (60 * 60 * 24)) / (60 * 60));
+                    $minutes = floor(($time_left % (60 * 60)) / 60);
+
+                    if ($days < 0) {
+                        echo '<p class="text-danger">Overdue</p>';
+                    } elseif ($days == 0 && $hours < 24) {
+                        echo '<p class="text-danger">Book nearing due: ' . $hours . ' hour(s), ' . $minutes . ' minute(s)</p>';
                     } else {
-                        $days_left = $days_left . ' day(s)';
+                        echo $days . ' day(s), ' . $hours . ' hour(s), ' . $minutes . ' minute(s)';
                     }
-                    echo $days_left;
                 }
                 echo '</td>';
 
