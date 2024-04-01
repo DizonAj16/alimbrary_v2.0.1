@@ -124,6 +124,10 @@ mysqli_close($conn);
         .btn-secondary:hover {
             background-color: #999;
         }
+
+        .text-danger {
+            color: #ff0000;
+        }
     </style>
 </head>
 
@@ -132,8 +136,8 @@ mysqli_close($conn);
         <h2>Update User Info</h2>
         <form action="update_process.php" method="post">
             <div class="form-group">
-                <label class="form-label" for="address">Username:</label>
-                <input type="text" class="form-control" id="address" name="username" value="<?php echo $username; ?>" readonly>
+                <label class="form-label" for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
             </div>
             <div class="form-group">
                 <label class="form-label" for="fullName">Full Name:</label>
