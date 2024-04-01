@@ -56,7 +56,7 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
             // Loop through results and generate HTML for book cards
             while ($row = mysqli_fetch_assoc($result)) {
                 echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">';
-                echo '<div class="card h-100 border border-primary rounded-5">';
+                echo '<div class="card h-100 rounded-5">';
                 echo '<div class="d-flex justify-content-center align-items-center mt-2" style="height: 200px;">';
 
                 // Display the image if image path exists

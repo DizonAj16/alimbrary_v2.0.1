@@ -31,7 +31,7 @@ if ($result) {
     
     // Display the total count of available books
     echo '<div class="available-books-container">';
-    echo "<h3><span class='available-books-count'>{$row['total_available']} Available books</span></h3>";
+    echo "<h3><span class='available-books-count'>{$row['total_available']} Available Books</span></h3>";
     echo "</div>";
 } else {
     // Display an error message if the query fails

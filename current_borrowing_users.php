@@ -32,7 +32,7 @@ if ($result) {
     
     // Display the total number of books currently borrowed by users
     echo '<div class="borrowed-books-container">';
-    echo "<h3><span class='borrowed-books-count'>{$row['total_borrowed_books']} Books currently borrowed</span></h3>";
+    echo "<h3><span class='borrowed-books-count'>{$row['total_borrowed_books']} Books Currently Borrowed</span></h3>";
     echo "</div>";
 } else {
     // Display an error message if the query fails

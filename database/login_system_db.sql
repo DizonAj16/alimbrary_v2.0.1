@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2024 at 11:31 AM
+-- Generation Time: Apr 01, 2024 at 06:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,8 +50,8 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (23, 'Pride and Prejudice', 'The story is set in early 19th-century England and revolves around the life of Elizabeth Bennet, one of five sisters from the respectable Bennet family. The novel explores themes of love, class, and societal expectations.', 'Jane Austen', '978-0141439518', 1813, 'Fiction, Classic, Romance', 'Not Available', 0x75706c6f6164732f70726964652d616e642d7072656a75646963652d37312e6a7067),
 (24, 'The Hobbit', 'is a captivating fantasy adventure that follows Bilbo Baggins, a reluctant hobbit hero, on a quest to reclaim a dwarf kingdom. Filled with magical creatures, epic battles, and the discovery of inner courage, it\'s a timeless tale of bravery and friendship in the enchanting world of Middle-earth.', 'J.R.R. Tolkien', '978-0547928227', 1937, 'Fantasy', 'Available', 0x75706c6f6164732f74686520686f626269742e6a7067),
 (25, 'The Hunger Games', 'Set in a future society, the story follows Katniss Everdeen as she navigates a televised fight to the death, representing her district in a brutal annual event called the Hunger Games. The narrative explores themes of survival, rebellion, and the consequences of a power-hungry government.', 'Suzanne Collins', '978-0439023481', 2008, 'Young Adult, Dystopian', 'Not Available', 0x75706c6f6164732f7468652068756e6765722067616d65732e6a7067),
-(26, 'The Da Vinci Code', 'The story revolves around Harvard symbologist Robert Langdon as he investigates a murder at the Louvre Museum in Paris. Filled with hidden codes, symbols, and historical secrets, the novel takes readers on a thrilling journey through art, history, and religious intrigue.', 'Dan Brown', '978-0307474278', 2003, 'Mystery, Thriller', 'Not Available', 0x75706c6f6164732f7468652d64612d76696e63692d636f64652e6a7067),
-(33, 'A Game of Thrones', 'The story unfolds in the fictional continents of Westeros and Essos, where noble families vie for control of the Iron Throne and the Seven Kingdoms. Filled with political intrigue, power struggles, and unexpected twists, the book introduces readers to a vast and immersive world with memorable characters and a gripping narrative.', 'George R.R. Martin', '978-895152732', 1996, 'Fantasy', 'Available', 0x75706c6f6164732f676f742e6a7067),
+(26, 'The Da Vinci Code', 'The story revolves around Harvard symbologist Robert Langdon as he investigates a murder at the Louvre Museum in Paris. Filled with hidden codes, symbols, and historical secrets, the novel takes readers on a thrilling journey through art, history, and religious intrigue.', 'Dan Brown', '978-0307474278', 2003, 'Mystery, Thriller', 'Available', 0x75706c6f6164732f7468652d64612d76696e63692d636f64652e6a7067),
+(33, 'A Game of Thrones', 'The story unfolds in the fictional continents of Westeros and Essos, where noble families vie for control of the Iron Throne and the Seven Kingdoms. Filled with political intrigue, power struggles, and unexpected twists, the book introduces readers to a vast and immersive world with memorable characters and a gripping narrative.', 'George R.R. Martin', '978-895152732', 1996, 'Fantasy', 'Not Available', 0x75706c6f6164732f676f742e6a7067),
 (34, 'The Chronicles of Narnia', 'The series follows the adventures of children who are magically transported to the world of Narnia, where they encounter talking animals, mythical creatures, and epic battles between good and evil.', 'C.S. Lewis', '978-566884303', 1950, 'Fantasy, Children\'s', 'Not Available', 0x75706c6f6164732f6e61726e69612e6a7067),
 (35, 'Noli Me Tangere', 'The title translates to \"Touch Me Not\" in English. This classic work explores the injustices and societal issues prevalent during the Spanish colonial period in the Philippines, exposing corruption, abuse of power, and the struggle for national identity.', 'Jose Rizal', '978-533703972', 1887, 'Fiction, Classic', 'Not Available', 0x75706c6f6164732f6e6f6c69206d652074616e676572652e6a7067),
 (36, 'El Filibusterismo', 'The title translates to \"The Subversive\" or \"The Filibustering\" in English. This novel delves deeper into the issues of social injustice, corruption, and abuse of power during the Spanish colonial era in the Philippines.', 'Jose Rizal', '978-985906966', 1891, 'Fiction, Classic', 'Not Available', 0x75706c6f6164732f656c2066696c692e6a7067),
@@ -64,7 +64,7 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (45, 'My Hero Academia Volume 1: Izuku Midoriya: Origin', 'The story unfolds in a world where individuals possess superpowers known as \"Quirks,\" and it follows the journey of Izuku Midoriya, a Quirkless boy with aspirations of becoming a hero.', 'Kohei Horikoshi', '978-424553775', 2015, 'Shonen, Superhero, Action', 'Not Available', 0x75706c6f6164732f6d68612076312e6a7067),
 (46, 'Demon Slayer: Kimetsu no Yaiba Volume 1: Cruelty', 'The story follows Tanjiro Kamado, a young boy whose life takes a tragic turn when his family is slaughtered by demons, and his sister Nezuko is turned into one.', 'Koyoharu Gotouge', '978-653106549', 2018, 'Shonen, Action, Dark Fantasy', 'Available', 0x75706c6f6164732f64656d6f6e2d736c617965722d6b696d657473752d6e6f2d79616962612d766f6c2d312e6a7067),
 (48, 'Haikyu!! Volume 1: Hinata and Kageyama', 'The story revolves around Shoyo Hinata, a determined and vertically challenged athlete inspired by a legendary player known as the \"Little Giant.\" Despite facing challenges due to his height, Hinata joins the Karasuno High School volleyball team with unwavering enthusiasm.', 'Haruichi Furudate', '978-4088806948', 2012, 'Shonen, Sports, Volleyball', 'Available', 0x75706c6f6164732f6861696b79752e6a7067),
-(49, 'Black Clover Volume 1: The Boy\'s Vow', 'The story takes an exciting turn when Asta receives a unique grimoire that grants him an anti-magic sword. Alongside his childhood friend Yuno, who is exceptionally talented in magic, Asta embarks on a journey to fulfill his dream.', 'Yūki Tabata', '978-574544535', 2015, 'Shonen, Fantasy, Magic', 'Available', 0x75706c6f6164732f626c61636b636c6f7665722e6a7067),
+(49, 'Black Clover Volume 1: The Boy\'s Vow', 'The story takes an exciting turn when Asta receives a unique grimoire that grants him an anti-magic sword. Alongside his childhood friend Yuno, who is exceptionally talented in magic, Asta embarks on a journey to fulfill his dream.', 'Yūki Tabata', '978-574544535', 2015, 'Shonen, Fantasy, Magic', 'Not Available', 0x75706c6f6164732f626c61636b636c6f7665722e6a7067),
 (76, 'It', 'A terrifying entity preys on the children of Derry, Maine, resurfacing every 27 years.', 'Stephen King', '978-134703224', 1986, 'Supernatural Horror', 'Available', 0x75706c6f6164732f49745f2831393836295f66726f6e745f636f7665722c5f66697273745f65646974696f6e2e6a7067),
 (79, 'The Shining', 'A psychological horror novel about a writer who takes his family to an isolated hotel for the winter, where supernatural forces begin to take hold.', 'Stephen King', '978-845126051', 1978, 'Horror Psychological Thriller', 'Available', 0x75706c6f6164732f746865207368696e696e672e6a7067),
 (80, 'Batman: The Killing Joke', '\"The Killing Joke\" explores the complex relationship between Batman and his arch-nemesis, the Joker. The story delves into the Joker\'s origin, presenting him as a failed comedian who turns to crime after a series of tragic events.', 'Alan Moore', '978-751350093', 1988, 'Superhero, Psychological thriller', 'Available', 0x75706c6f6164732f6261746d616e2e6a7067),
@@ -80,12 +80,14 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (95, 'Guns, Germs, and Steel: The Fates of Human Societies', 'Diamond explores the factors that have shaped human history, including geography, agriculture, and technology.', 'Jared Diamond', '978-537225273', 1997, 'Anthropology/History', 'Available', 0x75706c6f6164732f67756e732d6765726d732d616e642d737465656c2d7468652d66617465732d6f662d68756d616e2d736f636965746965732d323074682d616e6e69766572736172792d65646974696f6e2e6a7067),
 (97, 'The Impact of Climate Change on Agricultural Practices', 'This thesis explores the effects of climate change on modern agricultural practices, analyzing data from various regions and proposing sustainable solutions.', 'John Smith', '978-924130200', 2021, 'Environmental Science', 'Available', 0x75706c6f6164732f696d6167657320283130292e6a706567),
 (98, 'Thinking, Fast and Slow', 'Kahneman explores the two systems of thinking that drive human decision-making.', 'Daniel Kahneman', '978-722323128', 2011, 'Psychology/Behavioral Economics', 'Not Available', 0x75706c6f6164732f7468696e6b696e672d666173742d616e642d736c6f772e6a7067),
-(107, 'The Selfish Gene', 'Explores the gene-centered view of evolution and its implications for understanding human behavior.', 'Richard Dawkins', '978-564461809', 1976, 'Biology, Evolutionary Psychology', 'Available', 0x75706c6f6164732f5468655f53656c666973685f47656e65332e6a7067),
-(108, 'Silent Spring', 'Examines the detrimental effects of pesticides on the environment and ecosystems.', 'Rachel Carson', '978-243076488', 1962, 'Environmental Science', 'Available', 0x75706c6f6164732f53696c656e74537072696e672e6a7067),
+(107, 'The Selfish Gene', 'Explores the gene-centered view of evolution and its implications for understanding human behavior.', 'Richard Dawkins', '978-564461809', 1976, 'Biology, Evolutionary Psychology', 'Not Available', 0x75706c6f6164732f5468655f53656c666973685f47656e65332e6a7067),
+(108, 'Silent Spring', 'Examines the detrimental effects of pesticides on the environment and ecosystems.', 'Rachel Carson', '978-243076488', 1962, 'Environmental Science', 'Not Available', 0x75706c6f6164732f53696c656e74537072696e672e6a7067),
 (109, 'Longitude: The True Story of a Lone Genius Who Solved the Greatest Scientific Problem of His Time', 'Chronicles the quest to develop a reliable method for determining longitude at sea.', 'Dava Sobel', '978-119027842', 1995, 'History of Science, Maritime History', 'Not Available', 0x75706c6f6164732f6c6f6e6769747564652e6a7067),
 (110, 'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself', 'Explores fundamental questions about existence, drawing on physics and philosophy.', 'Sean Carroll', '978-639853449', 2016, 'Philosophy of Science, Cosmology', 'Not Available', 0x75706c6f6164732f7468652062696720706963747572652e6a7067),
 (111, 'The Feynman Lectures on Physics', 'Based on a series of lectures by Nobel laureate Richard Feynman, this three-volume set covers the fundamentals of physics in a captivating and accessible manner, making it a favorite among students and enthusiasts alike.', 'Richard P. Feynman', '978-838819237', 1964, 'Non-fiction, Science, Physics', 'Not Available', 0x75706c6f6164732f6665796d616e2e6a7067),
-(112, 'Sapiens: A Brief History of Humankind', 'This book explores the history of Homo sapiens from the emergence of archaic human species in Africa to the present day, encompassing the Cognitive Revolution, the Agricultural Revolution, and the Scientific Revolution.', 'Yuval Noah Harari', '978-317623797', 2011, 'History/Anthropology', 'Not Available', 0x75706c6f6164732f73617069656e732e6a7067);
+(112, 'Sapiens: A Brief History of Humankind', 'This book explores the history of Homo sapiens from the emergence of archaic human species in Africa to the present day, encompassing the Cognitive Revolution, the Agricultural Revolution, and the Scientific Revolution.', 'Yuval Noah Harari', '978-317623797', 2011, 'History/Anthropology', 'Not Available', 0x75706c6f6164732f73617069656e732e6a7067),
+(113, 'The Teacher Wars: A History of America\'s Most Embattled Profession', 'Traces the history of teaching in America and explores the various political, cultural, and social forces that have shaped the profession.', 'Dana Goldstein', '978-485828075', 2014, 'Education/History', 'Available', 0x75706c6f6164732f746561636865722e6a7067),
+(114, 'Mindset: The New Psychology of Success', 'Explores the concept of mindset and how adopting a growth mindset can lead to greater success and fulfillment.', 'Carol S. Dweck', '978-981312413', 2006, 'Psychology/Self-Help', 'Not Available', 0x75706c6f6164732f6d696e647365742e6a7067);
 
 -- --------------------------------------------------------
 
@@ -389,7 +391,14 @@ INSERT INTO `borrowed_books` (`borrow_id`, `user_id`, `book_id`, `borrow_date`, 
 (322, 22, 36, '2024-03-31 09:24:34', '2024-03-31 23:30:00'),
 (323, 22, 23, '2024-03-31 09:26:02', '2024-04-03 15:25:00'),
 (324, 22, 45, '2024-03-31 09:26:34', '2024-04-02 01:30:00'),
-(325, 21, 26, '2024-03-31 09:28:40', '2024-04-02 03:20:00');
+(325, 21, 26, '2024-03-31 09:28:40', '2024-04-02 03:20:00'),
+(326, 20, 108, '2024-03-31 16:36:36', '2024-04-03 05:00:00'),
+(327, 19, 107, '2024-03-31 17:53:01', '2024-04-02 08:00:00'),
+(328, 19, 25, '2024-03-31 18:06:33', '2024-03-31 19:00:00'),
+(329, 21, 26, '2024-03-31 20:50:08', '2024-04-02 00:50:00'),
+(330, 20, 114, '2024-03-31 21:02:27', '2024-04-20 09:00:00'),
+(331, 23, 49, '2024-04-01 15:23:53', '2024-04-02 06:01:00'),
+(332, 23, 33, '2024-04-01 15:25:12', '2024-04-03 04:30:00');
 
 -- --------------------------------------------------------
 
@@ -677,7 +686,10 @@ INSERT INTO `return_history` (`return_id`, `borrow_id`, `user_id`, `book_id`, `r
 (299, 308, 20, 111, '2024-03-31 08:53:15', 'returned'),
 (300, 305, 20, 107, '2024-03-31 08:53:23', 'returned'),
 (301, 313, 20, 108, '2024-03-31 09:08:54', 'returned'),
-(302, 314, 20, 108, '2024-03-31 09:14:56', 'returned');
+(302, 314, 20, 108, '2024-03-31 09:14:56', 'returned'),
+(303, 318, 19, 25, '2024-03-31 17:58:31', 'returned'),
+(304, 325, 21, 26, '2024-03-31 20:48:16', 'returned'),
+(305, 329, 21, 26, '2024-03-31 20:50:39', 'returned');
 
 -- --------------------------------------------------------
 
@@ -706,7 +718,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `full_name`, `occupation`, `contact_num`, `address`, `password`, `created_at`, `user_type`, `image`) VALUES
 (14, 'admin', '', '', '', '', '', '$2y$10$IHH0QCWMC1iypBgmoLqjRuqRxTKSzblOHOiqjYGI4i8abhI5u0wC.', '2024-02-19 00:01:30', 'admin', 0x496d616765732f696d61676573202837292e706e67),
 (19, 'user01', '', '', '', '', '', '$2y$10$Je.I4bOwtctWCLfo92JQMODBZPl7imnmPjiNVUbZ/4I6evGTvnNN2', '2024-02-29 17:32:35', 'user', 0x496d616765732f7573657220696d6167652e6a7067),
-(20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'Student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$jOVRK5y.nR3/juf.RMjjYuyJ35Xk6WQcP56wospRnv3MNMe3qX5qa', '2024-03-04 23:12:13', 'user', 0x496d616765732f7573657220696d6167652e6a7067),
+(20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'Student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$jOVRK5y.nR3/juf.RMjjYuyJ35Xk6WQcP56wospRnv3MNMe3qX5qa', '2024-03-04 23:12:13', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
 (21, 'alim', '', '', '', '', '', '$2y$10$kze.NSyaawXbrn4Yh1RHl.0Lhy4o4tawUBgxUjPPEMWc.dkx62CTq', '2024-03-05 03:36:45', 'user', 0x496d616765732f73747564656e742069636f6e20322e706e67),
 (22, 'luffy', '', '', '', '', '', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c7566667920696d6167652e6a7067),
 (23, 'johndoe69', '', '', '', '', '', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f42617369635f55695f5f32383138365f32392e6a7067),
@@ -756,19 +768,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=326;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=333;
 
 --
 -- AUTO_INCREMENT for table `return_history`
 --
 ALTER TABLE `return_history`
-  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=306;
 
 --
 -- AUTO_INCREMENT for table `users`

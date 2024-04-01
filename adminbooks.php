@@ -186,20 +186,25 @@
 
                 .card {
                     background: linear-gradient(to bottom, rgba(135, 206, 235, 0.5), transparent);
-                    background-color: white;
+                    background-color: #add8e6;
+                    /* Light blue background color */
                     border: none;
                     border-radius: 15px;
                     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
-
+                    transition: transform 0.3s ease;
+                    /* Transition for scale transformation */
                 }
 
                 .card:hover {
-                    background: linear-gradient(to bottom, #add8e6, #4682b4);
+                    background: linear-gradient(to bottom, #bfefff, #add8e6);
+                    /* Light hover blue background color */
                     color: white;
                     cursor: pointer;
+                    transform: scale(1.05);
+                    /* Scale up by 5% on hover */
                     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
-
                 }
+
 
                 label {
                     font-weight: bold;
@@ -396,7 +401,7 @@
                                             <label for="new_image" class="form-label">New Image</label>
                                             <div class="input-group">
                                                 <input type="file" id="new_image" name="image" class="form-control d-none" onchange="updateFileName(this)">
-                                                <label for="new_image" class="input-group-text bg-success text-light fw-bold fs-4 rounded me-2">
+                                                <label for="new_image" class="input-group-text bg-success text-light fw-bold fs-4 rounded me-2" title="Select an image">
                                                     <i class="fas fa-upload"></i>
                                                 </label>
                                                 <input type="text" id="file_name" class="form-control" readonly>

@@ -47,6 +47,8 @@
                     WHERE rh.borrow_id IS NULL
                     ORDER BY bb.borrow_id DESC";
 
+                    $current_datetime = date("Y-m-d H:i:s"); // Current date and time
+
                     if ($result_borrowed = mysqli_query($conn, $query_borrowed)) {
                         if (mysqli_num_rows($result_borrowed) > 0) {
                             while ($row_borrowed = mysqli_fetch_assoc($result_borrowed)) {
@@ -55,11 +57,11 @@
                                 echo "<td class='text-center text-primary fw-bold'>" . $row_borrowed['username'] . "</td>";
                                 echo "<td>" . date("F j, Y, h:i A", strtotime($row_borrowed['borrow_date'])) . "</td>";
 
-                                // Calculate status based on return date
-                                $current_date = date("Y-m-d");
-                                $return_date = $row_borrowed['return_date'];
+                                // Calculate status based on return date and time
+                                $return_datetime = $row_borrowed['return_date'];
                                 $status = "";
-                                if ($return_date && $current_date >= $return_date) {
+
+                                if ($return_datetime && $current_datetime >= $return_datetime) {
                                     $status = "Overdue";
                                 } else {
                                     $status = "";
@@ -76,6 +78,7 @@
                     } else {
                         echo "<tr><td colspan='6'>Oops! Something went wrong fetching borrowed books. Please try again later.</td></tr>";
                     }
+
 
                     // Close connection
                     mysqli_close($conn);
