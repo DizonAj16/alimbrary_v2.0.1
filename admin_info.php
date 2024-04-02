@@ -217,27 +217,6 @@ mysqli_close($conn);
             }
             ?>
             <div class="username"><?php echo $username; ?></div>
-            <div class="file-upload mt-2 d-flex justify-content-center">
-                <form action="upload.php" method="post" enctype="multipart/form-data">
-                    <div class="input-group">
-                        <input type="file" class="form-control-sm d-none" name="image" id="image" accept="image/*">
-                        <label for="image" class="input-group-text me-2 rounded" data-bs-toggle="tooltip" data-bs-title="Click to upload image">
-                            <i class="fas fa-upload fa-lg text-success"></i>
-                        </label>
-                        <div class="col-xx-6">
-                            <input type="text" class="form-control form-control-sm" id="file-name" readonly>
-                        </div>
-                    </div>
-                    <input type="submit" class="btn btn-primary btn-sm mt-2" value="Upload">
-                </form>
-            </div>
-
-            <script>
-                document.getElementById('image').addEventListener('change', function() {
-                    var fileName = this.files[0].name;
-                    document.getElementById('file-name').value = fileName;
-                });
-            </script>
         </div>
         <div class="profile-info">
             <div class="info-row">
@@ -280,7 +259,6 @@ mysqli_close($conn);
                 <div class="info-label">Joined:</div>
                 <div class="info-value"><?php echo $daysJoined; ?></div>
             </div>
-            <a class="btn btn-primary text-light" href="updateinfo.php"><i class="fas fa-edit text-light fa-lg"></i> Update Info</a>
         </div>
         <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'users.php' : 'userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
     </div>
