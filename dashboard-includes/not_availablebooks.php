@@ -28,61 +28,63 @@
                         <th>Title</th>
                         <th>Borrowed By</th>
                         <th>Borrow Date</th>
+                        <th>Return Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="booksTable">
-                    <?php
-                    // Include config file
-                    require_once "../config.php";
+                <?php
+// Include config file
+require_once "../config.php";
 
-                    // Attempt select query execution for borrowed books
-                    $query_borrowed = "
-                    SELECT b.book_id, b.title, u.username, bb.borrow_date, bb.return_date
-                    FROM borrowed_books bb
-                    JOIN books b ON bb.book_id = b.book_id
-                    JOIN users u ON bb.user_id = u.id
-                    LEFT JOIN return_history rh ON bb.borrow_id = rh.borrow_id
-                    WHERE rh.borrow_id IS NULL
-                    ORDER BY bb.borrow_id DESC";
+// Attempt select query execution for borrowed books
+$query_borrowed = "
+    SELECT b.book_id, b.title, u.username, bb.borrow_date, bb.return_date
+    FROM borrowed_books bb
+    JOIN books b ON bb.book_id = b.book_id
+    JOIN users u ON bb.user_id = u.id
+    LEFT JOIN return_history rh ON bb.borrow_id = rh.borrow_id
+    WHERE rh.borrow_id IS NULL
+    ORDER BY bb.borrow_id DESC";
 
-                    $current_datetime = date("Y-m-d H:i:s"); // Current date and time
+$current_datetime = date_create("now", new DateTimeZone('Asia/Manila'))->format("Y-m-d H:i:s"); // Current date and time in Manila time zone
 
-                    if ($result_borrowed = mysqli_query($conn, $query_borrowed)) {
-                        if (mysqli_num_rows($result_borrowed) > 0) {
-                            while ($row_borrowed = mysqli_fetch_assoc($result_borrowed)) {
-                                echo "<tr>";
-                                echo "<td class='fw-bold'>" . $row_borrowed['title'] . "</td>";
-                                echo "<td class='text-center text-primary fw-bold'>" . $row_borrowed['username'] . "</td>";
-                                echo "<td>" . date("F j, Y, h:i A", strtotime($row_borrowed['borrow_date'])) . "</td>";
+if ($result_borrowed = mysqli_query($conn, $query_borrowed)) {
+    if (mysqli_num_rows($result_borrowed) > 0) {
+        while ($row_borrowed = mysqli_fetch_assoc($result_borrowed)) {
+            echo "<tr>";
+            echo "<td class='fw-bold'>" . $row_borrowed['title'] . "</td>";
+            echo "<td class='text-center text-primary fw-bold'>" . $row_borrowed['username'] . "</td>";
+            echo "<td>" . date("F j, Y, h:i A", strtotime($row_borrowed['borrow_date'])) . "</td>";
+            echo "<td>" . date("F j, Y, h:i A", strtotime($row_borrowed['return_date'])) . "</td>";
 
-                                // Calculate status based on return date and time
-                                $return_datetime = $row_borrowed['return_date'];
-                                $status = "";
+            // Calculate status based on return date and time
+            $return_datetime = date_create($row_borrowed['return_date'], new DateTimeZone('Asia/Manila'))->format("Y-m-d H:i:s");
 
-                                if ($return_datetime && $current_datetime >= $return_datetime) {
-                                    $status = "Overdue";
-                                } else {
-                                    $status = "";
-                                }
-                                echo "<td class='text-center text-danger fw-bold'>$status</td>";
+            $status = "";
 
-                                echo "<td class='text-center'><a href='view_not_available_books.php?book_id=" . $row_borrowed['book_id'] . "' class='btn btn-dark btn-sm' data-bs-toggle='tooltip' data-bs-title='View'><i class='fas fa-eye'></i></a></td>"; // Action for viewing book details
-                                echo "</tr>";
-                            }
-                            mysqli_free_result($result_borrowed);
-                        } else {
-                            echo "<tr><td colspan='6'>No books currently borrowed</td></tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='6'>Oops! Something went wrong fetching borrowed books. Please try again later.</td></tr>";
-                    }
+            if ($return_datetime && $current_datetime > $return_datetime) {
+                $status = "Overdue";
+            }
 
+            echo "<td class='text-center text-danger fw-bold'>$status</td>";
 
-                    // Close connection
-                    mysqli_close($conn);
-                    ?>
+            echo "<td class='text-center'><a href='view_not_available_books.php?book_id=" . $row_borrowed['book_id'] . "' class='btn btn-dark btn-sm' data-bs-toggle='tooltip' data-bs-title='View'><i class='fas fa-eye'></i></a></td>"; // Action for viewing book details
+            echo "</tr>";
+        }
+        mysqli_free_result($result_borrowed);
+    } else {
+        echo "<tr><td colspan='6'>No books currently borrowed</td></tr>";
+    }
+} else {
+    echo "<tr><td colspan='6'>Oops! Something went wrong fetching borrowed books. Please try again later.</td></tr>";
+}
+
+// Close connection
+mysqli_close($conn);
+?>
+
                 </tbody>
                 <div id="noResults" class="alert alert-danger mt-3 mb-3" style="display: none;">
                     No results found
