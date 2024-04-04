@@ -4,14 +4,14 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "user") {
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
 ?>
 
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Fetch user's profile image path from the database
 $user_id = $_SESSION["id"];
@@ -32,12 +32,10 @@ mysqli_stmt_close($stmt);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books section</title>
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="navigation.css">
-    <link rel="stylesheet" href="titlestyle.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="fa-css/all.css">
-    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../external-css/navigation.css">
+    <link rel="stylesheet" href="../fa-css/all.css">
+    <script defer src="../js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -226,7 +224,7 @@ mysqli_stmt_close($stmt);
 
 <div class="container-fluid">
   <div class="title p-1">
-    <img class="logo" src="Images/logo.png" alt="">
+    <img class="logo" src="../Images/logo.png" alt="">
   </div>
 
   <!-- Toggle Button -->
@@ -264,7 +262,7 @@ mysqli_stmt_close($stmt);
           <?php
           // Display user's profile image or default user icon
           if (!empty($profile_image)) {
-            echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+            echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
           } else {
             echo '<i class="fa fa-user fa-lg"></i>';
           }
@@ -272,15 +270,15 @@ mysqli_stmt_close($stmt);
           <?php echo htmlspecialchars($_SESSION["username"]); ?>
         </a>
         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-          <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+          <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+          <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+          <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
         </ul>
       </li>
     </div>
@@ -308,7 +306,7 @@ mysqli_stmt_close($stmt);
     <div class="wrapper1" id="searchBooksTable">
         <?php
         // Include config file
-        require_once "config.php";
+        require_once "../config.php";
 
         // Attempt select query execution
         $sql = "SELECT * FROM books ORDER BY book_id DESC";
@@ -366,13 +364,13 @@ mysqli_stmt_close($stmt);
         });
     </script>
 
-    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script src="../jquery/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#searchInput").on("keyup", function() {
                 var searchText = $(this).val().toLowerCase().trim();
                 $.ajax({
-                    url: "search_user_books.php", // Update to the correct file name
+                    url: "../search/search_user_books.php", // Update to the correct file name
                     method: "POST",
                     data: {
                         searchQuery: searchText

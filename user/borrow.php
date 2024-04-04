@@ -12,7 +12,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 }
 
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Check if book_id is provided in the query string
 if (!isset($_GET["book_id"])) {
@@ -96,8 +96,8 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Borrow Book</title>
-    <link rel="stylesheet" href="fa-css/all.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fa-css/all.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -241,8 +241,8 @@ mysqli_close($conn);
         </div>
     </div>
 
-    <script src="jquery/jquery3.5.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="../jquery/jquery3.5.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

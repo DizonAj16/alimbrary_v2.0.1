@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return Confirmation</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8f9fa;
@@ -56,12 +56,12 @@
 
         // Check if the user is logged in
         if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "user") {
-            header("location: login.php");
+            header("location: ../login.php");
             exit;
         }
 
         // Include config file
-        require_once "config.php";
+        require_once "../config.php";
 
         // Check if confirm_return is set in the POST data
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["confirm_return"])) {

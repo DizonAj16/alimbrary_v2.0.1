@@ -2,19 +2,17 @@
 // Initialize the session
 session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
+// Check if the user is logged in and is an admin, if not then redirect him to the login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
     header("location: ../login.php");
     exit;
 }
-?>
 
-<?php
 // Include config file
 require_once "../config.php";
 
 // Initialize variables
-$title = $author = $isbn = $pub_year = $genre = $description = "";
+$title = $author = $isbn = $pub_year = $genre = $description = $image_path = "";
 $title_err = $author_err = $isbn_err = $pub_year_err = $genre_err = $image_err = $description_err = "";
 
 // Processing form data when form is submitted
@@ -53,10 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $image_err = "File is not an image.";
         }
     } else {
-        // No new image file uploaded, set image_path to null or retain the existing image_path if available
-        if (!empty($_POST["current_image_path"])) {
-            $image_path = $_POST["current_image_path"];
-        }
+        // No new image file uploaded, set image_path to the current image path
+        $image_path = $_POST["current_image_path"];
     }
 
     // Check input errors before updating the database
@@ -243,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card-body">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
-                    <input type="hidden" name="current_image_path" value="../<?php echo $image_path; ?>">
+                    <input type="hidden" name="current_image_path" value="<?php echo $image_path; ?>">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-2">
@@ -290,19 +286,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </label>
                                     <input type="text" id="file_name" class="form-control" readonly>
                                 </div>
-                                
                                 <span class="text-danger"><?php echo $image_err; ?></span>
-
-                                <script>
-                                    function updateFileName(input) {
-                                        var fileName = input.files[0].name;
-                                        document.getElementById("file_name").value = fileName;
-                                    }
-                                </script>
-
                             </div>
-
-
                         </div>
                     </div>
                     <div class="form-group text-center mt-3">
@@ -314,6 +299,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <script defer src="../js/bootstrap.bundle.js"></script>
+    <script>
+        function updateFileName(input) {
+            var fileName = input.files[0].name;
+            document.getElementById("file_name").value = fileName;
+        }
+    </script>
 </body>
 
 </html>

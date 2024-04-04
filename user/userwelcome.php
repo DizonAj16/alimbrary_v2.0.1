@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in and is a user, if not then redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "user") {
-  header("location: login.php");
+  header("location: ../login.php");
   exit;
 }
 
@@ -12,7 +12,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 $welcome_message = "Welcome, User!";
 
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Fetch user's profile image path from the database
 $user_id = $_SESSION["id"];
@@ -32,11 +32,10 @@ mysqli_stmt_close($stmt);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script defer src="js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="titlestyle.css">
-  <link rel="stylesheet" href="navigation.css">
-  <link rel="stylesheet" href="fa-css/all.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <script defer src="../js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../external-css/navigation.css">
+  <link rel="stylesheet" href="../fa-css/all.css">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -85,13 +84,13 @@ mysqli_stmt_close($stmt);
     <!-- The slideshow/carousel -->
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="Images/zppsulibrary.jpg" alt="Los Angeles" class="d-block" style="width: 100%; height: 100vh;">
+        <img src="../Images/zppsulibrary.jpg" alt="Los Angeles" class="d-block" style="width: 100%; height: 100vh;">
       </div>
       <div class="carousel-item">
-        <img src="Images/zppsulibrary.jpg" alt="Chicago" class="d-block" style="width: 100%; height: 100vh;">
+        <img src="../Images/zppsulibrary.jpg" alt="Chicago" class="d-block" style="width: 100%; height: 100vh;">
       </div>
       <div class="carousel-item">
-        <img src="Images/zppsulibrary.jpg" alt="New York" class="d-block" style="width: 100%; height: 100vh;">
+        <img src="../Images/zppsulibrary.jpg" alt="New York" class="d-block" style="width: 100%; height: 100vh;">
       </div>
     </div>
 
@@ -109,7 +108,7 @@ mysqli_stmt_close($stmt);
 
     <div class="container-fluid">
       <div class="title p-1">
-        <img class="logo" src="Images/logo.png" alt="">
+        <img class="logo" src="../Images/logo.png" alt="">
       </div>
 
       <!-- Toggle Button -->
@@ -147,7 +146,7 @@ mysqli_stmt_close($stmt);
               <?php
               // Display user's profile image or default user icon
               if (!empty($profile_image)) {
-                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
               } else {
                 echo '<i class="fa fa-user fa-lg"></i>';
               }
@@ -155,15 +154,15 @@ mysqli_stmt_close($stmt);
               <?php echo htmlspecialchars($_SESSION["username"]); ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-              <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+              <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+              <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+              <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
             </ul>
           </li>
         </div>

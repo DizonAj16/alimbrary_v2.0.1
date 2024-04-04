@@ -1,6 +1,6 @@
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Define a default SQL query
 $sql = "SELECT * FROM books ORDER BY book_id DESC";
@@ -28,10 +28,10 @@ if ($result = mysqli_query($conn, $sql)) {
             echo '<div class="d-flex justify-content-center">';
             echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 fw-bold text-light">Read More</a>';
             echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning text-dark fw-bold">Borrow Book</a>';
-            echo '</div>'; // Close d-flex div
-            echo '</div>'; // Close mt-auto div
-            echo '</div>'; // Close info div
-            echo '</div>'; // Close card1 div
+            echo '</div>'; 
+            echo '</div>'; 
+            echo '</div>'; 
+            echo '</div>'; 
         }
         // Free result set
         mysqli_free_result($result);
