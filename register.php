@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Signup</title>
-        <link rel="stylesheet" href="login.css"/>
+        <link rel="stylesheet" href="./external-css/login.css"/>
         <link rel="stylesheet" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" href="fa-css/all.css">
    </head>

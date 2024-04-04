@@ -60,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             // Redirect user based on user type
                             if ($user_type == "admin") {
-                                header("location: welcomeadmin.php");
+                                header("location: ./admin/welcomeadmin.php");
                             } 
                             else {
-                                header("location: userwelcome.php");
+                                header("location: ./user/userwelcome.php");
                             }
                         } 
                         else {
@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>      
         <link rel="stylesheet" href="fa-css/all.css">
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="./external-css/login.css">
         <style>
             @media only screen and (max-width: 480px) {
                 .content {

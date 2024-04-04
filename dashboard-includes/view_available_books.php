@@ -11,7 +11,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Initialize variables
 $book_id = $title = $author = $isbn = $pub_year = $genre = $image_path = $availability = $description = "";
@@ -75,7 +75,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Book</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="fa-css/all.css">
+    <link rel="stylesheet" href="../fa-css/all.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -155,7 +155,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             letter-spacing: 1px;
         }
     </style>
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
 </head>
 
 <body>
@@ -168,7 +168,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                 <div class="row">
                     <div class="col-md-6 text-center">
                         <?php if (!empty($image_path)) : ?>
-                            <img src="<?php echo $image_path; ?>" class="book-image img-fluid" alt="Book Image">
+                            <img src="../<?php echo $image_path; ?>" class="book-image img-fluid" alt="Book Image">
                         <?php else : ?>
                             <span>No image available</span>
                         <?php endif; ?>

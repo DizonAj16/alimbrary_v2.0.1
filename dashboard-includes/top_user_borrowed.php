@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-include 'config.php';
+include '../config.php';
 
 // Query to get the top N users who have borrowed the most books
 $query = "

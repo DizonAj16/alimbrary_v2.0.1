@@ -8,7 +8,7 @@
 }
 
 .bg-img {
-    background: url('images/bg-image2.avif'); /*if want background image*/
+    background: url('../images/bg-img.jpg'); /*if want background image*/
     height: 100vh;
     background-size: cover;
     background-position: center;

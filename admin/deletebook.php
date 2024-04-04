@@ -1,6 +1,6 @@
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Check if the book_id parameter is set
 if(isset($_POST["book_id"]) && !empty($_POST["book_id"])){

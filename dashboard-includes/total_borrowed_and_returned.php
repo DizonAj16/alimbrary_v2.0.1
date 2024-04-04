@@ -18,7 +18,7 @@
 
 <?php
 // Include database connection
-include 'config.php';
+include '../config.php';
 
 // Query to get the total number of borrowed books
 $query_borrowed = "SELECT COUNT(*) AS total_borrowed FROM borrowed_books";

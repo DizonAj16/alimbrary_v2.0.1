@@ -4,12 +4,12 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
 
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Define variables and initialize with empty values
 $id = $username = $user_type = $created_at = $image = $fullName = $email = $occupation = $address = $contactNum = $daysJoined = "";
@@ -87,9 +87,9 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fa-css/all.css">
-    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fa-css/all.css">
+    <script defer src="../js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -211,7 +211,7 @@ mysqli_close($conn);
         <div class="profile-image">
             <?php
             if (!empty($image)) {
-                echo '<img src="' . $image . '" alt="Profile Image">';
+                echo '<img src="../' . $image . '" alt="Profile Image">';
             } else {
                 echo '<i class="fas fa-user-circle fa-5x text-dark" style="font-size: 200px;"></i>';
             }
@@ -260,7 +260,7 @@ mysqli_close($conn);
                 <div class="info-value"><?php echo $daysJoined; ?></div>
             </div>
         </div>
-        <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'users.php' : 'userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
+        <a href="<?php echo $_SESSION['user_type'] === 'admin' ? '../admin/users.php' : '../user/userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
     </div>
 
     <script>

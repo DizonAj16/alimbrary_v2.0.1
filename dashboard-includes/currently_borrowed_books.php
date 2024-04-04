@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-include 'config.php';
+include '../config.php';
 
 // Query to get all currently borrowed books, ordered by borrow_date ascending
 $query_borrowed = "

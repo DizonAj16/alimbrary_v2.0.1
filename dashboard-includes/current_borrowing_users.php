@@ -13,7 +13,7 @@
 
 <?php
 // Include database connection
-include 'config.php';
+include '../config.php';
 
 // Query to get the total number of books currently borrowed by users
 $query = "

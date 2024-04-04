@@ -1,6 +1,6 @@
 <?php
 // Include config file
-include 'config.php';
+include '../config.php';
 
 
 // Check if user_id parameter is provided in the session

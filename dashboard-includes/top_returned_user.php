@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-include 'config.php';
+include '../config.php';
 
 // Query to get the top users who have returned the most books
 $query_top_returned_users = "

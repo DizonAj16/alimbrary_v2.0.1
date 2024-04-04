@@ -4,10 +4,10 @@ session_start();
 
 // Check if the user is logged in and is a user, if not then redirect to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
-require_once 'config.php';
+require_once '../config.php';
 // Retrieve user's profile image
 $user_id = $_SESSION["id"];
 $sql = "SELECT image FROM users WHERE id = ?";
@@ -26,11 +26,10 @@ mysqli_stmt_fetch($stmt);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script defer src="js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="titlestyle.css">
-    <link rel="stylesheet" href="navigation.css">
-    <link rel="stylesheet" href="fa-css/all.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script defer src="../js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../external-css/navigation.css">
+    <link rel="stylesheet" href="../fa-css/all.css">
     <style>
         .dashboard-container {
             display: flex;
@@ -121,7 +120,7 @@ mysqli_stmt_fetch($stmt);
 
         <div class="container-fluid">
             <div class="title p-1">
-                <img src="Images/logo.png" alt="" style="height:50px;">
+                <img src="../Images/logo.png" alt="" style="height:50px;">
             </div>
 
             <!-- Toggle Button -->
@@ -160,7 +159,7 @@ mysqli_stmt_fetch($stmt);
                             <?php
                             // Display user's profile image or default user icon
                             if (!empty($profile_image)) {
-                                echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                                echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
                             } else {
                                 echo '<i class="fa fa-user fa-lg"></i>';
                             }
@@ -168,15 +167,15 @@ mysqli_stmt_fetch($stmt);
                             <?php echo htmlspecialchars($_SESSION["username"]); ?>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                            <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+                            <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                            <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
                         </ul>
                     </li>
                 </div>
@@ -191,35 +190,35 @@ mysqli_stmt_fetch($stmt);
         <a href="adminbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
             <i class="fas fa-book fa-3x"></i>
             <div id="book-count">
-                <?php include 'total_books.php'; ?>
+                <?php include '../dashboard-includes/total_books.php'; ?>
             </div>
         </a>
 
         <a href="users.php" class="users-list dashboard-section bg-success text-white" style="text-decoration: none;">
             <i class="fas fa-users fa-3x"></i>
-            <?php include 'get_users.php'; ?>
+            <?php include '../dashboard-includes/get_users.php'; ?>
         </a>
 
-        <a href="not_availablebooks.php" class="current_borrowing_users dashboard-section bg-warning text-white" style="text-decoration: none;">
+        <a href="../dashboard-includes/not_availablebooks.php" class="current_borrowing_users dashboard-section bg-warning text-white" style="text-decoration: none;">
             <i class="fas fa-user-clock fa-3x"></i>
-            <?php include 'current_borrowing_users.php'; ?>
+            <?php include '../dashboard-includes/current_borrowing_users.php'; ?>
         </a>
 
-        <a href="available_books.php" class="total-available-books dashboard-section bg-info text-white" style="text-decoration: none;">
+        <a href="../dashboard-includes/available_books.php" class="total-available-books dashboard-section bg-info text-white" style="text-decoration: none;">
             <i class="fas fa-book-open fa-3x"></i>
-            <?php include 'total_available_books.php'; ?>
+            <?php include '../dashboard-includes/total_available_books.php'; ?>
         </a>
 
         <div class="total-borrowed-and-returned dashboard-section bg-primary text-white">
             <i class="fas fa-exchange-alt fa-3x"></i>
-            <?php include 'total_borrowed_and_returned.php'; ?>
+            <?php include '../dashboard-includes/total_borrowed_and_returned.php'; ?>
         </div>
 
         <div class="top-user-borrowed dashboard-section bg-success text-white" id="topUserBorrowedSection">
             <i class="fas fa-chart-bar fa-3x"></i>
             <h3 class="fw-bold" id="topUserBorrowedTitle">Top Borrowers</h3>
             <div id="topUserBorrowedContent" style="display: none;">
-                <?php include 'top_user_borrowed.php'; ?>
+                <?php include '../dashboard-includes/top_user_borrowed.php'; ?>
             </div>
             <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topUserBorrowed')">Expand</button>
         </div>
@@ -228,7 +227,7 @@ mysqli_stmt_fetch($stmt);
             <i class="fas fa-chart-line fa-3x"></i>
             <h3 class="fw-bold" id="topReturnedUserTitle">Top Returners</h3>
             <div id="topReturnedUserContent" style="display: none;">
-                <?php include 'top_returned_user.php'; ?>
+                <?php include '../dashboard-includes/top_returned_user.php'; ?>
             </div>
             <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedUser')">Expand</button>
         </div>
@@ -237,7 +236,7 @@ mysqli_stmt_fetch($stmt);
             <i class="fas fa-star fa-3x"></i>
             <h3 class="fw-bold text-center" id="mostBorrowedBooksTitle">Most Popular Books</h3>
             <div id="mostBorrowedBooksContent" style="display: none;">
-                <?php include 'top_borrowed_books.php'; ?>
+                <?php include '../dashboard-includes/top_borrowed_books.php'; ?>
             </div>
             <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('mostBorrowedBooks')">Expand</button>
         </div>
@@ -246,7 +245,7 @@ mysqli_stmt_fetch($stmt);
             <i class="fas fa-book-reader fa-3x"></i>
             <h3 class="fw-bold" id="topReturnedBooksTitle">Most Returned Books</h3>
             <div id="topReturnedBooksContent" style="display: none;">
-                <?php include 'top_returned_books.php'; ?>
+                <?php include '../dashboard-includes/top_returned_books.php'; ?>
             </div>
             <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedBooks')">Expand</button>
         </div>
@@ -284,7 +283,7 @@ mysqli_stmt_fetch($stmt);
 
     <!-- Back to Top Button -->
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
-    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
     <script>
         $(document).ready(function() {
 

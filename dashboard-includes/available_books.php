@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
 ?>
@@ -16,8 +16,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Available Books</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="fa-css/all.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../fa-css/all.css">
     <style>
         .back-btn {
             margin-bottom: 20px;
@@ -28,7 +28,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 
 <body>
     <div class="container mt-3">
-        <a href="dashboard.php" class="btn btn-primary back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        <a href="../admin/dashboard.php" class="btn btn-primary back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
         <h2 class="mb-4 text-success fw-bold">Available Books</h2>
         <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search by Title...">
         <table class="table table-striped table-hover table-bordered border-dark">
@@ -41,7 +41,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
             <tbody id="booksTable">
                 <?php
                 // Include config file
-                require_once "config.php";
+                require_once "../config.php";
 
                 // Attempt select query execution
                 $sql = "SELECT book_id, title, availability FROM books WHERE availability = 'Available' ORDER BY book_id DESC";
@@ -75,8 +75,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
         </table>
     </div>
 
-    <script src="jquery/jquery-3.5.1.min.js"></script>
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="../jquery/jquery-3.5.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
 
     <script>
         $(document).ready(function() {

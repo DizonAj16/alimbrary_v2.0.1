@@ -4,14 +4,14 @@
 
         // Check if the user is logged in, if not then redirect him to login page
         if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
-            header("location: login.php");
+            header("location: ../login.php");
             exit;
         }
         ?>
 
         <?php
         // Include config file
-        require_once "config.php";
+        require_once "../config.php";
 
         // Initialize variables
         $title = $author = $isbn = $pub_year = $genre = $availability = $description = "";
@@ -50,7 +50,7 @@
             // Check if file is uploaded without errors
             if (isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) {
                 // Process and move the uploaded file
-                $target_dir = "uploads/"; // Directory where uploaded files will be stored
+                $target_dir = "../uploads/"; // Directory where uploaded files will be stored
                 $target_file = $target_dir . basename($_FILES["image"]["name"]); // Path of the uploaded file
                 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); // File extension
 
@@ -129,7 +129,7 @@
 
         <?php
         // Include config file
-        require_once "config.php";
+        require_once "../config.php";
 
         // Fetch user's profile image path from the database
         $user_id = $_SESSION["id"];
@@ -149,11 +149,10 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Books section</title>
-            <link rel="stylesheet" href="css/bootstrap.css">
-            <link rel="stylesheet" href="navigation.css">
-            <link rel="stylesheet" href="titlestyle.css">
-            <link rel="stylesheet" href="fa-css/all.css">
-            <script defer src="js/bootstrap.bundle.js"></script>
+            <link rel="stylesheet" href="../css/bootstrap.css">
+            <link rel="stylesheet" href="../external-css/navigation.css">
+            <link rel="stylesheet" href="../fa-css/all.css">
+            <script defer src="../js/bootstrap.bundle.js"></script>
             <style>
                 body {
                     font-family: 'Arial', sans-serif;
@@ -262,7 +261,7 @@
 
                 <div class="container-fluid">
                     <div class="title p-1">
-                        <img src="Images/logo.png" alt="" style="height:50px;">
+                        <img src="../Images/logo.png" alt="" style="height:50px;">
                     </div>
 
                     <!-- Toggle Button -->
@@ -301,7 +300,7 @@
                                     <?php
                                     // Display user's profile image or default user icon
                                     if (!empty($profile_image)) {
-                                        echo '<img src="' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                                        echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
                                     } else {
                                         echo '<i class="fa fa-user fa-lg"></i>';
                                     }
@@ -309,15 +308,15 @@
                                     <?php echo htmlspecialchars($_SESSION["username"]); ?>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                                    <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+                                    <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                                    <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                                    <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
                                 </ul>
                             </li>
                         </div>
@@ -452,7 +451,7 @@
                 <div class="row" id="bookCardsContainer">
                     <?php
                     // Include config file
-                    require_once "config.php";
+                    require_once "../config.php";
 
                     // Attempt select query execution
                     $sql = "SELECT * FROM books
@@ -516,7 +515,7 @@
 
             <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fa fa-arrow-up"></i></button>
 
-            <script src="jquery/jquery-3.6.0.min.js"></script>
+            <script src="../jquery/jquery-3.6.0.min.js"></script>
 
             <script>
                 $(document).ready(function() {
@@ -532,7 +531,7 @@
                     // Function to load books dynamically based on search text
                     function loadBooks(searchText) {
                         $.ajax({
-                            url: "search_books.php", // Assuming you have a PHP script to fetch books
+                            url: "../search/search_books.php", // Assuming you have a PHP script to fetch books
                             method: "POST",
                             data: {
                                 searchText: searchText

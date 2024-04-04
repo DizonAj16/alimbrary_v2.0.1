@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Availability</title>
-    <link rel="stylesheet" href="fa-css/all.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fa-css/all.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-3">
         <?php
         // Include config file
-        require_once "config.php";
+        require_once "../config.php";
 
         // Attempt select query execution
         $sql = "SELECT * FROM books";
@@ -49,8 +49,8 @@
         ?>
     </div>
 
-    <script src="jquery/jquery-3.5.1.slim.min.js"></script>
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="../jquery/jquery-3.5.1.slim.min.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
     
 </body>
 </html>

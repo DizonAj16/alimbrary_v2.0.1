@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Not Available Books</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="fa-css/all.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../fa-css/all.css">
     <style>
         .back-btn {
             margin-bottom: 20px;
@@ -17,7 +17,7 @@
 <body>
 
     <div class="container mt-3">
-        <a href="dashboard.php" class="btn btn-primary back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        <a href="../admin/dashboard.php" class="btn btn-primary back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
         <h2 class="mb-4 text-danger fw-bold">Not Available Books</h2>
         <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search by Title...">
 
@@ -35,7 +35,7 @@
                 <tbody id="booksTable">
                     <?php
                     // Include config file
-                    require_once "config.php";
+                    require_once "../config.php";
 
                     // Attempt select query execution for borrowed books
                     $query_borrowed = "
@@ -91,8 +91,8 @@
         </div>
     </div>
 </body>
-<script src="jquery/jquery-3.5.1.min.js"></script>
-<script src="js/bootstrap.bundle.js"></script>
+<script src="../jquery/jquery-3.5.1.min.js"></script>
+<script src="../js/bootstrap.bundle.js"></script>
 <script>
     $(document).ready(function() {
         $('#searchInput').on('keyup', function() {

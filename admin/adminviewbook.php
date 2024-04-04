@@ -4,14 +4,14 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
 ?>
 
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Initialize variables
 $book_id = $title = $author = $isbn = $pub_year = $genre = $image_path = $availability = $description = "";
@@ -74,8 +74,8 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Book</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="fa-css/all.css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../fa-css/all.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -156,7 +156,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             letter-spacing: 1px;
         }
     </style>
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="../js/bootstrap.bundle.js"></script>
 </head>
 
 <body>

@@ -13,7 +13,7 @@
 
 <?php
 // Include database connection
-include 'config.php';
+include '../config.php';
 
 // Query to count the number of users
 $query = "SELECT COUNT(*) AS user_count FROM users";

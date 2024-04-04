@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fa-css/all.css">
-    <script defer src="js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fa-css/all.css">
+    <script defer src="../js/bootstrap.bundle.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -105,7 +105,7 @@
     session_start();
 
     // Include config file
-    require_once "config.php";
+    require_once "../config.php";
 
     // Check if user_id parameter is provided in the URL
     if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
@@ -194,7 +194,7 @@
                     <div class="user-image">
                         <?php
                         if (!empty($image_path)) {
-                            echo '<img src="' . $image_path . '" class="rounded-circle user-image" alt="User Image">';
+                            echo '<img src="../' . $image_path . '" class="rounded-circle user-image" alt="User Image">';
                         } else {
                             echo '<i class="fas fa-user-circle" style="color: black; font-size:200px;"></i>';
                         }

@@ -4,14 +4,14 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
 ?>
 
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Initialize variables
 $title = $author = $isbn = $pub_year = $genre = $description = "";
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if file is uploaded without errors (if an image is provided)
     if (!empty($_FILES["image"]["name"])) {
-        $target_dir = "uploads/";
+        $target_dir = "../uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -158,8 +158,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Book</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fa-css/all.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../fa-css/all.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -243,7 +243,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card-body">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
-                    <input type="hidden" name="current_image_path" value="<?php echo $image_path; ?>">
+                    <input type="hidden" name="current_image_path" value="../<?php echo $image_path; ?>">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group mb-2">
@@ -313,7 +313,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
-    <script defer src="js/bootstrap.bundle.js"></script>
+    <script defer src="../js/bootstrap.bundle.js"></script>
 </body>
 
 </html>

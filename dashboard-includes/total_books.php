@@ -14,7 +14,7 @@
 
 <?php
 // Include database connection
-include 'config.php';
+include '../config.php';
 
 // Query to count the number of books
 $query = "SELECT COUNT(*) AS book_count FROM books";

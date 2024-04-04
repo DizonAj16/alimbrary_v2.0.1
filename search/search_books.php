@@ -11,7 +11,7 @@
         $("#confirmDeleteBtn").click(function() {
             // AJAX request to delete the book
             $.ajax({
-                url: "deletebook.php",
+                url: "../admin/deletebook.php",
                 type: "POST",
                 data: {
                     book_id: bookIdToDelete
@@ -31,7 +31,7 @@
 
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Prepare the default SQL statement to fetch all books
 $sql = "SELECT * FROM books ORDER BY book_id DESC";
@@ -73,8 +73,8 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
                 echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light">' . $row['availability'] . '</span>';
                 echo '</p>';
                 echo '<div class="d-flex justify-content-center">';
-                echo '<a href="adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" title="View Book" data-bs-toggle="tooltip" data-bs-title="View"><i class="fas fa-book-open"></i> View</a>';
-                echo '<a href="updatebook.php?book_id=' . $row['book_id'] . '" class="btn btn-info text-light rounded-2 btn-sm me-2" title="Update Book" data-bs-toggle="tooltip"><span class="fa fa-pencil fa-lg"></span> Update</a>';
+                echo '<a href="../admin/adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" title="View Book" data-bs-toggle="tooltip" data-bs-title="View"><i class="fas fa-book-open"></i> View</a>';
+                echo '<a href="../admin/updatebook.php?book_id=' . $row['book_id'] . '" class="btn btn-info text-light rounded-2 btn-sm me-2" title="Update Book" data-bs-toggle="tooltip"><span class="fa fa-pencil fa-lg"></span> Update</a>';
                 echo '<a href="#" class="btn btn-danger rounded-2 btn-sm delete-btn" data-book-id="' . $row['book_id'] . '" title="Delete Book" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i> Delete</a>';
                 echo '</div>';
                 echo '</div>';
@@ -120,8 +120,8 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
             echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light">' . $row['availability'] . '</span>';
             echo '</p>';
             echo '<div class="d-flex justify-content-center">';
-            echo '<a href="adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" title="View Book" data-bs-toggle="tooltip" data-bs-title="View"><i class="fas fa-book-open"></i> View</a>';
-            echo '<a href="updatebook.php?book_id=' . $row['book_id'] . '" class="btn btn-info text-light rounded-2 btn-sm me-2" title="Update Book" data-bs-toggle="tooltip"><span class="fa fa-pencil fa-lg"></span> Update</a>';
+            echo '<a href="../admin/adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" title="View Book" data-bs-toggle="tooltip" data-bs-title="View"><i class="fas fa-book-open"></i> View</a>';
+            echo '<a href="../admin/updatebook.php?book_id=' . $row['book_id'] . '" class="btn btn-info text-light rounded-2 btn-sm me-2" title="Update Book" data-bs-toggle="tooltip"><span class="fa fa-pencil fa-lg"></span> Update</a>';
             echo '<a href="#" class="btn btn-danger rounded-2 btn-sm delete-btn" data-book-id="' . $row['book_id'] . '" title="Delete Book" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i> Delete</a>';
             echo '</div>';
             echo '</div>';

@@ -1,6 +1,6 @@
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Retrieve the search query
 $searchQuery = isset($_GET['q']) ? $_GET['q'] : '';

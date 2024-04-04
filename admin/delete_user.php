@@ -1,6 +1,6 @@
 <?php
 // Include config file
-require_once "config.php";
+require_once "../config.php";
 
 // Check if user ID parameter is set
 if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
