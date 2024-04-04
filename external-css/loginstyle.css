@@ -8,7 +8,7 @@
 }
 
 .bg-img {
-    background: url('../images/bg-img.jpg'); /*if want background image*/
+    background: url('../images/bgimage.jpg' ); /*if want background image*/
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -34,9 +34,9 @@
     padding: 60px 32px;
     width: 370px;
     transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.130);
     box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 20px;
+
 }
 
 .content header {
@@ -53,6 +53,7 @@
     width: 100%;
     display: flex;
     background: rgba(255, 255, 255, 0.94);
+    border-radius: 10px;
 }
 
 .field span {

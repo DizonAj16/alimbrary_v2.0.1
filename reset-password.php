@@ -6,7 +6,7 @@ $current_password = $new_password = $confirm_password = "";
 $current_password_err = $new_password_err = $confirm_password_err = "";
 
 session_start();
-$cancel_link = isset($_SESSION["user_type"]) && $_SESSION["user_type"] == 'admin' ? "./admin/welcomeadmin.php" : "./admin/userwelcome.php";
+$cancel_link = isset($_SESSION["user_type"]) && $_SESSION["user_type"] == 'admin' ? "./admin/welcomeadmin.php" : "./user/userwelcome.php";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Reset Password</title>
     <link rel="stylesheet" href="./fa-css/all.css">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./external-css/login.css">
+    <link rel="stylesheet" href="./external-css/loginstyle.css">
     <script>
         function showAlertAndRedirect() {
     <?php if (!empty($current_password_err) && (empty($new_password_err) && empty($confirm_password_err))) : ?>

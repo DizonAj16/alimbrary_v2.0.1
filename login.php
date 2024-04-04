@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>      
         <link rel="stylesheet" href="fa-css/all.css">
-        <link rel="stylesheet" href="./external-css/login.css">
+        <link rel="stylesheet" href="./external-css/loginstyle.css">
         <style>
             @media only screen and (max-width: 480px) {
                 .content {
@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
                <div class="field space">
                   <span class="fa fa-lock"></span>
-                  <input type="password" class="pass-key" name="password" required placeholder="Password" style="padding: 6px 12px;">
+                  <input type="password" class="pass-key" name="password" required placeholder="Password" style="padding: 6px 12px;" id="password">
                </div>
                <div class="pass">
                   <a href="forgotpassword.php">Forgot Password?</a>

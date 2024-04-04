@@ -165,7 +165,7 @@ mysqli_stmt_close($stmt);
               <?php echo htmlspecialchars($_SESSION["username"]); ?>
             </a>
             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-              <li><a class="dropdown-item" href="reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+              <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
