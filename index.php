@@ -2,7 +2,7 @@
 
 require_once 'createdb.php';
 require_once 'config.php';
-require_once 'cretetable.php';
+require_once 'createdtable.php';
 
 
 
