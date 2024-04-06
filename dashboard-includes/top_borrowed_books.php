@@ -17,9 +17,9 @@ $result = mysqli_query($conn, $query);
 // Check if the query was successful
 if ($result) {
     echo '<div class="text-center">';
-    echo "<h3 style='color: white; margin-bottom: 20px;' class='fw-bold'>Most Popular Books</h3>"; // Apply red color to the heading and add margin-bottom for spacing
-    echo "<div style='display: flex; flex-direction: column; align-items: center;'>"; // Use flexbox to align content center
-    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; // Use <ol> for ordered list and specify the style
+    echo "<h3 style='color: white; margin-bottom: 20px;' class='fw-bold'>Most Popular Books</h3>"; 
+    echo "<div style='display: flex; flex-direction: column; align-items: center;'>"; 
+    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; 
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result)) {
         // Display each book title and its borrow count

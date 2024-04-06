@@ -226,14 +226,12 @@ mysqli_stmt_close($stmt);
                                         <td class="text-center">' . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . '</td>
                                         <td class="text-center">' . ($row['return_date'] ? date("F j, Y, h:i A", strtotime($row['return_date'])) : 'Not returned') . '</td>';
 
-                                        // Calculate the time left
                                         // If not returned, calculate time left
                                         echo '<td>';
                                         if ($row['return_id']) {
                                             // If returned, display a success badge and leave the time left column blank
 
                                         } else {
-                                            // If not returned, calculate time left
                                             // If not returned, calculate time left
                                             $current_date = time() + (6 * 60 * 60); // Adding 6 hours to the current timestamp to adjust for the discrepancy
                                             $return_date = strtotime($row['return_date']); // Return timestamp
@@ -258,10 +256,8 @@ mysqli_stmt_close($stmt);
                                         // Display status
                                         echo '<td class="text-center">';
                                         if ($row['return_id']) {
-                                            // If returned, display a success badge
                                             echo '<span class="badge bg-success">Returned</span>';
                                         } else {
-                                            // If not returned, display a danger badge
                                             echo '<span class="badge bg-danger">Not returned</span>';
                                         }
                                         echo '</td>';

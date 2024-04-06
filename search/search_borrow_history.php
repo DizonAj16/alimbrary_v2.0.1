@@ -54,10 +54,9 @@
 
                 } else {
                     // If not returned, calculate time left
-                    // If not returned, calculate time left
-                    $current_date = time() + (6 * 60 * 60); // Adding 6 hours to the current timestamp to adjust for the discrepancy
-                    $return_date = strtotime($row['return_date']); // Return timestamp
-                    $time_left = $return_date - $current_date; // Time left in seconds
+                    $current_date = time() + (6 * 60 * 60); 
+                    $return_date = strtotime($row['return_date']); 
+                    $time_left = $return_date - $current_date; 
 
                     $days = floor($time_left / (60 * 60 * 24));
                     $hours = floor(($time_left % (60 * 60 * 24)) / (60 * 60));
@@ -76,10 +75,8 @@
                 // Display status
                 echo '<td class="text-center">';
                 if ($row['return_id']) {
-                    // If returned, display a success badge
                     echo '<span class="badge bg-success">Returned</span>';
-                } else {
-                    // If not returned, display a danger badge
+                } else {       
                     echo '<span class="badge bg-danger">Not returned</span>';
                 }
                 echo '</td>';

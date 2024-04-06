@@ -370,7 +370,7 @@ mysqli_stmt_close($stmt);
             $("#searchInput").on("keyup", function() {
                 var searchText = $(this).val().toLowerCase().trim();
                 $.ajax({
-                    url: "../search/search_user_books.php", // Update to the correct file name
+                    url: "../search/search_user_books.php", 
                     method: "POST",
                     data: {
                         searchQuery: searchText

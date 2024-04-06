@@ -22,7 +22,6 @@ if ($result) {
     echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; 
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result)) {
-        // Add inline style to make list items display inline and apply red color
         echo "<li style='margin-bottom: 5px; color: white; font-weight:bold; font-size: 18px;'>{$row['username']} - Borrowed {$row['borrow_count']} times</li>"; 
     }
     echo "</ol>";

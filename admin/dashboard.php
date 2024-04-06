@@ -57,7 +57,6 @@ mysqli_stmt_fetch($stmt);
             cursor: pointer;
         }
 
-        /* Adjustments for small screens */
         @media (max-width: 768px) {
             .dashboard-section {
                 flex-basis: calc(100% - 40px);

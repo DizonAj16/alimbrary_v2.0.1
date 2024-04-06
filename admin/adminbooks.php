@@ -186,21 +186,17 @@
                 .card {
                     background: linear-gradient(to bottom, rgba(135, 206, 235, 0.5), transparent);
                     background-color: #add8e6;
-                    /* Light blue background color */
                     border: none;
                     border-radius: 15px;
                     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
                     transition: transform 0.3s ease;
-                    /* Transition for scale transformation */
                 }
 
                 .card:hover {
                     background: linear-gradient(to bottom, #bfefff, #add8e6);
-                    /* Light hover blue background color */
                     color: white;
                     cursor: pointer;
                     transform: scale(1.05);
-                    /* Scale up by 5% on hover */
                     box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
                 }
 
@@ -574,16 +570,16 @@
                 $(document).ready(function() {
                     // Show the modal with slide-right animation when opening
                     $('#exampleModal').on('show.bs.modal', function() {
-                        $(this).removeClass('slide-left'); // Remove slide-left class if it exists
-                        $(this).addClass('slide-right'); // Add slide-right animation class
+                        $(this).removeClass('slide-left'); 
+                        $(this).addClass('slide-right'); 
                     });
 
                     // Hide the modal with slide-left animation when close button is clicked
                     $('#exampleModal .btn-close').on('click', function() {
                         $('#exampleModal').addClass('slide-left'); // Add slide-left animation class
                         setTimeout(function() {
-                            $('#exampleModal').modal('hide'); // Hide modal after animation completes
-                        }, 300); // Animation duration in milliseconds (same as defined in CSS)
+                            $('#exampleModal').modal('hide'); 
+                        }, 300); 
                     });
                 });
             </script>

@@ -33,7 +33,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             $result = mysqli_stmt_get_result($stmt);
 
             if (mysqli_num_rows($result) == 1) {
-                /* Fetch result row as an associative array. Since the result set contains only one row, we don't need to use while loop */
+                /* Fetch result row as an associative array. */
                 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
                 // Retrieve individual field values

@@ -27,11 +27,8 @@ nav {
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:focus {
     color: #fff;
-    /* White text color on hover/focus */
     transform: translateY(-2px);
-    /* Move link 2 pixels upwards on hover */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* Add shadow effect */
     border-radius: 5px;
 }
 
@@ -55,7 +52,6 @@ nav {
     background: none;
     color: white;
     transform: translateX(5px);
-    /* Move item 5 pixels to the right on hover */
 }
 
 .logo {

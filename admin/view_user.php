@@ -39,7 +39,6 @@
 
         h2 {
             margin-bottom: 10px;
-            /* Reduced margin */
             color: #007bff;
             font-weight: bold;
             font-size: 1.8rem;
@@ -68,7 +67,6 @@
             font-size: 1.1rem;
             padding: 8px 20px;
             margin-top: 10px;
-            /* Added margin */
         }
 
         .btn-primary:hover {

@@ -252,12 +252,12 @@ mysqli_stmt_close($stmt);
                                         if ($minutes > 0) {
                                             $time_left .= "$minutes minute(s) ";
                                         }
-                                        
+
                                         echo "<td>";
                                         // Check if the book is nearing due or overdue
-                                        if ($diff <= 0) { // Check if return date has passed
+                                        if ($diff <= 0) {
                                             echo "<p class='text-danger'>Overdue</p>";
-                                        } elseif ($diff <= 86400) { // Less than or equal to 24 hours
+                                        } elseif ($diff <= 86400) {
                                             echo "<p class='text-danger'>$time_left - Book is nearing due</p>";
                                         } else {
                                             echo $time_left;
@@ -321,9 +321,9 @@ mysqli_stmt_close($stmt);
                     }
                 });
                 if (!found) {
-                    $('#noResults').show(); // Show "No results found" message
+                    $('#noResults').show(); 
                 } else {
-                    $('#noResults').hide(); // Hide "No results found" message if there are results
+                    $('#noResults').hide(); 
                 }
             });
         });
