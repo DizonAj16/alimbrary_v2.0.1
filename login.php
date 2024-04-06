@@ -1,5 +1,4 @@
 <?php
-
 // Include config file
 require_once "config.php";
 
@@ -9,20 +8,17 @@ $username_err = $password_err = $login_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     // Check if username is empty
     if (empty(trim($_POST["username"]))) {
         $username_err = "Please enter username.";
-    } 
-    else {
+    } else {
         $username = trim($_POST["username"]);
     }
 
     // Check if password is empty
     if (empty(trim($_POST["password"]))) {
         $password_err = "Please enter your password.";
-    } 
-    else {
+    } else {
         $password = trim($_POST["password"]);
     }
 
@@ -61,23 +57,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Redirect user based on user type
                             if ($user_type == "admin") {
                                 header("location: ./admin/welcomeadmin.php");
-                            } 
-                            else {
+                            } else {
                                 header("location: ./user/userwelcome.php");
                             }
-                        } 
-                        else {
-                            // Password is not valid, display a generic error message
+                        } else {
+                            // Password is not valid, set login error
                             $login_err = "Invalid username or password.";
                         }
                     }
-                } 
-                else {
-                    // Username doesn't exist, display a generic error message
+                } else {
+                    // Username doesn't exist, set login error
                     $login_err = "Invalid username or password.";
                 }
-            } 
-            else {
+            } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
@@ -130,9 +122,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <input type="submit" value="LOGIN">
                </div>
             </form>
-            <?php if (!empty($login_err)) : ?>
-               <div class="error"><?php echo $login_err; ?></div>
-            <?php endif; ?>
+            <script>
+                <?php if (!empty($login_err)) : ?>
+                    // Display login error as an alert
+                    alert("<?php echo $login_err; ?>");
+                <?php endif; ?>
+            </script>
             <div class="signup">
                Don't have an account?
                <a href="register.php">Signup Now</a>

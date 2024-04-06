@@ -25,7 +25,7 @@ mysqli_stmt_close($stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <script defer src="../js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../external-css/navigation.css">
@@ -145,7 +145,7 @@ mysqli_stmt_close($stmt);
     <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
 
         <a class="total-available-books dashboard-section bg-info text-white" href="userbook.php" style="text-decoration: none;">
-                <i class="fab fa-readme fa-3x"></i>
+                <i class="fas fa-book fa-3x"></i>
                 <?php include '../dashboard-includes/total_available_books.php'; ?>
         </a>
 
@@ -209,7 +209,7 @@ mysqli_stmt_close($stmt);
 
         <a href="../myprofile.php" class="dashboard-section bg-dark text-light" style="text-decoration: none;">
             <div class="text-center">
-                <i class="fas fa-edit fa-2x mr-2"></i>
+                <i class="fas fa-edit fa-3x mr-2"></i>
                 <h2><i>Edit your profile!</i></h2>
             </div>
         </a>
