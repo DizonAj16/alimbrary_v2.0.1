@@ -118,7 +118,7 @@ mysqli_close($conn);
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            border: 5px solid #3498db;
+            border: 3px solid #3498db;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: block;
             margin: 0 auto 20px;
