@@ -91,10 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="fa fa-lock"></span>
                     <input type="password" class="form-control pass-key" name="confirm_password" required placeholder="Confirm Password">
                 </div>
-                <div class="pass">
-                  <a href=""> </a>
-               </div>
-                <div class="field">
+                <div class="field space">
                     <input type="submit" value="Submit">
                 </div>
             </form>
