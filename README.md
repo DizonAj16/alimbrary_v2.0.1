@@ -1,4 +1,4 @@
-# Alimbrary v2 - Development Stage
+# Alimbrary v2.0.1
 
 ## Admin Credentials:
 - **Username:** admin
