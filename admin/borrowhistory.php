@@ -108,7 +108,7 @@ mysqli_stmt_close($stmt);
 
         <div class="container-fluid">
             <div class="title p-1">
-                <img src="../Images/logo.png" alt="" style="height:50px;">
+                <img src="../Images/logo.png" alt="" class="logo">
             </div>
 
             <!-- Toggle Button -->

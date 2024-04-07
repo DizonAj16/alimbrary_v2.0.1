@@ -113,28 +113,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./external-css/loginstyle.css">
     <script>
         function showAlertAndRedirect() {
-    <?php if (!empty($current_password_err) && (empty($new_password_err) && empty($confirm_password_err))) : ?>
-        alert("Error changing password: <?php echo $current_password_err; ?>");
-    <?php elseif (empty($current_password_err) && ((!empty($new_password_err) || !empty($confirm_password_err)))) : ?>
-        alert("Error changing password: Please check the new password and confirm password fields.");
-    <?php else : ?>
-        alert("Password changed successfully.");
-        setTimeout(function() {
-            window.location.href = "login.php";
-        }, 200);
-    <?php endif; ?>
+            <?php if (!empty($current_password_err) && (empty($new_password_err) && empty($confirm_password_err))) : ?>
+                alert("Error changing password: <?php echo $current_password_err; ?>");
+                return false;
+            <?php elseif (empty($current_password_err) && ((!empty($new_password_err) || !empty($confirm_password_err)))) : ?>
+                alert("Error changing password: Please check the new password and confirm password fields.");
+                return false;
+            <?php else : ?>
+                alert("Password changed successfully.");
+                clearErrors(); // Clear all errors
+                return true;
+            <?php endif; ?>
+        }
 
-    // Redirect only if there are no errors
-    <?php if (empty($current_password_err) || empty($new_password_err) || empty($confirm_password_err)) : ?>
-        return true;
-    <?php else : ?>
-        return false;
-    <?php endif; ?>
-}
+        function clearErrors() {
+            var errorElements = document.getElementsByClassName("error");
+            for (var i = 0; i < errorElements.length; i++) {
+                errorElements[i].innerHTML = "";
+            }
+        }
     </script>
-
-
-
 </head>
 
 <body>
@@ -158,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <a href=""> </a>
                 </div>
                 <div class="field">
-                    <input type="submit" value="Submit" onclick="showAlertAndRedirect()">
+                    <input type="submit" value="Submit" onclick="return showAlertAndRedirect()">
                 </div>
             </form>
             <?php if (!empty($current_password_err) || !empty($new_password_err) || !empty($confirm_password_err)) : ?>

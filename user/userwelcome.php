@@ -34,7 +34,7 @@ mysqli_stmt_close($stmt);
   <title>Welcome</title>
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <script defer src="../js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="../external-css/navigation.css">
+  <link rel="stylesheet" href="../external-css/navigation.css?<?php echo time(); ?>">
   <link rel="stylesheet" href="../fa-css/all.css">
   <style>
     body {

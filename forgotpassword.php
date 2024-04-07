@@ -47,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
-                // Password updated successfully. Redirect to login page
-                header("location: login.php");
+                // Password updated successfully. Redirect to password_changed.php
+                header("location: password_changed.php");
                 exit();
             } else {
                 echo "Oops! Something went wrong. Please try again later.";

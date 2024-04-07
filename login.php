@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>      
         <link rel="stylesheet" href="fa-css/all.css">
-        <link rel="stylesheet" href="./external-css/loginstyle.css">
+        <link rel="stylesheet" href="./external-css/loginstyle.css?<?php echo time(); ?>">
         <style>
             @media only screen and (max-width: 480px) {
                 .content {
