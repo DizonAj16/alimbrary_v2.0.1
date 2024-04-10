@@ -36,6 +36,7 @@ mysqli_stmt_close($stmt);
   <script defer src="../js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="../external-css/navigation.css?<?php echo time(); ?>">
   <link rel="stylesheet" href="../fa-css/all.css">
+  <link rel="stylesheet" href="../external-css/preloader.css?<?php echo time(); ?>">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -71,6 +72,12 @@ mysqli_stmt_close($stmt);
 </head>
 
 <body style="position: relative;">
+
+  <div class="preloader">
+    <img src="../Images/logo.png" alt=""">  
+    <div class=" spinner"></div>
+  </div>
+
 
   <!-- Carousel -->
   <div id="demo" class="carousel slide" data-bs-ride="carousel">
@@ -138,7 +145,7 @@ mysqli_stmt_close($stmt);
         </ul>
 
         <span class="navbar-text mx-3"><?php echo $welcome_message; ?></span>
-        
+
         <!-- Dropdown -->
         <div class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
@@ -175,6 +182,8 @@ mysqli_stmt_close($stmt);
     <h1>Welcome to the <span class="highlight">ZPPSU AlimBrary</span> Management System</h1>
   </div>
 
+
+  <script src="../scripts/preloader.js?<?php echo time(); ?>"></script>
 </body>
 
 </html>

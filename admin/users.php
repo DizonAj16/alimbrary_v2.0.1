@@ -268,26 +268,7 @@ mysqli_stmt_close($stmt);
 
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="../jquery/jquery-3.5.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 100) {
-                    $('#backToTopBtn').fadeIn();
-                } else {
-                    $('#backToTopBtn').fadeOut();
-                }
-            });
-
-
-            $('#backToTopBtn').click(function() {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 'slow');
-                return false;
-            });
-        });
-    </script>
+    <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 
 </body>
 

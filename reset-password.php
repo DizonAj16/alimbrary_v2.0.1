@@ -155,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="pass">
                     <a href=""> </a>
                 </div>
-                <div class="field">
+                <div class="field space">
                     <input type="submit" value="Submit" onclick="return showAlertAndRedirect()">
                 </div>
             </form>

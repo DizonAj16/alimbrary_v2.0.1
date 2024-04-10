@@ -281,8 +281,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <label for="new_image" class="form-label">New Image</label>
                                 <div class="input-group">
                                     <input type="file" id="new_image" name="image" class="form-control d-none" onchange="updateFileName(this)">
-                                    <label for="new_image" class="input-group-text bg-success text-light fw-bold fs-4 rounded me-2" title="Select an image">
-                                        <i class="fas fa-upload"></i>
+                                    <label for="new_image" class="input-group-text me-2 rounded" data-bs-toggle="tooltip" data-bs-title="Click to upload image" data-bs-placement="left">
+                                        <i class="fas fa-upload fa-lg text-success"></i>
                                     </label>
                                     <input type="text" id="file_name" class="form-control" readonly>
                                 </div>
@@ -299,11 +299,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
     <script defer src="../js/bootstrap.bundle.js"></script>
+
     <script>
         function updateFileName(input) {
             var fileName = input.files[0].name;
             document.getElementById("file_name").value = fileName;
         }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+        });
     </script>
 </body>
 

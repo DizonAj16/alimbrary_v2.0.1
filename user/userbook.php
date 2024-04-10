@@ -220,71 +220,71 @@ mysqli_stmt_close($stmt);
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
-<div class="container-fluid">
-  <div class="title p-1">
-    <img class="logo" src="../Images/logo.png" alt="">
-  </div>
+        <div class="container-fluid">
+            <div class="title p-1">
+                <img class="logo" src="../Images/logo.png" alt="">
+            </div>
 
-  <!-- Toggle Button -->
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-  <!-- Navbar Links -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item">
-        <a class="nav-link " href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="userbook.php"><i class="fa fa-book fa-lg"></i> Browse Books</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-history fa-lg"></i> Returned Books</a>
-      </li>
-    </ul>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="userbook.php"><i class="fa fa-book fa-lg"></i> Browse Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userreturnhistory.php"><i class="fa fa-history fa-lg"></i> Returned Books</a>
+                    </li>
+                </ul>
 
 
-    
-    <!-- Dropdown -->
-    <div class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <?php
-          // Display user's profile image or default user icon
-          if (!empty($profile_image)) {
-            echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
-          } else {
-            echo '<i class="fa fa-user fa-lg"></i>';
-          }
-          ?>
-          <?php echo htmlspecialchars($_SESSION["username"]); ?>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-          <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
-        </ul>
-      </li>
-    </div>
-  </div>
-</div>
-</nav>
+
+                <!-- Dropdown -->
+                <div class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                            <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
 
 
     <div class="header-container">
@@ -293,7 +293,7 @@ mysqli_stmt_close($stmt);
                 <div class="col-md-12">
                     <div class="mt-3 clearfix">
                         <h2 class="float-start">Books</h2>
-                        <input type="text" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" style="width:200px;" autocomplete="off">
+                        <input type="search" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" style="width:200px;" autocomplete="off">
                     </div>
                 </div>
             </div>
@@ -325,10 +325,10 @@ mysqli_stmt_close($stmt);
                     echo '<div class="d-flex justify-content-center">';
                     echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 text-center">View Details</a>';
                     echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning text-center text-dark fw-bold">Borrow Book</a>';
-                    echo '</div>'; 
-                    echo '</div>'; 
-                    echo '</div>'; 
-                    echo '</div>'; 
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
                 }
                 // Free result set
                 mysqli_free_result($result);
@@ -366,50 +366,32 @@ mysqli_stmt_close($stmt);
 
     <script src="../jquery/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#searchInput").on("keyup", function() {
-                var searchText = $(this).val().toLowerCase().trim();
-                $.ajax({
-                    url: "../search/search_user_books.php", 
-                    method: "POST",
-                    data: {
-                        searchQuery: searchText
-                    },
-                    success: function(response) {
-                        $("#searchBooksTable").html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-    </script>
-
-
-
-
-
-    <script>
-        $(document).ready(function() {
-            // Show or hide the button based on scroll position
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 100) {
-                    $('#backToTopBtn').fadeIn();
-                } else {
-                    $('#backToTopBtn').fadeOut();
+    $(document).ready(function() {
+        $("#searchInput").on("input", function() {
+            var searchText = $(this).val().toLowerCase().trim();
+            $.ajax({
+                url: "../search/search_user_books.php",
+                method: "POST",
+                data: {
+                    searchQuery: searchText
+                },
+                success: function(response) {
+                    $("#searchBooksTable").html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
                 }
             });
-
-            // Scroll to top when button is clicked
-            $('#backToTopBtn').click(function() {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 'slow');
-                return false;
-            });
         });
-    </script>
+    });
+</script>
+
+
+
+
+
+
+    <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 </body>
 
 </html>

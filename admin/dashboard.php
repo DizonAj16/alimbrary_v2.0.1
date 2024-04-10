@@ -219,7 +219,7 @@ mysqli_stmt_fetch($stmt);
             <div id="topUserBorrowedContent" style="display: none;">
                 <?php include '../dashboard-includes/top_user_borrowed.php'; ?>
             </div>
-            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topUserBorrowed')">Expand</button>
+            <button class="btn btn-transparent btn-md fw-bold text-light" onclick="toggleExpand('topUserBorrowed')"><i class="fas fa-chevron-down fa-lg"></i> Click to expand</button>
         </div>
 
         <div class="top-returned-user dashboard-section bg-danger text-white" id="topReturnedUserSection">
@@ -228,7 +228,7 @@ mysqli_stmt_fetch($stmt);
             <div id="topReturnedUserContent" style="display: none;">
                 <?php include '../dashboard-includes/top_returned_user.php'; ?>
             </div>
-            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedUser')">Expand</button>
+            <button class="btn btn-transparent btn-md fw-bold text-light" onclick="toggleExpand('topReturnedUser')"><i class="fas fa-chevron-down fa-lg"></i> Click to expand</button>
         </div>
 
         <div class="most-borrowed-books dashboard-section bg-warning text-white" id="mostBorrowedBooksSection">
@@ -237,7 +237,7 @@ mysqli_stmt_fetch($stmt);
             <div id="mostBorrowedBooksContent" style="display: none;">
                 <?php include '../dashboard-includes/top_borrowed_books.php'; ?>
             </div>
-            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('mostBorrowedBooks')">Expand</button>
+            <button class="btn btn-transparent btn-md fw-bold text-light" onclick="toggleExpand('mostBorrowedBooks')"><i class="fas fa-chevron-down fa-lg"></i> Click to expand</button>
         </div>
 
         <div class="top-returned-books dashboard-section bg-info text-white" id="topReturnedBooksSection">
@@ -246,7 +246,7 @@ mysqli_stmt_fetch($stmt);
             <div id="topReturnedBooksContent" style="display: none;">
                 <?php include '../dashboard-includes/top_returned_books.php'; ?>
             </div>
-            <button class="btn btn-dark btn-md fw-bold text-light" onclick="toggleExpand('topReturnedBooks')">Expand</button>
+            <button class="btn btn-transparent btn-md fw-bold text-light" onclick="toggleExpand('topReturnedBooks')"><i class="fas fa-chevron-down fa-lg"></i> Click to expand</button>
         </div>
 
 
@@ -269,11 +269,11 @@ mysqli_stmt_fetch($stmt);
             if (content.style.display === "none") {
                 content.style.display = "block";
                 title.style.display = "none";
-                button.textContent = "Collapse";
+                button.innerHTML = '<i class="fas fa-chevron-up fa-lg"></i> Click to collapse'; 
             } else {
                 content.style.display = "none";
                 title.style.display = "block";
-                button.textContent = "Expand";
+                button.innerHTML = '<i class="fas fa-chevron-down fa-lg"></i> Click to expand'; 
             }
         }
     </script>
@@ -283,26 +283,7 @@ mysqli_stmt_fetch($stmt);
     <!-- Back to Top Button -->
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="../jquery/jquery-3.5.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 100) {
-                    $('#backToTopBtn').fadeIn();
-                } else {
-                    $('#backToTopBtn').fadeOut();
-                }
-            });
-
-
-            $('#backToTopBtn').click(function() {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 'slow');
-                return false;
-            });
-        });
-    </script>
+    <script src="../scripts/backtotop.js?<?php echo time();?>"></script>
 
 
 

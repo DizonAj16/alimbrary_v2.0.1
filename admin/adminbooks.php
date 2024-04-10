@@ -185,62 +185,21 @@
 
                 .card {
                     background: linear-gradient(to bottom, rgba(135, 206, 235, 0.5), transparent);
-                    background-color: #add8e6;
                     border: none;
-                    border-radius: 15px;
-                    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
+                    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
                     transition: transform 0.3s ease;
                 }
 
                 .card:hover {
-                    background: linear-gradient(to bottom, #bfefff, #add8e6);
-                    color: white;
                     cursor: pointer;
                     transform: scale(1.05);
-                    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
+                    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
                 }
 
 
                 label {
                     font-weight: bold;
                 }
-
-                .slide-bottom {
-                    display: none;
-                    transform: translateY(-100%);
-                    transition: transform 0.5s ease-out;
-                }
-
-                .slide-bottom.show {
-                    display: block;
-                    transform: translateY(0);
-                }
-
-                .slide-right {
-                    display: none;
-                    transform: translateX(100%);
-                    transition: transform 0.5s ease-out;
-                }
-
-                .slide-right.show {
-                    display: block;
-                    transform: translateX(0);
-                }
-
-                .slide-left {
-                    animation: slideLeft 0.5s ease;
-                }
-
-                @keyframes slideLeft {
-                    from {
-                        transform: translateX(0);
-                    }
-
-                    to {
-                        transform: translateX(-100%);
-                    }
-                }
-
 
                 @media (max-width: 768px) {
                     #liveSearchInput {
@@ -327,11 +286,13 @@
                         <div class="col-md-12">
                             <div class="mt-3 clearfix">
                                 <h2 class="float-start">Books</h2>
-                                <button type="button" class="btn btn-success btn-md float-end me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Add New Book">
+                                <button type="button" class="btn btn-success btn-md float-end me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
                                     <i class="fa fa-plus-circle text-light"></i> Add book
                                 </button>
 
-                                <input type="text" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 200px;">
+
+
+                                <input type="search" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 200px;">
                             </div>
                         </div>
                     </div>
@@ -346,7 +307,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title text-center"><i class="fa fa-book me-2"></i> Add Book</h5>
-                            <button type="button" class="btn-close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
@@ -395,9 +356,9 @@
                                         <div class="form-group">
                                             <label for="new_image" class="form-label">New Image</label>
                                             <div class="input-group">
-                                                <input type="file" id="new_image" name="image" class="form-control d-none" onchange="updateFileName(this)">
-                                                <label for="new_image" class="input-group-text bg-success text-light fw-bold fs-4 rounded me-2" title="Select an image">
-                                                    <i class="fas fa-upload"></i>
+                                                <input type="file" id="new_image" name="image" class="form-control-sm d-none" onchange="updateFileName(this)">
+                                                <label for="new_image" class="input-group-text me-2 rounded" data-bs-toggle="tooltip" data-bs-title="Select an image" data-bs-placement="bottom">
+                                                    <i class="fas fa-upload fa-lg text-success"></i>
                                                 </label>
                                                 <input type="text" id="file_name" class="form-control" readonly>
                                             </div>
@@ -457,7 +418,7 @@
                         if (mysqli_num_rows($result) > 0) {
                             while ($row = mysqli_fetch_array($result)) {
                                 echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">';
-                                echo '<div class="card h-100 rounded-5">';
+                                echo '<div class="card h-100 rounded">';
                                 echo '<div class="d-flex justify-content-center align-items-center mt-2" style="height: 200px;">';
 
                                 // Display the image if image path exists
@@ -476,7 +437,7 @@
                                 echo '<div class="d-flex justify-content-center">';
                                 echo '<a href="adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" title="View Book"><i class="fas fa-book-open"></i> View</a>';
                                 echo '<a href="updatebook.php?book_id=' . $row['book_id'] . '" class="btn btn-info text-light rounded-2 btn-sm me-2" title="Update Book"><span class="fa fa-pencil fa-lg"></span> Update</a>';
-                                echo '<a href="#" class="btn btn-danger rounded-2 btn-sm delete-btn" data-book-id="' . $row['book_id'] . '" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i> Delete</a>';
+                                echo '<a href="#" class="btn btn-danger rounded-2 btn-sm delete-btn" data-book-id="' . $row['book_id'] . '" data-bs-toggle="modal" data-bs-target="#deleteModal" title="Delete Book"><i class="fas fa-trash-alt"></i> Delete</a>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
@@ -515,77 +476,65 @@
 
             <script>
                 $(document).ready(function() {
-                    // Initial loading of all books
-                    loadBooks("");
-
-                    // Live search on keyup event
-                    $("#liveSearchInput").keyup(function() {
-                        var searchText = $(this).val().trim().toLowerCase();
-                        loadBooks(searchText);
-                    });
-
-                    // Function to load books dynamically based on search text
-                    function loadBooks(searchText) {
+                    $("#liveSearchInput").on("input", function() {
+                        var searchText = $(this).val().toLowerCase().trim();
                         $.ajax({
-                            url: "../search/search_books.php", // Assuming you have a PHP script to fetch books
+                            url: "../search/search_books.php",
                             method: "POST",
                             data: {
                                 searchText: searchText
                             },
-                            success: function(data) {
-                                $("#bookCardsContainer").html(data);
+                            success: function(response) {
+                                $("#bookCardsContainer").html(response);
                             },
-                            error: function() {
-                                alert("Error loading books.");
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
                             }
                         });
-                    }
+                    });
                 });
             </script>
-
-
             <script>
                 $(document).ready(function() {
 
-                    $(window).scroll(function() {
-                        if ($(this).scrollTop() > 100) {
-                            $('#backToTopBtn').fadeIn();
-                        } else {
-                            $('#backToTopBtn').fadeOut();
-                        }
+                    var bookIdToDelete;
+
+                    $(".delete-btn").click(function() {
+                        bookIdToDelete = $(this).data("book-id");
                     });
 
-
-                    $('#backToTopBtn').click(function() {
-                        $('html, body').animate({
-                            scrollTop: 0
-                        }, 'slow');
-                        return false;
+                    // Handle confirm deletion button click
+                    $("#confirmDeleteBtn").click(function() {
+                        // AJAX request to delete the book
+                        $.ajax({
+                            url: "../admin/deletebook.php",
+                            type: "POST",
+                            data: {
+                                book_id: bookIdToDelete
+                            },
+                            success: function(data) {
+                                // Reload the page after successful deletion
+                                location.reload();
+                                alert('Book Deleted Successfully...')
+                            },
+                            error: function() {
+                                alert("Error deleting book.");
+                            }
+                        });
                     });
                 });
             </script>
-
 
             <script>
-                $(document).ready(function() {
-                    // Show the modal with slide-right animation when opening
-                    $('#exampleModal').on('show.bs.modal', function() {
-                        $(this).removeClass('slide-left'); 
-                        $(this).addClass('slide-right'); 
-                    });
-
-                    // Hide the modal with slide-left animation when close button is clicked
-                    $('#exampleModal .btn-close').on('click', function() {
-                        $('#exampleModal').addClass('slide-left'); // Add slide-left animation class
-                        setTimeout(function() {
-                            $('#exampleModal').modal('hide'); 
-                        }, 300); 
+                document.addEventListener("DOMContentLoaded", function() {
+                    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                        return new bootstrap.Tooltip(tooltipTriggerEl)
                     });
                 });
             </script>
 
-
-
+            <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 
         </body>
 

@@ -75,7 +75,7 @@
                             }
                             mysqli_free_result($result_borrowed);
                         } else {
-                            echo "<tr><td colspan='6'>No books currently borrowed</td></tr>";
+                            echo "<tr><td class='text-danger text-center' colspan='6'>No books currently borrowed</td></tr>";
                         }
                     } else {
                         echo "<tr><td colspan='6'>Oops! Something went wrong fetching borrowed books. Please try again later.</td></tr>";

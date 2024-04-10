@@ -63,7 +63,6 @@ mysqli_close($conn);
     <title>Update User Info</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./fa-css/all.css">
-    <script defer src="js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -82,6 +81,12 @@ mysqli_close($conn);
             backdrop-filter: blur(5px);
         }
 
+        h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #3498db;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -93,19 +98,26 @@ mysqli_close($conn);
 
         .form-control {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
             box-sizing: border-box;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            width: 100%;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
         .btn-primary {
             background-color: #3498db;
             color: #fff;
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
+            margin-bottom: 10px;
         }
 
         .btn-primary:hover {
@@ -114,15 +126,13 @@ mysqli_close($conn);
 
         .btn-secondary {
             background-color: #ccc;
-            color: #fff;
+            color: #000;
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
         }
 
         .btn-secondary:hover {
             background-color: #999;
+            color: #000;
         }
 
         .text-danger {
@@ -161,8 +171,8 @@ mysqli_close($conn);
             </div>
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <input type="submit" class="btn btn-primary btn-sm me-2" value="Update">
-                <a class="btn btn-secondary btn-sm" href="myprofile.php">Cancel</a>
+                <input type="submit" class="btn btn-primary" value="Update">
+                <a class="btn btn-secondary" href="myprofile.php">Cancel</a>
             </div>
         </form>
     </div>

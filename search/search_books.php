@@ -55,8 +55,9 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
         if (mysqli_num_rows($result) > 0) {
             // Loop through results and generate HTML for book cards
             while ($row = mysqli_fetch_assoc($result)) {
+                // Output HTML for book cards
                 echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">';
-                echo '<div class="card h-100 rounded-5">';
+                echo '<div class="card h-100 rounded">';
                 echo '<div class="d-flex justify-content-center align-items-center mt-2" style="height: 200px;">';
 
                 // Display the image if image path exists
@@ -75,7 +76,7 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
                 echo '<div class="d-flex justify-content-center">';
                 echo '<a href="../admin/adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-dark rounded-2 btn-sm me-2" title="View Book" data-bs-toggle="tooltip" data-bs-title="View"><i class="fas fa-book-open"></i> View</a>';
                 echo '<a href="../admin/updatebook.php?book_id=' . $row['book_id'] . '" class="btn btn-info text-light rounded-2 btn-sm me-2" title="Update Book" data-bs-toggle="tooltip"><span class="fa fa-pencil fa-lg"></span> Update</a>';
-                echo '<a href="#" class="btn btn-danger rounded-2 btn-sm delete-btn" data-book-id="' . $row['book_id'] . '" title="Delete Book" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fas fa-trash-alt"></i> Delete</a>';
+                echo '<a href="#" class="btn btn-danger rounded-2 btn-sm delete-btn" data-book-id="' . $row['book_id'] . '" title="Delete Book" data-bs-toggle="modal" data-bs-target="#deleteModal"  title="Delete Book"><i class="fas fa-trash-alt"></i> Delete</a>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
@@ -102,8 +103,9 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
     if ($result && mysqli_num_rows($result) > 0) {
         // Loop through results and generate HTML for book cards
         while ($row = mysqli_fetch_assoc($result)) {
+            // Output HTML for book cards
             echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">';
-            echo '<div class="card h-100 rounded-5">';
+            echo '<div class="card h-100 rounded">';
             echo '<div class="d-flex justify-content-center align-items-center mt-2" style="height: 200px;">';
 
             // Display the image if image path exists

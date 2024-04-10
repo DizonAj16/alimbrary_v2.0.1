@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                <div class="pass">
                   <a href="#"> </a>
                </div>
-               <div class="field">
+               <div class="field space">
                   <input type="submit" class="btn btn-primary" value="Submit">
                </div>
             </form>

@@ -59,7 +59,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
                         // Free result set
                         mysqli_free_result($result);
                     } else {
-                        echo '<tr><td colspan="3">No books found</td></tr>';
+                        echo '<tr><td class="text-danger" colspan="3">No Available Books</td></tr>';
                     }
                 } else {
                     echo '<tr><td colspan="3">Oops! Something went wrong. Please try again later.</td></tr>';

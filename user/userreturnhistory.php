@@ -151,70 +151,70 @@ mysqli_stmt_close($stmt);
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
-<div class="container-fluid">
-  <div class="title p-1">
-    <img class="logo" src="../Images/logo.png" alt="">
-  </div>
+        <div class="container-fluid">
+            <div class="title p-1">
+                <img class="logo" src="../Images/logo.png" alt="">
+            </div>
 
-  <!-- Toggle Button -->
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-  <!-- Navbar Links -->
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto">
-      <li class="nav-item">
-        <a class="nav-link " href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Browse Books</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" href="userreturnhistory.php"><i class="fa fa-history fa-lg"></i> Returned Books</a>
-      </li>
-    </ul>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="userwelcome.php"><i class="fa-solid fa-home fa-lg"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userdashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="userbook.php"><i class="fa fa-book fa-lg"></i> Browse Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="borrowedbooks.php"><i class="fas fa-book-reader fa-lg"></i> Borrowed Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="userreturnhistory.php"><i class="fa fa-history fa-lg"></i> Returned Books</a>
+                    </li>
+                </ul>
 
-    
-    <!-- Dropdown -->
-    <div class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <?php
-          // Display user's profile image or default user icon
-          if (!empty($profile_image)) {
-            echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
-          } else {
-            echo '<i class="fa fa-user fa-lg"></i>';
-          }
-          ?>
-          <?php echo htmlspecialchars($_SESSION["username"]); ?>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-          <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
-        </ul>
-      </li>
-    </div>
-  </div>
-</div>
-</nav>
+
+                <!-- Dropdown -->
+                <div class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                            <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div class="container" style="margin-top:85px">
         <?php if (mysqli_num_rows($result) === 0) : ?>
@@ -228,7 +228,7 @@ mysqli_stmt_close($stmt);
                     <h2 class="fw-bold mb-0">Return History</h2>
                     <div class="d-flex">
                         <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 200px;">
-                        
+
                     </div>
                 </div>
                 <div class="card-body">
@@ -241,7 +241,7 @@ mysqli_stmt_close($stmt);
                                     <th>Borrow Date</th>
                                     <th>Date Returned</th>
                                     <th>Time Borrowed</th>
-                                    <th>Return Status</th> 
+                                    <th>Return Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -277,7 +277,7 @@ mysqli_stmt_close($stmt);
 
                                     // Determine return status
                                     $expected_return_date = strtotime($row['return_date']);
-                                    
+
                                     if ($returned_date <= $expected_return_date) {
                                         echo '<td class="text-center"><span class="badge bg-success">On Time</span></td>';
                                     } else {
@@ -324,27 +324,7 @@ mysqli_stmt_close($stmt);
 
 
 <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
-<script src="../jquery/jquery-3.5.1.min.js"></script>
-<script>
-    $(document).ready(function() {
-
-        $(window).scroll(function() {
-            if ($(this).scrollTop() > 100) {
-                $('#backToTopBtn').fadeIn();
-            } else {
-                $('#backToTopBtn').fadeOut();
-            }
-        });
-
-
-        $('#backToTopBtn').click(function() {
-            $('html, body').animate({
-                scrollTop: 0
-            }, 'slow');
-            return false;
-        });
-    });
-</script>
+<script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 
 </body>
 

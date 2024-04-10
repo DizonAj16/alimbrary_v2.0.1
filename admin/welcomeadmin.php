@@ -2,7 +2,7 @@
 // Start session
 session_start();
 
-// Check if the user is logged in and is a user, if not then redirect to login page
+// Check if the user is logged in and is an admin, if not then redirect to the login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "admin") {
   header("location: ../login.php");
   exit;
@@ -36,6 +36,7 @@ mysqli_stmt_close($stmt);
   <script defer src="../js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="../external-css/navigation.css?<?php echo time(); ?>">
   <link rel="stylesheet" href="../fa-css/all.css">
+  <link rel="stylesheet" href="../external-css/preloader.css?<?php echo time(); ?>">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -43,7 +44,6 @@ mysqli_stmt_close($stmt);
       padding: 0;
       overflow-x: hidden;
     }
-
     .centered-message {
       position: absolute;
       top: 50%;
@@ -74,8 +74,15 @@ mysqli_stmt_close($stmt);
 
 <body style="position: relative;">
 
+  <!-- Preloader -->
+  <div class="preloader">
+    <img src="../Images/logo.png" alt=""">  
+    <div class=" spinner">
+  </div>
+  </div>
+
   <!-- Carousel -->
-  <div id="demo" class="carousel slide" data-bs-ride="carousel">
+  <div id="demo" class="carousel slide hide-content" data-bs-ride="carousel">
     <!-- Indicators/dots -->
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
@@ -180,6 +187,9 @@ mysqli_stmt_close($stmt);
       </div>
     </div>
   </nav>
+
+  <!-- Script to hide preloader and show content after page load -->
+<script src="../scripts/preloader.js?<?php echo time(); ?>"></script>
 
 </body>
 
