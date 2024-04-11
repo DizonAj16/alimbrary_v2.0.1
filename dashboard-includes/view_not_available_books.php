@@ -168,7 +168,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                 <div class="row">
                     <div class="col-md-6 text-center">
                         <?php if (!empty($image_path)) : ?>
-                            <img src="../<?php echo $image_path; ?>" class="book-image img-fluid" alt="Book Image">
+                            <img src="<?php echo $image_path; ?>" class="book-image img-fluid" alt="Book Image">
                         <?php else : ?>
                             <span>No image available</span>
                         <?php endif; ?>

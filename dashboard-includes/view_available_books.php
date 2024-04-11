@@ -74,7 +74,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Book</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../fa-css/all.css">
     <style>
         body {
@@ -168,7 +168,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                 <div class="row">
                     <div class="col-md-6 text-center">
                         <?php if (!empty($image_path)) : ?>
-                            <img src="../<?php echo $image_path; ?>" class="book-image img-fluid" alt="Book Image">
+                            <img src="<?php echo $image_path; ?>" class="book-image img-fluid" alt="Book Image">
                         <?php else : ?>
                             <span>No image available</span>
                         <?php endif; ?>

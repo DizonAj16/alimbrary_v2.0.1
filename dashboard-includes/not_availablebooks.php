@@ -19,7 +19,7 @@
     <div class="container mt-3">
         <a href="../admin/dashboard.php" class="btn btn-primary back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
         <h2 class="mb-4 text-danger fw-bold">Not Available Books</h2>
-        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search by Title...">
+        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search...">
 
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered border-dark">

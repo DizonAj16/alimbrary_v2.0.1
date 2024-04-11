@@ -30,7 +30,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     <div class="container mt-3">
         <a href="../admin/dashboard.php" class="btn btn-primary back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
         <h2 class="mb-4 text-success fw-bold">Available Books</h2>
-        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search by Title...">
+        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search...">
         <table class="table table-striped table-hover table-bordered border-dark">
             <thead class="text-center">
                 <tr>
