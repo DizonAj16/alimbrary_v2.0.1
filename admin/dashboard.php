@@ -49,12 +49,12 @@ mysqli_stmt_fetch($stmt);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
+            background-color: #fff;
         }
 
         .dashboard-section:hover {
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-            cursor: pointer;
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
@@ -141,7 +141,7 @@ mysqli_stmt_fetch($stmt);
                         <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> Manage  Users</a>
+                        <a class="nav-link " aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> Manage Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
@@ -269,11 +269,11 @@ mysqli_stmt_fetch($stmt);
             if (content.style.display === "none") {
                 content.style.display = "block";
                 title.style.display = "none";
-                button.innerHTML = '<i class="fas fa-chevron-up fa-lg"></i> Click to collapse'; 
+                button.innerHTML = '<i class="fas fa-chevron-up fa-lg"></i> Click to collapse';
             } else {
                 content.style.display = "none";
                 title.style.display = "block";
-                button.innerHTML = '<i class="fas fa-chevron-down fa-lg"></i> Click to expand'; 
+                button.innerHTML = '<i class="fas fa-chevron-down fa-lg"></i> Click to expand';
             }
         }
     </script>
@@ -283,7 +283,7 @@ mysqli_stmt_fetch($stmt);
     <!-- Back to Top Button -->
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="../jquery/jquery-3.5.1.min.js"></script>
-    <script src="../scripts/backtotop.js?<?php echo time();?>"></script>
+    <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 
 
 

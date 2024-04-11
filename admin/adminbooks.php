@@ -186,15 +186,16 @@
                 .card {
                     background: linear-gradient(to bottom, rgba(135, 206, 235, 0.5), transparent);
                     border: none;
-                    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
-                    transition: transform 0.3s ease;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
                 }
 
                 .card:hover {
                     cursor: pointer;
                     transform: scale(1.05);
-                    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
                 }
+
 
 
                 label {

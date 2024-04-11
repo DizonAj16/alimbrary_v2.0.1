@@ -52,15 +52,13 @@ mysqli_stmt_close($stmt);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.3s ease;
+      transition: transform 0.3s ease;
       background-color: #fff;
     }
 
     .dashboard-section:hover {
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-      cursor: pointer;
-    }
-
+            transform: scale(1.05);
+        }
     .dashboard-section i {
       margin-bottom: 10px;
     }
@@ -196,11 +194,11 @@ mysqli_stmt_close($stmt);
 
           if (element.style.display === "none") {
             element.style.display = "block";
-            button.innerHTML = '<i class="fas fa-chevron-up fa-lg"></i> Click to collapse'; 
+            button.innerHTML = '<i class="fas fa-chevron-up fa-lg"></i> Click to collapse';
             title.style.display = "none";
           } else {
             element.style.display = "none";
-            button.innerHTML = '<i class="fas fa-chevron-down fa-lg"></i> Click to expand'; 
+            button.innerHTML = '<i class="fas fa-chevron-down fa-lg"></i> Click to expand';
             title.style.display = "block";
           }
         }
