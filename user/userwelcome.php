@@ -75,7 +75,11 @@ mysqli_stmt_close($stmt);
 
   <div class="preloader">
     <img src="../Images/logo.png" alt=""">  
-    <div class=" spinner"></div>
+    <div class=" lds-facebook">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
   </div>
 
 

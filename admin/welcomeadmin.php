@@ -44,6 +44,7 @@ mysqli_stmt_close($stmt);
       padding: 0;
       overflow-x: hidden;
     }
+
     .centered-message {
       position: absolute;
       top: 50%;
@@ -77,7 +78,10 @@ mysqli_stmt_close($stmt);
   <!-- Preloader -->
   <div class="preloader">
     <img src="../Images/logo.png" alt=""">  
-    <div class=" spinner">
+    <div class=" lds-facebook">
+    <div></div>
+    <div></div>
+    <div></div>
   </div>
   </div>
 
@@ -189,7 +193,7 @@ mysqli_stmt_close($stmt);
   </nav>
 
   <!-- Script to hide preloader and show content after page load -->
-<script src="../scripts/preloader.js?<?php echo time(); ?>"></script>
+  <script src="../scripts/preloader.js?<?php echo time(); ?>"></script>
 
 </body>
 
