@@ -8,7 +8,8 @@
 }
 
 .bg-img {
-    background: url('../images/bgimage.jpg' ); /*if want background image*/
+    background: url('../images/bgimage.jpg');
+    /*if want background image*/
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -41,7 +42,7 @@
 
 .content header {
     color: white;
-    font-size: 33px;    
+    font-size: 33px;
     font-weight: 600;
     margin: 0 0 35px 0;
     font-family: 'Montserrat', sans-serif;
@@ -147,7 +148,8 @@ i span {
 .signup a:hover {
     text-decoration: underline;
 }
-.error{
+
+.error {
     color: white;
     font-size: 20px;
     background-color: lightcoral;
@@ -160,13 +162,34 @@ i span {
     font-family: "Arial Black", Arial, sans-serif;
     font-size: 36px;
     font-weight: bold;
-  }
-  
+}
+
 @media only screen and (max-width: 480px) {
     .content {
         width: 80%;
     }
+
     .field {
         margin-bottom: 20px;
     }
+}
+
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.password-toggle-icon i {
+    font-size: 18px;
+    line-height: 1;
+    color: #000000;
+    transition: color 0.3s ease-in-out;
+    margin-bottom: 20px;
+}
+
+.password-toggle-icon i:hover {
+    color: #000;
 }

@@ -100,59 +100,80 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-   <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Signup</title>
-        <link rel="stylesheet" href="./external-css/loginstyle.css"/>
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="fa-css/all.css">
-   </head>
-   <body>
-      <div class="bg-img">
-         <div class="content">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="./external-css/loginstyle.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="fa-css/all.css">
+</head>
+
+<body>
+    <div class="bg-img">
+        <div class="content">
             <header>Signup</header>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-               <div class="field">
-                  <span class="fa fa-user"></span>
-                  <input type="text" name="username" required placeholder="Username" style="padding: 6px 12px;">
-               </div>
-               <div class="field space">
-                  <span class="fa fa-lock"></span>
-                  <input type="password" class="pass-key" name="password" required placeholder="Password" style="padding: 6px 12px;">
-               </div>
-               <div class="field space">
-                  <span class="fa fa-lock"></span>
-                  <input type="password" class="pass-key" name="confirm_password" required placeholder="Confirm Password" style="padding: 6px 12px;">
-               </div>
-               <div class="pass">
-                  <a href="#"> </a>
-               </div>
-               <div class="field space">
-                  <input type="submit" class="btn btn-primary" value="Submit">
-               </div>
+                <div class="field">
+                    <span class="fa fa-user"></span>
+                    <input type="text" name="username" required placeholder="Username" style="padding: 6px 12px;">
+                </div>
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" class="pass-key" name="password" required placeholder="Password" style="padding: 6px 12px" ; id="password">
+                    <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
+                </div>
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" class="pass-key" name="confirm_password" required placeholder="Confirm Password" style="padding: 6px 12px;" id="confirm_password">
+                    <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
+                </div>
+                <div class="field space">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
             </form>
+           
             <script>
-                // JavaScript code to show success message via alert with timeout
-                <?php if (!empty($signup_success_message)) : ?>
-                    setTimeout(function() {
-                        alert("<?php echo $signup_success_message; ?>");
-                        window.location.href = "login.php";
-                    }, 200);
-                <?php endif; ?>
+                const passwordFields = document.querySelectorAll(".pass-key");
+                const toggleIcons = document.querySelectorAll(".password-toggle-icon i");
+
+                toggleIcons.forEach((icon, index) => {
+                    icon.addEventListener("click", function() {
+                        const passwordField = passwordFields[index];
+                        if (passwordField.type === "password") {
+                            passwordField.type = "text";
+                            icon.classList.remove("fa-eye");
+                            icon.classList.add("fa-eye-slash");
+                        } else {
+                            passwordField.type = "password";
+                            icon.classList.remove("fa-eye-slash");
+                            icon.classList.add("fa-eye");
+                        }
+                    });
+                });
             </script>
+            <!-- PHP code for displaying errors and success message -->
+            <?php if (!empty($signup_success_message)) : ?>
+                <div class="success-message">
+                    <?php echo $signup_success_message; ?>
+                </div>
+            <?php endif; ?>
             <?php if (!empty($username_err) || !empty($password_err) || !empty($confirm_password_err)) : ?>
-               <div class="error">
-                   <?php echo $username_err; ?>
-                   <?php echo $password_err; ?>
-                   <?php echo $confirm_password_err; ?>
-               </div>
+                <div class="error">
+                    <?php echo $username_err; ?>
+                    <?php echo $password_err; ?>
+                    <?php echo $confirm_password_err; ?>
+                </div>
             <?php endif; ?>
             <div class="signup">
-               Have an account?
-               <a href="login.php">Back to Login</a>
+                Have an account?
+                <a href="login.php">Back to Login</a>
             </div>
-         </div>
-      </div>
-   </body>
+        </div>
+    </div>
+
+
+</body>
+
 </html>

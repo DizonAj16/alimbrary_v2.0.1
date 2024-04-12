@@ -173,46 +173,99 @@ mysqli_stmt_close($stmt);
         }
 
         .btn {
+            text-align: start;
+            display: inline-block;
+            position: relative;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            border-radius: 6px;
+            overflow: hidden;
             width: 125px;
-            color: #000;
+            color: #fff;
             font-weight: 600;
             cursor: pointer;
             font-size: 15px;
+            border: none;
+            padding: none;
         }
 
-        .btn-info {
-            color: #fff;
-            border: 3px solid #c266d3;
-            background-image: -webkit-linear-gradient(30deg, #c266d3 50%, transparent 50%);
-            background-image: linear-gradient(30deg, #c266d3 50%, transparent 50%);
-            background-size: 500px;
-            background-repeat: no-repeat;
-            background-position: 0%;
-            -webkit-transition: background 300ms ease-in-out;
-            transition: background 300ms ease-in-out;
+        .btn.btn-info {
+            transition: all 0.2s linear 0s;
+            background-color: blue;
         }
 
-        .btn-info:hover {
-            background-position: 100%;
-            color: #fff;
+        .btn.btn-info:before {
+            content: "\25B6";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0px;
+            height: 100%;
+            width: 30px;
+            border-radius: 0 50% 50% 0;
+            transform: scale(0, 1);
+            transform-origin: left center;
+            transition: all 0.2s linear 0s;
+            font-size: 15px;
         }
+
+        .btn.btn-info:hover {
+            text-indent: 10px;
+            color: white;
+        }
+
+        .btn.btn-info:hover:before {
+            transform: scale(1, 1);
+            text-indent: 0;
+        }
+
 
         .btn-warning {
+            text-align: start;
+            display: inline-block;
+            position: relative;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            border-radius: 6px;
+            overflow: hidden;
+            width: 125px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 15px;
+            border: none;
+            padding: none;
             background-color: #F4F200;
-            background-image: #F4F200;
-            background-image: -moz-linear-gradient(top, #fff 0%, #F4F200 100%);
-            background-image: -webkit-linear-gradient(top, #fff 0%, #F4F200 100%);
-            background-image: linear-gradient(to bottom, #fff 0%, #F4F200 100%);
-            background-size: 300px;
-            background-repeat: no-repeat;
-            background-position: 0%;
-            -webkit-transition: background 300ms ease-in-out;
-            transition: background 300ms ease-in-out;
+            transition: all 0.2s linear 0s;
+        }
+
+        .btn-warning:before {
+            content: "\25B6";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0px;
+            height: 100%;
+            width: 20px;
+            border-radius: 0 50% 50% 0;
+            transform: scale(0, 1);
+            transform-origin: left center;
+            transition: all 0.2s linear 0s;
+            font-size: 15px;
         }
 
         .btn-warning:hover {
-            background-position: -200%;
-            transition: background 300ms ease-in-out;
+            text-indent: 6px;
+            color: white;
+        }
+
+        .btn-warning:hover:before {
+            transform: scale(1, 1);
+            text-indent: 0;
         }
     </style>
 
@@ -323,8 +376,8 @@ mysqli_stmt_close($stmt);
 
 
                     echo '<div class="d-flex justify-content-center">';
-                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 text-center">View Details</a>';
-                    echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning text-center text-dark fw-bold">Borrow Book</a>';
+                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 ">View Details</a>';
+                    echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning  text-dark fw-bold">Borrow Book</a>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
@@ -366,25 +419,25 @@ mysqli_stmt_close($stmt);
 
     <script src="../jquery/jquery-3.6.0.min.js"></script>
     <script>
-    $(document).ready(function() {
-        $("#searchInput").on("input", function() {
-            var searchText = $(this).val().toLowerCase().trim();
-            $.ajax({
-                url: "../search/search_user_books.php",
-                method: "POST",
-                data: {
-                    searchQuery: searchText
-                },
-                success: function(response) {
-                    $("#searchBooksTable").html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
+        $(document).ready(function() {
+            $("#searchInput").on("input", function() {
+                var searchText = $(this).val().toLowerCase().trim();
+                $.ajax({
+                    url: "../search/search_user_books.php",
+                    method: "POST",
+                    data: {
+                        searchQuery: searchText
+                    },
+                    success: function(response) {
+                        $("#searchBooksTable").html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 
 
 

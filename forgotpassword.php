@@ -86,25 +86,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="form-control pass-key" name="new_password" required placeholder="New Password">
+                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye"></i></span> <!-- Password toggle icon -->
                 </div>
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="form-control pass-key" name="confirm_password" required placeholder="Confirm Password">
+                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye"></i></span> <!-- Password toggle icon -->
                 </div>
                 <div class="field space">
                     <input type="submit" value="Submit">
                 </div>
             </form>
+            <!-- Display error messages -->
             <?php if (!empty($new_password_err) || !empty($confirm_password_err)) : ?>
-               <div class="error">
-                   <?php echo $new_password_err; ?>
-                   <?php echo $confirm_password_err; ?>
-               </div>
+                <div class="error">
+                    <?php echo $new_password_err; ?>
+                    <?php echo $confirm_password_err; ?>
+                </div>
             <?php endif; ?>
             <div class="signup">
                 <a href="login.php" class="btn btn-link">Back to Login</a>
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility(icon) {
+            const passwordField = icon.previousElementSibling;
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                passwordField.type = "password";
+                icon.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+    </script>
 </body>
 </html>
+

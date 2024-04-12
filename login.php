@@ -85,42 +85,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-   <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>      
-        <link rel="stylesheet" href="fa-css/all.css">
-        <link rel="stylesheet" href="./external-css/loginstyle.css?<?php echo time(); ?>">
-        <style>
-            @media only screen and (max-width: 480px) {
-                .content {
-                    width: 80%;
-                }
-                .field {
-                    margin-bottom: 20px;
-                }
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="fa-css/all.css">
+    <link rel="stylesheet" href="./external-css/loginstyle.css?<?php echo time(); ?>">
+    <style>
+        @media only screen and (max-width: 480px) {
+            .content {
+                width: 80%;
             }
-        </style>
-   </head>
-   <body>
-      <div class="bg-img">
-         <div class="content">
+
+            .field {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-img">
+        <div class="content">
             <header>Login</header>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-               <div class="field">
-                  <span class="fa fa-user"></span>
-                  <input type="text" name="username" required placeholder="Username" style="padding: 6px 12px;">
-               </div>
-               <div class="field space">
-                  <span class="fa fa-lock"></span>
-                  <input type="password" class="pass-key" name="password" required placeholder="Password" style="padding: 6px 12px;" id="password">
-               </div>
-               <div class="pass">
-                  <a href="forgotpassword.php">Forgot Password?</a>
-               </div>
-               <div class="field">
-                  <input type="submit" value="LOGIN">
-               </div>
+                <div class="field">
+                    <span class="fa fa-user"></span>
+                    <input type="text" name="username" required placeholder="Username" style="padding: 6px 12px;">
+                </div>
+                <div class="field space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" class="pass-key" name="password" required placeholder="Password" style="padding: 6px 12px;" id="password">
+                    <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
+                </div>
+                <div class="pass">
+                    <a href="forgotpassword.php">Forgot Password?</a>
+                </div>
+                <div class="field">
+                    <input type="submit" value="LOGIN">
+                </div>
             </form>
             <script>
                 <?php if (!empty($login_err)) : ?>
@@ -129,10 +133,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endif; ?>
             </script>
             <div class="signup">
-               Don't have an account?
-               <a href="register.php">Signup Now</a>
+                Don't have an account?
+                <a href="register.php">Signup Now</a>
             </div>
-         </div>
-      </div>
-   </body>
+        </div>
+    </div>
+
+    <script>
+        const passwordField = document.getElementById("password");
+        const togglePassword = document.querySelector(".password-toggle-icon i");
+
+        togglePassword.addEventListener("click", function() {
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                togglePassword.classList.remove("fa-eye");
+                togglePassword.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                togglePassword.classList.remove("fa-eye-slash");
+                togglePassword.classList.add("fa-eye");
+            }
+        });
+    </script>
+</body>
+
 </html>

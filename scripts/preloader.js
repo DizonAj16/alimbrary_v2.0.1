@@ -5,6 +5,6 @@ window.addEventListener("load", function() {
   setTimeout(function() {
     preloader.style.display = "none";
     document.querySelector("body").style.overflow = "auto";
-  }, 3400); 
+  }, 3800); 
 });
 
