@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="pass-key" name="password" required placeholder="Password" style="padding: 6px 12px;" id="password">
-                    <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
+                    <span class="password-toggle-icon"><i class="fas fa-eye-slash"></i></span>
                 </div>
                 <div class="pass">
                     <a href="forgotpassword.php">Forgot Password?</a>
@@ -146,12 +146,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         togglePassword.addEventListener("click", function() {
             if (passwordField.type === "password") {
                 passwordField.type = "text";
-                togglePassword.classList.remove("fa-eye");
-                togglePassword.classList.add("fa-eye-slash");
-            } else {
-                passwordField.type = "password";
                 togglePassword.classList.remove("fa-eye-slash");
                 togglePassword.classList.add("fa-eye");
+            } else {
+                passwordField.type = "password";
+                togglePassword.classList.remove("fa-eye");
+                togglePassword.classList.add("fa-eye-slash");
             }
         });
     </script>

@@ -197,7 +197,7 @@ mysqli_stmt_close($stmt);
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h3 class="fw-bold mb-0">Return History</h3>
                 <div class="input-group" style="max-width: 200px;">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search by username...">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search...">
                 </div>
             </div>
 

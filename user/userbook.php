@@ -35,7 +35,9 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../external-css/navigation.css">
     <link rel="stylesheet" href="../fa-css/all.css">
+    <link rel="stylesheet" href="../external-css/userbtn.css?<?php echo time(); ?>">
     <script defer src="../js/bootstrap.bundle.min.js"></script>
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -157,6 +159,15 @@ mysqli_stmt_close($stmt);
             padding: 5px;
         }
 
+        .card1 .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+            opacity: 1;
+        }
+
+
         .heading1 {
             font-family: 'Lora', serif;
             font-size: 20px;
@@ -170,102 +181,6 @@ mysqli_stmt_close($stmt);
 
         .badge-lg {
             font-size: 1rem;
-        }
-
-        .btn {
-            text-align: start;
-            display: inline-block;
-            position: relative;
-            text-decoration: none;
-            font-family: 'Roboto', sans-serif;
-            border-radius: 6px;
-            overflow: hidden;
-            width: 125px;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 15px;
-            border: none;
-            padding: none;
-        }
-
-        .btn.btn-info {
-            transition: all 0.2s linear 0s;
-            background-color: blue;
-        }
-
-        .btn.btn-info:before {
-            content: "\25B6";
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 0;
-            left: 0px;
-            height: 100%;
-            width: 30px;
-            border-radius: 0 50% 50% 0;
-            transform: scale(0, 1);
-            transform-origin: left center;
-            transition: all 0.2s linear 0s;
-            font-size: 15px;
-        }
-
-        .btn.btn-info:hover {
-            text-indent: 10px;
-            color: white;
-        }
-
-        .btn.btn-info:hover:before {
-            transform: scale(1, 1);
-            text-indent: 0;
-        }
-
-
-        .btn-warning {
-            text-align: start;
-            display: inline-block;
-            position: relative;
-            text-decoration: none;
-            font-family: 'Roboto', sans-serif;
-            border-radius: 6px;
-            overflow: hidden;
-            width: 125px;
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 15px;
-            border: none;
-            padding: none;
-            background-color: #F4F200;
-            transition: all 0.2s linear 0s;
-        }
-
-        .btn-warning:before {
-            content: "\25B6";
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 0;
-            left: 0px;
-            height: 100%;
-            width: 20px;
-            border-radius: 0 50% 50% 0;
-            transform: scale(0, 1);
-            transform-origin: left center;
-            transition: all 0.2s linear 0s;
-            font-size: 15px;
-        }
-
-        .btn-warning:hover {
-            text-indent: 6px;
-            color: white;
-        }
-
-        .btn-warning:hover:before {
-            transform: scale(1, 1);
-            text-indent: 0;
         }
     </style>
 
@@ -340,18 +255,19 @@ mysqli_stmt_close($stmt);
     </nav>
 
 
-    <div class="header-container">
+    <div class="header-container d-flex justify-content-center">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="mt-3 clearfix">
-                        <h2 class="float-start">Books</h2>
-                        <input type="search" id="searchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" style="width:200px;" autocomplete="off">
+                <div class="col-lg-12">
+                    <div class="mt-3 clearfix d-flex flex-column justify-content-center align-items-center">
+                        <h2 class="fw-bold">Books</h2>
+                        <input type="search" id="searchInput" class="form-control form-control-md" placeholder="Search Title or Genre" style="width:300px;" autocomplete="off">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 
@@ -369,15 +285,16 @@ mysqli_stmt_close($stmt);
                 while ($row = mysqli_fetch_array($result)) {
                     echo '<div class="card1">';
                     echo '<img src="' . $row['image_path'] . '" alt="Book Image">';
+                    echo '<span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-md">' . $row['availability'] . '</span>';
                     echo '<div class="info">';
                     echo '<div class="mt-auto">';
                     echo '<div class="heading1 mb-2 d-none">' . $row['title'] . '</div>';
-                    echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-lg">' . $row['availability'] . '</span>';
+
 
 
                     echo '<div class="d-flex justify-content-center">';
-                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 ">View Details</a>';
-                    echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning  text-dark fw-bold">Borrow Book</a>';
+                    echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2">View Details</a>';
+                    echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning">Borrow Book</a>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';

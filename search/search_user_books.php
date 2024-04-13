@@ -19,15 +19,15 @@ if ($result = mysqli_query($conn, $sql)) {
         while ($row = mysqli_fetch_array($result)) {
             echo '<div class="card1">';
             echo '<img src="' . $row['image_path'] . '" alt="Book Image">';
+            echo '<span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-md">' . $row['availability'] . '</span>';
             echo '<div class="info">';
             echo '<div class="mt-auto">';
             echo '<div class="heading1 mb-2 d-none">' . $row['title'] . '</div>';
-            echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light mb-2 badge-lg">' . $row['availability'] . '</span>';
 
 
             echo '<div class="d-flex justify-content-center">';
-            echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2 fw-bold text-light">Read More</a>';
-            echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning text-dark fw-bold">Borrow Book</a>';
+            echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2">Read More</a>';
+            echo '<a href="borrow.php?book_id=' . $row['book_id'] . '" class="btn btn-warning">Borrow Book</a>';
             echo '</div>'; 
             echo '</div>'; 
             echo '</div>'; 

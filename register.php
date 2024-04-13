@@ -122,12 +122,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="pass-key" name="password" required placeholder="Password" style="padding: 6px 12px" ; id="password">
-                    <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
+                    <span class="password-toggle-icon"><i class="fas fa-eye-slash"></i></span>
                 </div>
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="pass-key" name="confirm_password" required placeholder="Confirm Password" style="padding: 6px 12px;" id="confirm_password">
-                    <span class="password-toggle-icon"><i class="fas fa-eye"></i></span>
+                    <span class="password-toggle-icon"><i class="fas fa-eye-slash"></i></span>
                 </div>
                 <div class="field space">
                     <input type="submit" class="btn btn-primary" value="Submit">
@@ -143,12 +143,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         const passwordField = passwordFields[index];
                         if (passwordField.type === "password") {
                             passwordField.type = "text";
-                            icon.classList.remove("fa-eye");
-                            icon.classList.add("fa-eye-slash");
+                            icon.classList.add("fa-eye");
+                            icon.classList.remove("fa-eye-slash");
                         } else {
                             passwordField.type = "password";
-                            icon.classList.remove("fa-eye-slash");
-                            icon.classList.add("fa-eye");
+                            icon.classList.add("fa-eye-slash");
+                            icon.classList.remove("fa-eye");
                         }
                     });
                 });

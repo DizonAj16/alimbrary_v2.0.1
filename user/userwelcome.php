@@ -73,14 +73,20 @@ mysqli_stmt_close($stmt);
 
 <body style="position: relative;">
 
-  <div class="preloader">
-    <img src="../Images/logo.png" alt=""">  
-    <div class=" lds-facebook">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  </div>
+<?php if (!isset($_SESSION["preloader_shown"])) : ?>
+    <div class="preloader">
+      <img src="../Images/logo.png" alt="">
+      <div class="lds-facebook">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  <?php
+    // Set session variable to indicate that preloader has been shown
+    $_SESSION["preloader_shown"] = true;
+  endif;
+  ?>
 
 
   <!-- Carousel -->

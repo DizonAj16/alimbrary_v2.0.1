@@ -44,7 +44,7 @@ mysqli_stmt_close($stmt);
     }
 
     .dashboard-section {
-      flex: 1 1 290px;
+      flex: 1 1 320px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -52,13 +52,13 @@ mysqli_stmt_close($stmt);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
       background-color: #fff;
     }
 
     .dashboard-section:hover {
-            transform: scale(1.05);
-        }
+      cursor: pointer;
+    }
+
     .dashboard-section i {
       margin-bottom: 10px;
     }

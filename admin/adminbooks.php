@@ -281,26 +281,22 @@
             </nav>
 
 
-            <div class="header-container">
+
+            <div class="header-container d-flex justify-content-center">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="mt-3 clearfix">
-                                <h2 class="float-start">Books</h2>
-                                <button type="button" class="btn btn-success btn-md float-end me-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
-                                    <i class="fa fa-plus-circle text-light"></i> Add book
+                        <div class="col-lg-12">
+                            <div class="mt-2 clearfix d-flex flex-column justify-content-center align-items-center">
+                                <h2 class="fw-bold">Books</h2>
+                                <input type="search" id="liveSearchInput" class="form-control form-control-md " placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 300px;">
+                                <button type="button" class="btn btn-success btn-md mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
+                                    <i class="fa fa-plus-circle fa-lg text-light"></i> Add book
                                 </button>
-
-
-
-                                <input type="search" id="liveSearchInput" class="form-control form-control-md float-end me-2" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 200px;">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
 
 
             <div class="modal fade" id="exampleModal">

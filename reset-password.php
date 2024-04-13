@@ -143,14 +143,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="field">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="form-control pass-key" name="current_password" required placeholder="Current Password">
+                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye-slash"></i></span>
                 </div>
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="form-control pass-key" name="new_password" required placeholder="New Password">
+                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye-slash"></i></span>
                 </div>
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="form-control pass-key" name="confirm_password" required placeholder="Confirm Password">
+                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye-slash"></i></span>
                 </div>
                 <div class="pass">
                     <a href=""> </a>
@@ -171,6 +174,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePasswordVisibility(icon) {
+            const passwordField = icon.previousElementSibling;
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.innerHTML = '<i class="fas fa-eye"></i>';
+              
+            } else {
+                passwordField.type = "password";
+                icon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            }
+        }
+    </script>
 </body>
 
 </html>

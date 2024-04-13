@@ -86,12 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="form-control pass-key" name="new_password" required placeholder="New Password">
-                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye"></i></span> <!-- Password toggle icon -->
+                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye-slash"></i></span>
                 </div>
                 <div class="field space">
                     <span class="fa fa-lock"></span>
                     <input type="password" class="form-control pass-key" name="confirm_password" required placeholder="Confirm Password">
-                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye"></i></span> <!-- Password toggle icon -->
+                    <span class="password-toggle-icon" onclick="togglePasswordVisibility(this)"><i class="fas fa-eye-slash"></i></span> 
                 </div>
                 <div class="field space">
                     <input type="submit" value="Submit">
@@ -115,10 +115,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             const passwordField = icon.previousElementSibling;
             if (passwordField.type === "password") {
                 passwordField.type = "text";
-                icon.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                icon.innerHTML = '<i class="fas fa-eye"></i>';
+              
             } else {
                 passwordField.type = "password";
-                icon.innerHTML = '<i class="fas fa-eye"></i>';
+                icon.innerHTML = '<i class="fas fa-eye-slash"></i>';
             }
         }
     </script>

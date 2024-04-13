@@ -1,0 +1,80 @@
+.btn {
+    text-align: start;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 125px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+}
+
+.btn.btn-info {
+    transition: all 0.2s linear 0s;
+    background-color: blue;
+}
+
+.btn.btn-info:before {
+    content: "\f061"; 
+    font-family: 'Font Awesome\ 5 Free'; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 30px;
+    border-radius: 0 50% 50% 0;
+    transform: scale(0, 1);
+    transform-origin: left center;
+    transition: all 0.2s linear 0s;
+    font-size: 15px;
+}
+
+.btn.btn-info:hover {
+    text-indent: 10px;
+    color: white;
+}
+
+.btn.btn-info:hover:before {
+    transform: scale(1, 1);
+    text-indent: 0;
+}
+
+
+.btn.btn-warning {
+    background-color: green;
+    transition: all 0.2s linear 0s;
+}
+
+.btn.btn-warning:before {
+    content: "\f061"; 
+    font-family: 'Font Awesome\ 5 Free'; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 30px;
+    border-radius: 0 50% 50% 0;
+    transform: scale(0, 1);
+    transform-origin: left center;
+    transition: all 0.2s linear 0s;
+    font-size: 15px;
+}
+.btn.btn-warning:hover {
+    text-indent: 10px;
+    color: white;
+}
+
+.btn.btn-warning:hover:before {
+    transform: scale(1, 1);
+    text-indent: 0;
+}
