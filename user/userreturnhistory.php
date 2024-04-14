@@ -233,7 +233,7 @@ mysqli_stmt_close($stmt);
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
-                            <thead>
+                            <thead class="text-center">
                                 <tr>
                                     <th>R.Id</th>
                                     <th>Title</th>
@@ -289,7 +289,7 @@ mysqli_stmt_close($stmt);
                             </tbody>
                         </table>
                     </div>
-                    <div id="noResults" class="alert alert-danger mt-3 mb-3 me-2 ms-2" style="display: none;">
+                    <div id="noResults" class="alert alert-danger mb-3 me-2 ms-2" style="display: none;">
                         No results found
                     </div>
                 </div>
