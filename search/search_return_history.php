@@ -28,13 +28,13 @@ $result = mysqli_stmt_get_result($stmt);
 <table class="table table-bordered table-hover mb-0" id="returnHistoryTable">
     <thead class="text-center">
         <tr>
-            <th>Return ID</th>
+            <th>R.Id</th>
             <th>User</th>
             <th>Book Title</th>
             <th>Date Borrowed</th>
             <th>Date Returned</th>
             <th>Time Borrowed</th>
-            <th>Return Status</th>
+            <th>R.Status</th>
         </tr>
     </thead>
     <tbody>

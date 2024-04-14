@@ -186,13 +186,13 @@ mysqli_stmt_close($stmt);
                     <table class="table table-bordered table-responsive table-hover mb-0" id="borrowHistoryTable">
                         <thead class="text-center">
                             <tr>
-                                <th>Borrow ID</th>
+                                <th>B.Id</th>
                                 <th>Username</th>
                                 <th>Book Title</th>
                                 <th>Borrow Date</th>
                                 <th>Return Until</th>
                                 <th>Time Left</th>
-                                <th>Status</th>
+                                <th>B.Status</th>
 
                             </tr>
                         </thead>

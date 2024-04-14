@@ -36,46 +36,48 @@ mysqli_stmt_close($stmt);
     <script defer src="../js/bootstrap.bundle.js"></script>
     <style>
         body {
-            background-color: #f8f9fa;
             font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
         }
 
         .container {
             margin-top: 85px;
         }
 
-        .table th,
-        .table td {
-            border: 1px solid #dee2e6;
-            padding: 8px;
-        }
-
-        .table th {
-            color: black;
-        }
-
-        .btn-primary,
-        .btn-danger {
-            margin: 5px;
-        }
-
         .card {
-            background-color: #fff;
+            margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             border-radius: 10px;
-            margin-bottom: 10px;
+            overflow: hidden;
         }
 
         .card-header {
             background-color: #007bff;
             color: #fff;
+            border-bottom: none;
             border-radius: 10px 10px 0 0;
-            padding: 10px;
         }
 
         .card-body {
             padding: 0;
         }
+
+        table {
+            margin-bottom: 0;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
 
         #backToTopBtn {
             display: none;
@@ -198,7 +200,7 @@ mysqli_stmt_close($stmt);
 
                 // Start displaying borrowed books
         ?>
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="fw-bold mb-0">Borrowed Books</h2>
                         <div class="d-flex">

@@ -161,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="submit" value="Submit" onclick="return showAlertAndRedirect()">
                     
                 </div>
-                <a class="btn btn-link text-light mt-2" href="<?php echo $cancel_link; ?>">Cancel</a>
+                <a class="btn-link" href="<?php echo $cancel_link; ?>">Cancel</a>
             </form>
             <?php if (!empty($current_password_err) || !empty($new_password_err) || !empty($confirm_password_err)) : ?>
                 <div class="error">

@@ -1,6 +1,6 @@
 <thead class="text-center">
     <tr>
-        <th>Borrow ID</th>
+        <th>B.Id</th>
         <th>Username</th>
         <th>Book Title</th>
         <th>Borrow Date</th>

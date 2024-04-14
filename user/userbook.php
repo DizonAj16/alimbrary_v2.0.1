@@ -261,7 +261,7 @@ mysqli_stmt_close($stmt);
                 <div class="col-lg-12">
                     <div class="mt-3 clearfix d-flex flex-column justify-content-center align-items-center">
                         <h2 class="fw-bold">Books</h2>
-                        <input type="search" id="searchInput" class="form-control form-control-md" placeholder="Search Title or Genre" style="width:300px;" autocomplete="off">
+                        <input type="search" id="searchInput" class="form-control form-control-md rounded-4" placeholder="Search Title or Genre" style="width:300px;" autocomplete="off">
                     </div>
                 </div>
             </div>

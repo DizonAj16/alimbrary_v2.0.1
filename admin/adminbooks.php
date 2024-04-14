@@ -288,10 +288,10 @@
                         <div class="col-lg-12">
                             <div class="mt-2 clearfix d-flex flex-column justify-content-center align-items-center">
                                 <h2 class="fw-bold">Books</h2>
-                                <div class="d-flex flex-row justify-content-between align-items-center"><!-- Changed align-items-evenly to align-items-center -->
-                                    <div class="input-group"><!-- Wrap input and button in input-group for spacing -->
-                                        <input type="search" id="liveSearchInput" class="form-control form-control-md me-2" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 300px;">
-                                        <button type="button" class="btn btn-success btn-md rounded-2" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
+                                <div class="d-flex flex-row justify-content-between align-items-center">
+                                    <div class="input-group">
+                                        <input type="search" id="liveSearchInput" class="form-control form-control-md me-2 rounded-4" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 300px;">
+                                        <button type="button" class="btn btn-success btn-md rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
                                             <i class="fa fa-plus-circle fa-lg text-light"></i> Add book
                                         </button>
                                     </div>
