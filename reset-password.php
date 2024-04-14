@@ -109,7 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
     <link rel="stylesheet" href="./fa-css/all.css">
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./external-css/loginstyle.css">
     <script>
         function showAlertAndRedirect() {
@@ -160,7 +159,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="field space">
                     <input type="submit" value="Submit" onclick="return showAlertAndRedirect()">
+                    
                 </div>
+                <a class="btn btn-link text-light mt-2" href="<?php echo $cancel_link; ?>">Cancel</a>
             </form>
             <?php if (!empty($current_password_err) || !empty($new_password_err) || !empty($confirm_password_err)) : ?>
                 <div class="error">
@@ -169,9 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php echo $confirm_password_err; ?>
                 </div>
             <?php endif; ?>
-            <div class="form-group">
-                <a class="btn btn-link text-light mt-2" href="<?php echo $cancel_link; ?>">Cancel</a>
-            </div>
+                
         </div>
     </div>
 
