@@ -184,7 +184,7 @@
                 }
 
                 .card {
-                    background: linear-gradient(to bottom, rgba(135, 206, 235, 0.5), transparent);
+                    background: linear-gradient(to bottom, #1fa0ff, #12dafb, #17fdcc);
                     border: none;
                     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
                     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -290,7 +290,7 @@
                                 <h2 class="fw-bold">Books</h2>
                                 <div class="d-flex flex-row justify-content-between align-items-center">
                                     <div class="input-group">
-                                        <input type="search" id="liveSearchInput" class="form-control form-control-md me-2 rounded-4" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 300px;">
+                                        <input type="search" id="liveSearchInput" class="form-control form-control-md me-2 rounded-4 border border-primary" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 300px;">
                                         <button type="button" class="btn btn-success btn-md rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
                                             <i class="fa fa-plus-circle fa-lg text-light"></i> Add book
                                         </button>
@@ -432,7 +432,7 @@
                                 echo '</div>';
 
                                 echo '<div class="card-body">';
-                                echo '<h5 class="card-title text-center mb-3 fw-bold" style="height: 50px; font-size: 18px;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
+                                echo '<h5 class="card-title text-center mb-3 fw-bold text-light" style="height: 50px; font-size: 18px;" title="' . $row['title'] . '">' . $row['title'] . '</h5>';
                                 echo '<p class="card-text text-center mb-3" style="font-size: 16px;">';
                                 echo '  <span class="badge bg-' . (($row['availability'] == 'Available') ? 'success' : 'danger') . ' text-light">' . $row['availability'] . '</span>';
                                 echo '</p>';
