@@ -209,7 +209,7 @@ mysqli_stmt_close($stmt);
                         </div>
                     </div>
                     <div class="card-body">
-                        
+                        <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead class="text-center">
                                     <tr>
@@ -283,7 +283,7 @@ mysqli_stmt_close($stmt);
                                 </tbody>
 
                             </table>
-                        
+                        </div>
                     </div>
 
                     <div id="noResults" class="alert alert-danger ms-2 me-2" style="display: none;">
