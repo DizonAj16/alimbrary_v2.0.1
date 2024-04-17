@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 13, 2024 at 07:17 PM
+-- Generation Time: Apr 17, 2024 at 06:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -72,7 +72,7 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (88, 'The Lion, the Witch and the Wardrobe', 'The first book in The Chronicles of Narnia series, it follows the adventures of four siblings who discover the magical land of Narnia and join the fight against the White Witch.', 'C.S. Lewis', '978-948777154', 1950, 'Fantasy, Children\'s Literature', 'Not Available', 0x2e2e2f75706c6f6164732f7468652d6c696f6e2d7468652d77697463682d616e642d7468652d77617264726f62652d312e6a7067),
 (89, '1984', 'A dystopian novel set in a totalitarian society where individuality and independent thought are suppressed by the ruling Party led by Big Brother.', 'George Orwell', '978-583411954', 1949, 'Dystopian Fiction, Political Satire', 'Not Available', 0x2e2e2f75706c6f6164732f313938342e6a7067),
 (90, 'The Help', 'Set in 1960s Mississippi, the novel tells the story of African American maids who work for white families and the unlikely friendships that form amidst racial tensions and social injustices.', 'Kathryn Stockett', '978-821590241', 2009, 'Historical Fiction, Drama', 'Available', 0x2e2e2f75706c6f6164732f7468652068656c702e6a7067),
-(91, 'Watchmen', 'Set in an alternate history where superheroes are real, \"Watchmen\" explores complex themes of power, morality, and human nature.', 'Alan Moore', '978-407028204', 1986, 'Superhero, Mystery, Drama', 'Available', 0x2e2e2f75706c6f6164732f57617463686d656e2c5f69737375655f312e6a7067),
+(91, 'Watchmen', 'Set in an alternate history where superheroes are real, \"Watchmen\" explores complex themes of power, morality, and human nature.', 'Alan Moore', '978-407028204', 1986, 'Superhero, Mystery, Drama', 'Not Available', 0x2e2e2f75706c6f6164732f57617463686d656e2c5f69737375655f312e6a7067),
 (92, 'X-Men: Days of Future Past', 'In a dystopian future, mutants are hunted to near-extinction, prompting the X-Men to send Wolverine back in time to prevent the catastrophic events that led to this timeline.', 'Chris Claremont', '978-196028760', 1981, 'Superhero, Science Fiction, Time Travel', 'Not Available', 0x2e2e2f75706c6f6164732f786d656e2e6a7067),
 (93, 'The Structure of Scientific Revolutions', 'This seminal work explores the process of scientific revolutions and paradigm shifts.', 'Thomas S. Kuhn', '978-733645177', 1962, 'Philosophy of Science', 'Not Available', 0x2e2e2f75706c6f6164732f746865207374727563747572652e6a7067),
 (94, 'Capital in the Twenty-First Century', 'Piketty examines the dynamics of wealth and income inequality in capitalist economies.', 'Thomas Piketty', '978-234847473', 2013, 'Economics', 'Available', 0x2e2e2f75706c6f6164732f6361706974616c2d696e2d7468652d7477656e74792d66697273742d63656e747572792d332e6a7067),
@@ -427,7 +427,8 @@ INSERT INTO `borrowed_books` (`borrow_id`, `user_id`, `book_id`, `borrow_date`, 
 (365, 28, 113, '2024-04-12 13:28:32', '2024-04-12 16:00:00'),
 (366, 19, 87, '2024-04-12 16:39:38', '2024-04-27 08:00:00'),
 (367, 19, 42, '2024-04-13 16:17:36', '2024-04-14 10:00:00'),
-(368, 19, 48, '2024-04-13 16:43:44', '2024-04-29 07:30:00');
+(368, 19, 48, '2024-04-13 16:43:44', '2024-04-29 07:30:00'),
+(369, 19, 91, '2024-04-14 16:32:36', '2024-04-27 08:00:00');
 
 -- --------------------------------------------------------
 
@@ -774,9 +775,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `full_name`, `occupation`, `contact_num`, `address`, `password`, `created_at`, `user_type`, `image`) VALUES
-(14, 'admin', '', '', '', '', '', '$2y$10$5k.GDQXOJg30GMl6AGNv8euVxkUnhqRSRJ4Y5VST./LgPL2kfBXE2', '2024-02-19 00:01:30', 'admin', 0x496d616765732f61646d696e312e6a7067),
+(14, 'admin', '', '', '', '', '', '$2y$10$GDDoVFoKbMkq/xI2P5FQvOiUmrGd6/rfcNEj01noqorzCVUv0V0DK', '2024-02-19 00:01:30', 'admin', 0x496d616765732f61646d696e312e6a7067),
 (19, 'user01', '', '', '', '', '', '$2y$10$Je.I4bOwtctWCLfo92JQMODBZPl7imnmPjiNVUbZ/4I6evGTvnNN2', '2024-02-29 17:32:35', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
-(20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$pU0wQzf8nFeVt.s6ti/n8OYQBBLubFlHfYxnfiJ/BmyGL7pr4vTpa', '2024-03-04 23:12:13', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
+(20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$KuF2YtDxAVllTaMX7L60eeX80uOTFelKHjAocIqE9kcfYFuY26p5i', '2024-03-04 23:12:13', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
 (21, 'alim', '', '', '', '', '', '$2y$10$kze.NSyaawXbrn4Yh1RHl.0Lhy4o4tawUBgxUjPPEMWc.dkx62CTq', '2024-03-05 03:36:45', 'user', 0x496d616765732f73747564656e742069636f6e20322e706e67),
 (22, 'luffy', '', '', '', '', '', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c7566667920696d6167652e6a7067),
 (23, 'johndoe69', '', '', '', '', '', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f75736572207069632e6a7067),
@@ -826,13 +827,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=369;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=370;
 
 --
 -- AUTO_INCREMENT for table `return_history`
@@ -844,7 +845,7 @@ ALTER TABLE `return_history`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1009;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1012;
 
 --
 -- Constraints for dumped tables

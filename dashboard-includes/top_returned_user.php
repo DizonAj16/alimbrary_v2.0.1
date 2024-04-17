@@ -1,3 +1,31 @@
+<style>
+    .returners-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .returners-heading {
+        margin-bottom: 20px;
+        text-align: center;
+        color: dark;
+        font-weight: bold;
+    }
+
+    .returners-list {
+        list-style-type: decimal;
+        padding-left: 20px;
+    }
+
+    .returner-item {
+        margin-bottom: 5px;
+        color: dark;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
+
+
 <?php
 // Include database connection
 include '../config.php';
@@ -16,15 +44,21 @@ $result_top_returned_users = mysqli_query($conn, $query_top_returned_users);
 
 // Check if the query was successful
 if ($result_top_returned_users) {
-    echo '<div style="display: flex; flex-direction: column; align-items: center;">';
-    echo "<h3 style='margin-bottom: 20px; text-align: center; color: white;' class='fw-bold'>Top Returners</h3>"; 
-    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; 
+    // Start the div with flex styles
+    echo '<div class="returners-container">';
+    // Heading with class for styling
+    echo "<h3 class='returners-heading'>Top Returners</h3>"; 
+    // Start the ordered list with class for styling
+    echo "<ol class='returners-list'>"; 
     
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result_top_returned_users)) {
-        echo "<li style='margin-bottom: 5px; color: white; font-weight:bold; font-size: 18px;'>{$row['username']} (Returned {$row['return_count']} books)</li>"; 
+        // List item with class for styling
+        echo "<li class='returner-item'>{$row['username']} (Returned {$row['return_count']} books)</li>"; 
     }
+    // Close the ordered list
     echo "</ol>"; 
+    // Close the flex div
     echo "</div>"; 
 } else {
     // Display an error message if the query fails

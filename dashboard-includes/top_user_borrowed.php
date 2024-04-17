@@ -1,3 +1,31 @@
+<style>
+    .borrowers-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .borrowers-heading {
+        margin-bottom: 20px;
+        text-align: center;
+        color: dark;
+        font-weight: bold;
+    }
+
+    .borrowers-list {
+        list-style-type: decimal;
+        padding-left: 20px;
+    }
+
+    .borrower-item {
+        margin-bottom: 5px;
+        color: dark;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
+
+
 <?php
 // Include database connection
 include '../config.php';
@@ -16,15 +44,20 @@ $result = mysqli_query($conn, $query);
 
 // Check if the query was successful
 if ($result) {
-    echo '<div style="display: flex; flex-direction: column; align-items: center;">';
-    echo "<h3 style='margin-bottom: 20px; text-align: center; color: white;' class='fw-bold'>Top Borrowers</h3>"; 
-    // Start the inline styling directly within the PHP echo
-    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; 
+    // Start the div with flex styles
+    echo '<div class="borrowers-container">';
+    // Heading with class for styling
+    echo "<h3 class='borrowers-heading'>Top Borrowers</h3>"; 
+    // Start the ordered list with class for styling
+    echo "<ol class='borrowers-list'>"; 
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<li style='margin-bottom: 5px; color: white; font-weight:bold; font-size: 18px;'>{$row['username']} - Borrowed {$row['borrow_count']} times</li>"; 
+        // List item with class for styling
+        echo "<li class='borrower-item'>{$row['username']} - Borrowed {$row['borrow_count']} times</li>"; 
     }
+    // Close the ordered list
     echo "</ol>";
+    // Close the flex div
     echo "</div>";
 } else {
     // Display an error message if the query fails

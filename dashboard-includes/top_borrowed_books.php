@@ -1,3 +1,34 @@
+<style>
+    .text-center {
+        text-align: center;
+    }
+
+    .popular-books-heading {
+        color: dark;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .popular-books-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .popular-books-list {
+        list-style-type: decimal;
+        padding-left: 20px;
+    }
+
+    .popular-book-item {
+        color: dark;
+        text-align: start;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
+
+
 <?php
 // Include database connection
 include '../config.php';
@@ -16,17 +47,24 @@ $result = mysqli_query($conn, $query);
 
 // Check if the query was successful
 if ($result) {
+    // Start the div with flex styles
     echo '<div class="text-center">';
-    echo "<h3 style='color: white; margin-bottom: 20px;' class='fw-bold'>Most Popular Books</h3>"; 
-    echo "<div style='display: flex; flex-direction: column; align-items: center;'>"; 
-    echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; 
+    // Heading with class for styling
+    echo "<h3 class='popular-books-heading'>Most Popular Books</h3>"; 
+    // Start the div with flex styles
+    echo "<div class='popular-books-container'>"; 
+    // Start the ordered list with class for styling
+    echo "<ol class='popular-books-list'>"; 
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result)) {
-        // Display each book title and its borrow count
-        echo "<li style='color: white; text-align: start; font-weight:bold; font-size:18px;'>{$row['title']} - Borrowed {$row['borrow_count']} times</li>"; // Apply red color to the list items and center the text
+        // List item with class for styling
+        echo "<li class='popular-book-item'>{$row['title']} - Borrowed {$row['borrow_count']} times</li>"; 
     }
+    // Close the ordered list
     echo "</ol>";
+    // Close the div with flex styles
     echo "</div>"; 
+    // Close the div with text center alignment
     echo "</div>"; 
 } else {
     // Display an error message if the query fails

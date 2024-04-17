@@ -37,10 +37,13 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="../fa-css/all.css">
     <style>
         body {
-            background: white;
             font-family: 'Montserrat', sans-serif;
-            color: #333;
             font-size: 16px;
+            background: url('../images/glassmorphism.jpeg');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .card-user {
@@ -48,14 +51,14 @@ mysqli_stmt_close($stmt);
             transition: transform 0.3s ease;
             padding: 15px;
             margin-bottom: 30px;
-            max-width: 350px;
-            max-height: 420px;
+            max-height: 450px;
             overflow: hidden;
+            transition: background-color 0.3s ease;
         }
 
         .card-user:hover {
-            transform: translateY(-5px);
             cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .card-user .card-body {
@@ -66,13 +69,13 @@ mysqli_stmt_close($stmt);
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 5px;
-            color: #333;
+            color: white;
         }
 
         .card-user .card-text {
             font-size: 16px;
             margin-bottom: 5px;
-            color: #555;
+            color: white;
         }
 
         .bg-admin {
@@ -123,75 +126,76 @@ mysqli_stmt_close($stmt);
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
-<div class="container-fluid">
-    <div class="title p-1">
-        <img src="../Images/logo.png" alt="" class="logo">
-    </div>
+        <div class="container-fluid">
+            <div class="title p-1">
+                <img src="../Images/logo.png" alt="" class="logo">
+            </div>
 
-    <!-- Toggle Button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <!-- Navbar Links -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link " href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> Manage Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="returnhistory.php"><i class="fa fa-archive fa-lg"></i> Return History</a>
-            </li>
-        </ul>
-
-        <!-- Dropdown -->
-        <div class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php
-                    // Display user's profile image or default user icon
-                    if (!empty($profile_image)) {
-                        echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
-                    } else {
-                        echo '<i class="fa fa-user fa-lg"></i>';
-                    }
-                    ?>
-                    <?php echo htmlspecialchars($_SESSION["username"]); ?>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
-                    <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="welcomeadmin.php"><i class="fa fa-home fa-lg"></i> Home
+                        </a>
                     </li>
-                    <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
+                    <li class="nav-item">
+                        <a class="nav-link " href="dashboard.php"><i class="fas fa-tachometer-alt fa-lg"></i> Dashboard</a>
                     </li>
-                    <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="adminbooks.php"><i class="fa fa-book fa-lg"></i> Manage Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="users.php"><i class="fa fa-users fa-lg"></i> Manage Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="borrowhistory.php"><i class="fa fa-history fa-lg"></i> Borrow History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="returnhistory.php"><i class="fa fa-archive fa-lg"></i> Return History</a>
+                    </li>
                 </ul>
-            </li>
-        </div>
-    </div>
-</div>
-</nav>
 
-    <div class="container" style="margin-top: 100px;">
-        <div class="row row-cols-1 row-cols-md-3">
+                <!-- Dropdown -->
+                <div class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php
+                            // Display user's profile image or default user icon
+                            if (!empty($profile_image)) {
+                                echo '<img src="../' . htmlspecialchars($profile_image) . '" alt="Profile Image" class="rounded-circle" style="width: 32px; height: 32px;">';
+                            } else {
+                                echo '<i class="fa fa-user fa-lg"></i>';
+                            }
+                            ?>
+                            <?php echo htmlspecialchars($_SESSION["username"]); ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                            <li><a class="dropdown-item" href="../reset-password.php"><i class="fas fa-unlock"></i> Reset Password</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../myprofile.php"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../logout.php"><i class="fas fa-sign-out-alt"></i> Sign out</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="margin-top: 100px;">
+        <h1 class="text-center fw-bold text-light">Users</h1>
+        <div class="d-flex flex-wrap justify-content-center">
             <?php
             // Query to retrieve users information
             $sql = "SELECT id, username, created_at, user_type, image FROM users ORDER BY id ASC";
@@ -201,44 +205,34 @@ mysqli_stmt_close($stmt);
             if ($result) {
                 // Check if there are any rows returned
                 if (mysqli_num_rows($result) > 0) {
-                    // Counter for adding clearfix
-                    $counter = 0;
                     // Fetch rows and display data
                     while ($row = mysqli_fetch_assoc($result)) {
                         $cardColorClass = $row['user_type'] === 'admin' ? 'bg-admin text-admin' : 'bg-user text-user';
                         $trashButton = $row['user_type'] === 'admin' ? '<a href="admin_info.php"><button class="btn btn-primary"><i class="fas fa-eye lg text-light"></i> My Info</button></a>' : '<button class="btn btn-danger" onclick="deleteUser(' . $row['id'] . ')"><i class="fas fa-trash"></i> Delete</button>';
             ?>
-                        <div class="col mb-4">
-                            <div class="card <?php echo $cardColorClass; ?> card-user">
-                                <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                    <?php if (!empty($row['image'])) : ?>
-                                        <img src="../<?php echo $row['image']; ?>" class="card-img-top profile-image mb-2" alt="Profile Image">
-                                    <?php else : ?>
-                                        <i class="fas fa-user-circle text-dark mb-2" style="font-size: 200px;"></i>
-                                    <?php endif; ?>
+                        <div class="card <?php echo $cardColorClass; ?> card-user m-2" style="max-width: 300px;">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <?php if (!empty($row['image'])) : ?>
+                                    <img src="../<?php echo $row['image']; ?>" class="card-img-top profile-image mb-2" alt="Profile Image">
+                                <?php else : ?>
+                                    <i class="fas fa-user-circle text-dark mb-2" style="font-size: 200px;"></i>
+                                <?php endif; ?>
 
-                                    <div>
-                                        <h5 class="card-title text-center"> <?php echo $row['username']; ?></h5>
-                                        <p class="card-text fw-bold"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
-                                        <p class="card-text fw-bold"><i class="fas fa-clock"></i> Joined: <?php echo $row['created_at']; ?></p>
-                                        <p class="card-text fw-bold"><i class="<?php echo $iconClass; ?>"></i> <?php echo ucfirst($row['user_type']); ?></p>
-                                        <div class="text-center">
-                                            <?php if ($row['user_type'] !== 'admin') : ?>
-                                                <a href="view_user.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
-                                            <?php endif; ?>
-                                            <?php echo $trashButton; ?>
-                                        </div>
+                                <div>
+                                    <h5 class="card-title text-center"> <?php echo $row['username']; ?></h5>
+                                    <p class="card-text fw-bold"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
+                                    <p class="card-text fw-bold"><i class="fas fa-clock"></i> Joined: <?php echo date("g:i a, F j, Y", strtotime($row['created_at'])); ?></p>
+                                    <p class="card-text fw-bold"><i class="fas fa-user-circle"></i> <?php echo ucfirst($row['user_type']); ?></p>
+                                    <div class="text-center">
+                                        <?php if ($row['user_type'] !== 'admin') : ?>
+                                            <a href="view_user.php?id=<?php echo $row['id']; ?>" class="btn btn-primary"><i class="fas fa-eye"></i> View</a>
+                                        <?php endif; ?>
+                                        <?php echo $trashButton; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        
             <?php
-                        $counter++;
-                        if ($counter % 3 == 0) {
-                            echo '<div class="w-100"></div>'; // Break to the next line
-                        }
                     }
                 } else {
                     // No users found

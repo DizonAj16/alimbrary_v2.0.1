@@ -37,7 +37,11 @@ mysqli_stmt_close($stmt);
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f8f9fa;
+            background: url('../images/glassmorphism.jpeg');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .container {
@@ -73,9 +77,6 @@ mysqli_stmt_close($stmt);
         .table td {
             border: 1px solid #dee2e6;
             padding: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
 
@@ -208,11 +209,11 @@ mysqli_stmt_close($stmt);
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        
                             <table class="table table-hover">
                                 <thead class="text-center">
                                     <tr>
-                                        <th>Borrow ID</th>
+                                        <th>B.Id</th>
                                         <th>Book Title</th>
                                         <th>Borrow Date</th>
                                         <th>Borrow Until</th>
@@ -282,7 +283,7 @@ mysqli_stmt_close($stmt);
                                 </tbody>
 
                             </table>
-                        </div>
+                        
                     </div>
 
                     <div id="noResults" class="alert alert-danger ms-2 me-2" style="display: none;">

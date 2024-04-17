@@ -67,7 +67,11 @@ mysqli_stmt_close($stmt);
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #f8f9fa;
+            background: url('../images/glassmorphism.jpeg');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .card {

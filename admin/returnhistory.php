@@ -57,7 +57,11 @@ mysqli_stmt_close($stmt);
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            background: url('../images/glassmorphism.jpeg');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .card {
@@ -229,7 +233,7 @@ mysqli_stmt_close($stmt);
                                 // Display returned date in 12-hour format with only the date
                                 echo "<td class='text-center'>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
 
-                                
+
                                 // Calculate time borrowed using DateTime objects
                                 $borrow_date = new DateTime($row['borrow_date']);
                                 $returned_date_time = new DateTime($row['returned_date_time']);
@@ -304,7 +308,7 @@ mysqli_stmt_close($stmt);
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="../jquery/jquery-3.5.1.min.js"></script>
     <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
-    
+
 </body>
 
 </html>

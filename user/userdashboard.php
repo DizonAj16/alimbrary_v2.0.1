@@ -33,6 +33,11 @@ mysqli_stmt_close($stmt);
   <style>
     body {
       font-family: 'Arial', sans-serif;
+      background: url('../images/glassmorphism.jpeg');
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
     }
 
     .dashboard-container {
@@ -44,19 +49,23 @@ mysqli_stmt_close($stmt);
     }
 
     .dashboard-section {
-      flex: 1 1 320px;
+      flex: 1 1 350px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.06);
+      border: none;
+      box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.02);
+      backdrop-filter: blur(20px);
+      transition: background-color 0.3s ease;
     }
 
     .dashboard-section:hover {
       cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.1);
     }
 
     .dashboard-section i {
@@ -67,6 +76,11 @@ mysqli_stmt_close($stmt);
       .dashboard-section {
         flex-basis: calc(100% - 40px);
       }
+    }
+
+    .recent-icon, .borrow-icon, .return-icon{
+      height: 90px;
+      width: 90px;
     }
   </style>
 </head>
@@ -140,47 +154,51 @@ mysqli_stmt_close($stmt);
     </div>
   </nav>
 
-  <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
+  <div class="container" style="margin-top: 100px;">
+    <h1 class="text-center fw-bold text-light">Dashboard</h1>
+  </div>
 
-    <a class="total-available-books dashboard-section bg-info text-white" href="userbook.php" style="text-decoration: none;">
-      <i class="fas fa-book fa-3x"></i>
+  <div class="dashboard-container" id="dashboard">
+
+    <a class="total-available-books dashboard-section text-light" href="userbook.php" style="text-decoration: none;">
+      <img src="../images/icons8-books-96.png" alt="">
       <?php include '../dashboard-includes/total_available_books.php'; ?>
     </a>
 
 
-    <a href="borrowedbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
-      <i class="fas fa-book-open fa-3x"></i>
+    <a href="borrowedbooks.php" class="dashboard-section text-light" style="text-decoration: none;">
+      <img src="../images/icons8-most-recent-58.png" alt="" class="recent-icon">
       <?php include '../dashboard-includes/user_currently_borrowed.php'; ?>
     </a>
 
 
-    <div class="dashboard-section bg-success text-white">
-      <i class="fas fa-book fa-3x"></i>
+    <div class="dashboard-section text-light">
+      <img src="../images/icons8-borrow-book-64.png" class="borrow-icon">
       <?php include '../dashboard-includes/total_user_borrowed.php'; ?>
     </div>
 
-    <a href="userreturnhistory.php" class="dashboard-section bg-secondary text-white" style="text-decoration: none;">
-      <i class="fas fa-reply-all fa-3x"></i>
+    <a href="userreturnhistory.php" class="dashboard-section text-light" style="text-decoration: none;">
+      <img src="../images/icons8-return-book-64.png" class="return-icon">
       <?php include '../dashboard-includes/total_user_returned.php'; ?>
     </a>
 
 
-    <div class="dashboard-section bg-warning text-white">
-      <i class="fas fa-calendar-check fa-3x"></i>
+    <div class="dashboard-section text-light">
+      <img src="../images/icons8-today-94.png" alt="">
       <?php include '../dashboard-includes/total_user_borrowed_today.php'; ?>
     </div>
 
 
-    <a href="borrowedbooks.php" class="dashboard-section bg-danger text-white" style="text-decoration: none;">
-      <i class="fas fa-exclamation-triangle fa-3x"></i>
+    <a href="borrowedbooks.php" class="dashboard-section  text-light" style="text-decoration: none;">
+      <img src="../images/icons8-overdue-100.png" alt="">
       <?php include '../dashboard-includes/user_overdue_books.php'; ?>
     </a>
 
 
 
 
-    <div class="dashboard-section bg-info text-white">
-      <i class="fas fa-star fa-3x mr-3"></i>
+    <div class="dashboard-section  text-light">
+      <img src="../images/icons8-star-94.png" alt="">
       <h3 class="fw-bold" id="title">My Favorite Books</h3>
       <div id="userMostBorrowedBooks" style="display: none;">
         <?php include '../dashboard-includes/user_most_borrowed_books.php'; ?>
@@ -207,9 +225,9 @@ mysqli_stmt_close($stmt);
     </div>
 
 
-    <a href="../myprofile.php" class="dashboard-section bg-dark text-light" style="text-decoration: none;">
+    <a href="../myprofile.php" class="dashboard-section text-light" style="text-decoration: none;">
       <div class="text-center">
-        <i class="fas fa-edit fa-3x mr-2"></i>
+        <img src="../images/icons8-save-as-94.png" alt="">
         <h2><i>Edit your profile!</i></h2>
       </div>
     </a>

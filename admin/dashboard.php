@@ -31,6 +31,14 @@ mysqli_stmt_fetch($stmt);
     <link rel="stylesheet" href="../external-css/navigation.css">
     <link rel="stylesheet" href="../fa-css/all.css">
     <style>
+        body {
+            background: url('../images/glassmorphism.jpeg');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
         .dashboard-container {
             display: flex;
             flex-wrap: wrap;
@@ -48,13 +56,18 @@ mysqli_stmt_fetch($stmt);
             align-items: center;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.06);
+            border: none;
+            box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(20px);
+            transition: background-color 0.3s ease;
         }
 
         .dashboard-section:hover {
             cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.1);
         }
+
 
 
         @media (max-width: 768px) {
@@ -65,28 +78,6 @@ mysqli_stmt_fetch($stmt);
 
         .dashboard-section i {
             margin-bottom: 10px;
-        }
-
-
-        .currently-borrowed-books.wider {
-            width: 865px;
-            max-width: none;
-        }
-
-        .gradient1 {
-            background: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgba(255, 0, 0, 0.6));
-        }
-
-        .gradient2 {
-            background: linear-gradient(to bottom, rgba(0, 255, 0, 0), rgba(0, 255, 0, 0.6));
-        }
-
-        .gradient3 {
-            background: linear-gradient(to bottom, rgba(0, 0, 255, 0), rgba(0, 0, 255, 0.6));
-        }
-
-        .gradient4 {
-            background: linear-gradient(to bottom, rgba(255, 255, 0, 0), rgba(255, 255, 0, 0.6));
         }
 
         #backToTopBtn {
@@ -106,6 +97,10 @@ mysqli_stmt_fetch($stmt);
 
         #backToTopBtn:hover {
             background-color: rgba(0, 0, 0, 0.7);
+        }
+        .most-recent-icon{
+            height: 90px;
+            width: 90px;
         }
     </style>
 </head>
@@ -179,38 +174,42 @@ mysqli_stmt_fetch($stmt);
     </nav>
 
 
-    <div class="dashboard-container" id="dashboard" style="padding-top: 90px;">
 
-        <!-- Modify the dashboard sections with solid background colors -->
-        <a href="adminbooks.php" class="dashboard-section bg-primary text-white" style="text-decoration: none;">
-            <i class="fas fa-book fa-3x"></i>
+    <div class="container-fluid bg-transparent" style="margin-top:100px;">
+        <h1 class="text-center text-light fw-bold">Dashboard</h1>
+    </div>
+
+    <div class="dashboard-container" id="dashboard">
+
+        <a href="adminbooks.php" class="dashboard-section text-light fw-bold" style="text-decoration: none;">
+            <img src="../images/icons8-books-96.png" alt="">
             <div id="book-count">
                 <?php include '../dashboard-includes/total_books.php'; ?>
             </div>
         </a>
 
-        <a href="users.php" class="users-list dashboard-section bg-success text-white" style="text-decoration: none;">
-            <i class="fas fa-users fa-3x"></i>
+        <a href="users.php" class="users-list dashboard-section text-light" style="text-decoration: none;">
+            <img src="../images/icons8-users-94.png" alt="">
             <?php include '../dashboard-includes/get_users.php'; ?>
         </a>
 
-        <a href="../dashboard-includes/not_availablebooks.php" class="current_borrowing_users dashboard-section bg-warning text-white" style="text-decoration: none;">
-            <i class="fas fa-user-clock fa-3x"></i>
+        <a href="../dashboard-includes/not_availablebooks.php" class="current_borrowing_users dashboard-section text-light" style="text-decoration: none;">
+            <img src="../images/icons8-most-recent-58.png" class="most-recent-icon">
             <?php include '../dashboard-includes/current_borrowing_users.php'; ?>
         </a>
 
-        <a href="../dashboard-includes/available_books.php" class="total-available-books dashboard-section bg-info text-white" style="text-decoration: none;">
-            <i class="fas fa-book-open fa-3x"></i>
+        <a href="../dashboard-includes/available_books.php" class="total-available-books dashboard-section text-light" style="text-decoration: none;">
+            <img src="../images/icons8-ok-94.png" class="available-icon">
             <?php include '../dashboard-includes/total_available_books.php'; ?>
         </a>
 
-        <div class="total-borrowed-and-returned dashboard-section bg-primary text-white">
-            <i class="fas fa-exchange-alt fa-3x"></i>
+        <div class="total-borrowed-and-returned dashboard-section text-light">
+            <img src="../images/icons8-exchange-100.png" alt="">
             <?php include '../dashboard-includes/total_borrowed_and_returned.php'; ?>
         </div>
 
-        <div class="top-user-borrowed dashboard-section bg-success text-white" id="topUserBorrowedSection">
-            <i class="fas fa-chart-bar fa-3x"></i>
+        <div class="top-user-borrowed dashboard-section text-light" id="topUserBorrowedSection">
+            <img src="../images/icons8-chart-bar-64.png" alt="">
             <h3 class="fw-bold" id="topUserBorrowedTitle">Top Borrowers</h3>
             <div id="topUserBorrowedContent" style="display: none;">
                 <?php include '../dashboard-includes/top_user_borrowed.php'; ?>
@@ -218,8 +217,8 @@ mysqli_stmt_fetch($stmt);
             <button class="btn btn-transparent btn-md fw-bold text-light" onclick="toggleExpand('topUserBorrowed')"><i class="fas fa-chevron-down fa-lg"></i> Click to expand</button>
         </div>
 
-        <div class="top-returned-user dashboard-section bg-danger text-white" id="topReturnedUserSection">
-            <i class="fas fa-chart-line fa-3x"></i>
+        <div class="top-returned-user dashboard-section text-light" id="topReturnedUserSection">
+            <img src="../images /icons8-combo-chart-64.png" alt="">
             <h3 class="fw-bold" id="topReturnedUserTitle">Top Returners</h3>
             <div id="topReturnedUserContent" style="display: none;">
                 <?php include '../dashboard-includes/top_returned_user.php'; ?>
@@ -227,8 +226,8 @@ mysqli_stmt_fetch($stmt);
             <button class="btn btn-transparent btn-md fw-bold text-light" onclick="toggleExpand('topReturnedUser')"><i class="fas fa-chevron-down fa-lg"></i> Click to expand</button>
         </div>
 
-        <div class="most-borrowed-books dashboard-section bg-warning text-white" id="mostBorrowedBooksSection">
-            <i class="fas fa-star fa-3x"></i>
+        <div class="most-borrowed-books dashboard-section text-light" id="mostBorrowedBooksSection">
+            <img src="../images/icons8-star-96.png" alt="">
             <h3 class="fw-bold text-center" id="mostBorrowedBooksTitle">Most Popular Books</h3>
             <div id="mostBorrowedBooksContent" style="display: none;">
                 <?php include '../dashboard-includes/top_borrowed_books.php'; ?>
@@ -236,15 +235,14 @@ mysqli_stmt_fetch($stmt);
             <button class="btn btn-transparent btn-md fw-bold text-light" onclick="toggleExpand('mostBorrowedBooks')"><i class="fas fa-chevron-down fa-lg"></i> Click to expand</button>
         </div>
 
-        <div class="top-returned-books dashboard-section bg-info text-white" id="topReturnedBooksSection">
-            <i class="fas fa-book-reader fa-3x"></i>
+        <div class="top-returned-books dashboard-section text-light" id="topReturnedBooksSection">
+            <img src="../images/icons8-popular-94.png" alt="">
             <h3 class="fw-bold" id="topReturnedBooksTitle">Most Returned Books</h3>
             <div id="topReturnedBooksContent" style="display: none;">
                 <?php include '../dashboard-includes/top_returned_books.php'; ?>
             </div>
             <button class="btn btn-transparent btn-md fw-bold text-light" onclick="toggleExpand('topReturnedBooks')"><i class="fas fa-chevron-down fa-lg"></i> Click to expand</button>
         </div>
-
 
     </div>
 
@@ -274,7 +272,6 @@ mysqli_stmt_fetch($stmt);
         }
     </script>
 
-    </div>
 
     <!-- Back to Top Button -->
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>

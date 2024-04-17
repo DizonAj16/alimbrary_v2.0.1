@@ -135,37 +135,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
            
             <script>
-                const passwordFields = document.querySelectorAll(".pass-key");
-                const toggleIcons = document.querySelectorAll(".password-toggle-icon i");
+    const passwordFields = document.querySelectorAll(".pass-key");
+    const toggleIcons = document.querySelectorAll(".password-toggle-icon i");
 
-                toggleIcons.forEach((icon, index) => {
-                    icon.addEventListener("click", function() {
-                        const passwordField = passwordFields[index];
-                        if (passwordField.type === "password") {
-                            passwordField.type = "text";
-                            icon.classList.add("fa-eye");
-                            icon.classList.remove("fa-eye-slash");
-                        } else {
-                            passwordField.type = "password";
-                            icon.classList.add("fa-eye-slash");
-                            icon.classList.remove("fa-eye");
-                        }
-                    });
-                });
-            </script>
-            <!-- PHP code for displaying errors and success message -->
-            <?php if (!empty($signup_success_message)) : ?>
-                <div class="success-message">
-                    <?php echo $signup_success_message; ?>
-                </div>
-            <?php endif; ?>
-            <?php if (!empty($username_err) || !empty($password_err) || !empty($confirm_password_err)) : ?>
-                <div class="error">
-                    <?php echo $username_err; ?>
-                    <?php echo $password_err; ?>
-                    <?php echo $confirm_password_err; ?>
-                </div>
-            <?php endif; ?>
+    toggleIcons.forEach((icon, index) => {
+        icon.addEventListener("click", function() {
+            const passwordField = passwordFields[index];
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.add("fa-eye");
+                icon.classList.remove("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                icon.classList.add("fa-eye-slash");
+                icon.classList.remove("fa-eye");
+            }
+        });
+    });
+
+    // PHP code for displaying errors and success message
+    <?php if (!empty($signup_success_message)) : ?>
+        alert("<?php echo $signup_success_message; ?>");
+        window.location.href = "login.php"; // Redirect to login page
+    <?php endif; ?>
+    <?php if (!empty($username_err) || !empty($password_err) || !empty($confirm_password_err)) : ?>
+        var errorMessage = "<?php echo $username_err . '\n' . $password_err . '\n' . $confirm_password_err; ?>";
+        alert(errorMessage);
+    <?php endif; ?>
+</script>
+
+            
             <div class="signup">
                 Have an account?
                 <a href="login.php">Back to Login</a>
