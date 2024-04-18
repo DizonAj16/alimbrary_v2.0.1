@@ -37,6 +37,7 @@ mysqli_stmt_close($stmt);
   <link rel="stylesheet" href="../external-css/navigation.css?<?php echo time(); ?>">
   <link rel="stylesheet" href="../fa-css/all.css">
   <link rel="stylesheet" href="../external-css/preloader.css?<?php echo time(); ?>">
+  <link rel="icon" href="../Images/logo.png" type="image/x-icon">
   <style>
     body {
       font-family: 'Arial', sans-serif;

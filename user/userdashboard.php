@@ -30,6 +30,7 @@ mysqli_stmt_close($stmt);
   <script defer src="../js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="../external-css/navigation.css">
   <link rel="stylesheet" href="../fa-css/all.css">
+  <link rel="icon" href="../Images/logo.png" type="image/x-icon">
   <style>
     body {
       font-family: 'Arial', sans-serif;

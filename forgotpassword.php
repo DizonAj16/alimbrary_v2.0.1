@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Forgot Password</title>
     <link rel="stylesheet" href="fa-css/all.css">   
     <link rel="stylesheet" href="./external-css/loginstyle.css">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
 </head>
 <body>
     <div class="bg-img">

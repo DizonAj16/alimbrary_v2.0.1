@@ -18,6 +18,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
     <title>Available Books</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../fa-css/all.css">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <style>
         .back-btn {
             margin-bottom: 20px;

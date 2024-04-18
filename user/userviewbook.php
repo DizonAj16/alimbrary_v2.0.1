@@ -76,6 +76,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
     <title>View Book</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../fa-css/all.css">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <style>
         body {
             background-color: #f8f9fa;

@@ -7,6 +7,7 @@
     <title>User Information</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../fa-css/all.css">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <script defer src="../js/bootstrap.bundle.js"></script>
     <style>
         body {

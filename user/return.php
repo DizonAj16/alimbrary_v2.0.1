@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Return Confirmation</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <style>
         body {
             background-color: #f8f9fa;

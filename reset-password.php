@@ -110,6 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Reset Password</title>
     <link rel="stylesheet" href="./fa-css/all.css">
     <link rel="stylesheet" href="./external-css/loginstyle.css">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <script>
         function showAlertAndRedirect() {
             <?php if (!empty($current_password_err) && (empty($new_password_err) && empty($confirm_password_err))) : ?>

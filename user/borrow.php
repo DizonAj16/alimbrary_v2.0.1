@@ -98,6 +98,7 @@ mysqli_close($conn);
     <title>Borrow Book</title>
     <link rel="stylesheet" href="../fa-css/all.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <style>
         body {
             background-color: #f8f9fa;

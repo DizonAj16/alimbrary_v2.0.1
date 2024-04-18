@@ -36,6 +36,7 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="../external-css/navigation.css">
     <link rel="stylesheet" href="../fa-css/all.css">
     <link rel="stylesheet" href="../external-css/userbtn.css?<?php echo time(); ?>">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <script defer src="../js/bootstrap.bundle.min.js"></script>
 
     <style>

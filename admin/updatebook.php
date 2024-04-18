@@ -156,6 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Update Book</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../fa-css/all.css">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <style>
         body {
             background-color: #f8f9fa;

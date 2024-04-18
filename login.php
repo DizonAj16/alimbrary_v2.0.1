@@ -92,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
     <link rel="stylesheet" href="fa-css/all.css">
     <link rel="stylesheet" href="./external-css/loginstyle.css?<?php echo time(); ?>">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <style>
         @media only screen and (max-width: 480px) {
             .content {

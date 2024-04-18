@@ -63,6 +63,7 @@ mysqli_close($conn);
     <title>Update User Info</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./fa-css/all.css">
+    <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
