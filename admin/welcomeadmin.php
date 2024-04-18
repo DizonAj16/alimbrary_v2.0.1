@@ -198,6 +198,15 @@ mysqli_stmt_close($stmt);
     </div>
   </nav>
 
+
+  <footer style="background-color: black;">
+    <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">
+      <span style="color: #ff0000;">&#169; <?php echo date("Y"); ?></span> <span style="color: #1e90ff;">Alimbrary</span>
+    </marquee>
+  </footer>
+
+
+
   <!-- Script to hide preloader and show content after page load -->
   <script src="../scripts/preloader.js?<?php echo time(); ?>"></script>
 

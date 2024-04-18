@@ -73,7 +73,7 @@ mysqli_stmt_close($stmt);
 
 <body style="position: relative;">
 
-<?php if (!isset($_SESSION["preloader_shown"])) : ?>
+  <?php if (!isset($_SESSION["preloader_shown"])) : ?>
     <div class="preloader">
       <img src="../Images/logo.png" alt="">
       <div class="lds-facebook">
@@ -191,6 +191,12 @@ mysqli_stmt_close($stmt);
   <div class="centered-message">
     <h1>Welcome to the <span class="highlight">ZPPSU AlimBrary</span> Management System</h1>
   </div>
+
+  <footer style="background-color: black;">
+    <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">
+      <span style="color: #ff0000;">&#169; <?php echo date("Y"); ?></span> <span style="color: #1e90ff;">Alimbrary</span>
+    </marquee>
+  </footer>
 
 
   <script src="../scripts/preloader.js?<?php echo time(); ?>"></script>

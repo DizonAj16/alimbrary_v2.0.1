@@ -98,9 +98,10 @@ mysqli_stmt_fetch($stmt);
         #backToTopBtn:hover {
             background-color: rgba(0, 0, 0, 0.7);
         }
-        .most-recent-icon{
-            height: 90px;
-            width: 90px;
+
+        .most-recent-icon {
+            height: 70px;
+            width: 70px;
         }
     </style>
 </head>
@@ -182,7 +183,7 @@ mysqli_stmt_fetch($stmt);
     <div class="dashboard-container" id="dashboard">
 
         <a href="adminbooks.php" class="dashboard-section text-light fw-bold" style="text-decoration: none;">
-            <img src="../images/icons8-books-96.png" alt="">
+            <img src="../images/icons8-books-94.png" alt="">
             <div id="book-count">
                 <?php include '../dashboard-includes/total_books.php'; ?>
             </div>
@@ -277,6 +278,13 @@ mysqli_stmt_fetch($stmt);
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="../jquery/jquery-3.5.1.min.js"></script>
     <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
+
+
+    <footer style="background-color: black;">
+        <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">
+            <span style="color: #ff0000;">&#169; <?php echo date("Y"); ?></span> <span style="color: #1e90ff;">Alimbrary</span>
+        </marquee>
+    </footer>
 
 
 

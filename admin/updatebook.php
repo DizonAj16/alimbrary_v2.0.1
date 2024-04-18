@@ -227,6 +227,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             max-width: 200px;
             margin-top: 10px;
         }
+
+        .form-control {
+            border: 1px solid grey;
+            /* Add black border */
+            border-radius: 0.5rem;
+            /* Add rounded corners */
+        }
     </style>
 </head>
 

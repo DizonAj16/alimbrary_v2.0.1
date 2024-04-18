@@ -52,8 +52,10 @@ mysqli_stmt_close($stmt);
             padding: 15px;
             margin-bottom: 30px;
             max-height: 450px;
+            width: 300px;
             overflow: hidden;
             transition: background-color 0.3s ease;
+            border: none;
         }
 
         .card-user:hover {
@@ -193,7 +195,7 @@ mysqli_stmt_close($stmt);
         </div>
     </nav>
 
-    <div class="container-fluid" style="margin-top: 100px;">
+    <div class="container-fluid mb-3" style="margin-top: 100px;">
         <h1 class="text-center fw-bold text-light">Users</h1>
         <div class="d-flex flex-wrap justify-content-center">
             <?php
@@ -221,7 +223,7 @@ mysqli_stmt_close($stmt);
                                 <div>
                                     <h5 class="card-title text-center"> <?php echo $row['username']; ?></h5>
                                     <p class="card-text fw-bold"><i class="fas fa-id-badge"></i> User ID: <?php echo $row['id']; ?></p>
-                                    <p class="card-text fw-bold"><i class="fas fa-clock"></i> Joined: <?php echo date("g:i a, F j, Y", strtotime($row['created_at'])); ?></p>
+                                    <p class="card-text fw-bold"><i class="fas fa-clock"></i> Joined: <br> <?php echo date("g:i a, F j, Y", strtotime($row['created_at'])); ?></p>
                                     <p class="card-text fw-bold"><i class="fas fa-user-circle"></i> <?php echo ucfirst($row['user_type']); ?></p>
                                     <div class="text-center">
                                         <?php if ($row['user_type'] !== 'admin') : ?>
@@ -263,6 +265,13 @@ mysqli_stmt_close($stmt);
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
     <script src="../jquery/jquery-3.5.1.min.js"></script>
     <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
+
+    <footer style="background-color: black;">
+        <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">
+            <span style="color: #ff0000;">&#169; <?php echo date("Y"); ?></span> <span style="color: #1e90ff;">Alimbrary</span>
+        </marquee>
+    </footer>
+
 
 </body>
 

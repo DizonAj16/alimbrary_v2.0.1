@@ -363,7 +363,11 @@ mysqli_stmt_close($stmt);
 
 
 
-
+    <footer style="background-color: black;">
+        <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">
+            <span style="color: #ff0000;">&#169; <?php echo date("Y"); ?></span> <span style="color: #1e90ff;">Alimbrary</span>
+        </marquee>
+    </footer>
 
 
     <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>

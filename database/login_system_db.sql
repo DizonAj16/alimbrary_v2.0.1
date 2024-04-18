@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2024 at 06:23 PM
+-- Generation Time: Apr 18, 2024 at 04:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -776,14 +776,15 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `full_name`, `occupation`, `contact_num`, `address`, `password`, `created_at`, `user_type`, `image`) VALUES
 (14, 'admin', '', '', '', '', '', '$2y$10$GDDoVFoKbMkq/xI2P5FQvOiUmrGd6/rfcNEj01noqorzCVUv0V0DK', '2024-02-19 00:01:30', 'admin', 0x496d616765732f61646d696e312e6a7067),
-(19, 'user01', '', '', '', '', '', '$2y$10$Je.I4bOwtctWCLfo92JQMODBZPl7imnmPjiNVUbZ/4I6evGTvnNN2', '2024-02-29 17:32:35', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
+(19, 'user01', '', '', '', '', '', '$2y$10$Je.I4bOwtctWCLfo92JQMODBZPl7imnmPjiNVUbZ/4I6evGTvnNN2', '2024-02-29 17:32:35', 'user', 0x496d616765732f38623136376166363533633233393964643933623935326134383734303632302e6a7067),
 (20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$KuF2YtDxAVllTaMX7L60eeX80uOTFelKHjAocIqE9kcfYFuY26p5i', '2024-03-04 23:12:13', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
 (21, 'alim', '', '', '', '', '', '$2y$10$kze.NSyaawXbrn4Yh1RHl.0Lhy4o4tawUBgxUjPPEMWc.dkx62CTq', '2024-03-05 03:36:45', 'user', 0x496d616765732f73747564656e742069636f6e20322e706e67),
 (22, 'luffy', '', '', '', '', '', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c7566667920696d6167652e6a7067),
 (23, 'johndoe69', '', '', '', '', '', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f75736572207069632e6a7067),
-(26, 'user02', '', '', '', '', '', '$2y$10$bSwzGRlOUB.9LHBVhRlSDOP9hubnK8mlOnjgK3odwzWIeGO2QyYby', '2024-03-19 13:08:31', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
-(28, 'user03', '', '', '', '', '', '$2y$10$tTuib0Oiz6Hn4Jsr.nBEC.WEVaSEsqkYXoj4WCBY6O84rW0wc/cGm', '2024-03-22 16:28:42', 'user', 0x496d616765732f42617369635f55695f5f32383138365f32392e6a7067),
-(1004, 'user09', '', '', '', '', '', '$2y$10$W2QQuIS/BScBESbs/CNiT.IUcOxnV26mQqpkw1cZPPZE5rKQRn63K', '2024-03-25 15:31:17', 'user', '');
+(26, 'user02', '', '', '', '', '', '$2y$10$bSwzGRlOUB.9LHBVhRlSDOP9hubnK8mlOnjgK3odwzWIeGO2QyYby', '2024-03-19 13:08:31', 'user', 0x496d616765732f363630362d6d616c652d757365722e706e67),
+(28, 'user03', '', '', '', '', '', '$2y$10$tTuib0Oiz6Hn4Jsr.nBEC.WEVaSEsqkYXoj4WCBY6O84rW0wc/cGm', '2024-03-22 16:28:42', 'user', 0x496d616765732f706e6768712e636f6d2d757365722d69636f6e2d6375746f75742d706e672d636c69706172742d696d616765732e706e67),
+(1004, 'user09', '', '', '', '', '', '$2y$10$W2QQuIS/BScBESbs/CNiT.IUcOxnV26mQqpkw1cZPPZE5rKQRn63K', '2024-03-25 15:31:17', 'user', ''),
+(1012, 'qwqwqw', '', '', '', '', '', '$2y$10$mrq2Xwc4UZ9WrFUxtzTaN.lml6pPdINY08LQtFXL6SRslVURv.mEi', '2024-04-18 10:40:27', 'user', '');
 
 --
 -- Indexes for dumped tables
@@ -845,7 +846,7 @@ ALTER TABLE `return_history`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1012;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1013;
 
 --
 -- Constraints for dumped tables

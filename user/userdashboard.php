@@ -78,9 +78,11 @@ mysqli_stmt_close($stmt);
       }
     }
 
-    .recent-icon, .borrow-icon, .return-icon{
-      height: 90px;
-      width: 90px;
+    .recent-icon,
+    .borrow-icon,
+    .return-icon {
+      height: 70px;
+      width: 70px;
     }
   </style>
 </head>
@@ -233,6 +235,11 @@ mysqli_stmt_close($stmt);
     </a>
   </div>
 
+  <footer style="background-color: black;">
+    <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">
+      <span style="color: #ff0000;">&#169; <?php echo date("Y"); ?></span> <span style="color: #1e90ff;">Alimbrary</span>
+    </marquee>
+  </footer>
 
 
 </body>

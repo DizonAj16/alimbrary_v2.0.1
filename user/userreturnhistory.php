@@ -72,6 +72,8 @@ mysqli_stmt_close($stmt);
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            margin: 0;
+            padding: 0;
         }
 
         .card {
@@ -151,10 +153,14 @@ mysqli_stmt_close($stmt);
         #backToTopBtn:hover {
             background-color: rgba(0, 0, 0, 0.7);
         }
+        footer {
+            background-color: black;
+            margin-top: auto;
+        }
     </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
         <div class="container-fluid">
@@ -329,6 +335,11 @@ mysqli_stmt_close($stmt);
 <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
 <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 
+<footer style="background-color: black;">
+    <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">
+        <span style="color: #ff0000;">&#169; 2024</span> <span style="color: #1e90ff;">Alimbrary</span>
+    </marquee>
+</footer>
 </body>
 
 </html>
