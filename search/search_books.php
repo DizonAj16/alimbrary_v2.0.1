@@ -84,7 +84,7 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
             }
         } else {
             echo '<div class="col">';
-            echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+            echo '<div class="alert alert-danger text-danger"><em>No records were found.</em></div>';
             echo '</div>';
         }
     } else {
@@ -132,7 +132,7 @@ if (isset($_POST["searchText"]) && !empty($_POST["searchText"])) {
         }
     } else {
         echo '<div class="col">';
-        echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+        echo '<div class="alert alert-danger text-danger"><em>No records were found.</em></div>';
         echo '</div>';
     }
 }

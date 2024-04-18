@@ -215,16 +215,19 @@
 
                     .form-control {
                         border: 1px solid grey;
-                        /* Add black border */
                         border-radius: 0.5rem;
-                        /* Add rounded corners */
+                    }
+
+                    footer {
+                        background-color: black;
+                        margin-top: auto;
                     }
                 </style>
 
 
             </head>
 
-            <body>
+            <body class="d-flex flex-column min-vh-100">
                 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
                     <div class="container-fluid">
@@ -461,7 +464,7 @@
                                 mysqli_free_result($result);
                             } else {
                                 echo '<div class="col">';
-                                echo '<div class="alert alert-danger"><em>No records were found.</em></div>';
+                                echo '<div class="alert alert-danger text-danger"><em>No records were found.</em></div>';
                                 echo '</div>';
                             }
                         } else {

@@ -124,10 +124,15 @@ mysqli_stmt_close($stmt);
                 flex-direction: row-reverse;
             }
         }
+
+        footer {
+            background-color: black;
+            margin-top: auto;
+        }
     </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
         <div class="container-fluid">
@@ -197,7 +202,10 @@ mysqli_stmt_close($stmt);
 
     <div class="container-fluid mb-3" style="margin-top: 100px;">
         <h1 class="text-center fw-bold text-light">Users</h1>
-        <div class="d-flex flex-wrap justify-content-center">
+        <div class="d-flex justify-content-center mb-3">
+            <input type="search" id="searchInput" class="form-control form-control-md rounded-4 border border-primary" placeholder="Search User" style="width:300px;" autocomplete="off">
+        </div>
+        <div class="d-flex flex-wrap justify-content-center" id="userCardContainer">
             <?php
             // Query to retrieve users information
             $sql = "SELECT id, username, created_at, user_type, image FROM users ORDER BY id ASC";
@@ -262,8 +270,28 @@ mysqli_stmt_close($stmt);
         }
     </script>
 
+    <script src="../jquery/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').on('input', function() {
+                var searchText = $(this).val().trim();
+                $.ajax({
+                    url: '../search/search_users.php',
+                    method: 'POST',
+                    data: {
+                        searchText: searchText
+                    },
+                    success: function(response) {
+                        $('#userCardContainer').html(response);
+                    }
+                });
+            });
+        });
+    </script>
+
     <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
-    <script src="../jquery/jquery-3.5.1.min.js"></script>
+
     <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 
     <footer style="background-color: black;">

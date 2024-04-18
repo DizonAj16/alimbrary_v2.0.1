@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2024 at 04:48 AM
+-- Generation Time: Apr 18, 2024 at 10:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -77,7 +77,7 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (93, 'The Structure of Scientific Revolutions', 'This seminal work explores the process of scientific revolutions and paradigm shifts.', 'Thomas S. Kuhn', '978-733645177', 1962, 'Philosophy of Science', 'Not Available', 0x2e2e2f75706c6f6164732f746865207374727563747572652e6a7067),
 (94, 'Capital in the Twenty-First Century', 'Piketty examines the dynamics of wealth and income inequality in capitalist economies.', 'Thomas Piketty', '978-234847473', 2013, 'Economics', 'Available', 0x2e2e2f75706c6f6164732f6361706974616c2d696e2d7468652d7477656e74792d66697273742d63656e747572792d332e6a7067),
 (95, 'Guns, Germs, and Steel: The Fates of Human Societies', 'Diamond explores the factors that have shaped human history, including geography, agriculture, and technology.', 'Jared Diamond', '978-537225273', 1997, 'Anthropology/History', 'Available', 0x2e2e2f75706c6f6164732f67756e732d6765726d732d616e642d737465656c2d7468652d66617465732d6f662d68756d616e2d736f636965746965732d323074682d616e6e69766572736172792d65646974696f6e2e6a7067),
-(97, 'The Impact of Climate Change on Agricultural Practices', 'This thesis explores the effects of climate change on modern agricultural practices, analyzing data from various regions and proposing sustainable solutions.', 'John Smith', '978-924130200', 2021, 'Environmental Science', 'Available', 0x2e2e2f75706c6f6164732f696d6167657320283130292e6a706567),
+(97, 'The Impact of Climate Change on Agricultural Practices', 'This thesis explores the effects of climate change on modern agricultural practices, analyzing data from various regions and proposing sustainable solutions.', 'John Smith', '978-924130200', 2021, 'Environmental Science', 'Available', 0x2e2e2f75706c6f6164732f636c696d617465206368616e67652e706e67),
 (98, 'Thinking, Fast and Slow', 'Kahneman explores the two systems of thinking that drive human decision-making.', 'Daniel Kahneman', '978-722323128', 2011, 'Psychology/Behavioral Economics', 'Available', 0x2e2e2f75706c6f6164732f7468696e6b696e672d666173742d616e642d736c6f772e6a7067),
 (107, 'The Selfish Gene', 'Explores the gene-centered view of evolution and its implications for understanding human behavior.', 'Richard Dawkins', '978-564461809', 1976, 'Biology, Evolutionary Psychology', 'Available', 0x2e2e2f75706c6f6164732f5468655f53656c666973685f47656e65332e6a7067),
 (108, 'Silent Spring', 'Examines the detrimental effects of pesticides on the environment and ecosystems.', 'Rachel Carson', '978-243076488', 1962, 'Environmental Science', 'Not Available', 0x2e2e2f75706c6f6164732f53696c656e74537072696e672e6a7067),
@@ -86,7 +86,14 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (111, 'The Feynman Lectures on Physics', 'Based on a series of lectures by Nobel laureate Richard Feynman, this three-volume set covers the fundamentals of physics in a captivating and accessible manner, making it a favorite among students and enthusiasts alike.', 'Richard P. Feynman', '978-838819237', 1964, 'Non-fiction, Science, Physics', 'Not Available', 0x2e2e2f75706c6f6164732f6665796d616e2e6a7067),
 (112, 'Sapiens: A Brief History of Humankind', 'This book explores the history of Homo sapiens from the emergence of archaic human species in Africa to the present day, encompassing the Cognitive Revolution, the Agricultural Revolution, and the Scientific Revolution.', 'Yuval Noah Harari', '978-317623797', 2011, 'History/Anthropology', 'Available', 0x2e2e2f75706c6f6164732f73617069656e732e6a7067),
 (113, 'The Teacher Wars: A History of America\'s Most Embattled Profession', 'Traces the history of teaching in America and explores the various political, cultural, and social forces that have shaped the profession.', 'Dana Goldstein', '978-485828075', 2014, 'Education/History', 'Not Available', 0x2e2e2f75706c6f6164732f746561636865722e6a7067),
-(114, 'Mindset:The New Psychology of Success', 'Explores the concept of mindset and how adopting a growth mindset can lead to greater success and fulfillment.', 'Carol S. Dweck', '978-981312413', 2006, 'Psychology/Self-Help', 'Available', 0x2e2e2f75706c6f6164732f6d696e647365742e6a7067);
+(114, 'Mindset:The New Psychology of Success', 'Explores the concept of mindset and how adopting a growth mindset can lead to greater success and fulfillment.', 'Carol S. Dweck', '978-981312413', 2006, 'Psychology/Self-Help', 'Available', 0x2e2e2f75706c6f6164732f6d696e647365742e6a7067),
+(139, 'The Master and Margarita', 'A satirical novel blending fantasy, romance, and political commentary, set in Soviet Moscow and involving the Devil\'s visit to the city.', 'Mikhail Bulgakov', '978-318914028', 1967, 'Fiction, Satire', 'Available', 0x2e2e2f75706c6f6164732f7468652d6d61737465722d616e642d6d61726761726974612d33312e6a7067),
+(140, 'Dracula', 'An epistolary novel detailing the story of Count Dracula\'s attempt to move from Transylvania to England so he may find new blood and spread the undead curse.', 'Bram Stoker', '978-949799341', 1897, 'Fiction, Gothic', 'Available', 0x2e2e2f75706c6f6164732f64726163756c612d3739312e6a7067),
+(141, 'The Scarlet Letter', 'A novel set in 17th-century Puritan Massachusetts, exploring themes of sin, guilt, and redemption through the story of Hester Prynne.', 'Nathaniel Hawthorne', '978-880067147', 1850, 'Fiction, Historical', 'Available', 0x2e2e2f75706c6f6164732f7468652d736361726c65742d6c65747465722d3336312e6a7067),
+(142, 'A Brief History of Time', 'Introduces readers to the nature of the universe, from the big bang to black holes, in an accessible and engaging manner.', 'Stephen Hawking', '978-108455000', 1988, 'Cosmology, Physics', 'Not Available', 0x2e2e2f75706c6f6164732f612d62726965662d686973746f72792d6f662d74696d652e6a7067),
+(143, 'The Elements of Style', 'Offers timeless advice on writing clearly and effectively, focusing on grammar, style, and composition.', 'William Strunk Jr. and E.B. White', '978-666840598', 1918, 'English Language, Writing', 'Available', 0x2e2e2f75706c6f6164732f74686520656c656d656e7473206f66207374796c652e6a7067),
+(144, 'The Demon-Haunted World: Science as a Candle in the Dark', 'Advocates for critical thinking and scientific skepticism in the face of pseudoscience, superstition, and misinformation, emphasizing the importance of evidence-based reasoning.', 'Carl Sagan', '978-236299902', 1995, 'Science, Skepticism', 'Available', 0x2e2e2f75706c6f6164732f7468652064656d6f6e2068756e74656420776f726c642e6a7067),
+(145, 'Cosmos', 'Explores the universe and humanity\'s place within it, covering topics such as astronomy, biology, and the history of science, in a poetic and inspiring narrative.', 'Carl Sagan', '978-527416115', 1980, 'Astronomy, Science Communication', 'Available', 0x2e2e2f75706c6f6164732f636f736d6f732e6a7067);
 
 -- --------------------------------------------------------
 
@@ -428,7 +435,8 @@ INSERT INTO `borrowed_books` (`borrow_id`, `user_id`, `book_id`, `borrow_date`, 
 (366, 19, 87, '2024-04-12 16:39:38', '2024-04-27 08:00:00'),
 (367, 19, 42, '2024-04-13 16:17:36', '2024-04-14 10:00:00'),
 (368, 19, 48, '2024-04-13 16:43:44', '2024-04-29 07:30:00'),
-(369, 19, 91, '2024-04-14 16:32:36', '2024-04-27 08:00:00');
+(369, 19, 91, '2024-04-14 16:32:36', '2024-04-27 08:00:00'),
+(370, 19, 142, '2024-04-18 07:32:51', '2024-05-01 08:00:00');
 
 -- --------------------------------------------------------
 
@@ -828,13 +836,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=370;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
 
 --
 -- AUTO_INCREMENT for table `return_history`

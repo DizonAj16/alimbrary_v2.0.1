@@ -37,7 +37,7 @@ if ($result = mysqli_query($conn, $sql)) {
         mysqli_free_result($result);
     } else {
         echo '<div class="container-fluid">';
-        echo '    <div class="alert alert-danger" role="alert"><em>No results found</em></div>';
+        echo '    <div class="alert alert-danger text-danger" role="alert"><em>No results found</em></div>';
         echo '</div>';
     }
 } else {

@@ -80,7 +80,8 @@ mysqli_stmt_close($stmt);
 
     .recent-icon,
     .borrow-icon,
-    .return-icon {
+    .return-icon,
+    .warning-icon {
       height: 70px;
       width: 70px;
     }
@@ -192,7 +193,7 @@ mysqli_stmt_close($stmt);
 
 
     <a href="borrowedbooks.php" class="dashboard-section  text-light" style="text-decoration: none;">
-      <img src="../images/icons8-overdue-100.png" alt="">
+      <img src="../images/icons8-warning-48.png" alt="" class="warning-icon">
       <?php include '../dashboard-includes/user_overdue_books.php'; ?>
     </a>
 

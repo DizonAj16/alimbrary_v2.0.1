@@ -124,10 +124,14 @@ mysqli_stmt_close($stmt);
         #backToTopBtn:hover {
             background-color: rgba(0, 0, 0, 0.7);
         }
+        footer {
+            background-color: black;
+            margin-top: auto;
+        }
     </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 

@@ -187,12 +187,16 @@ mysqli_stmt_close($stmt);
         .badge-lg {
             font-size: 1rem;
         }
+        footer {
+            background-color: black;
+            margin-top: auto;
+        }
     </style>
 
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
         <div class="container-fluid">

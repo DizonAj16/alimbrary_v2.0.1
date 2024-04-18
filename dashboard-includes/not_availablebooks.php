@@ -11,6 +11,24 @@
         .back-btn {
             margin-bottom: 20px;
         }
+        #backToTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #backToTopBtn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
     </style>
 </head>
 
@@ -92,6 +110,9 @@
             </table>
         </div>
     </div>
+
+    <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fa fa-arrow-up"></i></button>
+
 </body>
 <script src="../jquery/jquery-3.5.1.min.js"></script>
 <script src="../js/bootstrap.bundle.js"></script>
@@ -120,5 +141,5 @@
         });
     });
 </script>
-
+<script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 </html>
