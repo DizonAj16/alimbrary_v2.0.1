@@ -422,7 +422,7 @@
 
 
 
-                <div class="container-fluid mt-3">
+                <div class="container mt-3">
                     <div class="row" id="bookCardsContainer">
                         <?php
                         // Include config file
