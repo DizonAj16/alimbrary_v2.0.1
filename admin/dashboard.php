@@ -408,11 +408,8 @@ mysqli_free_result($result2);
                 datasets: [{
                     label: 'Number of Books Borrowed',
                     data: borrowedCounts,
-                    backgroundColor: backgroundColors, // Set different colors for each bar
-                    borderColor: borderColors, // Set different border colors for each bar
-                    borderWidth: 2,
-                    hoverBackgroundColor: backgroundColors, // Set hover background colors to match bar colors
-                    hoverBorderColor: borderColors // Set hover border colors to match bar border colors
+                    backgroundColor: backgroundColors, // Set different colors for each bar // Set different border colors for each bar
+                    borderWidth: 2,// Set hover background colors to match bar colors  // Set hover border colors to match bar border colors
                 }]
             },
             options: {

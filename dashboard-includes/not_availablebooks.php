@@ -98,13 +98,13 @@
                                 // Calculate status based on return date and time
                                 $return_datetime = date_create($row_borrowed['return_date'], new DateTimeZone('Asia/Manila'))->format("Y-m-d H:i:s");
 
-                                $status = "";
+                                $status = "<td class='text-center text-success fw-bold'>Borrowing</td>";
 
                                 if ($return_datetime && $current_datetime > $return_datetime) {
-                                    $status = "Overdue";
+                                    $status = "<td class='text-center text-danger fw-bold'>Overdue</td>";
                                 }
 
-                                echo "<td class='text-center text-danger fw-bold'>$status</td>";
+                                echo "$status";
 
                                 echo "<td class='text-center'><a href='view_not_available_books.php?book_id=" . $row_borrowed['book_id'] . "' class='btn btn-dark btn-sm' data-bs-toggle='tooltip' data-bs-title='View'><i class='fas fa-eye'></i></a></td>"; // Action for viewing book details
                                 echo "</tr>";
