@@ -13,6 +13,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION
 // Include config file
 require_once "../config.php";
 
+$genres = array("Fantasy", "Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Science", "Writing", "Shonen");
+
+
 // Fetch user's profile image path from the database
 $user_id = $_SESSION["id"];
 $sql = "SELECT image FROM users WHERE id = ?";
@@ -188,6 +191,7 @@ mysqli_stmt_close($stmt);
         .badge-lg {
             font-size: 1rem;
         }
+
         footer {
             background-color: black;
             margin-top: auto;
@@ -271,7 +275,15 @@ mysqli_stmt_close($stmt);
                 <div class="col-lg-12">
                     <div class="mt-3 clearfix d-flex flex-column justify-content-center align-items-center">
                         <h1 class="fw-bold text-light">Books</h1>
-                        <input type="search" id="searchInput" class="form-control form-control-md rounded-4 border border-primary" placeholder="Search Title or Genre" style="width:300px;" autocomplete="off">
+                        <div class="d-flex align-items-center">
+                            <input type="search" id="searchInput" class="form-control form-control-md rounded-4 border border-primary me-2" placeholder="Search Title or Genre" style="width:300px;" autocomplete="off">
+                            <select id="genreFilter" class="form-select rounded-4" onchange="filterBooks()" style="width:150px;">
+                                <option value="">All Genres</option>
+                                <?php foreach ($genres as $genre) { ?>
+                                    <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -366,7 +378,29 @@ mysqli_stmt_close($stmt);
         });
     </script>
 
+ <script>
+    function filterBooks() {
+    var selectedGenre = document.getElementById("genreFilter").value;
+    var searchText = document.getElementById("searchInput").value.toLowerCase().trim();
 
+    // Send an AJAX request to fetch books based on the selected genre
+    $.ajax({
+        url: "../search/search_user_books.php",
+        method: "POST",
+        data: {
+            genre: selectedGenre,
+            searchQuery: searchText
+        },
+        success: function(response) {
+            // Update the book list with the filtered results
+            $("#searchBooksTable").html(response);
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
+ </script>
 
     <footer style="background-color: black;">
         <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">

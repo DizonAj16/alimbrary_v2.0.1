@@ -30,6 +30,19 @@
         #backToTopBtn:hover {
             background-color: rgba(0, 0, 0, 0.7);
         }
+
+        .user-profile-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -59,7 +72,7 @@
 
                     // Attempt select query execution for borrowed books
                     $query_borrowed = "
-                        SELECT b.book_id, b.title, u.username, bb.borrow_date, bb.return_date
+                        SELECT b.book_id, b.title, u.username, u.image, bb.borrow_date, bb.return_date
                         FROM borrowed_books bb
                         JOIN books b ON bb.book_id = b.book_id
                         JOIN users u ON bb.user_id = u.id
@@ -74,7 +87,11 @@
                             while ($row_borrowed = mysqli_fetch_assoc($result_borrowed)) {
                                 echo "<tr>";
                                 echo "<td class='fw-bold'>" . $row_borrowed['title'] . "</td>";
-                                echo "<td class='text-center text-primary fw-bold'>" . $row_borrowed['username'] . "</td>";
+                                echo "<td class='text-center text-primary fw-bold user-info'>";
+                                if (!empty($row_borrowed['image'])) {
+                                    echo "<img src='../" . $row_borrowed['image'] . "' class='user-profile-img' alt='Profile Image'>";
+                                }
+                                echo $row_borrowed['username'] . "</td>";
                                 echo "<td>" . date("F j, Y, h:i A", strtotime($row_borrowed['borrow_date'])) . "</td>";
                                 echo "<td>" . date("F j, Y, h:i A", strtotime($row_borrowed['return_date'])) . "</td>";
 

@@ -18,7 +18,7 @@
         }
 
         .container {
-            max-width: 650px;
+            max-width: 900px;
             margin: auto;
             padding: 0 15px;
         }
@@ -35,7 +35,6 @@
             border-radius: 15px 15px 0 0;
             text-align: center;
             padding: 10px 0;
-            /* Added padding */
         }
 
         h2 {
@@ -47,6 +46,7 @@
         }
 
         h4 {
+            margin-top: 15px;
             margin-bottom: 15px;
             color: #000;
             font-weight: bold;
@@ -57,7 +57,6 @@
 
         p {
             margin-bottom: 5px;
-            /* Reduced margin */
             font-size: 1.1rem;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -77,23 +76,55 @@
 
         .user-info-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .user-info {
-            text-align: start;
-            max-width: 500px;
+            align-items: flex-start;
+            padding: 20px;
+            gap: 20px;
         }
 
         .user-image {
             width: 200px;
             height: 200px;
-            margin-bottom: 20px;
             object-fit: cover;
             border-radius: 50%;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            margin-right: 10px;
+            width: 150px; /* Added width to align labels */
+        }
+
+        .info-value {
+            font-weight: normal;
+        }
+
+        @media (max-width: 767px) {
+            .user-info-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .info-label {
+                margin-right: 0;
+                width: auto; /* Reset width for smaller screens */
+            }
         }
     </style>
 </head>
@@ -198,23 +229,48 @@
                             echo '<i class="fas fa-user-circle" style="color: black; font-size:200px;"></i>';
                         }
                         ?>
-                    </div>
-
-                    <div class="user-info">
                         <h4><em><?php echo $username; ?></em></h4>
-                        <p><span class="fas fa-id-badge"></span> <strong>User ID:</strong> <em><?php echo $param_id; ?></em></p>
-                        <p><span class="fas fa-envelope"></span> <strong>Email:</strong> <em><?php echo $email; ?></em></p>
-                        <p><span class="fas fa-user"></span> <strong>Full Name:</strong> <em><?php echo $full_name; ?></em></p>
-                        <p><span class="fas fa-briefcase"></span> <strong>Occupation:</strong> <em><?php echo $occupation; ?></em></p>
-                        <p><span class="fas fa-map-marker-alt"></span> <strong>Address:</strong> <em><?php echo $address; ?></em></p>
-                        <p><span class="fas fa-phone-alt"></span> <strong>Contact Number:</strong> <em><?php echo $contact_number; ?></em></p>
-                        <p><span class="fas fa-user-tag"></span> <strong>User Type:</strong> <em><?php echo $user_type; ?></em></p>
-                        <p><span class="fas fa-calendar"></span> <strong>Date Created:</strong> <em><?php echo $created_at_formatted; ?></em></p>
-                        <p><span class="fas fa-calendar-check"></span> <strong>Joined:</strong> <em><?php echo $registration_status; ?></em></p>
+                    </div>
+                    <div class="user-info">
+                        
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-id-badge"></span> User ID:</div>
+                            <div class="info-value"><em><?php echo $param_id; ?></em></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-envelope"></span> Email:</div>
+                            <div class="info-value"><em><?php echo $email; ?></em></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-user"></span> Full Name:</div>
+                            <div class="info-value"><em><?php echo $full_name; ?></em></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-briefcase"></span> Occupation:</div>
+                            <div class="info-value"><em><?php echo $occupation; ?></em></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-map-marker-alt"></span> Address:</div>
+                            <div class="info-value"><em><?php echo $address; ?></em></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-phone-alt"></span> Phone Number:</div>
+                            <div class="info-value"><em><?php echo $contact_number; ?></em></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-user-tag"></span> User Type:</div>
+                            <div class="info-value"><em><?php echo $user_type; ?></em></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-calendar"></span> Date Created:</div>
+                            <div class="info-value"><em><?php echo $created_at_formatted; ?></em></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label"><span class="fas fa-calendar-check"></span> Joined:</div>
+                            <div class="info-value"><em><?php echo $registration_status; ?></em></div>
+                        </div>
                         <a href="users.php" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -224,8 +280,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                return new
-                bootstrap.Tooltip(tooltipTriggerEl)
+                return new bootstrap.Tooltip(tooltipTriggerEl);
             });
         });
     </script>

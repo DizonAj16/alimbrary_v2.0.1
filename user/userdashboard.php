@@ -164,6 +164,8 @@ mysqli_stmt_close($stmt);
 
   <div class="dashboard-container" id="dashboard">
 
+
+
     <a class="total-available-books dashboard-section text-light" href="userbook.php" style="text-decoration: none;">
       <img src="../images/icons8-books-96.png" alt="">
       <?php include '../dashboard-includes/total_available_books.php'; ?>
@@ -236,6 +238,8 @@ mysqli_stmt_close($stmt);
       </div>
     </a>
   </div>
+
+
 
   <footer style="background-color: black;">
     <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2024 at 06:07 PM
+-- Generation Time: May 23, 2024 at 11:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -58,14 +58,14 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (39, 'Naruto Volume 1: Uzumaki Naruto', 'The story follows Naruto Uzumaki, a young ninja with dreams of becoming the strongest ninja and earning the title of Hokage, the leader of his village.', 'Masashi Kishimoto', '978-865252755', 2003, 'Shonen, Action, Adventure', 'Not Available', 0x2e2e2f75706c6f6164732f6e617275746f2d766f6c2d312e6a7067),
 (40, 'One Piece Volume 1: Romance Dawn', 'marks the beginning of an epic adventure created by Eiichiro Oda. The story follows Monkey D. Luffy, a young and ambitious pirate with the dream of finding the legendary treasure known as One Piece and becoming the Pirate King.', 'Eiichiro Oda', '978-750763248', 2003, 'Shonen, Action, Adventure', 'Not Available', 0x2e2e2f75706c6f6164732f6f702d726f6d616e63652d6461776e2e6a7067),
 (41, 'Attack on Titan Volume 1: The Fall of Shiganshina', 'In a world besieged by giant humanoid creatures known as Titans, humanity seeks refuge within enormous walled cities. Eren Yeager, the protagonist, witnesses the sudden breach of the outer wall, leading to catastrophic consequences.', 'Hajime Isayama', '978-781830480', 2012, 'Shonen, Dark Fantasy, Action', 'Not Available', 0x2e2e2f75706c6f6164732f5368696e67656b695f6e6f5f4b796f6a696e5f6d616e67615f766f6c756d655f312e6a7067),
-(42, 'Death Note Volume 1: Boredom', 'introduces readers to the enthralling world of Light Yagami, a highly intelligent high school student who discovers a mysterious notebook with deadly powers.', 'Tsugumi Ohba', '978-327638769', 2005, 'Shonen, Psychological Thriller, Mystery', 'Not Available', 0x2e2e2f75706c6f6164732f64656174686e6f74652e6a7067),
+(42, 'Death Note Volume 1: Boredom', 'introduces readers to the enthralling world of Light Yagami, a highly intelligent high school student who discovers a mysterious notebook with deadly powers.', 'Tsugumi Ohba', '978-327638769', 2005, 'Shonen, Psychological Thriller, Mystery', 'Available', 0x2e2e2f75706c6f6164732f64656174686e6f74652e6a7067),
 (43, 'Fullmetal Alchemist Volume 1: The Land of Sand', 'After a failed alchemical experiment to bring their deceased mother back to life, Edward loses his left leg, and Alphonse loses his entire body. In a desperate attempt to save his brother, Edward sacrifices his right arm to bind Alphonse\'s soul to a suit of armor.', 'Hiromu Arakawa', '978-692597068', 2005, 'Shonen, Adventure, Fantasy', 'Not Available', 0x2e2e2f75706c6f6164732f666d612e6a7067),
 (44, 'Dragon Ball Volume 1', 'The story follows Goku, a young and naive boy with a monkey\'s tail, as he sets out on a journey to find the Dragon Balls, powerful orbs that can grant any wish.', 'Akira Toriyama', '978-977272956', 2003, 'Shonen, Action, Adventure', 'Not Available', 0x2e2e2f75706c6f6164732f647261676f6e2d62616c6c2d766f6c2d312d736a2d65646974696f6e2e6a7067),
 (46, 'Demon Slayer: Kimetsu no Yaiba Volume 1: Cruelty', 'The story follows Tanjiro Kamado, a young boy whose life takes a tragic turn when his family is slaughtered by demons, and his sister Nezuko is turned into one.', 'Koyoharu Gotouge', '978-653106549', 2018, 'Shonen, Action, Dark Fantasy', 'Not Available', 0x2e2e2f75706c6f6164732f64656d6f6e2d736c617965722d6b696d657473752d6e6f2d79616962612d766f6c2d312e6a7067),
 (48, 'Haikyu!! Volume 1: Hinata and Kageyama', 'The story revolves around Shoyo Hinata, a determined and vertically challenged athlete inspired by a legendary player known as the \"Little Giant.\" Despite facing challenges due to his height, Hinata joins the Karasuno High School volleyball team with unwavering enthusiasm.', 'Haruichi Furudate', '978-4088806948', 2012, 'Shonen, Sports, Volleyball', 'Not Available', 0x2e2e2f75706c6f6164732f6861696b79752e6a7067),
-(49, 'Black Clover Volume 1: The Boy\'s Vow', 'The story takes an exciting turn when Asta receives a unique grimoire that grants him an anti-magic sword. Alongside his childhood friend Yuno, who is exceptionally talented in magic, Asta embarks on a journey to fulfill his dream.', 'Yūki Tabata', '978-574544535', 2015, 'Shonen, Fantasy, Magic', 'Available', 0x2e2e2f75706c6f6164732f626c61636b636c6f7665722e6a7067),
-(76, 'It', 'A terrifying entity preys on the children of Derry, Maine, resurfacing every 27 years.', 'Stephen King', '978-134703224', 1986, 'Supernatural Horror', 'Not Available', 0x2e2e2f75706c6f6164732f49745f2831393836295f66726f6e745f636f7665722c5f66697273745f65646974696f6e2e6a7067),
-(79, 'The Shining', 'A psychological horror novel about a writer who takes his family to an isolated hotel for the winter, where supernatural forces begin to take hold.', 'Stephen King', '978-845126051', 1978, 'Horror Psychological Thriller', 'Available', 0x2e2e2f75706c6f6164732f746865207368696e696e672e6a7067),
+(49, 'Black Clover Volume 1: The Boy\'s Vow', 'The story takes an exciting turn when Asta receives a unique grimoire that grants him an anti-magic sword. Alongside his childhood friend Yuno, who is exceptionally talented in magic, Asta embarks on a journey to fulfill his dream.', 'Yūki Tabata', '978-574544535', 2015, 'Shonen, Fantasy, Magic', 'Not Available', 0x2e2e2f75706c6f6164732f626c61636b636c6f7665722e6a7067),
+(76, 'It', 'A terrifying entity preys on the children of Derry, Maine, resurfacing every 27 years.', 'Stephen King', '978-134703224', 1986, 'Horror', 'Not Available', 0x2e2e2f75706c6f6164732f49745f2831393836295f66726f6e745f636f7665722c5f66697273745f65646974696f6e2e6a7067),
+(79, 'The Shining', 'A psychological horror novel about a writer who takes his family to an isolated hotel for the winter, where supernatural forces begin to take hold.', 'Stephen King', '978-845126051', 1978, 'Horror', 'Available', 0x2e2e2f75706c6f6164732f746865207368696e696e672e6a7067),
 (80, 'Batman: The Killing Joke', '\"The Killing Joke\" explores the complex relationship between Batman and his arch-nemesis, the Joker. The story delves into the Joker\'s origin, presenting him as a failed comedian who turns to crime after a series of tragic events.', 'Alan Moore', '978-751350093', 1988, 'Superhero, Psychological thriller', 'Available', 0x2e2e2f75706c6f6164732f6261746d616e2e6a7067),
 (81, 'The Great Gatsby', '\"The Great Gatsby\" is a novel set in the 1920s, depicting the Jazz Age and the Roaring Twenties in America. It follows the story of Jay Gatsby, a wealthy and mysterious man, and his pursuit of the American Dream. The book explores themes of love, wealth, decadence, and the emptiness of the pursuit of material success.', 'F. Scott Fitzgeraldd', '978-598445512', 1926, 'Fiction, Classic Literature', 'Available', 0x2e2e2f75706c6f6164732f746865206772656174206761747362792e6a7067),
 (87, 'Stupid is Forever', 'A compilation of witty and humorous essays, anecdotes, and speeches by the renowned Philippine senator.', 'Miriam Defensor Santiago', '978-406826823', 2014, 'Humor/Politics', 'Not Available', 0x2e2e2f75706c6f6164732f73747570696420697320666f72657665722e6a7067),
@@ -81,7 +81,7 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (98, 'Thinking, Fast and Slow', 'Kahneman explores the two systems of thinking that drive human decision-making.', 'Daniel Kahneman', '978-722323128', 2011, 'Psychology/Behavioral Economics', 'Available', 0x2e2e2f75706c6f6164732f7468696e6b696e672d666173742d616e642d736c6f772e6a7067),
 (107, 'The Selfish Gene', 'Explores the gene-centered view of evolution and its implications for understanding human behavior.', 'Richard Dawkins', '978-564461809', 1976, 'Biology, Evolutionary Psychology', 'Available', 0x2e2e2f75706c6f6164732f5468655f53656c666973685f47656e65332e6a7067),
 (108, 'Silent Spring', 'Examines the detrimental effects of pesticides on the environment and ecosystems.', 'Rachel Carson', '978-243076488', 1962, 'Environmental Science', 'Not Available', 0x2e2e2f75706c6f6164732f53696c656e74537072696e672e6a7067),
-(109, 'Longitude: The True Story of a Lone Genius Who Solved the Greatest Scientific Problem of His Time', 'Chronicles the quest to develop a reliable method for determining longitude at sea.', 'Dava Sobel', '978-119027842', 1995, 'History of Science, Maritime History', 'Not Available', 0x2e2e2f75706c6f6164732f6c6f6e6769747564652e6a7067),
+(109, 'Longitude: The True Story of a Lone Genius', 'Chronicles the quest to develop a reliable method for determining longitude at sea.', 'Dava Sobel', '978-119027842', 1995, 'History of Science, Maritime History', 'Not Available', 0x2e2e2f75706c6f6164732f6c6f6e6769747564652e6a7067),
 (110, 'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself', 'Explores fundamental questions about existence, drawing on physics and philosophy.', 'Sean Carroll', '978-639853449', 2016, 'Philosophy of Science, Cosmology', 'Available', 0x2e2e2f75706c6f6164732f7468652062696720706963747572652e6a7067),
 (111, 'The Feynman Lectures on Physics', 'Based on a series of lectures by Nobel laureate Richard Feynman, this three-volume set covers the fundamentals of physics in a captivating and accessible manner, making it a favorite among students and enthusiasts alike.', 'Richard P. Feynman', '978-838819237', 1964, 'Non-fiction, Science, Physics', 'Not Available', 0x2e2e2f75706c6f6164732f6665796d616e20706879736963732e6a7067),
 (112, 'Sapiens: A Brief History of Humankind', 'This book explores the history of Homo sapiens from the emergence of archaic human species in Africa to the present day, encompassing the Cognitive Revolution, the Agricultural Revolution, and the Scientific Revolution.', 'Yuval Noah Harari', '978-317623797', 2011, 'History/Anthropology', 'Available', 0x2e2e2f75706c6f6164732f73617069656e732e6a7067),
@@ -90,10 +90,10 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (139, 'The Master and Margarita', 'A satirical novel blending fantasy, romance, and political commentary, set in Soviet Moscow and involving the Devil\'s visit to the city.', 'Mikhail Bulgakov', '978-318914028', 1967, 'Fiction, Satire', 'Available', 0x2e2e2f75706c6f6164732f7468652d6d61737465722d616e642d6d61726761726974612d33312e6a7067),
 (140, 'Dracula', 'An epistolary novel detailing the story of Count Dracula\'s attempt to move from Transylvania to England so he may find new blood and spread the undead curse.', 'Bram Stoker', '978-949799341', 1897, 'Fiction, Gothic', 'Available', 0x2e2e2f75706c6f6164732f64726163756c612d3739312e6a7067),
 (141, 'The Scarlet Letter', 'A novel set in 17th-century Puritan Massachusetts, exploring themes of sin, guilt, and redemption through the story of Hester Prynne.', 'Nathaniel Hawthorne', '978-880067147', 1850, 'Fiction, Historical', 'Available', 0x2e2e2f75706c6f6164732f7468652d736361726c65742d6c65747465722d3336312e6a7067),
-(142, 'A Brief History of Time', 'Introduces readers to the nature of the universe, from the big bang to black holes, in an accessible and engaging manner.', 'Stephen Hawking', '978-108455000', 1988, 'Cosmology, Physics', 'Not Available', 0x2e2e2f75706c6f6164732f612d62726965662d686973746f72792d6f662d74696d652e6a7067),
-(143, 'The Elements of Style', 'Offers timeless advice on writing clearly and effectively, focusing on grammar, style, and composition.', 'William Strunk Jr. and E.B. White', '978-666840598', 1918, 'English Language, Writing', 'Available', 0x2e2e2f75706c6f6164732f74686520656c656d656e7473206f66207374796c652e6a7067),
-(144, 'The Demon-Haunted World: Science as a Candle in the Dark', 'Advocates for critical thinking and scientific skepticism in the face of pseudoscience, superstition, and misinformation, emphasizing the importance of evidence-based reasoning.', 'Carl Sagan', '978-236299902', 1995, 'Science, Skepticism', 'Available', 0x2e2e2f75706c6f6164732f7468652064656d6f6e2068756e74656420776f726c642e6a7067),
-(145, 'Cosmos', 'Explores the universe and humanity\'s place within it, covering topics such as astronomy, biology, and the history of science, in a poetic and inspiring narrative.', 'Carl Sagan', '978-527416115', 1980, 'Astronomy, Science Communication', 'Available', 0x2e2e2f75706c6f6164732f636f736d6f732e6a7067);
+(142, 'A Brief History of Time', 'Introduces readers to the nature of the universe, from the big bang to black holes, in an accessible and engaging manner.', 'Stephen Hawking', '978-108455000', 1988, 'Cosmology, Physics, Science', 'Not Available', 0x2e2e2f75706c6f6164732f612d62726965662d686973746f72792d6f662d74696d652e6a7067),
+(143, 'The Elements of Style', 'Offers timeless advice on writing clearly and effectively, focusing on grammar, style, and composition.', 'William Strunk Jr. and E.B. White', '978-666840598', 1918, 'Writing', 'Not Available', 0x2e2e2f75706c6f6164732f74686520656c656d656e7473206f66207374796c652e6a7067),
+(144, 'The Demon-Haunted World: Science as a Candle in the Dark', 'Advocates for critical thinking and scientific skepticism in the face of pseudoscience, superstition, and misinformation, emphasizing the importance of evidence-based reasoning.', 'Carl Sagan', '978-236299902', 1995, 'Science', 'Not Available', 0x2e2e2f75706c6f6164732f7468652064656d6f6e2068756e74656420776f726c642e6a7067),
+(145, 'Cosmos', 'Explores the universe and humanity\'s place within it, covering topics such as astronomy, biology, and the history of science, in a poetic and inspiring narrative.', 'Carl Sagan', '978-527416115', 1980, 'Science', 'Not Available', 0x2e2e2f75706c6f6164732f636f736d6f732e6a7067);
 
 -- --------------------------------------------------------
 
@@ -436,7 +436,13 @@ INSERT INTO `borrowed_books` (`borrow_id`, `user_id`, `book_id`, `borrow_date`, 
 (367, 19, 42, '2024-04-13 16:17:36', '2024-04-14 10:00:00'),
 (368, 19, 48, '2024-04-13 16:43:44', '2024-04-29 07:30:00'),
 (369, 19, 91, '2024-04-14 16:32:36', '2024-04-27 08:00:00'),
-(370, 19, 142, '2024-04-18 07:32:51', '2024-05-01 08:00:00');
+(370, 19, 142, '2024-04-18 07:32:51', '2024-05-01 08:00:00'),
+(371, 20, 145, '2024-05-22 15:24:01', '2024-05-31 15:23:00'),
+(372, 26, 49, '2024-05-22 15:48:57', '2024-05-31 15:48:00'),
+(373, 19, 144, '2024-05-22 17:23:16', '2024-06-02 17:23:00'),
+(374, 21, 143, '2024-05-22 17:24:57', '2024-06-02 23:30:00'),
+(375, 1004, 42, '2024-05-23 07:21:51', '2024-06-03 07:21:00'),
+(376, 1004, 23, '2024-05-23 09:27:43', '2024-06-03 09:27:00');
 
 -- --------------------------------------------------------
 
@@ -756,7 +762,10 @@ INSERT INTO `return_history` (`return_id`, `borrow_id`, `user_id`, `book_id`, `r
 (337, 342, 28, 113, '2024-04-09 14:18:06', 'returned'),
 (338, 346, 19, 76, '2024-04-10 16:02:50', 'returned'),
 (339, 345, 19, 46, '2024-04-10 16:02:55', 'returned'),
-(340, 344, 19, 113, '2024-04-10 16:02:59', 'returned');
+(340, 344, 19, 113, '2024-04-10 16:02:59', 'returned'),
+(341, 367, 19, 42, '2024-05-22 17:22:29', 'returned'),
+(342, 375, 1004, 42, '2024-05-23 09:28:41', 'returned'),
+(343, 376, 1004, 23, '2024-05-23 09:30:14', 'returned');
 
 -- --------------------------------------------------------
 
@@ -783,8 +792,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `full_name`, `occupation`, `contact_num`, `address`, `password`, `created_at`, `user_type`, `image`) VALUES
-(14, 'admin', '', '', '', '', '', '$2y$10$GDDoVFoKbMkq/xI2P5FQvOiUmrGd6/rfcNEj01noqorzCVUv0V0DK', '2024-02-19 00:01:30', 'admin', 0x496d616765732f61646d696e312e6a7067),
-(19, 'user01', '', '', '', '', '', '$2y$10$Je.I4bOwtctWCLfo92JQMODBZPl7imnmPjiNVUbZ/4I6evGTvnNN2', '2024-02-29 17:32:35', 'user', 0x496d616765732f38623136376166363533633233393964643933623935326134383734303632302e6a7067),
+(14, 'admin', '', '', '', '', '', '$2y$10$GDDoVFoKbMkq/xI2P5FQvOiUmrGd6/rfcNEj01noqorzCVUv0V0DK', '2024-02-19 00:01:30', 'admin', 0x496d616765732f3336305f465f3234393030363731365f54596855526c70336c664e507a416a356e6979597075794354476c36305a704a2e6a7067),
+(19, 'user01', '', '', '', '', '', '$2y$10$Je.I4bOwtctWCLfo92JQMODBZPl7imnmPjiNVUbZ/4I6evGTvnNN2', '2024-02-29 17:32:35', 'user', 0x496d616765732f73747564656e742069636f6e2e706e67),
 (20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$KuF2YtDxAVllTaMX7L60eeX80uOTFelKHjAocIqE9kcfYFuY26p5i', '2024-03-04 23:12:13', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
 (21, 'alim', '', '', '', '', '', '$2y$10$kze.NSyaawXbrn4Yh1RHl.0Lhy4o4tawUBgxUjPPEMWc.dkx62CTq', '2024-03-05 03:36:45', 'user', 0x496d616765732f73747564656e742069636f6e20322e706e67),
 (22, 'luffy', '', '', '', '', '', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c7566667920696d6167652e6a7067),
@@ -842,13 +851,13 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=377;
 
 --
 -- AUTO_INCREMENT for table `return_history`
 --
 ALTER TABLE `return_history`
-  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=341;
+  MODIFY `return_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=344;
 
 --
 -- AUTO_INCREMENT for table `users`

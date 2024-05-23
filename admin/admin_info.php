@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: ../login.php");
+    header("location: login.php");
     exit;
 }
 
@@ -78,8 +78,6 @@ if ($stmt = mysqli_prepare($conn, $sql)) {
 mysqli_close($conn);
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,7 +99,7 @@ mysqli_close($conn);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 900px;
             margin: 50px auto;
             padding: 20px;
             background: transparent;
@@ -117,38 +115,48 @@ mysqli_close($conn);
             text-align: center;
         }
 
+        .profile-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .profile-image {
+            flex: 1;
+            text-align: center;
+        }
+
         .profile-image img {
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            border: 5px solid #3498db;
+            border: 3px solid #3498db;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: block;
-            margin: 0 auto 20px;
+            margin-bottom: 20px;
         }
 
-        .profile-image i {
-            display: flex;
-            justify-content: center;
+
+        .profile-info {
+            flex: 2;
         }
 
         .info-row {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 10px;
-            overflow: hidden;
         }
 
         .info-label {
-            width: 30%;
             color: #555;
             font-weight: bold;
-            float: left;
+            width: 30%;
         }
 
         .info-value {
-            width: 70%;
             color: #333;
             font-weight: normal;
-            float: left;
+            width: 70%;
             font-weight: bold;
         }
 
@@ -178,24 +186,25 @@ mysqli_close($conn);
             background-color: #2b85b8;
         }
 
-        .no-underline {
-            text-decoration: none !important;
-        }
-
         .username {
-            text-align: center;
-            margin-top: 5px;
             font-weight: bold;
             color: #333;
         }
 
         @media (max-width: 767px) {
+            .profile-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-row {
+                flex-direction: column;
+                text-align: center;
+            }
 
             .info-label,
             .info-value {
                 width: 100%;
-                float: none;
-                text-align: center;
             }
 
             .container {
@@ -209,59 +218,61 @@ mysqli_close($conn);
 <body>
     <div class="container">
         <h2 class="fw-bold">My Profile</h2>
-        <div class="profile-image">
-            <?php
-            if (!empty($image)) {
-                echo '<img src="../' . $image . '" alt="Profile Image">';
-            } else {
-                echo '<i class="fas fa-user-circle fa-5x text-dark" style="font-size: 200px;"></i>';
-            }
-            ?>
-            <div class="username"><?php echo $username; ?></div>
+        <div class="profile-content">
+            <div class="profile-image">
+                <?php
+                if (!empty($image)) {
+                    echo '<img src="../' . $image . '" alt="Profile Image">';
+                } else {
+                    echo '<i class="fas fa-user-circle"></i>';
+                }
+                ?>
+                <div class="username"><?php echo $username; ?></div>
+            </div>
+            <div class="profile-info">
+                <div class="info-row">
+                    <div class="info-label">ID:</div>
+                    <div class="info-value"><?php echo $id; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Username:</div>
+                    <div class="info-value"><?php echo $username; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Full Name:</div>
+                    <div class="info-value"><?php echo $fullName; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Email:</div>
+                    <div class="info-value"><?php echo $email; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Occupation:</div>
+                    <div class="info-value"><?php echo $occupation; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Address:</div>
+                    <div class="info-value"><?php echo $address; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Contact Number:</div>
+                    <div class="info-value"><?php echo $contactNum; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">User Type:</div>
+                    <div class="info-value"><?php echo $user_type; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Date Created:</div>
+                    <div class="info-value"><?php echo $created_at_formatted; ?></div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">Joined:</div>
+                    <div class="info-value"><?php echo $daysJoined; ?></div>
+                </div>
+            </div>
         </div>
-        <div class="profile-info">
-            <div class="info-row">
-                <div class="info-label">ID:</div>
-                <div class="info-value"><?php echo $id; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Username:</div>
-                <div class="info-value"><?php echo $username; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Full Name:</div>
-                <div class="info-value"><?php echo $fullName; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Email:</div>
-                <div class="info-value"><?php echo $email; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Occupation:</div>
-                <div class="info-value"><?php echo $occupation; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Address:</div>
-                <div class="info-value"><?php echo $address; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Contact Number:</div>
-                <div class="info-value"><?php echo $contactNum; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">User Type:</div>
-                <div class="info-value"><?php echo $user_type; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Date Created:</div>
-                <div class="info-value"><?php echo $created_at_formatted; ?></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Joined:</div>
-                <div class="info-value"><?php echo $daysJoined; ?></div>
-            </div>
-        </div>
-        <a href="<?php echo $_SESSION['user_type'] === 'admin' ? '../admin/users.php' : '../user/userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Users"><i class="fas fa-chevron-left"></i></a>
+        <a href="<?php echo $_SESSION['user_type'] === 'admin' ? 'users.php' : './user/userwelcome.php'; ?>" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-title="Back to Home" style="border: none;"><i class="fas fa-chevron-left"></i></a>
     </div>
 
     <script>

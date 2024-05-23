@@ -3,15 +3,44 @@
 require_once "../config.php";
 
 // Define a default SQL query
-$sql = "SELECT * FROM books ORDER BY book_id DESC";
+$sql = "SELECT * FROM books";
 
 // Check if a search query is provided
 if (isset($_POST['searchQuery']) && !empty($_POST['searchQuery'])) {
     // Sanitize the search query to prevent SQL injection
     $searchQuery = mysqli_real_escape_string($conn, $_POST['searchQuery']);
     // Modify the SQL query to include the search filter for title and genre
-    $sql = "SELECT * FROM books WHERE title LIKE '%$searchQuery%' OR genre LIKE '%$searchQuery%' ORDER BY book_id DESC";
+    $sql .= " WHERE title LIKE '%$searchQuery%' OR genre LIKE '%$searchQuery%'";
 }
+
+// Check if a genre is selected
+if (isset($_POST['genre']) && !empty($_POST['genre'])) {
+    // Sanitize the genre to prevent SQL injection
+    $selectedGenre = mysqli_real_escape_string($conn, $_POST['genre']);
+
+    // Split the selected genre into individual words
+    $selectedGenreWords = explode(" ", $selectedGenre);
+
+    // Initialize an array to store conditions for each genre word
+    $genreConditions = [];
+
+    // Build conditions for each genre word
+    foreach ($selectedGenreWords as $word) {
+        $genreConditions[] = "genre LIKE '%$word%'";
+    }
+
+    // Combine all conditions with OR operator
+    $genreCondition = "(" . implode(" OR ", $genreConditions) . ")";
+
+    // Modify the SQL query to search for books with genres containing any word similar to the selected genre
+    if (strpos($sql, 'WHERE') === false) {
+        $sql .= " WHERE $genreCondition";
+    } else {
+        $sql .= " AND $genreCondition";
+    }
+}
+
+$sql .= " ORDER BY book_id DESC";
 
 // Attempt select query execution
 if ($result = mysqli_query($conn, $sql)) {
@@ -23,7 +52,6 @@ if ($result = mysqli_query($conn, $sql)) {
             echo '<div class="info">';
             echo '<div class="mt-auto">';
             echo '<div class="heading1 mb-2 d-none">' . $row['title'] . '</div>';
-
 
             echo '<div class="d-flex justify-content-center">';
             echo '<a href="userviewbook.php?book_id=' . $row['book_id'] . '" class="btn btn-info me-2">Read More</a>';

@@ -48,6 +48,7 @@ mysqli_stmt_close($stmt);
         }
 
         .card-user {
+            background-color: rgba(255, 255, 255, 0.06);
             border-radius: 15px;
             transition: transform 0.3s ease;
             padding: 15px;
@@ -57,6 +58,8 @@ mysqli_stmt_close($stmt);
             overflow: hidden;
             transition: background-color 0.3s ease;
             border: none;
+            box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(20px);
         }
 
         .card-user:hover {

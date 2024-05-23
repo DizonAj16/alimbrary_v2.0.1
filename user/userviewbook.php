@@ -81,51 +81,47 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         body {
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
 
         .container {
-            flex: 1;
+            /* Set the minimum height of container to 100% of viewport height */
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .card {
-            max-width: 90%;
-
+            min-height: 80vh;
+            max-width: 800px; /* Set a maximum width for the card */
+            width: 100%;
         }
 
         .card-header {
             background-color: #007bff;
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 10px; /* Adjust padding for the header */
         }
 
         .book-image {
             max-width: 100%;
-            height: 450px;
-            margin-bottom: 20px;
+            height: auto;
+            max-height: 300px; /* Set a maximum height for the image */
+            margin-bottom: 10px;
             border-radius: 10px;
             object-fit: cover;
         }
 
-        .table th{
+        .table th, .table td {
             border: none;
-            padding: 10px;
+            padding: 5px; /* Adjust padding for table cells */
             text-align: left;
-            font-size: 18px;
+            font-size: 16px; /* Adjust font size for better fit */
         }
-        .table td{
-            border: none;
-            padding: 10px;
-            text-align: left;
-            font-size: 18px;
-        }
+
         .card-footer {
             text-align: center;
         }
@@ -134,9 +130,9 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             background-color: #007bff;
             color: #fff;
             border-radius: 10px;
-            padding: 10px 20px;
+            padding: 8px 16px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .btn-back:hover {
@@ -145,8 +141,8 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         }
 
         .description {
-            padding-top: 20px;
-            font-size: 16px;
+            padding-top: 10px;
+            font-size: 14px; /* Adjust font size for better fit */
         }
 
         .book-title {
@@ -185,7 +181,6 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
                                     <tr>
                                         <th>Author</th>
                                         <td><?php echo htmlspecialchars($author); ?></td>
-
                                     </tr>
                                     <tr>
                                         <th>Description</th>
@@ -216,7 +211,8 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
             <div class="card-footer">
                 <a href="userbook.php" class="text-light">
                     <button class="btn btn-back btn-md" data-bs-toggle="tooltip" data-bs-placement="top" title="Back to Books">
-                        <i class="fas fa-arrow-left"></i></button>
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
                 </a>
             </div>
         </div>
@@ -225,10 +221,11 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         document.addEventListener("DOMContentLoaded", function() {
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl)
+                return new bootstrap.Tooltip(tooltipTriggerEl);
             });
         });
     </script>
 </body>
 
 </html>
+

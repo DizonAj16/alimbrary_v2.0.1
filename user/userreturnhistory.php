@@ -154,16 +154,16 @@ mysqli_stmt_close($stmt);
         #backToTopBtn:hover {
             background-color: rgba(0, 0, 0, 0.7);
         }
+
         footer {
             background-color: black;
-            margin-top: auto;
+            width: 100%;
         }
     </style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-
         <div class="container-fluid">
             <div class="title p-1">
                 <img class="logo" src="../Images/logo.png" alt="">
@@ -194,7 +194,6 @@ mysqli_stmt_close($stmt);
                         <a class="nav-link active" href="userreturnhistory.php"><i class="fa fa-history fa-lg"></i> Returned Books</a>
                     </li>
                 </ul>
-
 
                 <!-- Dropdown -->
                 <div class="navbar-nav ml-auto">
@@ -227,9 +226,9 @@ mysqli_stmt_close($stmt);
         </div>
     </nav>
 
-    <div class="container" style="margin-top:85px">
+    <div class="container d-flex flex-column flex-grow-1" style="margin-top:85px">
         <?php if (mysqli_num_rows($result) === 0) : ?>
-            <div class='alert alert-danger' role='alert'>
+            <div class='container alert alert-danger' role='alert'>
                 <h4 class='alert-heading'>No Returned Books</h4>
                 <p class='mb-0'>You haven't returned any books yet.</p>
             </div>
@@ -308,8 +307,6 @@ mysqli_stmt_close($stmt);
     </div>
 <?php endif; ?>
 
-
-
 <script src="../jquery/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -332,11 +329,10 @@ mysqli_stmt_close($stmt);
     });
 </script>
 
-
 <button id="backToTopBtn" title="Go to top" style="height: 50px; width:50px;"><i class="fas fa-arrow-up"></i></button>
 <script src="../scripts/backtotop.js?<?php echo time(); ?>"></script>
 
-<footer style="background-color: black;">
+<footer class="mt-auto" style="background-color: black;">
     <marquee behavior="scroll" direction="left" style="font-family: 'Arial', sans-serif; font-size: 24px; color: #ffffff; font-weight: bold;">
         <span style="color: #ff0000;">&#169; 2024</span> <span style="color: #1e90ff;">Alimbrary</span>
     </marquee>
