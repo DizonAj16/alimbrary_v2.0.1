@@ -476,7 +476,7 @@
                                     echo '<div class="rounded-5 d-flex">';
                                     echo '<a href="adminviewbook.php?book_id=' . $row['book_id'] . '" class="btn text-light rounded-2 btn-lg" title="View Book"><i class="fas fa-eye"></i></a>';
                                     echo '<a href="updatebook.php?book_id=' . $row['book_id'] . '" class="btn text-light rounded-2 btn-lg" title="Update Book"><span class="fa fa-pencil fa-lg"></span></a>';
-                                    echo '<a href="#" class="btn rounded-2 btn-lg text-light" data-book-id="' . $row['book_id'] . '" data-bs-toggle="modal" data-bs-target="#deleteModal" title="Delete Book"><i class="fas fa-trash-alt"></i></a>';
+                                    echo '<a href="#" class="btn rounded-2 btn-lg text-light delete-btn" data-book-id="' . $row['book_id'] . '" data-bs-toggle="modal" data-bs-target="#deleteModal" title="Delete Book"><i class="fas fa-trash-alt"></i></a>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</div>';
