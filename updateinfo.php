@@ -73,7 +73,7 @@ mysqli_close($conn);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 50px auto;
             padding: 20px;
             background-color: rgba(255, 255, 255, 0.9);
@@ -146,29 +146,35 @@ mysqli_close($conn);
     <div class="container">
         <h2>Update User Info</h2>
         <form action="update_process.php" method="post">
-            <div class="form-group">
-                <label class="form-label" for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label class="form-label" for="username">Username:</label>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label class="form-label" for="fullName">Full Name:</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName" value="<?php echo $fullName; ?>">
+                </div>
             </div>
-            <div class="form-group">
-                <label class="form-label" for="fullName">Full Name:</label>
-                <input type="text" class="form-control" id="fullName" name="fullName" value="<?php echo $fullName; ?>">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label class="form-label" for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label class="form-label" for="occupation">Occupation:</label>
+                    <input type="text" class="form-control" id="occupation" name="occupation" value="<?php echo $occupation; ?>">
+                </div>
             </div>
-            <div class="form-group">
-                <label class="form-label" for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="occupation">Occupation:</label>
-                <input type="text" class="form-control" id="occupation" name="occupation" value="<?php echo $occupation; ?>">
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="address">Address:</label>
-                <input type="text" class="form-control" id="address" name="address" value="<?php echo $address; ?>">
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="contactNum">Contact Number:</label>
-                <input type="text" class="form-control" id="contactNum" name="contactNum" value="<?php echo $contactNum; ?>">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label class="form-label" for="address">Address:</label>
+                    <input type="text" class="form-control" id="address" name="address" value="<?php echo $address; ?>">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label class="form-label" for="contactNum">Contact Number:</label>
+                    <input type="text" class="form-control" id="contactNum" name="contactNum" value="<?php echo $contactNum; ?>">
+                </div>
             </div>
             <div class="form-group">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
