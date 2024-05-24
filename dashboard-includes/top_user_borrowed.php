@@ -6,7 +6,7 @@
     }
 
     .borrowers-heading {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         text-align: center;
         color: dark;
         font-weight: bold;
@@ -47,13 +47,14 @@ if ($result) {
     // Start the div with flex styles
     echo '<div class="borrowers-container">';
     // Heading with class for styling
-    echo "<h3 class='borrowers-heading'>Top Borrowers</h3>"; 
+    echo "<h3 class='borrowers-heading'>Top Borrowers</h3>";
+    echo "<h6>(by borrow count)</h6>"; 
     // Start the ordered list with class for styling
     echo "<ol class='borrowers-list'>"; 
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result)) {
         // List item with class for styling
-        echo "<li class='borrower-item'>{$row['username']} - Borrowed {$row['borrow_count']} times</li>"; 
+        echo "<li class='borrower-item'>{$row['username']} - {$row['borrow_count']}</li>"; 
     }
     // Close the ordered list
     echo "</ol>";

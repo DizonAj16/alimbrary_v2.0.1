@@ -125,6 +125,9 @@
                 margin-right: 0;
                 width: auto; /* Reset width for smaller screens */
             }
+            .user-info{
+                margin-top: 50px;
+            }
         }
     </style>
 </head>
@@ -229,8 +232,9 @@
                             echo '<i class="fas fa-user-circle" style="color: black; font-size:200px;"></i>';
                         }
                         ?>
-                        <h4><em><?php echo $username; ?></em></h4>
+                       <h4><em><?php echo $username; ?></em></h4>
                     </div>
+                    
                     <div class="user-info">
                         
                         <div class="info-item">

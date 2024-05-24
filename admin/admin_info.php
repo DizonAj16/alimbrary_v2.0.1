@@ -211,6 +211,7 @@ mysqli_close($conn);
                 max-width: 90%;
                 padding: 20px;
             }
+            
         }
     </style>
 </head>

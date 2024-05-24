@@ -5,7 +5,7 @@
 
     .popular-books-heading {
         color: dark;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         font-weight: bold;
     }
 
@@ -50,7 +50,8 @@ if ($result) {
     // Start the div with flex styles
     echo '<div class="text-center">';
     // Heading with class for styling
-    echo "<h3 class='popular-books-heading'>Most Popular Books</h3>"; 
+    echo "<h3 class='popular-books-heading'>Most Popular Books</h3>";
+    echo "<h6>(by borrow count)</h6>"; 
     // Start the div with flex styles
     echo "<div class='popular-books-container'>"; 
     // Start the ordered list with class for styling
@@ -58,7 +59,7 @@ if ($result) {
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result)) {
         // List item with class for styling
-        echo "<li class='popular-book-item'>{$row['title']} - Borrowed {$row['borrow_count']} times</li>"; 
+        echo "<li class='popular-book-item'>{$row['title']} - {$row['borrow_count']}</li>"; 
     }
     // Close the ordered list
     echo "</ol>";

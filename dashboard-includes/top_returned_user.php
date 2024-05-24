@@ -6,7 +6,7 @@
     }
 
     .returners-heading {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         text-align: center;
         color: dark;
         font-weight: bold;
@@ -47,14 +47,15 @@ if ($result_top_returned_users) {
     // Start the div with flex styles
     echo '<div class="returners-container">';
     // Heading with class for styling
-    echo "<h3 class='returners-heading'>Top Returners</h3>"; 
+    echo "<h3 class='returners-heading'>Top Returners</h3>";
+    echo "<h6>(by return count)</h6>"; 
     // Start the ordered list with class for styling
     echo "<ol class='returners-list'>"; 
     
     // Fetch the result as an associative array
     while ($row = mysqli_fetch_assoc($result_top_returned_users)) {
         // List item with class for styling
-        echo "<li class='returner-item'>{$row['username']} (Returned {$row['return_count']} books)</li>"; 
+        echo "<li class='returner-item'>{$row['username']} - {$row['return_count']}</li>"; 
     }
     // Close the ordered list
     echo "</ol>"; 

@@ -16,13 +16,14 @@ $result_top_returned = mysqli_query($conn, $query_top_returned);
 
 // Check if the query was successful
 if ($result_top_returned) {
-    echo "<h3 style='margin-bottom: 20px; font-size: 30px;' class='text-center fw-bold'>Most Returned Books</h3>"; 
+    echo "<h3 style='margin-bottom: 10px; font-size: 30px;' class='text-center fw-bold'>Most Returned Books</h3>";
+    echo "<h6 class='text-center'>(by return count)</h6>";  
     echo '<div class="d-flex justify-content-center align-items-center">';
     echo "<div class='text-start'>";
     
     echo "<ol style='list-style-type: decimal; padding-left: 20px;'>"; 
     while ($row = mysqli_fetch_assoc($result_top_returned)) {
-        echo "<li style='font-weight:bold; font-size: 18px;'>{$row['title']} (Returned {$row['return_count']} times)</li>"; 
+        echo "<li style='font-weight:bold; font-size: 18px;'>{$row['title']} - {$row['return_count']}</li>"; 
     }
     echo "</ol>";
     echo "</div>";

@@ -118,13 +118,6 @@ mysqli_free_result($result2);
         }
 
 
-
-        @media (max-width: 768px) {
-            .dashboard-section {
-                flex-basis: calc(100% - 40px);
-            }
-        }
-
         .dashboard-section i {
             margin-bottom: 10px;
         }
@@ -158,26 +151,30 @@ mysqli_free_result($result2);
             flex-direction: row;
             /* Change the direction to horizontal */
             justify-content: space-around;
+            flex-wrap: wrap;
             /* Center the charts horizontally */
             align-items: center;
             /* Center the charts vertically */
             /* Add some margin for spacing */
             /* Set background color */
-            padding: 10px;
             /* Add padding for spacing */
             border-radius: 10px;
+            padding: 10px;
+            gap: 20px;
             /* Add rounded corners */
         }
 
         .chart-container {
-            width: 48%;
-            /* Set the width of each chart container */
-            margin: 0;
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            height: 400px;
             background-color: rgba(0, 0, 0, 0.7);
             /* Darker background color */
             /* Darker box shadow */
             border-radius: 5px;
             backdrop-filter: blur(20px);
+            padding: 20px;
             /* Add rounded corners */
         }
 
@@ -187,6 +184,17 @@ mysqli_free_result($result2);
             /* Ensure canvas elements fill their container */
             margin: auto;
             /* Center the canvas horizontally */
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-section {
+                flex-basis: calc(100% - 40px);
+            }
+
+            .chart-container {
+                overflow-y: scroll;
+                height: 380px;
+            }
         }
     </style>
 </head>
@@ -409,7 +417,7 @@ mysqli_free_result($result2);
                     label: 'Number of Books Borrowed',
                     data: borrowedCounts,
                     backgroundColor: backgroundColors, // Set different colors for each bar // Set different border colors for each bar
-                    borderWidth: 2,// Set hover background colors to match bar colors  // Set hover border colors to match bar border colors
+                    borderWidth: 2, // Set hover background colors to match bar colors  // Set hover border colors to match bar border colors
                 }]
             },
             options: {
@@ -418,7 +426,7 @@ mysqli_free_result($result2);
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Books Borrowed by Each User',
+                        text: 'Borrow Count of Each User',
                         color: '#ffffff', // Set the color of the title text to white
                         font: {
                             size: 18,
