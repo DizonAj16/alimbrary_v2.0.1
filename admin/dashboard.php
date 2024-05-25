@@ -384,15 +384,22 @@ mysqli_free_result($result2);
 
 
     <script>
-        // Function to generate random colors
+        // Function to generate random colors without duplicates
         function generateRandomColors(numColors) {
             var colors = [];
+            var usedColors = new Set(); // Set to keep track of used colors
             for (var i = 0; i < numColors; i++) {
-                var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
+                var color;
+                do {
+                    // Generate a random color
+                    color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
+                } while (usedColors.has(color)); // Check if the color is already used
                 colors.push(color);
+                usedColors.add(color); // Add the color to the set of used colors
             }
             return colors;
         }
+
 
         // PHP generated data for the chart
         const userData = <?php echo json_encode($userData); ?>;
@@ -536,11 +543,18 @@ mysqli_free_result($result2);
         });
 
         // Function to generate random colors
+        // Function to generate random colors without duplicates
         function generateRandomColors(numColors) {
             var colors = [];
+            var usedColors = new Set(); // Set to keep track of used colors
             for (var i = 0; i < numColors; i++) {
-                var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
+                var color;
+                do {
+                    // Generate a random color
+                    color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
+                } while (usedColors.has(color)); // Check if the color is already used
                 colors.push(color);
+                usedColors.add(color); // Add the color to the set of used colors
             }
             return colors;
         }
