@@ -78,7 +78,7 @@ mysqli_stmt_close($stmt);
         .table th,
         .table td {
             border: 1px solid #dee2e6;
-            padding: 10px;
+            font-size: 14px;
         }
 
 

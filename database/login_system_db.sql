@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2024 at 11:46 AM
+-- Generation Time: May 25, 2024 at 09:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,25 +71,25 @@ INSERT INTO `books` (`book_id`, `title`, `description`, `author`, `isbn`, `pub_y
 (87, 'Stupid is Forever', 'A compilation of witty and humorous essays, anecdotes, and speeches by the renowned Philippine senator.', 'Miriam Defensor Santiago', '978-406826823', 2014, 'Humor/Politics', 'Not Available', 0x2e2e2f75706c6f6164732f73747570696420697320666f72657665722e6a7067),
 (88, 'The Lion, the Witch and the Wardrobe', 'The first book in The Chronicles of Narnia series, it follows the adventures of four siblings who discover the magical land of Narnia and join the fight against the White Witch.', 'C.S. Lewis', '978-948777154', 1950, 'Fantasy, Children\'s Literature', 'Not Available', 0x2e2e2f75706c6f6164732f7468652d6c696f6e2d7468652d77697463682d616e642d7468652d77617264726f62652d312e6a7067),
 (89, '1984', 'A dystopian novel set in a totalitarian society where individuality and independent thought are suppressed by the ruling Party led by Big Brother.', 'George Orwell', '978-583411954', 1949, 'Dystopian Fiction, Political Satire', 'Not Available', 0x2e2e2f75706c6f6164732f313938342e6a7067),
-(90, 'The Help', 'Set in 1960s Mississippi, the novel tells the story of African American maids who work for white families and the unlikely friendships that form amidst racial tensions and social injustices.', 'Kathryn Stockett', '978-821590241', 2009, 'Historical Fiction, Drama', 'Available', 0x2e2e2f75706c6f6164732f7468652068656c702e6a7067),
+(90, 'The Help', 'Set in 1960s Mississippi, the novel tells the story of African American maids who work for white families and the unlikely friendships that form amidst racial tensions and social injustices.', 'Kathryn Stockett', '978-821590241', 2009, 'Historical Fiction, Drama', 'Not Available', 0x2e2e2f75706c6f6164732f7468652068656c702e6a7067),
 (91, 'Watchmen', 'Set in an alternate history where superheroes are real, \"Watchmen\" explores complex themes of power, morality, and human nature.', 'Alan Moore', '978-407028204', 1986, 'Superhero, Mystery, Drama', 'Not Available', 0x2e2e2f75706c6f6164732f57617463686d656e2c5f69737375655f312e6a7067),
 (92, 'X-Men: Days of Future Past', 'In a dystopian future, mutants are hunted to near-extinction, prompting the X-Men to send Wolverine back in time to prevent the catastrophic events that led to this timeline.', 'Chris Claremont', '978-196028760', 1981, 'Superhero, Science Fiction, Time Travel', 'Not Available', 0x2e2e2f75706c6f6164732f786d656e2e6a7067),
 (93, 'The Structure of Scientific Revolutions', 'This seminal work explores the process of scientific revolutions and paradigm shifts.', 'Thomas S. Kuhn', '978-733645177', 1962, 'Philosophy of Science', 'Not Available', 0x2e2e2f75706c6f6164732f746865207374727563747572652e6a7067),
 (94, 'Capital in the Twenty-First Century', 'Piketty examines the dynamics of wealth and income inequality in capitalist economies.', 'Thomas Piketty', '978-234847473', 2013, 'Economics', 'Available', 0x2e2e2f75706c6f6164732f6361706974616c2d696e2d7468652d7477656e74792d66697273742d63656e747572792d332e6a7067),
-(95, 'Guns, Germs, and Steel: The Fates of Human Societies', 'Diamond explores the factors that have shaped human history, including geography, agriculture, and technology.', 'Jared Diamond', '978-537225273', 1997, 'Anthropology/History', 'Available', 0x2e2e2f75706c6f6164732f67756e732d6765726d732d616e642d737465656c2d7468652d66617465732d6f662d68756d616e2d736f636965746965732d323074682d616e6e69766572736172792d65646974696f6e2e6a7067),
-(97, 'The Impact of Climate Change on Agricultural Practices', 'This thesis explores the effects of climate change on modern agricultural practices, analyzing data from various regions and proposing sustainable solutions.', 'John Smith', '978-924130200', 2021, 'Environmental Science', 'Available', 0x2e2e2f75706c6f6164732f636c696d617465206368616e67652e706e67),
-(98, 'Thinking, Fast and Slow', 'Kahneman explores the two systems of thinking that drive human decision-making.', 'Daniel Kahneman', '978-722323128', 2011, 'Psychology/Behavioral Economics', 'Available', 0x2e2e2f75706c6f6164732f7468696e6b696e672d666173742d616e642d736c6f772e6a7067),
-(107, 'The Selfish Gene', 'Explores the gene-centered view of evolution and its implications for understanding human behavior.', 'Richard Dawkins', '978-564461809', 1976, 'Biology, Evolutionary Psychology', 'Available', 0x2e2e2f75706c6f6164732f5468655f53656c666973685f47656e65332e6a7067),
+(95, 'Guns, Germs, and Steel: The Fates of Human Societies', 'Diamond explores the factors that have shaped human history, including geography, agriculture, and technology.', 'Jared Diamond', '978-537225273', 1997, 'Anthropology/History', 'Not Available', 0x2e2e2f75706c6f6164732f67756e732d6765726d732d616e642d737465656c2d7468652d66617465732d6f662d68756d616e2d736f636965746965732d323074682d616e6e69766572736172792d65646974696f6e2e6a7067),
+(97, 'The Impact of Climate Change on Agricultural Practices', 'This thesis explores the effects of climate change on modern agricultural practices, analyzing data from various regions and proposing sustainable solutions.', 'John Smith', '978-924130200', 2021, 'Environmental Science', 'Not Available', 0x2e2e2f75706c6f6164732f636c696d617465206368616e67652e706e67),
+(98, 'Thinking, Fast and Slow', 'Kahneman explores the two systems of thinking that drive human decision-making.', 'Daniel Kahneman', '978-722323128', 2011, 'Psychology/Behavioral Economics', 'Not Available', 0x2e2e2f75706c6f6164732f7468696e6b696e672d666173742d616e642d736c6f772e6a7067),
+(107, 'The Selfish Gene', 'Explores the gene-centered view of evolution and its implications for understanding human behavior.', 'Richard Dawkins', '978-564461809', 1976, 'Biology, Evolutionary Psychology', 'Not Available', 0x2e2e2f75706c6f6164732f5468655f53656c666973685f47656e65332e6a7067),
 (108, 'Silent Spring', 'Examines the detrimental effects of pesticides on the environment and ecosystems.', 'Rachel Carson', '978-243076488', 1962, 'Environmental Science', 'Not Available', 0x2e2e2f75706c6f6164732f53696c656e74537072696e672e6a7067),
 (109, 'Longitude: The True Story of a Lone Genius', 'Chronicles the quest to develop a reliable method for determining longitude at sea.', 'Dava Sobel', '978-119027842', 1995, 'History of Science, Maritime History', 'Not Available', 0x2e2e2f75706c6f6164732f6c6f6e6769747564652e6a7067),
-(110, 'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself', 'Explores fundamental questions about existence, drawing on physics and philosophy.', 'Sean Carroll', '978-639853449', 2016, 'Philosophy of Science, Cosmology', 'Available', 0x2e2e2f75706c6f6164732f7468652062696720706963747572652e6a7067),
+(110, 'The Big Picture: On the Origins of Life, Meaning, and the Universe Itself', 'Explores fundamental questions about existence, drawing on physics and philosophy.', 'Sean Carroll', '978-639853449', 2016, 'Philosophy of Science, Cosmology', 'Not Available', 0x2e2e2f75706c6f6164732f7468652062696720706963747572652e6a7067),
 (111, 'The Feynman Lectures on Physics', 'Based on a series of lectures by Nobel laureate Richard Feynman, this three-volume set covers the fundamentals of physics in a captivating and accessible manner, making it a favorite among students and enthusiasts alike.', 'Richard P. Feynman', '978-838819237', 1964, 'Non-fiction, Science, Physics', 'Not Available', 0x2e2e2f75706c6f6164732f6665796d616e20706879736963732e6a7067),
-(112, 'Sapiens: A Brief History of Humankind', 'This book explores the history of Homo sapiens from the emergence of archaic human species in Africa to the present day, encompassing the Cognitive Revolution, the Agricultural Revolution, and the Scientific Revolution.', 'Yuval Noah Harari', '978-317623797', 2011, 'History/Anthropology', 'Available', 0x2e2e2f75706c6f6164732f73617069656e732e6a7067),
+(112, 'Sapiens: A Brief History of Humankind', 'This book explores the history of Homo sapiens from the emergence of archaic human species in Africa to the present day, encompassing the Cognitive Revolution, the Agricultural Revolution, and the Scientific Revolution.', 'Yuval Noah Harari', '978-317623797', 2011, 'History/Anthropology', 'Not Available', 0x2e2e2f75706c6f6164732f73617069656e732e6a7067),
 (113, 'The Teacher Wars: A History of America\'s Most Embattled Profession', 'Traces the history of teaching in America and explores the various political, cultural, and social forces that have shaped the profession.', 'Dana Goldstein', '978-485828075', 2014, 'Education/History', 'Not Available', 0x2e2e2f75706c6f6164732f746561636865722e6a7067),
-(114, 'Mindset:The New Psychology of Success', 'Explores the concept of mindset and how adopting a growth mindset can lead to greater success and fulfillment.', 'Carol S. Dweck', '978-981312413', 2006, 'Psychology/Self-Help', 'Available', 0x2e2e2f75706c6f6164732f6d696e647365742e6a7067),
-(139, 'The Master and Margarita', 'A satirical novel blending fantasy, romance, and political commentary, set in Soviet Moscow and involving the Devil\'s visit to the city.', 'Mikhail Bulgakov', '978-318914028', 1967, 'Fiction, Satire', 'Available', 0x2e2e2f75706c6f6164732f7468652d6d61737465722d616e642d6d61726761726974612d33312e6a7067),
-(140, 'Dracula', 'An epistolary novel detailing the story of Count Dracula\'s attempt to move from Transylvania to England so he may find new blood and spread the undead curse.', 'Bram Stoker', '978-949799341', 1897, 'Fiction, Gothic', 'Available', 0x2e2e2f75706c6f6164732f64726163756c612d3739312e6a7067),
-(141, 'The Scarlet Letter', 'A novel set in 17th-century Puritan Massachusetts, exploring themes of sin, guilt, and redemption through the story of Hester Prynne.', 'Nathaniel Hawthorne', '978-880067147', 1850, 'Fiction, Historical', 'Available', 0x2e2e2f75706c6f6164732f7468652d736361726c65742d6c65747465722d3336312e6a7067),
+(114, 'Mindset:The New Psychology of Success', 'Explores the concept of mindset and how adopting a growth mindset can lead to greater success and fulfillment.', 'Carol S. Dweck', '978-981312413', 2006, 'Psychology/Self-Help', 'Not Available', 0x2e2e2f75706c6f6164732f6d696e647365742e6a7067),
+(139, 'The Master and Margarita', 'A satirical novel blending fantasy, romance, and political commentary, set in Soviet Moscow and involving the Devil\'s visit to the city.', 'Mikhail Bulgakov', '978-318914028', 1967, 'Fiction, Satire', 'Not Available', 0x2e2e2f75706c6f6164732f7468652d6d61737465722d616e642d6d61726761726974612d33312e6a7067),
+(140, 'Dracula', 'An epistolary novel detailing the story of Count Dracula\'s attempt to move from Transylvania to England so he may find new blood and spread the undead curse.', 'Bram Stoker', '978-949799341', 1897, 'Fiction, Gothic', 'Not Available', 0x2e2e2f75706c6f6164732f64726163756c612d3739312e6a7067),
+(141, 'The Scarlet Letter', 'A novel set in 17th-century Puritan Massachusetts, exploring themes of sin, guilt, and redemption through the story of Hester Prynne.', 'Nathaniel Hawthorne', '978-880067147', 1850, 'Fiction, Historical', 'Not Available', 0x2e2e2f75706c6f6164732f7468652d736361726c65742d6c65747465722d3336312e6a7067),
 (142, 'A Brief History of Time', 'Introduces readers to the nature of the universe, from the big bang to black holes, in an accessible and engaging manner.', 'Stephen Hawking', '978-108455000', 1988, 'Cosmology, Physics, Science', 'Not Available', 0x2e2e2f75706c6f6164732f612d62726965662d686973746f72792d6f662d74696d652e6a7067),
 (143, 'The Elements of Style', 'Offers timeless advice on writing clearly and effectively, focusing on grammar, style, and composition.', 'William Strunk Jr. and E.B. White', '978-666840598', 1918, 'Writing', 'Not Available', 0x2e2e2f75706c6f6164732f74686520656c656d656e7473206f66207374796c652e6a7067),
 (144, 'The Demon-Haunted World: Science as a Candle in the Dark', 'Advocates for critical thinking and scientific skepticism in the face of pseudoscience, superstition, and misinformation, emphasizing the importance of evidence-based reasoning.', 'Carl Sagan', '978-236299902', 1995, 'Science', 'Not Available', 0x2e2e2f75706c6f6164732f7468652064656d6f6e2068756e74656420776f726c642e6a7067),
@@ -442,7 +442,18 @@ INSERT INTO `borrowed_books` (`borrow_id`, `user_id`, `book_id`, `borrow_date`, 
 (373, 19, 144, '2024-05-22 17:23:16', '2024-06-02 17:23:00'),
 (374, 21, 143, '2024-05-22 17:24:57', '2024-06-02 23:30:00'),
 (375, 1004, 42, '2024-05-23 07:21:51', '2024-06-03 07:21:00'),
-(376, 1004, 23, '2024-05-23 09:27:43', '2024-06-03 09:27:00');
+(376, 1004, 23, '2024-05-23 09:27:43', '2024-06-03 09:27:00'),
+(377, 19, 141, '2024-05-23 14:04:44', '2024-06-03 14:04:00'),
+(378, 19, 140, '2024-05-23 14:05:00', '2024-06-03 14:04:00'),
+(379, 19, 139, '2024-05-23 14:05:14', '2024-06-03 14:05:00'),
+(380, 19, 114, '2024-05-23 14:08:46', '2024-06-03 14:08:00'),
+(381, 19, 112, '2024-05-23 14:09:00', '2024-06-03 14:08:00'),
+(382, 19, 110, '2024-05-23 14:10:53', '2024-06-03 14:10:00'),
+(383, 19, 107, '2024-05-23 14:11:11', '2024-06-03 14:11:00'),
+(384, 19, 98, '2024-05-23 14:11:31', '2024-06-03 14:11:00'),
+(385, 19, 90, '2024-05-23 14:11:50', '2024-06-03 14:11:00'),
+(386, 19, 97, '2024-05-23 14:12:13', '2024-06-03 14:12:00'),
+(387, 19, 95, '2024-05-23 14:12:29', '2024-06-03 14:12:00');
 
 -- --------------------------------------------------------
 
@@ -793,15 +804,18 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `full_name`, `occupation`, `contact_num`, `address`, `password`, `created_at`, `user_type`, `image`) VALUES
 (14, 'admin', '', '', '', '', '', '$2y$10$GDDoVFoKbMkq/xI2P5FQvOiUmrGd6/rfcNEj01noqorzCVUv0V0DK', '2024-02-19 00:01:30', 'admin', 0x496d616765732f3336305f465f3234393030363731365f54596855526c70336c664e507a416a356e6979597075794354476c36305a704a2e6a7067),
-(19, 'user01', '', '', '', '', '', '$2y$10$Je.I4bOwtctWCLfo92JQMODBZPl7imnmPjiNVUbZ/4I6evGTvnNN2', '2024-02-29 17:32:35', 'user', 0x496d616765732f73747564656e742069636f6e2e706e67),
+(19, 'hikuku', '', '', '', '', '', '$2y$10$Je.I4bOwtctWCLfo92JQMODBZPl7imnmPjiNVUbZ/4I6evGTvnNN2', '2024-02-29 17:32:35', 'user', 0x496d616765732f66616b657368656c62792e706e67),
 (20, 'arjec', 'arjecdizon99@gmail.com', 'Arjec Jose Dizon', 'student', '+639158423449', 'Guiwan, Zamboanga city', '$2y$10$KuF2YtDxAVllTaMX7L60eeX80uOTFelKHjAocIqE9kcfYFuY26p5i', '2024-03-04 23:12:13', 'user', 0x496d616765732f757365722069636f6e20332e706e67),
-(21, 'alim', '', '', '', '', '', '$2y$10$kze.NSyaawXbrn4Yh1RHl.0Lhy4o4tawUBgxUjPPEMWc.dkx62CTq', '2024-03-05 03:36:45', 'user', 0x496d616765732f73747564656e742069636f6e20322e706e67),
+(21, 'alim', '', '', '', '', '', '$2y$10$kze.NSyaawXbrn4Yh1RHl.0Lhy4o4tawUBgxUjPPEMWc.dkx62CTq', '2024-03-05 03:36:45', 'user', 0x496d616765732f616c696d2e6a7067),
 (22, 'luffy', '', '', '', '', '', '$2y$10$Lo71Gy6hdn5vmXgzhqzXo.v4vLfVS6PsKV/BVGA.MSlNmx1Jv2PV2', '2024-03-05 03:55:05', 'user', 0x496d616765732f6c7566667920696d6167652e6a7067),
-(23, 'johndoe69', '', '', '', '', '', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f75736572207069632e6a7067),
-(26, 'user02', '', '', '', '', '', '$2y$10$bSwzGRlOUB.9LHBVhRlSDOP9hubnK8mlOnjgK3odwzWIeGO2QyYby', '2024-03-19 13:08:31', 'user', 0x496d616765732f363630362d6d616c652d757365722e706e67),
-(28, 'user03', '', '', '', '', '', '$2y$10$tTuib0Oiz6Hn4Jsr.nBEC.WEVaSEsqkYXoj4WCBY6O84rW0wc/cGm', '2024-03-22 16:28:42', 'user', 0x496d616765732f706e6768712e636f6d2d757365722d69636f6e2d6375746f75742d706e672d636c69706172742d696d616765732e706e67),
-(1004, 'user09', '', '', '', '', '', '$2y$10$W2QQuIS/BScBESbs/CNiT.IUcOxnV26mQqpkw1cZPPZE5rKQRn63K', '2024-03-25 15:31:17', 'user', ''),
-(1012, 'qwqwqw', '', '', '', '', '', '$2y$10$mrq2Xwc4UZ9WrFUxtzTaN.lml6pPdINY08LQtFXL6SRslVURv.mEi', '2024-04-18 10:40:27', 'user', '');
+(23, 'marcojin', '', '', '', '', '', '$2y$10$FWOVzitIKMYjAgTiN9kqZO.rdFLddWFPYRHNUxj8UvjGUxGl/JHha', '2024-03-06 00:43:33', 'user', 0x496d616765732f6d6172636f2e6a7067),
+(26, 'alfredjamiun', '', '', '', '', '', '$2y$10$bSwzGRlOUB.9LHBVhRlSDOP9hubnK8mlOnjgK3odwzWIeGO2QyYby', '2024-03-19 13:08:31', 'user', 0x496d616765732f627564692e6a7067),
+(28, 'jan', '', '', '', '', '', '$2y$10$tTuib0Oiz6Hn4Jsr.nBEC.WEVaSEsqkYXoj4WCBY6O84rW0wc/cGm', '2024-03-22 16:28:42', 'user', 0x496d616765732f706e6768712e636f6d2d757365722d69636f6e2d6375746f75742d706e672d636c69706172742d696d616765732e706e67),
+(1004, 'Alquin', '', '', '', '', '', '$2y$10$W2QQuIS/BScBESbs/CNiT.IUcOxnV26mQqpkw1cZPPZE5rKQRn63K', '2024-03-25 15:31:17', 'user', ''),
+(1012, 'cics@zppsu', '', '', '', '', '', '$2y$10$mrq2Xwc4UZ9WrFUxtzTaN.lml6pPdINY08LQtFXL6SRslVURv.mEi', '2024-04-18 10:40:27', 'user', 0x496d616765732f63696373646570742e6a7067),
+(1013, 'geo_ong', '', '', '', '', '', '$2y$10$736G0eWs9E7GJ2JZt8X87eB43e2LrW7jmwLoGS6JnPDX5aGbpnL5i', '2024-05-24 22:54:19', 'user', 0x496d616765732f67656f2e6a7067),
+(1014, 'dio_brando', '', '', '', '', '', '$2y$10$GGqbe4N414wmuSlilZ1QSOTDC6hJh1h7SBqApKGTSNh4CwYyuw8ci', '2024-05-24 23:01:40', 'user', 0x496d616765732f6272616e646f2e6a7067),
+(1015, 'mark', '', '', '', '', '', '$2y$10$s7iGexj4L6a9i7ABb3zaHuCQ/idRmBU3LRw8sokIXvZLnmHaVqrZa', '2024-05-24 23:05:09', 'user', '');
 
 --
 -- Indexes for dumped tables
@@ -845,13 +859,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT for table `borrowed_books`
 --
 ALTER TABLE `borrowed_books`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=377;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=388;
 
 --
 -- AUTO_INCREMENT for table `return_history`
@@ -863,7 +877,7 @@ ALTER TABLE `return_history`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1013;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1016;
 
 --
 -- Constraints for dumped tables

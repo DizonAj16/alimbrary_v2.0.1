@@ -130,7 +130,7 @@
             <?php
             // Include config file
             require_once "../config.php";
-
+            $genres = array("Fantasy", "Science Fiction", "Mystery", "Romance", "Thriller", "Horror", "Science", "Writing", "Shonen");
             // Fetch user's profile image path from the database
             $user_id = $_SESSION["id"];
             $sql = "SELECT image FROM users WHERE id = ?";
@@ -241,8 +241,7 @@
                         animation: rotate360 0.5s linear;
                     }
 
-                    /* Optional: add some padding and margin for better aesthetics */
-
+                    
                 </style>
 
 
@@ -327,6 +326,12 @@
                                     <div class="d-flex flex-row justify-content-between align-items-center">
                                         <div class="input-group">
                                             <input type="search" id="liveSearchInput" class="form-control form-control-md me-2 rounded-4 border border-primary" placeholder="Search Title or Genre" aria-label="Search" aria-describedby="button-addon2" style="width: 300px;">
+                                            <select id="genreFilter" class="form-select rounded-4 me-2" onchange="filterBooks()" style="width:150px;">
+                                                <option value="">All Genres</option>
+                                                <?php foreach ($genres as $genre) { ?>
+                                                    <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
+                                                <?php } ?>
+                                            </select>
                                             <button type="button" class="btn btn-success btn-md rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
                                                 <i class="fa fa-plus-circle fa-lg text-light"></i> Add book
                                             </button>
@@ -380,7 +385,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="genre" class="form-label">Genre</label>
-                                                <input type="text" name="genre" class="form-control <?php echo (!empty($genre_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $genre; ?>">
+                                                <input type="text" name="genre" class="form-control <?php echo (!empty($genre_err)) ? 'is-invalid' : ''; ?>" value="">
                                                 <div class="invalid-feedback"><?php echo $genre_err; ?></div>
                                             </div>
                                             <div class="mb-3">
@@ -534,6 +539,33 @@
                         });
                     });
                 </script>
+
+
+                <script>
+                    function filterBooks() {
+                        var selectedGenre = document.getElementById("genreFilter").value;
+                        var searchText = document.getElementById("liveSearchInput").value.toLowerCase().trim();
+
+                        // Send an AJAX request to fetch books based on the selected genre
+                        $.ajax({
+                            url: "../search/search_books.php",
+                            method: "POST",
+                            data: {
+                                genre: selectedGenre, // Pass selected genre
+                                searchQuery: searchText // Pass search query if any
+                            },
+                            success: function(response) {
+                                // Update the book list with the filtered results
+                                $("#bookCardsContainer").html(response);
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    }
+                </script>
+
+
                 <script>
                     $(document).ready(function() {
 

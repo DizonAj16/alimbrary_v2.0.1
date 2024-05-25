@@ -95,7 +95,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
 
         .card {
             min-height: 80vh;
-            max-width: 800px; /* Set a maximum width for the card */
+            max-width: 1000px; /* Set a maximum width for the card */
             width: 100%;
         }
 
@@ -109,7 +109,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         .book-image {
             max-width: 100%;
             height: auto;
-            max-height: 300px; /* Set a maximum height for the image */
+            max-height: 500px; /* Set a maximum height for the image */
             margin-bottom: 10px;
             border-radius: 10px;
             object-fit: cover;
@@ -118,8 +118,8 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
         .table th, .table td {
             border: none;
             padding: 5px; /* Adjust padding for table cells */
-            text-align: left;
-            font-size: 16px; /* Adjust font size for better fit */
+            text-align: start;
+            font-size: 18px; /* Adjust font size for better fit */
         }
 
         .card-footer {
@@ -159,7 +159,7 @@ if (isset($_GET["book_id"]) && !empty(trim($_GET["book_id"]))) {
     <div class="container">
         <div class="card mb-5">
             <div class="card-header">
-                <h2 class="card-title">Book Details</h2>
+                <h2>Book Details</h2>
             </div>
             <div class="card-body">
                 <div class="row">

@@ -26,6 +26,7 @@ if (isset($_SESSION["id"]) && !empty(trim($_SESSION["id"]))) {
 
                 // Display user's most borrowed books
                 echo "<h3 class='fw-bold text-center'>My Favorite Books</h3>";
+                echo "<h6 class='text-center'>(by borrow count)</h6>";
                 echo "<ol>";
                 while (mysqli_stmt_fetch($stmt)) {
                     // Fetch book details using book_id and display them
@@ -35,7 +36,7 @@ if (isset($_SESSION["id"]) && !empty(trim($_SESSION["id"]))) {
                         mysqli_stmt_execute($book_stmt);
                         mysqli_stmt_bind_result($book_stmt, $title);
                         mysqli_stmt_fetch($book_stmt);
-                        echo "<li class='fw-bold'>$title - Borrow Count: $borrow_count</li>";
+                        echo "<li class='fw-bold'>$title - $borrow_count</li>";
                         mysqli_stmt_close($book_stmt);
                     }
                 }

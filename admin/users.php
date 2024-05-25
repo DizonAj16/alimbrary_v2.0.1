@@ -204,7 +204,7 @@ mysqli_stmt_close($stmt);
         </div>
     </nav>
 
-    <div class="container-fluid mb-3" style="margin-top: 100px;">
+    <div class="container-fluid mb-3" style="margin-top: 85px;">
         <h1 class="text-center fw-bold text-light">Users</h1>
         <div class="d-flex justify-content-center mb-3">
             <input type="search" id="searchInput" class="form-control form-control-md rounded-4 border border-primary" placeholder="Search User" style="width:300px;" autocomplete="off">
