@@ -1,8 +1,10 @@
 <?php
 require_once "../config.php";
-// Check if the user is logged in and is an admin, if not then redirect to login page
+
+// Start the session
 session_start();
 
+// Check if the user is logged in and is a regular user (not admin)
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["user_type"] !== "user") {
   header("location: ../login.php");
   exit;
@@ -17,6 +19,28 @@ mysqli_stmt_execute($stmt);
 mysqli_stmt_bind_result($stmt, $profile_image);
 mysqli_stmt_fetch($stmt);
 mysqli_stmt_close($stmt);
+
+// Fetch user's most borrowed books with book titles
+$query = "SELECT books.title AS book_title, borrowed_books.book_id, COUNT(*) AS borrow_count 
+          FROM borrowed_books 
+          JOIN books ON borrowed_books.book_id = books.book_id 
+          WHERE borrowed_books.user_id = ? 
+          GROUP BY borrowed_books.book_id 
+          ORDER BY borrow_count DESC 
+          LIMIT 10";
+$stmt = mysqli_prepare($conn, $query);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+
+$bookTitles = [];
+$borrowCounts = [];
+
+while ($row = mysqli_fetch_assoc($result)) {
+  $bookTitles[] = $row['book_title'];
+  $borrowCounts[] = $row['borrow_count'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +54,7 @@ mysqli_stmt_close($stmt);
   <script defer src="../js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="../external-css/navigation.css">
   <link rel="stylesheet" href="../fa-css/all.css">
+  <script src="../scripts/chart.js"></script>
   <link rel="icon" href="../Images/logo.png" type="image/x-icon">
   <style>
     body {
@@ -86,6 +111,33 @@ mysqli_stmt_close($stmt);
       height: 70px;
       width: 70px;
     }
+    .c-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+            border-radius: 10px;
+            padding: 10px;
+            gap: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            height: 450px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            backdrop-filter: blur(20px);
+            padding: 20px;
+        }
+
+
+        canvas {
+            display: block;
+            margin: auto;
+        }
   </style>
 </head>
 
@@ -162,9 +214,15 @@ mysqli_stmt_close($stmt);
     <h1 class="text-center fw-bold text-light">Dashboard</h1>
   </div>
 
+
+  <div class="c-container">
+    <div class="chart-container">
+      <canvas id="bookChart" width="1000" height="500"></canvas>
+    </div>
+  </div>
+
+
   <div class="dashboard-container" id="dashboard">
-
-
 
     <a class="total-available-books dashboard-section text-light" href="userbook.php" style="text-decoration: none;">
       <img src="../images/icons8-books-96.png" alt="">
@@ -239,6 +297,70 @@ mysqli_stmt_close($stmt);
     </a>
   </div>
 
+  <script>
+  // Chart.js code here
+  var bookTitles = <?php echo json_encode($bookTitles); ?>;
+  var borrowCounts = <?php echo json_encode($borrowCounts); ?>;
+
+  // Function to generate random colors
+  function generateRandomColors(numColors) {
+    var colors = [];
+    for (var i = 0; i < numColors; i++) {
+      var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
+      colors.push(color);
+    }
+    return colors;
+  }
+
+  var ctx = document.getElementById('bookChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: bookTitles, // Use book titles as labels
+      datasets: [{
+        label: 'Borrow count',
+        data: borrowCounts,
+        backgroundColor: generateRandomColors(bookTitles.length), // Generate random colors
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#ffffff' 
+          }
+        },
+        x: {
+          ticks: {
+            color: '#ffffff' 
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false,
+          labels: {
+            color: '#ffffff' 
+          }
+        },
+        title: {
+          display: true,
+          text: 'Your Top 10 Books',
+          color: '#ffffff',
+          font: {
+            size: 20,
+            weight: 'bold' 
+          } 
+        }
+      }
+    }
+  });
+</script>
 
 
   <footer style="background-color: black;">

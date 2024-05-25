@@ -149,19 +149,12 @@ mysqli_free_result($result2);
         .c-container {
             display: flex;
             flex-direction: row;
-            /* Change the direction to horizontal */
             justify-content: space-around;
             flex-wrap: wrap;
-            /* Center the charts horizontally */
             align-items: center;
-            /* Center the charts vertically */
-            /* Add some margin for spacing */
-            /* Set background color */
-            /* Add padding for spacing */
             border-radius: 10px;
             padding: 10px;
             gap: 20px;
-            /* Add rounded corners */
         }
 
         .chart-container {
@@ -170,10 +163,9 @@ mysqli_free_result($result2);
             max-width: 650px;
             height: 400px;
             background-color: rgba(0, 0, 0, 0.7);
-            /* Darker background color */
-            /* Darker box shadow */
-            border-radius: 5px;
+            border-radius: 10px;
             backdrop-filter: blur(20px);
+            box-shadow: 20px 20px 22px rgba(0, 0, 0, 0.02);
             padding: 20px;
             /* Add rounded corners */
         }
@@ -181,9 +173,7 @@ mysqli_free_result($result2);
 
         canvas {
             display: block;
-            /* Ensure canvas elements fill their container */
             margin: auto;
-            /* Center the canvas horizontally */
         }
 
         @media (max-width: 768px) {
@@ -384,22 +374,15 @@ mysqli_free_result($result2);
 
 
     <script>
-        // Function to generate random colors without duplicates
+        // Function to generate random colors
         function generateRandomColors(numColors) {
             var colors = [];
-            var usedColors = new Set(); // Set to keep track of used colors
             for (var i = 0; i < numColors; i++) {
-                var color;
-                do {
-                    // Generate a random color
-                    color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
-                } while (usedColors.has(color)); // Check if the color is already used
+                var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
                 colors.push(color);
-                usedColors.add(color); // Add the color to the set of used colors
             }
             return colors;
         }
-
 
         // PHP generated data for the chart
         const userData = <?php echo json_encode($userData); ?>;
@@ -415,7 +398,6 @@ mysqli_free_result($result2);
         const backgroundColors = generateRandomColors(userIDs.length);
         const borderColors = generateRandomColors(userIDs.length);
 
-        // Create the chart
         const borrowChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -423,8 +405,8 @@ mysqli_free_result($result2);
                 datasets: [{
                     label: 'Number of Books Borrowed',
                     data: borrowedCounts,
-                    backgroundColor: backgroundColors, // Set different colors for each bar // Set different border colors for each bar
-                    borderWidth: 2, // Set hover background colors to match bar colors  // Set hover border colors to match bar border colors
+                    backgroundColor: backgroundColors, 
+                    borderWidth: 2, 
                 }]
             },
             options: {
@@ -434,10 +416,10 @@ mysqli_free_result($result2);
                     title: {
                         display: true,
                         text: 'Borrow Count of Each User',
-                        color: '#ffffff', // Set the color of the title text to white
+                        color: '#ffffff', 
                         font: {
                             size: 18,
-                            weight: 'bold' // Make the title text bold
+                            weight: 'bold' 
                         }
                     },
                     legend: {
@@ -449,43 +431,43 @@ mysqli_free_result($result2);
                         title: {
                             display: true,
                             text: 'Number of Books',
-                            color: '#ffffff', // Set the color of the y-axis title text to white
+                            color: '#ffffff', 
                             font: {
                                 size: 14,
-                                weight: 'bold' // Make the y-axis title text bold
+                                weight: 'bold' 
                             }
                         },
                         ticks: {
-                            color: '#ffffff', // Set the color of the y-axis tick labels to white
+                            color: '#ffffff', 
                             font: {
                                 size: 12,
-                                weight: 'bold' // Make the y-axis tick labels bold
+                                weight: 'bold' 
                             },
                             beginAtZero: true
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.2)' // Set the color of y-axis grid lines
+                            color: 'rgba(255, 255, 255, 0.2)' 
                         }
                     },
                     x: {
                         title: {
                             display: true,
                             text: 'Users',
-                            color: '#ffffff', // Set the color of the x-axis title text to white
+                            color: '#ffffff', 
                             font: {
                                 size: 14,
-                                weight: 'bold' // Make the x-axis title text bold
+                                weight: 'bold' 
                             }
                         },
                         ticks: {
-                            color: '#ffffff', // Set the color of the x-axis tick labels to white
+                            color: '#ffffff', 
                             font: {
                                 size: 12,
-                                weight: 'bold' // Make the x-axis tick labels bold
+                                weight: 'bold' 
                             }
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.2)' // Set the color of x-axis grid lines
+                            color: 'rgba(255, 255, 255, 0.2)' 
                         }
                     }
                 }
@@ -495,70 +477,66 @@ mysqli_free_result($result2);
 
 
 
-    <script>
-        var bookTitles = <?php echo json_encode($bookTitles); ?>;
-        var borrowCounts = <?php echo json_encode($borrowCounts); ?>;
+<script>
+    var bookTitles = <?php echo json_encode($bookTitles); ?>;
+    var borrowCounts = <?php echo json_encode($borrowCounts); ?>;
 
-        var ctx2 = document.getElementById('bookChart').getContext('2d');
-        var bookColors = generateRandomColors(bookTitles.length); // Function to generate random colors
-        var bookChart = new Chart(ctx2, {
-            type: 'pie',
-            data: {
-                labels: bookTitles,
-                datasets: [{
-                    label: 'Borrow count',
-                    data: borrowCounts,
-                    backgroundColor: bookColors,
-                    borderColor: '#ecf0f1', // White border color
-                    borderWidth: 2,
-                    hoverBackgroundColor: bookColors, // Set hover color same as current color
-                    hoverBorderColor: '#ffffff' // Full white hover color
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Number of Borrowers for Each Book',
-                        color: '#ecf0f1', // White title text
-                        font: {
-                            size: 18,
-                            weight: 'bold'
-                        },
-                        position: 'top' // Position the title on top
+    var ctx2 = document.getElementById('bookChart').getContext('2d');
+    var bookColors = generateRandomColors(bookTitles.length); // Function to generate random colors
+    var bookChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: bookTitles,
+            datasets: [{
+                label: 'Borrow count',
+                data: borrowCounts,
+                backgroundColor: bookColors,
+                borderColor: '#ecf0f1', 
+                borderWidth: 2,
+                hoverBackgroundColor: bookColors, 
+                hoverBorderColor: '#ffffff' 
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Number of Borrowers for Each Book',
+                    color: '#ffffff', 
+                    font: {
+                        size: 18,
+                        weight: 'bold',
+                        color: '#ffffff' 
                     },
-                    legend: {
-                        display: true,
-                        position: 'right', // Position legend on the right side
-                        labels: {
-                            fontColor: '#ffffff', // Set legend text color to white
-                            fontSize: 20,
-                            fontWeight: 'bold' // Set legend text font weight to bold
-                        }
-                    }
+                    position: 'top' 
                 },
-            }
-        });
-
-        // Function to generate random colors
-        // Function to generate random colors without duplicates
-        function generateRandomColors(numColors) {
-            var colors = [];
-            var usedColors = new Set(); // Set to keep track of used colors
-            for (var i = 0; i < numColors; i++) {
-                var color;
-                do {
-                    // Generate a random color
-                    color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
-                } while (usedColors.has(color)); // Check if the color is already used
-                colors.push(color);
-                usedColors.add(color); // Add the color to the set of used colors
-            }
-            return colors;
+                legend: {
+                    display: true,
+                    position: 'right', 
+                    labels: {
+                        color: '#ffffff',
+                        fontColor: '#ffffff', 
+                        fontSize: 20,
+                        fontWeight: 'bold' 
+                    }
+                }
+            },
         }
-    </script>
+    });
+
+    // Function to generate random colors
+    function generateRandomColors(numColors) {
+        var colors = [];
+        for (var i = 0; i < numColors; i++) {
+            var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
+            colors.push(color);
+        }
+        return colors;
+    }
+</script>
+
 
 
 
