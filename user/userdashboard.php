@@ -111,33 +111,52 @@ while ($row = mysqli_fetch_assoc($result)) {
       height: 70px;
       width: 70px;
     }
+
     .c-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            align-items: center;
-            border-radius: 10px;
-            padding: 10px;
-            gap: 20px;
-        }
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      align-items: center;
+      border-radius: 10px;
+      padding: 10px;
+      gap: 20px;
+    }
 
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 1100px;
-            height: 450px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            backdrop-filter: blur(20px);
-            padding: 20px;
-        }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      height: 450px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      backdrop-filter: blur(20px);
+      padding: 20px;
+    }
 
+    canvas {
+      display: block;
+      margin: auto;
+    }
 
-        canvas {
-            display: block;
-            margin: auto;
-        }
+    .alternative-message {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+
+      .chart-container {
+        overflow-y: scroll;
+        height: 380px;
+      }
+    }
   </style>
 </head>
 
@@ -216,8 +235,10 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 
   <div class="c-container">
+    
     <div class="chart-container">
       <canvas id="bookChart" width="1000" height="500"></canvas>
+      <h1 id="noBooksMessage" class="alternative-message">No books borrowed yet.</h1>
     </div>
   </div>
 
@@ -298,69 +319,82 @@ while ($row = mysqli_fetch_assoc($result)) {
   </div>
 
   <script>
-  // Chart.js code here
-  var bookTitles = <?php echo json_encode($bookTitles); ?>;
-  var borrowCounts = <?php echo json_encode($borrowCounts); ?>;
+  <?php
+  // Check if there are borrowed books
+  if (!empty($bookTitles) && !empty($borrowCounts)) {
+  ?>
+    // Chart.js code here
+    var bookTitles = <?php echo json_encode($bookTitles); ?>;
+    var borrowCounts = <?php echo json_encode($borrowCounts); ?>;
 
-  // Function to generate random colors
-  function generateRandomColors(numColors) {
-    var colors = [];
-    for (var i = 0; i < numColors; i++) {
-      var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
-      colors.push(color);
+    // Function to generate random colors
+    function generateRandomColors(numColors) {
+      var colors = [];
+      for (var i = 0; i < numColors; i++) {
+        var color = 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.7)';
+        colors.push(color);
+      }
+      return colors;
     }
-    return colors;
-  }
 
-  var ctx = document.getElementById('bookChart').getContext('2d');
-  var chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: bookTitles, // Use book titles as labels
-      datasets: [{
-        label: 'Borrow count',
-        data: borrowCounts,
-        backgroundColor: generateRandomColors(bookTitles.length), // Generate random colors
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            color: '#ffffff' 
-          }
-        },
-        x: {
-          ticks: {
-            color: '#ffffff' 
-          }
-        }
+    var ctx = document.getElementById('bookChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: bookTitles, // Use book titles as labels
+        datasets: [{
+          label: 'Borrow count',
+          data: borrowCounts,
+          backgroundColor: generateRandomColors(bookTitles.length), // Generate random colors
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
       },
-      plugins: {
-        legend: {
-          display: false,
-          labels: {
-            color: '#ffffff' 
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: '#ffffff'
+            }
+          },
+          x: {
+            ticks: {
+              color: '#ffffff'
+            }
           }
         },
-        title: {
-          display: true,
-          text: 'Your Top 10 Books',
-          color: '#ffffff',
-          font: {
-            size: 20,
-            weight: 'bold' 
-          } 
+        plugins: {
+          legend: {
+            display: false,
+            labels: {
+              color: '#ffffff'
+            }
+          },
+          title: {
+            display: true,
+            text: 'Your Top 10 Books',
+            color: '#ffffff',
+            font: {
+              size: 20,
+              weight: 'bold'
+            }
+          }
         }
       }
-    }
-  });
+    });
+  <?php
+  } else {
+  ?>
+    // Display alternative message when no books are borrowed
+    document.getElementById('noBooksMessage').style.display = 'block';
+  <?php
+  }
+  ?>
 </script>
+
 
 
   <footer style="background-color: black;">

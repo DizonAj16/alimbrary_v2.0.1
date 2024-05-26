@@ -227,85 +227,89 @@ mysqli_stmt_close($stmt);
     </nav>
 
     <div class="container d-flex flex-column flex-grow-1" style="margin-top:85px">
-        <?php if (mysqli_num_rows($result) === 0) : ?>
-            <div class='container alert alert-danger' role='alert'>
-                <h4 class='alert-heading'>No Returned Books</h4>
-                <p class='mb-0'>You haven't returned any books yet.</p>
+    <?php
+    if (mysqli_num_rows($result) === 0) {
+        // Display alert when there are no returned books
+        echo "<div class='container alert alert-danger' role='alert'>";
+        echo "<h4 class='alert-heading'>No Returned Books</h4>";
+        echo "<p class='mb-0'>You haven't returned any books yet.</p>";
+        echo "</div>";
+    } else {
+        // Display the card and table when there are returned books
+    ?>
+    <div class="card mt-2">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="fw-bold mb-0">Return History</h2>
+            <div class="d-flex">
+                <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 200px;">
             </div>
-        <?php else : ?>
-            <div class="card mt-2">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h2 class="fw-bold mb-0">Return History</h2>
-                    <div class="d-flex">
-                        <input type="text" id="searchInput" class="form-control me-2" placeholder="Search by Book Title..." style="width: 200px;">
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead class="text-center">
-                                <tr>
-                                    <th>R.Id</th>
-                                    <th>Title</th>
-                                    <th>Borrow Date</th>
-                                    <th>Date Returned</th>
-                                    <th>Time Borrowed</th>
-                                    <th>R.Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                // Loop through each row in the result set
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<tr>";
-                                    echo "<td class='text-center'>" . $row['return_id'] . "</td>";
-                                    echo "<td class='fw-bold'>" . $row['title'] . "</td>";
-                                    echo "<td>" . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . "</td>";
-                                    echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="text-center">
+                        <tr>
+                            <th>R.Id</th>
+                            <th>Title</th>
+                            <th>Borrow Date</th>
+                            <th>Date Returned</th>
+                            <th>Time Borrowed</th>
+                            <th>R.Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Loop through each row in the result set
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td class='text-center'>" . $row['return_id'] . "</td>";
+                            echo "<td class='fw-bold'>" . $row['title'] . "</td>";
+                            echo "<td>" . date("F j, Y, h:i A", strtotime($row['borrow_date'])) . "</td>";
+                            echo "<td>" . date("F j, Y, h:i A", strtotime($row['returned_date_time'])) . "</td>";
 
-                                    // Calculate the time borrowed
-                                    $borrow_date = strtotime($row['borrow_date']);
-                                    $returned_date = strtotime($row['returned_date_time']);
-                                    $diff = $returned_date - $borrow_date;
-                                    $days = floor($diff / (60 * 60 * 24));
-                                    $hours = floor(($diff - $days * 60 * 60 * 24) / (60 * 60));
-                                    $minutes = floor(($diff - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
-                                    $seconds = $diff % 60;
-                                    $time_borrowed = "";
-                                    if ($days > 0) {
-                                        $time_borrowed .= "$days day(s) ";
-                                    }
-                                    if ($hours > 0) {
-                                        $time_borrowed .= "$hours hour(s) ";
-                                    }
-                                    if ($minutes > 0) {
-                                        $time_borrowed .= "$minutes minute(s) ";
-                                    }
+                            // Calculate the time borrowed
+                            $borrow_date = strtotime($row['borrow_date']);
+                            $returned_date = strtotime($row['returned_date_time']);
+                            $diff = $returned_date - $borrow_date;
+                            $days = floor($diff / (60 * 60 * 24));
+                            $hours = floor(($diff - $days * 60 * 60 * 24) / (60 * 60));
+                            $minutes = floor(($diff - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
+                            $seconds = $diff % 60;
+                            $time_borrowed = "";
+                            if ($days > 0) {
+                                $time_borrowed .= "$days day(s) ";
+                            }
+                            if ($hours > 0) {
+                                $time_borrowed .= "$hours hour(s) ";
+                            }
+                            if ($minutes > 0) {
+                                $time_borrowed .= "$minutes minute(s) ";
+                            }
 
-                                    echo "<td class='text-center'>$time_borrowed</td>";
+                            echo "<td class='text-center'>$time_borrowed</td>";
 
-                                    // Determine return status
-                                    $expected_return_date = strtotime($row['return_date']);
+                            // Determine return status
+                            $expected_return_date = strtotime($row['return_date']);
 
-                                    if ($returned_date <= $expected_return_date) {
-                                        echo '<td class="text-center"><span class="badge bg-success">On Time</span></td>';
-                                    } else {
-                                        echo '<td class="text-center"><span class="badge bg-danger">Late</span></td>';
-                                    }
+                            if ($returned_date <= $expected_return_date) {
+                                echo '<td class="text-center"><span class="badge bg-success">On Time</span></td>';
+                            } else {
+                                echo '<td class="text-center"><span class="badge bg-danger">Late</span></td>';
+                            }
 
-                                    echo "</tr>";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="noResults" class="alert alert-danger mb-3 me-2 ms-2" style="display: none;">
-                        No results found
-                    </div>
-                </div>
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
+            <div id="noResults" class="alert alert-danger mb-3 me-2 ms-2" style="display: none;">
+                No results found
+            </div>
+        </div>
     </div>
-<?php endif; ?>
+    <?php } ?>
+</div>
 
 <script src="../jquery/jquery-3.6.0.min.js"></script>
 <script>
