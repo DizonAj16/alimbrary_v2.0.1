@@ -209,10 +209,24 @@
                     }
 
                     @media (max-width: 768px) {
+                        #btn-add .btn-text {
+                            display: none;
+                        }
+
+                        #btn-add {
+                            padding: 0.5rem;
+                            font-size: 1.25rem;
+                        }
+
                         #liveSearchInput {
                             max-width: 130px;
                         }
+
+                        #genreFilter {
+                            max-width: 130px;
+                        }
                     }
+
 
                     .form-control {
                         border: 1px solid grey;
@@ -240,8 +254,6 @@
                     .btn:hover span {
                         animation: rotate360 0.5s linear;
                     }
-
-                    
                 </style>
 
 
@@ -332,9 +344,10 @@
                                                     <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
                                                 <?php } ?>
                                             </select>
-                                            <button type="button" class="btn btn-success btn-md rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
-                                                <i class="fa fa-plus-circle fa-lg text-light"></i> Add book
+                                            <button type="button" id="btn-add" class="btn btn-success btn-md rounded-4" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-title="Add New Book" data-bs-tooltip="tooltip" data-bs-placement="left" aria-describedby="tooltipExample">
+                                                <i class="fa fa-plus-circle fa-lg text-light"></i> <span class="btn-text">Add book</span>
                                             </button>
+
                                         </div>
                                     </div>
                                 </div>
