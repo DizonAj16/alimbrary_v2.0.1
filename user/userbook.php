@@ -196,6 +196,39 @@ mysqli_stmt_close($stmt);
             background-color: black;
             margin-top: auto;
         }
+
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-container input[type="search"],
+        .search-container select {
+            width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .search-container input[type="search"],
+            .search-container select {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .search-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-container input[type="search"],
+            .search-container select {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
     </style>
 
 
@@ -275,9 +308,9 @@ mysqli_stmt_close($stmt);
                 <div class="col-lg-12">
                     <div class="mt-3 clearfix d-flex flex-column justify-content-center align-items-center">
                         <h1 class="fw-bold text-light">Books</h1>
-                        <div class="d-flex align-items-center">
-                            <input type="search" id="searchInput" class="form-control form-control-md rounded-4 border border-primary me-2" placeholder="Search Title or Genre" style="width:300px;" autocomplete="off">
-                            <select id="genreFilter" class="form-select rounded-4" onchange="filterBooks()" style="width:150px;">
+                        <div class="search-container">
+                            <input type="search" id="searchInput" class="form-control form-control-md rounded-4 border border-primary me-2" placeholder="Search Title or Genre" autocomplete="off">
+                            <select id="genreFilter" class="form-select rounded-4" onchange="filterBooks()">
                                 <option value="">All Genres</option>
                                 <?php foreach ($genres as $genre) { ?>
                                     <option value="<?php echo $genre; ?>"><?php echo $genre; ?></option>
@@ -289,6 +322,7 @@ mysqli_stmt_close($stmt);
             </div>
         </div>
     </div>
+
 
 
 
