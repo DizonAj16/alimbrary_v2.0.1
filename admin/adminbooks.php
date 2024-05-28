@@ -225,6 +225,9 @@
                         #genreFilter {
                             max-width: 130px;
                         }
+                        #modal-submit{
+                            margin-top: 10px;
+                        }
                     }
 
 
@@ -431,7 +434,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" id="modal-submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </form>
                             </div>
