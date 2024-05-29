@@ -179,9 +179,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .modal-button-create:hover {
             background-color: #8B0000;
         }
-
-        }
-
         @media (max-width: 768px) {
             .modal {
                 z-index: 999;
