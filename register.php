@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div class="bg-img">
+<div class="bg-img">
         <div class="content">
             <header>Signup</header>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -135,6 +135,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </form>
            
+            <div class="signup">
+                Have an account?
+                <a href="login.php">Back to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Success Message -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Your account has been successfully created.</p>
+            <button class="modal-button" onclick="proceedToLogin()">Proceed to Login</button>
+            <button class="modal-button" onclick="createAnotherAccount()">Create Another Account</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to display the success modal
+        function displaySuccessModal() {
+            var modal = document.getElementById("successModal");
+            modal.style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById("successModal");
+            modal.style.display = "none";
+        }
+
+        // Function to redirect to login page
+        function proceedToLogin() {
+            window.location.href = "login.php";
+        }
+
+        // Function to reset the form for creating another account
+        function createAnotherAccount() {
+            document.querySelector("form").reset();
+            closeModal();
+        }
+
+        // PHP code for displaying success message as a modal
+        <?php if (!empty($signup_success_message)) : ?>
+            // Show success modal on page load
+            displaySuccessModal();
+        <?php endif; ?>
+    </script>
+           
             <script>
     const passwordFields = document.querySelectorAll(".pass-key");
     const toggleIcons = document.querySelectorAll(".password-toggle-icon i");
@@ -156,8 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // PHP code for displaying errors and success message
     <?php if (!empty($signup_success_message)) : ?>
-        alert("<?php echo $signup_success_message; ?>");
-        window.location.href = "login.php"; // Redirect to login page
+
     <?php endif; ?>
     <?php if (!empty($username_err) || !empty($password_err) || !empty($confirm_password_err)) : ?>
         var errorMessage = "<?php echo $username_err . '\n' . $password_err . '\n' . $confirm_password_err; ?>";
