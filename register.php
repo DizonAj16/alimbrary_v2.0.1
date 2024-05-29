@@ -109,10 +109,95 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="fa-css/all.css">
     <link rel="icon" href="../Images/logo.png" type="image/x-icon">
+    <style>
+        /* CSS for the success modal */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: auto;
+            /* Auto height */
+            padding: 20px;
+            /* Add some padding */
+            box-sizing: border-box;
+            /* Include padding in width */
+            text-align: center;
+            /* Center the content horizontally */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            /* Display inline to take only necessary width */
+            max-width: 80%;
+            /* Limit the maximum width */
+        }
+
+        /* Close Button */
+        .close {
+            color: #aaa;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        /* First Button (Proceed to Login) */
+        .modal-button-proceed {
+            background-color: #4caf50;
+            /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .modal-button-proceed:hover {
+            background-color: #45a049;
+        }
+
+        /* Second Button (Create Another Account) */
+        .modal-button-create {
+            background-color: #f44336;
+            /* Red */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .modal-button-create:hover {
+            background-color: #f22f2f;
+        }
+    </style>
 </head>
 
 <body>
-<div class="bg-img">
+    <div class="bg-img">
         <div class="content">
             <header>Signup</header>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -134,7 +219,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="submit" class="btn btn-primary" value="Submit">
                 </div>
             </form>
-           
+
             <div class="signup">
                 Have an account?
                 <a href="login.php">Back to Login</a>
@@ -146,9 +231,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="successModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <p>Your account has been successfully created.</p>
-            <button class="modal-button" onclick="proceedToLogin()">Proceed to Login</button>
-            <button class="modal-button" onclick="createAnotherAccount()">Create Another Account</button>
+            <h3>Your account has been successfully created.</h3>
+            <button class="modal-button modal-button-proceed" onclick="proceedToLogin()">Proceed to Login</button>
+            <button class="modal-button modal-button-create" onclick="createAnotherAccount()">Create Another Account</button>
         </div>
     </div>
 
@@ -182,44 +267,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             displaySuccessModal();
         <?php endif; ?>
     </script>
-           
-            <script>
-    const passwordFields = document.querySelectorAll(".pass-key");
-    const toggleIcons = document.querySelectorAll(".password-toggle-icon i");
 
-    toggleIcons.forEach((icon, index) => {
-        icon.addEventListener("click", function() {
-            const passwordField = passwordFields[index];
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                icon.classList.add("fa-eye");
-                icon.classList.remove("fa-eye-slash");
-            } else {
-                passwordField.type = "password";
-                icon.classList.add("fa-eye-slash");
-                icon.classList.remove("fa-eye");
-            }
+    <script>
+        const passwordFields = document.querySelectorAll(".pass-key");
+        const toggleIcons = document.querySelectorAll(".password-toggle-icon i");
+
+        toggleIcons.forEach((icon, index) => {
+            icon.addEventListener("click", function() {
+                const passwordField = passwordFields[index];
+                if (passwordField.type === "password") {
+                    passwordField.type = "text";
+                    icon.classList.add("fa-eye");
+                    icon.classList.remove("fa-eye-slash");
+                } else {
+                    passwordField.type = "password";
+                    icon.classList.add("fa-eye-slash");
+                    icon.classList.remove("fa-eye");
+                }
+            });
         });
-    });
 
-    // PHP code for displaying errors and success message
-    <?php if (!empty($signup_success_message)) : ?>
+        // PHP code for displaying errors and success message
+        <?php if (!empty($signup_success_message)) : ?>
 
-    <?php endif; ?>
-    <?php if (!empty($username_err) || !empty($password_err) || !empty($confirm_password_err)) : ?>
-        var errorMessage = "<?php echo $username_err . '\n' . $password_err . '\n' . $confirm_password_err; ?>";
-        alert(errorMessage);
-    <?php endif; ?>
-</script>
-
-            
-            <div class="signup">
-                Have an account?
-                <a href="login.php">Back to Login</a>
-            </div>
-        </div>
-    </div>
-
+        <?php endif; ?>
+        <?php if (!empty($username_err) || !empty($password_err) || !empty($confirm_password_err)) : ?>
+            var errorMessage = "<?php echo $username_err . $confirm_password_err; ?>";
+            alert(errorMessage);
+        <?php endif; ?>
+    </script>
 
 </body>
 
