@@ -110,29 +110,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="fa-css/all.css">
     <link rel="icon" href="../Images/logo.png" type="image/x-icon">
     <style>
-        /* CSS for the success modal */
         .modal {
             display: none;
-            /* Hidden by default */
             position: fixed;
-            /* Stay in place */
-            z-index: 1;
-            /* Sit on top */
+            z-index: 999;
             left: 0;
             top: 0;
             width: 100%;
-            /* Full width */
             height: auto;
-            /* Auto height */
             padding: 20px;
-            /* Add some padding */
             box-sizing: border-box;
-            /* Include padding in width */
             text-align: center;
-            /* Center the content horizontally */
         }
 
-        /* Modal Content */
         .modal-content {
             background-color: #fefefe;
             padding: 20px;
@@ -140,12 +130,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: inline-block;
-            /* Display inline to take only necessary width */
             max-width: 80%;
-            /* Limit the maximum width */
         }
 
-        /* Close Button */
         .close {
             color: #aaa;
             font-size: 24px;
@@ -162,10 +149,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-decoration: none;
         }
 
-        /* First Button (Proceed to Login) */
+
         .modal-button-proceed {
             background-color: #4caf50;
-            /* Green */
             color: white;
             padding: 10px 20px;
             border: none;
@@ -178,20 +164,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #45a049;
         }
 
-        /* Second Button (Create Another Account) */
+
         .modal-button-create {
             background-color: #f44336;
-            /* Red */
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
+            transition: background-color 0.3s ease;
         }
 
         .modal-button-create:hover {
-            background-color: #f22f2f;
+            background-color: #8B0000;
+        }
+
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                z-index: 999;
+            }
+
+            .modal-content {
+                max-width: 100%;
+                z-index: 999;
+            }
         }
     </style>
 </head>
@@ -199,7 +198,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="bg-img">
         <div class="content">
-            <header>Signup</header>
+            <header>Sign up</header>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="field">
                     <span class="fa fa-user"></span>
